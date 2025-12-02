@@ -269,6 +269,9 @@ importers:
       "@types/file-saver":
         specifier: 2.0.7
         version: 2.0.7
+      "@types/js-cookie":
+        specifier: ^3.0.5
+        version: 3.0.6
       "@types/leaflet":
         specifier: ^1.9.20
         version: 1.9.21
@@ -5265,6 +5268,12 @@ packages:
     resolution:
       {
         integrity: sha512-rjaYQ9b9y/VFGOpqBEXRavc3jh0a+e6evAbI31tMda8VlPaSy0AZJfXsvmIe3wklc7W6C3zCSfleuMXR7NOyXw==,
+      }
+
+  "@types/js-cookie@3.0.6":
+    resolution:
+      {
+        integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==,
       }
 
   "@types/json-schema@7.0.15":
@@ -17245,6 +17254,8 @@ snapshots:
     dependencies:
       "@types/through": 0.0.33
       rxjs: 6.6.7
+
+  "@types/js-cookie@3.0.6": {}
 
   "@types/json-schema@7.0.15": {}
 

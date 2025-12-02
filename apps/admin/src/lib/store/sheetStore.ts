@@ -5,7 +5,7 @@ import {
   // deleteSpreadsheetAction,
   getSpreadsheetsAction,
   getTotalSheetAction,
-} from "~/action/sheet.actions";
+} from "@/action/sheet.actions";
 
 interface Sheet {
   id: string;
@@ -26,11 +26,11 @@ interface SheetState {
   sheetData: Sheet[];
   isLoading: boolean;
   error: string | null;
-  fetchSheets: (token: string) => Promise<void>;
-  createSheet: (data: { title: string }, token: string) => Promise<void>;
-  // deleteSheet: (sheetId: string, token: string) => Promise<void>;
+  fetchSheets: () => Promise<void>;
+  createSheet: (data: { title: string }) => Promise<void>;
+  // deleteSheet: (sheetId: string) => Promise<void>;
   totalSheet: number;
-  fetchTotalSheets: (token: string) => Promise<void>;
+  fetchTotalSheets: () => Promise<void>;
 }
 
 export const useSheetStore = create<SheetState>((set) => ({
@@ -39,10 +39,10 @@ export const useSheetStore = create<SheetState>((set) => ({
   error: null,
   isLoading: false,
 
-  fetchSheets: async (token) => {
+  fetchSheets: async () => {
     set({ isLoading: true, error: null });
     try {
-      const sheets: FetchSheetsResponse[] = await getSpreadsheetsAction(token);
+      const sheets: FetchSheetsResponse[] = await getSpreadsheetsAction();
       const formattedSheets = sheets.map((sheet) => ({
         id: sheet.id,
         title: sheet.title,
@@ -56,9 +56,9 @@ export const useSheetStore = create<SheetState>((set) => ({
     }
   },
 
-  createSheet: async (data, token) => {
+  createSheet: async (data) => {
     try {
-      await createSpreadsheetAction(data, token);
+      await createSpreadsheetAction(data);
       set((state) => ({
         sheetData: [
           ...state.sheetData,
@@ -75,9 +75,9 @@ export const useSheetStore = create<SheetState>((set) => ({
     }
   },
 
-  fetchTotalSheets: async (token) => {
+  fetchTotalSheets: async () => {
     try {
-      const total = await getTotalSheetAction(token);
+      const total = await getTotalSheetAction();
       set({ totalSheet: total });
     } catch (error) {
       console.error("Error fetching total sheets:", error);

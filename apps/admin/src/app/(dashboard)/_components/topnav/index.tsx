@@ -2,7 +2,6 @@
 
 import { Input } from "@workspace/ui/components";
 import { CustomButton } from "@workspace/ui/lib";
-import Cookies from "js-cookie";
 import {
   BookOpen,
   FileSpreadsheet,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { tokenManager } from "@/lib/http/token-manager";
 
 interface RouteButton {
   label: string;
@@ -114,9 +114,7 @@ const TopNav = () => {
 
   // Handle logout
   const handleLogout = async () => {
-    Cookies.remove("authToken", {
-      path: "/",
-    });
+    tokenManager.logout();
     router.push("/login");
   };
 

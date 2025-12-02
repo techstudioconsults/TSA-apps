@@ -11,10 +11,10 @@ import { CustomButton } from "@workspace/ui/lib";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuthStore } from "~/lib/store/authStore";
 
-import { SheetFormData, SheetsFormSchema } from "~/schemas";
+import { SheetFormData, SheetsFormSchema } from "@/schemas";
 import SuccessModal from "./topnav/response-modal";
+import { useSheetStore } from "@/lib/store/sheetStore";
 
 interface CreateSheetModalProperties {
   isOpen: boolean;
@@ -35,7 +35,6 @@ const CreateSheetModal: React.FC<CreateSheetModalProperties> = ({
   onClose,
 }) => {
   const { createSheet } = useSheetStore();
-  const { token } = useAuthStore();
   const router = useRouter();
 
   const [sheetError, setSheetError] = useState<string | null>(null);
@@ -51,13 +50,8 @@ const CreateSheetModal: React.FC<CreateSheetModalProperties> = ({
   });
 
   const onSubmitHandler = async (data: SheetFormData) => {
-    if (!token) {
-      console.error("No authentication token found.");
-      return;
-    }
-
     try {
-      await createSheet(data, token);
+      await createSheet(data);
       reset();
       onClose();
       router.push("/sheets");

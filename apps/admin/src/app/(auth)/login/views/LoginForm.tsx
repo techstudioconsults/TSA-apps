@@ -5,25 +5,15 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoginMutation } from "~/lib/query/auth.mutations";
 import { Eye, EyeOff, Loader } from "lucide-react";
 import { CustomButton } from "@workspace/ui/lib";
-import { signInFormData, signInSchema } from "~/schemas";
-import { useAuthStore } from "~/lib/store/authStore";
-
-// interface ApiError {
-//   status?: number;
-//   message: string;
-//   details?: Record<string, unknown>;
-// }
+import { useLoginMutation } from "@/lib/services/auth/auth.mutations";
+import { signInFormData, signInSchema } from "@/schemas";
+import { tokenManager } from "@/lib/http/token-manager";
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formError, setFormError] = useState<string | null>(null);
-
-  const setAuth = useAuthStore((state) => state.setAuth);
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const hydrateAuthState = useAuthStore((state) => state.hydrateAuthState);
 
   const { mutateAsync: loginMutate, isPending } = useLoginMutation();
   const isSubmitting = isPending;
@@ -44,14 +34,11 @@ const LoginForm: FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    hydrateAuthState();
-  }, [hydrateAuthState]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
+    // Redirect if already authenticated
+    if (tokenManager.isAuthenticated()) {
       router.replace("/");
     }
-  }, [isAuthenticated, router]);
+  }, [router]);
 
   const onSubmit = async (data: signInFormData) => {
     setFormError(null);
@@ -62,7 +49,10 @@ const LoginForm: FC = () => {
       });
 
       if (result.success && result.tokens) {
-        setAuth(result.tokens.accessToken, result.tokens.refreshToken);
+        tokenManager.setAuth(
+          result.tokens.accessToken,
+          result.tokens.refreshToken,
+        );
         reset();
         router.push("/");
       } else {

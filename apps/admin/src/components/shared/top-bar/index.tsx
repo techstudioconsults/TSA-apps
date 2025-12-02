@@ -1,7 +1,7 @@
 "use client";
 
 import { SidebarTrigger } from "@workspace/ui/components";
-import { NotificationWidget, UserMenu } from "@workspace/ui/lib";
+import { NotificationWidget, UserMenu, Wrapper } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
@@ -66,45 +66,49 @@ export default function TopBar({
     <>
       <header
         className={cn(
-          "bg-background  top-0 flex h-16 items-center justify-between gap-4 px-6 shadow lg:px-4",
+          "bg-background  top-0 flex h-20 items-center px-6 shadow lg:px-4",
           className,
         )}
       >
-        {/* Search Input */}
         <div className="relative hidden w-fit items-center gap-4 md:flex">
-          <SidebarTrigger className="absolute top-14 -left-[30px] bg-[#1F2666] text-white shadow-none" />
-          <GlobalSearchInput />
+          <SidebarTrigger className="absolute top-16 -left-[30px] bg-[#1F2666] text-white shadow-none" />
         </div>
+        <Wrapper className="flex items-center max-w-[1440px] justify-between">
+          {/* Search Input */}
+          <h5>Dashboard</h5>
 
-        {/* Right Section */}
-        <div className="flex items-center justify-end gap-2 md:gap-4">
-          {/* Notification Widget */}
-          <NotificationWidget
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            notifications={notifications as any}
-            onNotificationClick={() => {}}
-            onMarkAsRead={() => {}}
-            onMarkAllAsRead={() => {}}
-            onClearAll={() => {}}
-          />
+          {/* Right Section */}
+          <div className="flex items-center justify-end gap-2 md:gap-4">
+            <GlobalSearchInput />
+            {/* Notification Widget */}
+            <NotificationWidget
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              notifications={notifications as any}
+              onNotificationClick={() => {}}
+              onMarkAsRead={() => {}}
+              onMarkAllAsRead={() => {}}
+              onClearAll={() => {}}
+            />
 
-          {/* User Menu */}
-          <UserMenu
-            userName={adminName}
-            userEmail={adminEmail}
-            userAvatar={adminAvatar}
-            userRole={adminRole}
-            onProfileClick={() => {
-              // Navigate to profile page
-              window.location.href = `/profile`;
-            }}
-            onSettingsClick={() => {
-              // Navigate to settings page
-              window.location.href = `/settings`;
-            }}
-            onLogout={handleLogout}
-          />
-        </div>
+            {/* User Menu */}
+            <UserMenu
+              userName={adminName}
+              userEmail={adminEmail}
+              userAvatar={adminAvatar}
+              userRole={adminRole}
+              onProfileClick={() => {
+                // Navigate to profile page
+                window.location.href = `/profile`;
+              }}
+              onSettingsClick={() => {
+                // Navigate to settings page
+                window.location.href = `/settings`;
+              }}
+              onLogout={handleLogout}
+              className="min-w-fit"
+            />
+          </div>
+        </Wrapper>
       </header>
       {/* <AppEventsListener /> */}
     </>

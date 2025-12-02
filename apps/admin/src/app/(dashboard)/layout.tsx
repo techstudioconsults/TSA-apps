@@ -5,6 +5,13 @@ import { ActiveTargetProvider } from "@/context/active-target";
 import { SidebarInset, SidebarProvider } from "@workspace/ui/components";
 import { AppSidebar, Logo, Wrapper } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
+import {
+  BookOpen,
+  FileSpreadsheet,
+  LayoutDashboard,
+  Megaphone,
+  Users,
+} from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -16,7 +23,13 @@ export default function DashboardLayout({
       <AppSidebar
         className={cn("z-1 bg-[#1F2666] text-white")}
         navMain={[]}
-        navSecondary={[]}
+        navSecondary={[
+          { name: "Dashboard", url: "/home", icon: LayoutDashboard },
+          { name: "Courses", url: "/courses", icon: BookOpen },
+          { name: "Classes", url: "/classes", icon: Users },
+          { name: "Sheets", url: "/sheets", icon: FileSpreadsheet },
+          { name: "Market Cycle", url: "/market-cycle", icon: Megaphone },
+        ]}
         teams={[
           {
             name: "Tech Studio Academy",

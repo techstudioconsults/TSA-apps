@@ -1,5 +1,8 @@
 // Auth service layer: encapsulates API calls and DTO mapping
-import { http } from "~/lib/http/client";
+
+import { HttpAdapter } from "@/lib/http/http-adapter";
+
+const httpAdapter = new HttpAdapter();
 
 export interface AuthTokens {
   accessToken: string;
@@ -23,17 +26,27 @@ interface LoginResponseDTO {
   error?: string;
 }
 
-export const AuthService = {
+export class AuthService {
   async login(email: string, password: string): Promise<LoginResult> {
     try {
-      const dto = await http<LoginResponseDTO>("/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
+      const response = await httpAdapter.post<LoginResponseDTO>("/auth/login", {
+        email,
+        password,
       });
+
+      if (!response?.data) {
+        return {
+          success: false,
+          error: "No response from server",
+        };
+      }
+
+      const dto = response.data;
+
       if (
-        dto?.message === "success" &&
-        dto?.data?.tokens?.access &&
-        dto?.data?.tokens?.refresh
+        dto.message === "success" &&
+        dto.data?.tokens?.access &&
+        dto.data?.tokens?.refresh
       ) {
         return {
           success: true,
@@ -43,9 +56,10 @@ export const AuthService = {
           },
         };
       }
+
       return {
         success: false,
-        error: dto?.error || "Unexpected response from the server",
+        error: dto.error || "Unexpected response from the server",
       };
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -53,5 +67,7 @@ export const AuthService = {
       }
       return { success: false, error: "Unknown error" };
     }
-  },
-};
+  }
+}
+
+export const authService = new AuthService();
