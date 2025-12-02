@@ -1,3 +1,6 @@
+// ============================================================================
+// TABLER ICONS
+// ============================================================================
 import {
   IconAlertTriangle,
   IconArrowRight,
@@ -34,7 +37,21 @@ import {
   IconWallet,
   IconX,
 } from "@tabler/icons-react";
-import { Mail, Plus } from "lucide-react";
+
+// ============================================================================
+// LUCIDE REACT
+// ============================================================================
+import {
+  BookOpen,
+  FileSpreadsheet,
+  Mail,
+  MegaphoneIcon,
+  Plus,
+} from "lucide-react";
+
+// ============================================================================
+// REACT ICONS
+// ============================================================================
 import { FaGamepad } from "react-icons/fa";
 import { IoRibbonOutline } from "react-icons/io5";
 import { LuBike } from "react-icons/lu";
@@ -42,13 +59,12 @@ import { MdOutlineAddCard } from "react-icons/md";
 import { PiUsersThreeLight } from "react-icons/pi";
 import { RiAdvertisementLine, RiShoppingCartLine } from "react-icons/ri";
 
-const Icons = {
+const TablerIcons = {
   dashboard: IconLayoutDashboard,
   logo: IconCommand,
   login: IconLogin,
   close: IconX,
   product: IconShoppingBag,
-  cart: RiShoppingCartLine,
   spinner: IconLoader2,
   kanban: IconLayoutKanban,
   chevronLeft: IconChevronLeft,
@@ -76,16 +92,35 @@ const Icons = {
   twitter: IconBrandTwitter,
   check: IconCheck,
   wallet: IconWallet,
+  chart: IconChartLine,
+};
+
+const LucideIcons = {
+  plus: Plus,
+  mail: Mail,
+  book: BookOpen,
+  sheet: FileSpreadsheet,
+  megaphone: MegaphoneIcon,
+};
+
+const ReactIcons = {
+  cart: RiShoppingCartLine,
   promotion: RiAdvertisementLine,
   ribbonOutline: IoRibbonOutline,
-  chart: IconChartLine,
   users: PiUsersThreeLight,
   rider: LuBike,
   payouts: MdOutlineAddCard,
-  plus: Plus,
-  mail: Mail,
   controller: FaGamepad,
 };
 
+// ============================================================================
+// COMBINED EXPORTS
+// ============================================================================
+const Icons = {
+  ...TablerIcons,
+  ...LucideIcons,
+  ...ReactIcons,
+};
+
 export type Icon = React.ComponentType<IconProps>;
-export { Icons };
+export { Icons, TablerIcons, LucideIcons, ReactIcons };

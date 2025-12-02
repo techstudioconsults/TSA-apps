@@ -4,15 +4,9 @@ import TopBar from "@/components/shared/top-bar";
 import { ActiveTargetProvider } from "@/context/active-target";
 import { useCurrentUser } from "@/lib/services/auth/auth.mutations";
 import { SidebarInset, SidebarProvider } from "@workspace/ui/components";
+import { Icons } from "@workspace/ui/icons";
 import { AppSidebar, Logo, Wrapper } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
-import {
-  BookOpen,
-  FileSpreadsheet,
-  LayoutDashboard,
-  Megaphone,
-  Users,
-} from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -23,14 +17,14 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar
-        className={cn("z-1 bg-[#1F2666] text-white")}
+        className={cn("z-1 bg-primary text-white")}
         navMain={[]}
         navSecondary={[
-          { name: "Dashboard", url: "/home", icon: LayoutDashboard },
-          { name: "Courses", url: "/courses", icon: BookOpen },
-          { name: "Classes", url: "/classes", icon: Users },
-          { name: "Sheets", url: "/sheets", icon: FileSpreadsheet },
-          { name: "Market Cycle", url: "/market-cycle", icon: Megaphone },
+          { name: "Dashboard", url: "/home", icon: Icons.dashboard },
+          { name: "Courses", url: "/courses", icon: Icons.book },
+          { name: "Classes", url: "/classes", icon: Icons.users },
+          { name: "Sheets", url: "/sheets", icon: Icons.sheet },
+          { name: "Market Cycle", url: "/market-cycle", icon: Icons.megaphone },
         ]}
         teams={[
           {

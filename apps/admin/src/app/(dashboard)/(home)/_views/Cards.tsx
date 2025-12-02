@@ -1,18 +1,15 @@
 "use client";
 
 import { useDashboardStatsQuery } from "@/lib/services/dashboard/dashboard.queries";
-import Image from "next/image";
-import { Loader } from "lucide-react";
+import { DashboardCard } from "@/components/shared/dashboard-card";
+import { Icon, Icons } from "@workspace/ui/icons";
+import { DashboardCardsLoader } from "../_components/loaders";
 
 const Cards = () => {
   const { data, isLoading, error } = useDashboardStatsQuery();
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center py-8">
-        <Loader size={24} className="animate-spin" />
-      </div>
-    );
+    return <DashboardCardsLoader />;
   }
 
   if (error) {
@@ -23,60 +20,48 @@ const Cards = () => {
     );
   }
 
-  const totalCohorts = data?.totalCohorts ?? 0;
-  const totalCourse = data?.totalCourses ?? 0;
-  const totalSheet = data?.totalSheets ?? 0;
+  const cards = [
+    {
+      title: "Total Courses",
+      value: data?.totalCourses ?? 0,
+      icon: Icons.book,
+      iconVariant: "primary" as const,
+      actionText: "View courses",
+      actionHref: "/courses",
+    },
+    {
+      title: "Total Classes",
+      value: data?.totalCohorts ?? 0,
+      icon: Icons.users,
+      iconVariant: "success" as const,
+      actionText: "View classes",
+      actionHref: "/classes",
+    },
+    {
+      title: "Total Sheets",
+      value: data?.totalSheets ?? 0,
+      icon: Icons.sheet,
+      iconVariant: "warning" as const,
+      actionText: "View sheets",
+      actionHref: "/sheets",
+    },
+  ];
 
   return (
     <div>
       <section className="grid grid-cols-3 justify-between gap-5 py-8">
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-white p-5 shadow">
-          <div className="flex flex-col gap-3">
-            <h6>Total Course</h6>
-            <h3>{totalCourse}</h3>
-            <p className="pt-3"> Null% since last month </p>
-          </div>
-
-          <Image
-            width={100}
-            height={100}
-            className="object-cover"
-            src="images/total-courese.svg"
-            alt="course"
-            priority
+        {cards.map((card) => (
+          <DashboardCard
+            key={card.title}
+            title={card.title}
+            value={card.value}
+            icon={card.icon as Icon}
+            iconVariant={card.iconVariant}
+            actionText={card.actionText}
+            actionHref={card.actionHref}
+            className=""
           />
-        </div>
-
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-white p-5 shadow">
-          <div className="flex flex-col gap-3">
-            <h6>Total Class</h6>
-            <h3>{totalCohorts}</h3>
-            <p className="pt-3"> Null% since last month </p>
-          </div>
-          <Image
-            width={100}
-            height={100}
-            className="object-cover"
-            src="images/total-class.svg"
-            alt="class"
-            priority
-          />
-        </div>
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-white p-5 shadow">
-          <div className="flex flex-col gap-3">
-            <h6>Total Sheet</h6>
-            <h3>{totalSheet}</h3>
-            <p className="pt-3"> Null% since last month </p>
-          </div>
-          <Image
-            width={100}
-            height={100}
-            className="object-cover"
-            src="images/total-sheet.svg"
-            alt="sheet"
-            priority
-          />
-        </div>
+        ))}
       </section>
     </div>
   );

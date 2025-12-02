@@ -1,4 +1,5 @@
 import { CustomButton, DashboardHeader } from "@workspace/ui/lib";
+import { BookOpen, FileSpreadsheet } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -8,16 +9,18 @@ const Hero = () => {
         <div className="flex gap-4">
           <CustomButton
             href="/sheets"
-            variant="outline"
-            className="outline-blue-600"
+            variant="primaryOutline"
+            isLeftIconVisible
+            icon={<FileSpreadsheet />}
           >
             Create Sheet
           </CustomButton>
 
           <CustomButton
             href="/createcourse"
-            variant="outline"
-            className="bg-mid-blue text-white"
+            variant="primary"
+            isLeftIconVisible
+            icon={<BookOpen />}
           >
             Create Course
           </CustomButton>
