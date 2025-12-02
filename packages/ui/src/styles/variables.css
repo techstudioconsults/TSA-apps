@@ -2,96 +2,96 @@
 
 :root {
   /* Base colors */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.213 0 0);
 
   /* TSA Design System - Base Colors */
-  --white: 0 0% 100%;
-  --black: 222.2 84% 4.9%;
+  --white: oklch(1 0 0);
+  --black: oklch(0.213 0 0);
 
   /* Primary (High Blue) */
-  --primary: 235 53% 26%;
-  --primary-foreground: 210 40% 98%;
+  --primary: oklch(0.34 0.09 257);
+  --primary-foreground: oklch(0.98 0 0);
 
   /* Secondary (Mid Warning/Yellow) */
-  --secondary: 38 100% 68%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: oklch(0.79 0.13 85);
+  --secondary-foreground: oklch(0.22 0 0);
 
   /* Muted */
-  --muted: 0 0% 85%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: oklch(0.87 0 0);
+  --muted-foreground: oklch(0.55 0 0);
 
   /* Accent (Low Blue) */
-  --accent: 216 93% 95%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: oklch(0.95 0.03 250);
+  --accent-foreground: oklch(0.22 0 0);
 
   /* Destructive/Danger */
-  --destructive: 353 85% 44%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
 
   /* TSA Blue Scale */
-  --high-blue: 235 53% 26%;
-  --mid-blue: 215 98% 48%;
-  --low-blue: 216 93% 95%;
+  --high-blue: oklch(0.34 0.09 257);
+  --mid-blue: oklch(0.56 0.17 254);
+  --low-blue: oklch(0.95 0.03 250);
 
   /* TSA Danger Scale */
-  --high-danger: 353 74% 28%;
-  --mid-danger: 353 85% 44%;
-  --low-danger: 360 95% 87%;
-  --danger: 353 85% 44%;
-  --danger-foreground: 210 40% 98%;
+  --high-danger: oklch(0.39 0.15 27);
+  --mid-danger: oklch(0.55 0.22 27);
+  --low-danger: oklch(0.91 0.08 27);
+  --danger: oklch(0.55 0.22 27);
+  --danger-foreground: oklch(0.98 0 0);
 
   /* TSA Warning Scale */
-  --high-warning: 38 58% 24%;
-  --mid-warning: 38 100% 68%;
-  --low-warning: 38 100% 87%;
-  --warning: 38 100% 68%;
-  --warning-foreground: 222.2 47.4% 11.2%;
+  --high-warning: oklch(0.38 0.09 70);
+  --mid-warning: oklch(0.79 0.13 85);
+  --low-warning: oklch(0.91 0.09 85);
+  --warning: oklch(0.79 0.13 85);
+  --warning-foreground: oklch(0.22 0 0);
 
   /* TSA Success Scale */
-  --high-success: 140 69% 20%;
-  --mid-success: 140 79% 32%;
-  --low-success: 140 38% 85%;
-  --success: 140 79% 32%;
-  --success-foreground: 210 40% 98%;
+  --high-success: oklch(0.35 0.12 155);
+  --mid-success: oklch(0.46 0.15 155);
+  --low-success: oklch(0.87 0.06 155);
+  --success: oklch(0.46 0.15 155);
+  --success-foreground: oklch(0.98 0 0);
 
   /* TSA Grey Scale III (Darkest) */
-  --high-grey-III: 0 0% 12%;
-  --mid-grey-III: 0 0% 21%;
-  --low-grey-III: 0 0% 28%;
+  --high-grey-III: oklch(0.22 0 0);
+  --mid-grey-III: oklch(0.31 0 0);
+  --low-grey-III: oklch(0.38 0 0);
 
   /* TSA Grey Scale II (Medium) */
-  --high-grey-II: 0 0% 56%;
-  --mid-grey-II: 248 1% 71%;
-  --low-grey-II: 0 0% 85%;
+  --high-grey-II: oklch(0.61 0 0);
+  --mid-grey-II: oklch(0.74 0 0);
+  --low-grey-II: oklch(0.87 0 0);
 
   /* TSA Grey Scale I (Lightest) */
-  --high-grey-I: 0 0% 95%;
-  --mid-grey-I: 0 0% 98%;
-  --low-grey-I: 0 0% 100%;
+  --high-grey-I: oklch(0.96 0 0);
+  --mid-grey-I: oklch(0.98 0 0);
+  --low-grey-I: oklch(1 0 0);
 
   /* Border */
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.213 0 0);
 
   /* Radius */
   --radius: 0.5rem;
 
   /* Card */
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.213 0 0);
 
   /* Popover */
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.213 0 0);
 
   /* Charts */
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  --chart-1: oklch(0.68 0.15 35);
+  --chart-2: oklch(0.52 0.09 195);
+  --chart-3: oklch(0.38 0.06 220);
+  --chart-4: oklch(0.76 0.12 95);
+  --chart-5: oklch(0.72 0.14 50);
 
   /* Typography */
   --text-xs: clamp(0.7rem, 0.85vw + 0.4rem, 0.8rem);
@@ -124,89 +124,89 @@
 
 .dark {
   /* Base colors - Inverted for dark mode */
-  --background: 222.2 84% 4.9%;
-  --foreground: 0 0% 100%;
+  --background: oklch(0.213 0 0);
+  --foreground: oklch(1 0 0);
 
   /* TSA Design System - Base Colors (Inverted) */
-  --white: 222.2 84% 4.9%;
-  --black: 0 0% 100%;
+  --white: oklch(0.213 0 0);
+  --black: oklch(1 0 0);
 
   /* Primary (High Blue) */
-  --primary: 235 53% 26%;
-  --primary-foreground: 210 40% 98%;
+  --primary: oklch(0.34 0.09 257);
+  --primary-foreground: oklch(0.98 0 0);
 
   /* Secondary (Mid Warning/Yellow) */
-  --secondary: 38 100% 68%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: oklch(0.79 0.13 85);
+  --secondary-foreground: oklch(0.22 0 0);
 
   /* Muted */
-  --muted: 0 0% 56%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: oklch(0.61 0 0);
+  --muted-foreground: oklch(0.55 0 0);
 
   /* Accent - Dark mode specific */
-  --accent: 216 93% 95%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: oklch(0.95 0.03 250);
+  --accent-foreground: oklch(0.22 0 0);
 
   /* Destructive/Danger */
-  --destructive: 353 74% 28%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: oklch(0.39 0.15 27);
+  --destructive-foreground: oklch(0.98 0 0);
 
   /* TSA Blue Scale */
-  --high-blue: 235 53% 26%;
-  --mid-blue: 215 98% 48%;
-  --low-blue: 216 93% 95%;
+  --high-blue: oklch(0.34 0.09 257);
+  --mid-blue: oklch(0.56 0.17 254);
+  --low-blue: oklch(0.95 0.03 250);
 
   /* TSA Danger Scale */
-  --high-danger: 353 74% 28%;
-  --mid-danger: 353 85% 44%;
-  --low-danger: 360 95% 87%;
-  --danger: 353 74% 28%;
-  --danger-foreground: 210 40% 98%;
+  --high-danger: oklch(0.39 0.15 27);
+  --mid-danger: oklch(0.55 0.22 27);
+  --low-danger: oklch(0.91 0.08 27);
+  --danger: oklch(0.39 0.15 27);
+  --danger-foreground: oklch(0.98 0 0);
 
   /* TSA Warning Scale */
-  --high-warning: 38 58% 24%;
-  --mid-warning: 38 100% 68%;
-  --low-warning: 38 100% 87%;
-  --warning: 38 100% 68%;
-  --warning-foreground: 222.2 47.4% 11.2%;
+  --high-warning: oklch(0.38 0.09 70);
+  --mid-warning: oklch(0.79 0.13 85);
+  --low-warning: oklch(0.91 0.09 85);
+  --warning: oklch(0.79 0.13 85);
+  --warning-foreground: oklch(0.22 0 0);
 
   /* TSA Success Scale */
-  --high-success: 140 69% 20%;
-  --mid-success: 140 79% 32%;
-  --low-success: 140 38% 85%;
-  --success: 140 69% 20%;
-  --success-foreground: 210 40% 98%;
+  --high-success: oklch(0.35 0.12 155);
+  --mid-success: oklch(0.46 0.15 155);
+  --low-success: oklch(0.87 0.06 155);
+  --success: oklch(0.35 0.12 155);
+  --success-foreground: oklch(0.98 0 0);
 
   /* TSA Grey Scale III (Darkest) */
-  --high-grey-III: 0 0% 12%;
-  --mid-grey-III: 0 0% 21%;
-  --low-grey-III: 0 0% 28%;
+  --high-grey-III: oklch(0.22 0 0);
+  --mid-grey-III: oklch(0.31 0 0);
+  --low-grey-III: oklch(0.38 0 0);
 
   /* TSA Grey Scale II (Medium) */
-  --high-grey-II: 0 0% 56%;
-  --mid-grey-II: 248 1% 71%;
-  --low-grey-II: 0 0% 85%;
+  --high-grey-II: oklch(0.61 0 0);
+  --mid-grey-II: oklch(0.74 0 0);
+  --low-grey-II: oklch(0.87 0 0);
 
   /* TSA Grey Scale I (Lightest) */
-  --high-grey-I: 0 0% 95%;
-  --mid-grey-I: 0 0% 98%;
-  --low-grey-I: 0 0% 100%;
+  --high-grey-I: oklch(0.96 0 0);
+  --mid-grey-I: oklch(0.98 0 0);
+  --low-grey-I: oklch(1 0 0);
 
   /* Border */
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.213 0 0);
 
   /* Radius */
   --radius: 0.5rem;
 
   /* Card */
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 0 0% 100%;
+  --card: oklch(0.213 0 0);
+  --card-foreground: oklch(1 0 0);
 
   /* Popover */
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 0 0% 100%;
+  --popover: oklch(0.213 0 0);
+  --popover-foreground: oklch(1 0 0);
 
   /* Typography - Same as light mode */
   --text-xs: clamp(0.7rem, 0.85vw + 0.4rem, 0.8rem);

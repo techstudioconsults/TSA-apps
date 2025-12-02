@@ -39,9 +39,5 @@
     ".next/types/**/*.ts",
     "src/types/**/*.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "../user-dashboard/**/*",
-    "../controller-dashboard/**/*"
-  ]
+  "exclude": ["node_modules"]
 }

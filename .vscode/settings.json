@@ -1,0 +1,23 @@
+{
+  "css.customData": [".vscode/css_custom_data.json"],
+  "tailwindCSS.experimental.configFile": {
+    "packages/ui/src/styles/global.css": "packages/ui/src/styles/variables.css",
+    "apps/web/src/**/*.{ts,tsx}": "packages/ui/src/styles/global.css",
+    "apps/admin/src/**/*.{ts,tsx}": "packages/ui/src/styles/global.css"
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "css.validate": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

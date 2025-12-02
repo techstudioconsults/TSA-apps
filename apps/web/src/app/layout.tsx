@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import React, { Suspense } from "react";
-import "@workspace/ui/globals.css";
 import { Toaster } from "@workspace/ui/components";
 import { WhatsAppIcon } from "../components/miscellaneous/whatsapp";
 import { SourceTracker } from "../lib/utils/source-tracker";
-import { cn } from "@workspace/ui/lib";
+import { cn, CustomButton } from "@workspace/ui/lib";
+
+import "@workspace/ui/globals.css";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           <SourceTracker />
         </Suspense>
         {children}
+        <CustomButton variant={`primary`}>Click Me</CustomButton>
       </body>
     </html>
   );

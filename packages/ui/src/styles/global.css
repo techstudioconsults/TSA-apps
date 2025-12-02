@@ -2,6 +2,8 @@
 
 /* Core Imports */
 @import 'tailwindcss';
+
+/* Content Sources */
 @source "../../**/*.{ts,tsx}";
 @source "../../../apps/**/*.{ts,tsx}";
 

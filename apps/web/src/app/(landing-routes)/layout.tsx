@@ -85,7 +85,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         featuresLabel="Courses"
         desktopLinks={STATIC_LINK}
         mobileLinks={STATIC_LINK}
-        containerClassName="max-w-[1240px] lg:p-0"
+        containerClassName="max-w-[1240px] mx-auto lg:p-0"
       />
       {children}
       <TsaFooter

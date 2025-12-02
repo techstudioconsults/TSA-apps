@@ -1,5 +1,14 @@
 /* Utility Components and Custom Styles */
 
+/* Background Gradients */
+.bg-primary-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    oklch(0.28 0.08 257) 100%
+  );
+}
+
 /* Card hover effects */
 .card {
   transition:
@@ -40,11 +49,11 @@
 }
 
 /* Date input styling */
-input[type="date"] {
+input[type='date'] {
   position: relative;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   position: absolute;
   right: 8px;
   top: 50%;
@@ -54,17 +63,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: opacity 0.2s ease;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
+input[type='date']::-webkit-calendar-picker-indicator:hover {
   opacity: 1;
 }
 
 /* Firefox date input styling */
-input[type="date"]::-moz-calendar-picker-indicator {
+input[type='date']::-moz-calendar-picker-indicator {
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.2s ease;
 }
 
-input[type="date"]::-moz-calendar-picker-indicator:hover {
+input[type='date']::-moz-calendar-picker-indicator:hover {
   opacity: 1;
 }
