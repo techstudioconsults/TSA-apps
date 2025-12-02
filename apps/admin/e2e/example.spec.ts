@@ -1,0 +1,8 @@
+import { test, expect } from "@playwright/test";
+
+test("homepage has heading", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    /Admin Dashboard/i,
+  );
+});

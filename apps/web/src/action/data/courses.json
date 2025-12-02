@@ -1,0 +1,1277 @@
+[
+  {
+    "fullstack-development": {
+      "intro": {
+        "title": "Full Stack Web Development",
+        "subTitle": "Let’s help you become a professional Fullstack web developer. You’ll learn all you need to know to become a Fullstack Developer and build interesting portfolios while learning the fundamentals of HTML, CSS, JavaScript, React, Mongo DB, Express and hosting on Vercel."
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "In 24 weeks, you’ll be a professional Fullstack developer, able to build real-time interactive and dynamic applications. We teach Fullstack JavaScript because growing in popularity every day and it’s here to stay."
+          },
+          {
+            "text": "You’ll get your hands dirty by building real life websites, APIs, and data-driven apps to gain confidence and sharpen your skills. You’ll also collaborate with classmates on a range of projects to add to your portfolio."
+          },
+          {
+            "text": "You graduate with a valued portfolio required to launch your career. All our students receive career guidance and mentorship with the support of our career counselors through every step of their job search."
+          }
+        ]
+      },
+
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction To HTML And CSS",
+          "desc": "This unit provides a solid foundation in web development, covering both HTML and CSS. Students will learn how to create well-structured HTML documents using tags, elements, and attributes. They will also explore CSS syntax and style rules to customize the appearance of web pages. Topics include text styling, backgrounds, borders, and images. Additionally, students will discover CSS layout techniques, such as floats and CSS grid, to create different page layouts. They will also explore Bootstrap, utilizing its pre-built components and responsive grid system for attractive and mobile-friendly layouts. Practical exercises reinforce learning.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/writing-code.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            },
+            {
+              "img": "/icons/css.png",
+              "text": "CSS"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Java Script Basic",
+          "desc": "Throughout the course of this unit, students will embark on a journey into the fundamentals of JavaScript, unlocking the potential to create engaging and interactive web experiences. By delving into the core concepts and syntax of JavaScript, students will gain a comprehensive understanding of how to leverage this powerful programming language to build dynamic and responsive web pages. They will explore topics such as variables, data types, conditional statements, loops, functions, arrays, objects, and DOM manipulation.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/javascript-programming-language.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Object-Oriented JavaScript",
+          "desc": "Object-oriented JavaScript is a programming paradigm that focuses on organizing code into objects, which encapsulate data and methods. It provides a way to create reusable and modular code, making it easier to manage and maintain complex applications. In object-oriented JavaScript, students will learn how to create objects, define their properties and methods, and establish relationships between objects through inheritance. They will explore concepts such as encapsulation, where data and methods are bundled together within objects to control access and ensure data integrity.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/js-javascript.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "The DOM",
+          "desc": "Unit 4 dives into the exploration of the Document Object Model (DOM), an essential API for interacting programmatically with HTML and XML documents. The unit focuses on the DOM's association with JavaScript, the widely used programming language for web development, known for its built-in support for the DOM. Students learn how to leverage the DOM to manipulate and interact with web content dynamically.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/fullstack/js-file-document.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "The REACT Library",
+          "desc": "Unit 5 focuses on the popular JavaScript library, React, known for its ability to create powerful and interactive user interfaces. React has gained immense popularity due to its component-based architecture, which allows developers to build reusable UI components that encapsulate specific functionalities. By breaking down the user interface into modular components, React promotes code reusability, improves maintainability, and facilitates collaborative development.",
+          "bgColor": "bg-white",
+          "className": "react-img",
+          "img": "/gifs/fullstack/react-js.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/react-icon.png",
+              "text": "React"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Version Control",
+          "desc": "This Unit of the curriculum explores the importance of version control systems, with a particular focus on Git. Version control systems like Git play a crucial role in managing code changes over time. They provide a structured framework for tracking modifications, maintaining a comprehensive history of changes, and facilitating collaborative development by enabling multiple developers to work on the same codebase simultaneously.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/git.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/git.png",
+              "text": "Git"
+            },
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Node JS",
+          "desc": "Node JS is a backend or server-side framework that uses JavaScript code outside a web browser. Server-side JavaScript is becoming more prevalent in the industry, with web frameworks such as Node.js and Express making it simple to create and deploy complex, data-driven web applications. This course will prepare you to use such frameworks and show you how to integrate them with NoSQL databases such as MongoDB.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/node.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/node.png",
+              "text": "NodeJs"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Deployment",
+          "desc": "In this comprehensive unit, students delve into the art of deploying web applications using three prominent platforms: GitHub, Netlify, and Heroku. They gain hands-on experience in version control, automation, and best practices for production environments. Throughout the curriculum, students learn to optimize deployments, scale applications, and ensure efficient error handling. By mastering these skills, they become proficient in successfully deploying web apps to meet the demands of real-world scenarios.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/fullstack/node.gif",
+          "tags": [
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            },
+            {
+              "img": "/icons/heroku.png",
+              "text": "Heroku"
+            },
+            {
+              "img": "/icons/vercel.png",
+              "text": "Vercel"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "fullstack-web-development-(weekday-online-class)": {
+      "intro": {
+        "title": "Learn Web Development Online. Build Projects and Get Hired",
+        "subTitle": "Learn all you need to kickstart your journey as a Fullstack Developer Online Weekday Class • ₦350k (Pay ₦210k Now) • Only 30 Spots Available"
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "In 24 weeks, you’ll be a professional Fullstack developer, able to build real-time interactive and dynamic applications. We teach Fullstack JavaScript because growing in popularity every day and it’s here to stay."
+          },
+          {
+            "text": "You move from understanding web basics to launching Single Page Applications (SPAs). You’ll be taught to build smart SPAs using vanilla JavaScript that interacts with user inputs."
+          },
+          {
+            "text": "And finally, you’ll learn the fundamentals of working as a team; collaborate with other group members of the class to build, change, maintain, and secure an application. Track your team development process using Version Control Systems. "
+          }
+        ]
+      },
+
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction To HTML And CSS",
+          "desc": "This unit provides a solid foundation in web development, covering both HTML and CSS. Students will learn how to create well-structured HTML documents using tags, elements, and attributes. They will also explore CSS syntax and style rules to customize the appearance of web pages. Topics include text styling, backgrounds, borders, and images. Additionally, students will discover CSS layout techniques, such as floats and CSS grid, to create different page layouts. They will also explore Bootstrap, utilizing its pre-built components and responsive grid system for attractive and mobile-friendly layouts. Practical exercises reinforce learning.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/writing-code.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            },
+            {
+              "img": "/icons/css.png",
+              "text": "CSS"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Java Script Basic",
+          "desc": "Throughout the course of this unit, students will embark on a journey into the fundamentals of JavaScript, unlocking the potential to create engaging and interactive web experiences. By delving into the core concepts and syntax of JavaScript, students will gain a comprehensive understanding of how to leverage this powerful programming language to build dynamic and responsive web pages. They will explore topics such as variables, data types, conditional statements, loops, functions, arrays, objects, and DOM manipulation.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/javascript-programming-language.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Object-Oriented JavaScript",
+          "desc": "Object-oriented JavaScript is a programming paradigm that focuses on organizing code into objects, which encapsulate data and methods. It provides a way to create reusable and modular code, making it easier to manage and maintain complex applications. In object-oriented JavaScript, students will learn how to create objects, define their properties and methods, and establish relationships between objects through inheritance. They will explore concepts such as encapsulation, where data and methods are bundled together within objects to control access and ensure data integrity.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/js-javascript.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "The DOM",
+          "desc": "Unit 4 dives into the exploration of the Document Object Model (DOM), an essential API for interacting programmatically with HTML and XML documents. The unit focuses on the DOM's association with JavaScript, the widely used programming language for web development, known for its built-in support for the DOM. Students learn how to leverage the DOM to manipulate and interact with web content dynamically.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/fullstack/js-file-document.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "The REACT Library",
+          "desc": "Unit 5 focuses on the popular JavaScript library, React, known for its ability to create powerful and interactive user interfaces. React has gained immense popularity due to its component-based architecture, which allows developers to build reusable UI components that encapsulate specific functionalities. By breaking down the user interface into modular components, React promotes code reusability, improves maintainability, and facilitates collaborative development.",
+          "bgColor": "bg-white",
+          "className": "react-img",
+          "img": "/gifs/fullstack/react-js.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/react-icon.png",
+              "text": "React"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Version Control",
+          "desc": "This Unit of the curriculum explores the importance of version control systems, with a particular focus on Git. Version control systems like Git play a crucial role in managing code changes over time. They provide a structured framework for tracking modifications, maintaining a comprehensive history of changes, and facilitating collaborative development by enabling multiple developers to work on the same codebase simultaneously.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/git.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/git.png",
+              "text": "Git"
+            },
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Node JS",
+          "desc": "Node JS is a backend or server-side framework that uses JavaScript code outside a web browser. Server-side JavaScript is becoming more prevalent in the industry, with web frameworks such as Node.js and Express making it simple to create and deploy complex, data-driven web applications. This course will prepare you to use such frameworks and show you how to integrate them with NoSQL databases such as MongoDB.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/node.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/node.png",
+              "text": "NodeJs"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Deployment",
+          "desc": "In this comprehensive unit, students delve into the art of deploying web applications using three prominent platforms: GitHub, Netlify, and Heroku. They gain hands-on experience in version control, automation, and best practices for production environments. Throughout the curriculum, students learn to optimize deployments, scale applications, and ensure efficient error handling. By mastering these skills, they become proficient in successfully deploying web apps to meet the demands of real-world scenarios.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/fullstack/node.gif",
+          "tags": [
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            },
+            {
+              "img": "/icons/heroku.png",
+              "text": "Heroku"
+            },
+            {
+              "img": "/icons/vercel.png",
+              "text": "Vercel"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "frontend-engineering": {
+      "intro": {
+        "title": "Frontend Engineering Immersive",
+        "subTitle": "Let’s help you become a professional frontend web developer. You’ll learn all you need to know to become a Frontend Developer and build interesting portfolios while learning the fundamentals of HTML, CSS, JavaScript and React."
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "We teach the important skills required to jumpstart your career as a web developer. With 5 straight weeks of web training, you learn to think and build like frontend developers."
+          },
+          {
+            "text": "You move from understanding web basics to launching Single Page Applications (SPAs). You’ll be taught to build smart SPAs using vanilla JavaScript that interacts with user inputs."
+          },
+          {
+            "text": "And finally, you’ll learn the fundamentals of working as a team; collaborate with other group members of the class to build, change, maintain, and secure an application. Track your team development Process using Version Control Systems."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction To HTML And CSS",
+          "desc": "This unit provides a solid foundation in web development, covering both HTML and CSS. Students will learn how to create well-structured HTML documents using tags, elements, and attributes. They will also explore CSS syntax and style rules to customize the appearance of web pages. Topics include text styling, backgrounds, borders, and images. Additionally, students will discover CSS layout techniques, such as floats and CSS grid, to create different page layouts. They will also explore Bootstrap, utilizing its pre-built components and responsive grid system for attractive and mobile-friendly layouts. Practical exercises reinforce learning.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/writing-code.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            },
+            {
+              "img": "/icons/css.png",
+              "text": "CSS"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Java Script Basic",
+          "desc": "Throughout the course of this unit, students will embark on a journey into the fundamentals of JavaScript, unlocking the potential to create engaging and interactive web experiences. By delving into the core concepts and syntax of JavaScript, students will gain a comprehensive understanding of how to leverage this powerful programming language to build dynamic and responsive web pages. They will explore topics such as variables, data types, conditional statements, loops, functions, arrays, objects, and DOM manipulation.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/javascript-programming-language.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Object-Oriented JavaScript",
+          "desc": "Object-oriented JavaScript is a programming paradigm that focuses on organizing code into objects, which encapsulate data and methods. It provides a way to create reusable and modular code, making it easier to manage and maintain complex applications. In object-oriented JavaScript, students will learn how to create objects, define their properties and methods, and establish relationships between objects through inheritance. They will explore concepts such as encapsulation, where data and methods are bundled together within objects to control access and ensure data integrity.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/js-javascript.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "The DOM",
+          "desc": "Unit 4 dives into the exploration of the Document Object Model (DOM), an essential API for interacting programmatically with HTML and XML documents. The unit focuses on the DOM's association with JavaScript, the widely used programming language for web development, known for its built-in support for the DOM. Students learn how to leverage the DOM to manipulate and interact with web content dynamically.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/fullstack/js-file-document.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/js.png",
+              "text": "Javascript"
+            },
+            {
+              "img": "/icons/html.png",
+              "text": "HTML"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "The REACT Library",
+          "desc": "Unit 5 focuses on the popular JavaScript library, React, known for its ability to create powerful and interactive user interfaces. React has gained immense popularity due to its component-based architecture, which allows developers to build reusable UI components that encapsulate specific functionalities. By breaking down the user interface into modular components, React promotes code reusability, improves maintainability, and facilitates collaborative development.",
+          "bgColor": "bg-white",
+          "className": "react-img",
+          "img": "/gifs/fullstack/react-js.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/react-icon.png",
+              "text": "React"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Next JS",
+          "desc": "Next.js is built on React. It elevates web development with efficient rendering and routing, offering server-side rendering and automatic code splitting for optimal performance. By extending React's component-based approach to pages, it simplifies dynamic routing. With server-side rendering, pages are pre-rendered on the server, boosting speed and SEO. Empowering developers with data fetching and routing control, Next.js enables seamless creation of high-performance web applications.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/writing-code.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/nextjs.png",
+              "text": "Next.js"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "F",
+          "caption": "UNIT 7",
+          "title": "Version Control",
+          "desc": "This Unit of the curriculum explores the importance of version control systems, with a particular focus on Git. Version control systems like Git play a crucial role in managing code changes over time. They provide a structured framework for tracking modifications, maintaining a comprehensive history of changes, and facilitating collaborative development by enabling multiple developers to work on the same codebase simultaneously.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/fullstack/git.gif",
+          "tags": [
+            {
+              "img": "/icons/vscode.png",
+              "text": "Visual Studio Code"
+            },
+            {
+              "img": "/icons/git.png",
+              "text": "Git"
+            },
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Capstone Project",
+          "desc": "In this unit, the project enables you to demonstrate multiple skills you have learned to develop a real-life project. Students apply their Frontend Engineering skills to create a web application that is dynamic and real-life worthy from choosing your library, creating folder structure, coding, testing, deployment, user experience enhancement, and a final presentation, showcasing their comprehensive understanding and abilities in frontend engineering.",
+          "bgColor": "bg-white",
+          "img": "/gifs/fullstack/writing-code.gif",
+          "tags": [
+            {
+              "img": "/icons/github.png",
+              "text": "GitHub"
+            },
+            {
+              "img": "/icons/vercel.png",
+              "text": "Vercel"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "product-design-ui-ux": {
+      "intro": {
+        "title": "User Interface & User Experience design",
+        "subTitle": "Learn to design and deliver digital products that serve clients’ needs and solve users problems. Understand the fundamental techniques and tools of design like problem definition, user research, prototyping, testing and more.",
+        "img": ""
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "We teach the important skills required to jumpstart your career as a product designer. With 12 straight weeks of training, you learn to think, build and solve complex UI/UX challenges."
+          },
+          {
+            "text": "We move from understanding the core principles of effective design to applying tactics like wireframing, low and high-fidelity prototyping, usability testing and user interface design to build a portfolio of intuitive digital products."
+          },
+          {
+            "text": "You’ll learn the fundamentals of working as a team; sharpen your communication skills and collaborate with web development teams to build, change, maintain and successfully execute cross-functional UI/UX projects."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction To Product Design",
+          "desc": "Unit 1 provides students with a comprehensive introduction to product design. It acquaints them with the fundamental principles, elements, and tools necessary for successful design. The unit emphasizes the primary purpose of product design, which is to create innovative solutions that cater to user needs and evoke emotions. Through engaging lectures and interactive discussions, students gain a deep understanding of the impact that well-designed products can have on society and individuals.",
+          "bgColor": "bg-white",
+          "img": "/gifs/uiux/man-placing-ui-ux-design-elements-on-application.gif",
+          "tags": [
+            {
+              "img": "/icons/figma.png",
+              "text": "Figma"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "User Interface / Visual Design",
+          "desc": "Unit 2 focuses on User Interface (UI) and Visual Design, aiming to create engaging digital experiences. Students learn to create low-fidelity wireframes, convert them to high-fidelity wireframes, design mobile/web app interfaces, and develop responsive web designs. This unit equips students with the skills to visualize and refine design concepts, create user-friendly interfaces, and adapt designs to different devices. By mastering UI and Visual Design principles and techniques, students are prepared to craft captivating digital experiences that seamlessly blend aesthetics and functionality. Additionally, they gain proficiency in using Auto Layouts, constraints, and resizing frames for design.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/uiux/male-mobile-application-designer-working-on-design-project.gif",
+          "tags": [
+            {
+              "img": "/icons/figma.png",
+              "text": "Figma"
+            },
+            {
+              "img": "/icons/iconify.png",
+              "text": "Iconify"
+            },
+            {
+              "img": "/icons/unsplash.png",
+              "text": "Unsplash"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Interaction Design: Breathing Life into Visual Experiences",
+          "desc": "Unit 3 explores Interaction Design, emphasizing the addition of interactivity and animation to visual designs. Students learn to animate components or elements, prototype design pages, create interactive components, and test interactions using Figma. This unit equips students with the skills to bring their designs to life through motion and interactivity, enhancing user engagement and creating seamless user experiences.",
+          "bgColor": "bg-white",
+          "img": "/gifs/uiux/man-working-on-app-ui.gif",
+          "tags": [
+            {
+              "img": "/icons/figma.png",
+              "text": "Figma"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "User Experience: Crafting Seamless User Journeys",
+          "desc": "Unit 4 focuses on User Experience (UX), encompassing the design Process, user research, collaboration, wireframing, and usability testing. Students gain an understanding of Design Thinking as a design Process, conduct user research to gather valuable feedback for creating user personas and journey maps. They collaborate and brainstorm to generate ideas, employing techniques like Information Architecture and user flows. Students then translate these ideas into tangible wireframes. Lastly, they conduct rigorous usability tests on the final design to ensure a seamless user experience before delivering the project.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/uiux/male-designer-creating-a-mobile-ui-design.gif",
+          "tags": [
+            {
+              "img": "/icons/figma.png",
+              "text": "FigJam"
+            },
+            {
+              "img": "/icons/google-form.png",
+              "text": "Google Forms"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Capstone Project: Bringing Ideas to Life",
+          "desc": "This Unit is dedicated to the Capstone Project, where students apply their acquired knowledge and skills to create a comprehensive design solution. The unit encompasses creating case studies to articulate the problem statement and provide an overview of the product. Following the design thinking stages, students iterate on their prototype, incorporating feedback and refining their design. Rigorous testing ensures the effectiveness and usability of the prototype. Finally, students showcase their work through a compelling pitch or presentation, demonstrating their understanding of the project's objectives, Process, and outcomes. This unit allows students to showcase their creativity, problem-solving abilities, and presentation skills, culminating in a tangible representation of their product design journey.",
+          "bgColor": "bg-white",
+          "img": "/gifs/uiux/man-placing-ui-ux-design-elements-on-application.gif",
+          "tags": [
+            {
+              "img": "/icons/figma.png",
+              "text": "Figma"
+            },
+            {
+              "img": "/icons/behance.png",
+              "text": "Behance"
+            },
+            {
+              "img": "/icons/dribbble.png",
+              "text": "Dribbble"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "data-analysis-with-machine-learning": {
+      "intro": {
+        "title": "Data Analysis With Machine Learning",
+        "subTitle": "Get your hands dirty working with Excel and complex data. Dive into the Python programming language, understand data analysis and statistical modeling using Python, after which you move into machine learning and algorithms.",
+        "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif"
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "You will learn the skills needed to skyrocket your career as a data analyst/scientist. You'll have 12 straight weeks of training to predict trends and generate informed predictive models."
+          },
+          {
+            "text": "You’ll learn the fundamentals of the Python programming language and its usage in analysing complex data. You’ll build and refine machine learning models to predict patterns from data sets and complete hands-on exercises to reinforce the newly learned skills."
+          },
+          {
+            "text": "You’ll learn the fundamentals of being a true data analyst; you work with a team, sharpen your communication skills and collaborate with members through real-world projects."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction to Microsoft Excel - Objectives",
+          "desc": "In this unit, Students learn Microsoft Excel fundamentals, including installation, workbook creation, environment navigation, and the importance of Excel. They explore formulas, functions (arithmetic, text, logical, date), data organization (sorting, filtering, validation), analysis (conditional formatting, Power Query, Power Pivot), and pivot table creation. Practical skills for data management and analysis are gained. Throughout the unit, students gain practical skills in using Microsoft Excel for data management, analysis, and reporting.",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/microsoft-excel_1.gif",
+          "tags": [
+            {
+              "img": "/icons/excel.png",
+              "text": "Microsoft Excel"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Introduction to SQL",
+          "desc": "This unit introduces students to SQL, a programming language used for accessing databases. They learn the basics of SQL, including its purpose, types of databases, and concepts of DBMS and RDBMS. Students gain practical skills in creating and managing databases and tables, including inserting records and altering table structures. They also explore SQL statements for selecting columns, updating data, applying constraints, and sorting values. Throughout the unit, students develop a solid foundation in SQL fundamentals for working with databases.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/datascience/sql-file-format-extension.gif",
+          "tags": [
+            {
+              "img": "/icons/sql.png",
+              "text": "SQL"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Introduction to Power BI",
+          "desc": "Students will learn how to pre-process and transform data(data cleaning) before creating visually appealing and interactive visualization and dashboards by utilizing business intelligence. As a data analyst/scientist you can convey insights effectively and predict business trends communicating your findings to those who will make better decisions. The role of a data analyst/scientist has become increasingly important as businesses have become more data-driven. They help businesses make sense of the vast amount of data that they collect.",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/python.gif",
+          "tags": [
+            {
+              "img": "/icons/power-bi.png",
+              "text": "Power BI"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "Python Basics",
+          "desc": "Students delve into Python programming, acquiring a strong foundation in this widely-used language for data analysis. They learn to install Anaconda, explore in-built functions, work with different data types, manipulate strings, use variables and operators, implement loops, and import modules for enhanced functionality. Practical exercises empower students to write Python code proficiently, analyze large datasets, and create visual representations of data.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/datascience/python-programming-language.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Python NumPy",
+          "desc": "Students delve into NumPy, a vital Python library for numerical data analysis and scientific computing. They gain hands-on experience by importing the library and utilizing array functions. Through practical exercises, they learn to create one-dimensional and two-dimensional arrays, enabling efficient manipulation and analysis of complex numerical data. By mastering NumPy, students acquire essential skills for advanced data analysis, modeling, and scientific computations in Python.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/datascience/python-3.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/numpy.png",
+              "text": "Numpy"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Python Pandas",
+          "desc": "In this unit, students delve into Pandas, a powerful Python library for data manipulation and analysis. They learn to convert sequences and dictionaries into DataFrame tables using the .DataFrame function. Students gain practical skills in importing files and converting them into DataFrames. They explore various DataFrame operations such as retrieving index and columns, using head and tail methods, accessing specific columns, counting values, summing columns vertically and horizontally, locating values in cells or positions, extracting rows based on conditions, creating columns based on conditions, and utilizing the groupby function.",
+          "bgColor": "bg-white",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/python%20(2).gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/panda.png",
+              "text": "Pandas"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Python Plotly",
+          "desc": "Students delve into Plotly and Plotly Express, Python libraries renowned for interactive data visualization. They acquire practical skills in creating a variety of charts, including bar charts for categorical comparisons, line charts for trend analysis, area charts for cumulative data, pie charts for proportions, and donut charts with a center hole. By mastering Plotly, students unlock the ability to design captivating and interactive visualizations that effectively convey data insights.",
+          "bgColor": "bg-primary",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/python.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/ploty.png",
+              "text": "Plotly"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Machine Learning Basics",
+          "desc": "Students will learn how to build predictive models using machine learning to understand and forecast the probability of future events. It is important in a variety of fields including finance, marketing, sales, healthcare, etc. Predictive analytics enables organisations to understand who their customers and prospects are, how to up-sell and cross-sell products and services, and anticipate customer behaviour",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/brain-chip.gif",
+          "tags": [
+            {
+              "img": "/icons/ml.png",
+              "text": "ML Model"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "data-analysis-with-machine-learning-(weekday-online-class)": {
+      "intro": {
+        "title": "Data Analysis With Machine Learning",
+        "subTitle": "Get your hands dirty working with Excel and complex data. Dive into the Python programming language, understand data analysis and statistical modeling using Python, after which you move into machine learning and algorithms.",
+        "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif"
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "You will learn the skills needed to skyrocket your career as a data analyst/scientist. You'll have 12 straight weeks of training to predict trends and generate informed predictive models."
+          },
+          {
+            "text": "You’ll learn the fundamentals of the Python programming language and its usage in analysing complex data. You’ll build and refine machine learning models to predict patterns from data sets and complete hands-on exercises to reinforce the newly learned skills."
+          },
+          {
+            "text": "You’ll learn the fundamentals of being a true data analyst; you work with a team, sharpen your communication skills and collaborate with members through real-world projects."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction to Microsoft Excel - Objectives",
+          "desc": "In this unit, Students learn Microsoft Excel fundamentals, including installation, workbook creation, environment navigation, and the importance of Excel. They explore formulas, functions (arithmetic, text, logical, date), data organization (sorting, filtering, validation), analysis (conditional formatting, Power Query, Power Pivot), and pivot table creation. Practical skills for data management and analysis are gained. Throughout the unit, students gain practical skills in using Microsoft Excel for data management, analysis, and reporting.",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/microsoft-excel_1.gif",
+          "tags": [
+            {
+              "img": "/icons/excel.png",
+              "text": "Microsoft Excel"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Introduction to SQL",
+          "desc": "This unit introduces students to SQL, a programming language used for accessing databases. They learn the basics of SQL, including its purpose, types of databases, and concepts of DBMS and RDBMS. Students gain practical skills in creating and managing databases and tables, including inserting records and altering table structures. They also explore SQL statements for selecting columns, updating data, applying constraints, and sorting values. Throughout the unit, students develop a solid foundation in SQL fundamentals for working with databases.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/datascience/sql-file-format-extension.gif",
+          "tags": [
+            {
+              "img": "/icons/sql.png",
+              "text": "SQL"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Introduction to Power BI",
+          "desc": "Students will learn how to pre-process and transform data(data cleaning) before creating visually appealing and interactive visualization and dashboards by utilizing business intelligence. As a data analyst/scientist you can convey insights effectively and predict business trends communicating your findings to those who will make better decisions. The role of a data analyst/scientist has become increasingly important as businesses have become more data-driven. They help businesses make sense of the vast amount of data that they collect.",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/python.gif",
+          "tags": [
+            {
+              "img": "/icons/power-bi.png",
+              "text": "Power BI"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "Python Basics",
+          "desc": "Students delve into Python programming, acquiring a strong foundation in this widely-used language for data analysis. They learn to install Anaconda, explore in-built functions, work with different data types, manipulate strings, use variables and operators, implement loops, and import modules for enhanced functionality. Practical exercises empower students to write Python code proficiently, analyze large datasets, and create visual representations of data.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/datascience/python-programming-language.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Python NumPy",
+          "desc": "Students delve into NumPy, a vital Python library for numerical data analysis and scientific computing. They gain hands-on experience by importing the library and utilizing array functions. Through practical exercises, they learn to create one-dimensional and two-dimensional arrays, enabling efficient manipulation and analysis of complex numerical data. By mastering NumPy, students acquire essential skills for advanced data analysis, modeling, and scientific computations in Python.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/datascience/python-3.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/numpy.png",
+              "text": "Numpy"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Python Pandas",
+          "desc": "In this unit, students delve into Pandas, a powerful Python library for data manipulation and analysis. They learn to convert sequences and dictionaries into DataFrame tables using the .DataFrame function. Students gain practical skills in importing files and converting them into DataFrames. They explore various DataFrame operations such as retrieving index and columns, using head and tail methods, accessing specific columns, counting values, summing columns vertically and horizontally, locating values in cells or positions, extracting rows based on conditions, creating columns based on conditions, and utilizing the groupby function.",
+          "bgColor": "bg-white",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/python%20(2).gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/panda.png",
+              "text": "Pandas"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Python Plotly",
+          "desc": "Students delve into Plotly and Plotly Express, Python libraries renowned for interactive data visualization. They acquire practical skills in creating a variety of charts, including bar charts for categorical comparisons, line charts for trend analysis, area charts for cumulative data, pie charts for proportions, and donut charts with a center hole. By mastering Plotly, students unlock the ability to design captivating and interactive visualizations that effectively convey data insights.",
+          "bgColor": "bg-primary",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/python.gif",
+          "tags": [
+            {
+              "img": "/icons/python-2.png",
+              "text": "Python"
+            },
+            {
+              "img": "/icons/ploty.png",
+              "text": "Plotly"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Machine Learning Basics",
+          "desc": "Students will learn how to build predictive models using machine learning to understand and forecast the probability of future events. It is important in a variety of fields including finance, marketing, sales, healthcare, etc. Predictive analytics enables organisations to understand who their customers and prospects are, how to up-sell and cross-sell products and services, and anticipate customer behaviour",
+          "bgColor": "bg-white",
+          "img": "/gifs/datascience/brain-chip.gif",
+          "tags": [
+            {
+              "img": "/icons/ml.png",
+              "text": "ML Model"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "cyber-security": {
+      "intro": {
+        "title": "Introduction to Cyber Security",
+        "subTitle": "The significance of cybersecurity in today's increasingly digital environment cannot be emphasized. This extensive course provides an overview of the basic ideas, approaches, and methods needed to protect networks, information systems, and digital assets.",
+        "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif"
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "You'll explore the realm of digital threats and defense mechanisms. Starting with foundational cybersecurity knowledge, you'll cover essential terminology, concepts, and practices vital for securing digital systems."
+          },
+          {
+            "text": "Progressing further, you'll tackle risk management, mastering techniques to identify and mitigate vulnerabilities across diverse organizational settings."
+          },
+          {
+            "text": "You will learn about the complex structure of security measures, covering network reinforcement, encryption methods, access control, and system strengthening for creating resilient information systems."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction to Cybersecurity",
+          "desc": "In this unit, students will learn about the fundamentals of cybersecurity, including the CIA triad, the necessity of cybersecurity, data types and states, the ramifications of security breaches, real-world breach examples, hands-on security breach laboratories, various threats, attack types, vulnerabilities, risk assessment, and insights into potential careers in the cybersecurity field",
+          "bgColor": "bg-white",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity%20(1).gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "Cyber security basics"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Fundamentals of Networking",
+          "desc": "In this unit, students will delve into networking essentials, covering topics such as network structures, devices, OSI and TCP/IP models, network topologies, subnetting, routing, wireless network vulnerabilities, core network security principles, troubleshooting techniques, and a practical demonstration on setting up a network.",
+          "bgColor": "bg-accent",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "WireShark Cisco Packet Tracer"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Social Engineering",
+          "desc": "In this unit, students will explore social engineering comprehensively, encompassing its definition, purpose, common goals, scenarios, psychological principles involved, various attack types, human-based threats, and effective defense strategies against social engineering exploits.",
+          "bgColor": "bg-white",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity%20(3).gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "SET Maltego"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "Access Controls and Biometric",
+          "desc": "In this unit, students will delve into the realm of access control and biometric security, covering topics such as definitions, significance, authorization, authentication, identification verification during enrollment, various access control models and lists, an introduction to biometrics, modalities of biometric systems, challenges in biometric security, and real-world case studies illustrating these concepts in action.",
+          "bgColor": "bg-primary",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity%20(4).gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "Fingerprint SDKs"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Operating System Security",
+          "desc": "In this unit, students will explore Operating Systems (OS) comprehensively, covering key aspects such as its definition, purpose, components, file system architecture, interfaces (CLI vs. GUI), different OS types (Mobile, Server), an introduction to Virtualization focusing on Virtual Machines, detailed insights into Windows and Linux OS, access controls within OS, and strategies for OS hardening to enhance system security.",
+          "bgColor": "bg-white",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity%20Issue%20(1).gif",
+          "tags": [
+            {
+              "img": "/icons/compliance.png",
+              "text": "SELinux"
+            },
+            {
+              "img": "",
+              "text": "Windows Security Features"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Cryptography",
+          "desc": "In this unit, students will gain comprehensive knowledge about cryptography, encompassing its definition, historical context, the differentiation between symmetric and asymmetric encryption, the role of hash functions, understanding digital signatures, and the importance of key management within cryptographic systems.",
+          "bgColor": "bg-accent",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity.gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "OpenSSL"
+            },
+            {
+              "img": "",
+              "text": "Python Cryptodome"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Security Policies and Procedures",
+          "desc": "In this unit, students will delve into essential aspects of cybersecurity incident management, encompassing incident response protocols, disaster recovery strategies, business continuity planning, and understanding regulatory compliance frameworks governing cybersecurity.",
+          "bgColor": "bg-accent",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Cybersecurity%20Issue.gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "NIST"
+            },
+            {
+              "img": "",
+              "text": "ISO/IEC 27001"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Web security",
+          "desc": "In this unit, students will explore fundamental web technologies, study prevalent web attacks, gain insights into the Open Web Application Security Project (OWASP), and understand key principles of web application security.",
+          "bgColor": "bg-accent",
+          "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif",
+          "tags": [
+            {
+              "img": "",
+              "text": "ML Model"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "digital-marketing-immersive": {
+      "intro": {
+        "title": "Digital Marketing Immersive",
+        "subTitle": "Let’s equip you with practical, hands-on expertise that will help you become a highly sought-after marketing professional. From mastering the fundamentals of digital marketing to delving deep into advanced strategies, our experienced instructors will guide you through every step of the journey.",
+        "img": ""
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "We understand that every student is unique, with different learning styles and goals. That's why we tailor our approach to ensure that each participant receives a personalized learning experience. Whether you're a complete beginner or an experienced professional, our instructors will work closely with you to identify your strengths, address your weaknesses, and help you achieve your objectives."
+          },
+          {
+            "text": "We believe in learning by doing. That's why our digital marketing course is designed to be highly interactive and hands-on. From day one, you'll be actively engaged in practical exercises, real-world simulations, and collaborative projects that mirror the challenges you'll face in the field."
+          },
+          {
+            "text": "Our curriculum is carefully crafted to align with the latest industry trends, best practices, and emerging technologies in digital marketing. Whether you're interested in SEO, social media marketing, content creation, or email automation, you'll find relevant and up-to-date content that equips you with the skills and knowledge to excel in your career."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction to Digital Marketing",
+          "desc": "Gain a comprehensive understanding of the digital marketing landscape, including key concepts, terminology, and trends shaping the industry. We will explore the various digital marketing channels available, from content creation and social media marketing to email marketing and beyond. You will learn how to develop a digital marketing strategy that aligns with business objectives and target audience preferences for maximum impact and results.",
+          "bgColor": "bg-white",
+          "img": "/gifs/marketing/marketing.gif",
+          "tags": []
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Content Marketing",
+          "desc": "Dive deep into the art and science of content creation, distribution, and optimization to attract, engage, and convert your target audience. Master the principles of storytelling, audience segmentation, and content amplification to create compelling and resonant content across diverse platforms and formats. You’ll be exposed to advanced content marketing techniques, such as influencer collaboration, user-generated content campaigns, and content repurposing strategies to maximize reach and ROI.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/marketing/content_creation.gif",
+          "tags": []
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Social Media Marketing",
+          "desc": "Develop a comprehensive understanding of social media platforms, algorithms, and best practices to effectively leverage them for brand building, engagement, and lead generation. Learn how to develop and execute a social media marketing strategy tailored to your business goals, target audience demographics, and industry vertical. Also, we will explore advanced social media marketing tactics, including influencer partnerships, community management, and paid advertising campaigns, to drive measurable results and ROI.",
+          "bgColor": "bg-white",
+          "img": "/gifs/marketing/After_sales.gif",
+          "tags": []
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "Instagram marketing",
+          "desc": "Deep dive into Instagram's unique features, tools, and algorithms to optimize your presence and engagement on the platform. Master the art of storytelling through visual content, leveraging Instagram's photo and video formats to capture attention and foster authentic connections with your audience. You will discover advanced Instagram marketing strategies, such as hashtag optimization, Instagram Stories, IGTV, and influencer collaborations, to elevate your brand's visibility and impact on the platform.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/marketing/Instagram.gif",
+          "tags": []
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Ads Conversion",
+          "desc": "You will learn how to design and implement high-converting ad campaigns across various digital channels, including search engines, social media platforms, and display networks. Explore the fundamentals of ad targeting, bidding strategies, ad copywriting, and creative optimization to maximize ad performance and ROI. We will dive into analytics and conversion tracking to measure the effectiveness of your ad campaigns, identify areas for improvement, and optimize your conversion funnel for better results.",
+          "bgColor": "bg-white",
+          "img": "/gifs/marketing/Ads.gif",
+          "tags": []
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Branding",
+          "desc": "Understand the principles of branding, brand identity, and brand positioning, and how they influence consumer perceptions, preferences, and loyalty. You will learn how to develop a strong brand strategy that encompasses brand purpose, values, voice, and visual identity to differentiate your brand and create meaningful connections with your target audience. Also, we will be exploring case studies of successful brands and branding campaigns to glean insights into effective brand-building strategies and apply them to your own brand development efforts.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/marketing/Branding.gif",
+          "tags": []
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Prospecting and sales",
+          "desc": "Master the art of prospecting, lead generation, and customer acquisition through targeted outreach, relationship building, and persuasive communication techniques. Learn how to identify and qualify leads, overcome objections, and close sales effectively through consultative selling and relationship-based approaches. Explore the principles of sales psychology, negotiation tactics, and objection handling to increase your sales conversion rates and drive revenue growth for your business.",
+          "bgColor": "bg-white",
+          "img": "/gifs/marketing/Prospect.gif",
+          "tags": []
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 8",
+          "title": "After Sales",
+          "desc": "Understand the importance of customer retention and loyalty in sustaining long-term business success and profitability. Learn how to deliver exceptional post-purchase experiences, including onboarding, customer support, and ongoing engagement, to nurture customer relationships and drive repeat business. Explore strategies for upselling, cross-selling, and customer advocacy to maximize lifetime customer value and turn satisfied customers into brand ambassadors and advocates.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/marketing/After_sales.gif",
+          "tags": []
+        },
+        {
+          "id": 8,
+          "classname": "H",
+          "caption": "UNIT 8",
+          "title": "Email Marketing",
+          "desc": "Master the fundamentals of email marketing, including list building, segmentation, email design, and deliverability best practices, to drive engagement and conversions. Learn how to create personalized and targeted email campaigns that resonate with your audience's needs, preferences, and interests, and drive them to take action. Explore the power of email automation and lifecycle marketing to streamline your email marketing efforts, increase efficiency, and deliver relevant content at every stage of the customer journey.",
+          "bgColor": "bg-white",
+          "img": "/gifs/marketing/Ads.gif",
+          "tags": []
+        }
+      ]
+    }
+  }
+]
