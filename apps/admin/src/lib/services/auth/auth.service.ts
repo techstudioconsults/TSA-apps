@@ -26,6 +26,16 @@ interface LoginResponseDTO {
   error?: string;
 }
 
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar: string | null;
+  role: string;
+  createdAt: string;
+}
+
 export class AuthService {
   async login(email: string, password: string): Promise<LoginResult> {
     try {
@@ -66,6 +76,14 @@ export class AuthService {
         return { success: false, error: err.message };
       }
       return { success: false, error: "Unknown error" };
+    }
+  }
+
+  //current user
+  async getCurrentUser() {
+    const response = await httpAdapter.get<ApiResponse<User>>("/users/me");
+    if (response?.status === 200) {
+      return response.data;
     }
   }
 }

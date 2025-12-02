@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { queryKeys } from "@/lib/react-query/query-keys";
 import { createServiceHooks } from "@/lib/react-query/use-service-query";
-import { authService, type LoginResult } from "./auth.service";
+import { authService, type User, type LoginResult } from "./auth.service";
 
 export interface LoginVariables {
   email: string;
@@ -9,18 +11,22 @@ export interface LoginVariables {
 }
 
 /**
- * Auth mutations (React Query) layered over AuthService.
+ * Auth queries and mutations (React Query) layered over AuthService.
  * - Keeps API details isolated in the service
- * - Keeps mutation lifecycle in the data layer (not in UI components)
+ * - Keeps query/mutation lifecycle in the data layer (not in UI components)
  * - Uses createServiceHooks for standardized React Query integration
  */
-const { useServiceMutation } = createServiceHooks(authService);
+const { useServiceQuery, useServiceMutation } = createServiceHooks(authService);
+// Queries
+export const useCurrentUser = (options?: any) =>
+  useServiceQuery<ApiResponse<User> | undefined>(
+    queryKeys.auth.currentUser(),
+    (service) => service.getCurrentUser(),
+    options,
+  );
 
-export const useLoginMutation = (
-  options?: Parameters<
-    typeof useServiceMutation<LoginResult, LoginVariables>
-  >[1],
-) =>
+// Mutations
+export const useLogin = (options?: any) =>
   useServiceMutation<LoginResult, LoginVariables>(
     (service, { email, password }) => service.login(email, password),
     options,

@@ -66,7 +66,7 @@ export default function TopBar({
     <>
       <header
         className={cn(
-          "bg-background  top-0 flex h-20 items-center px-6 shadow lg:px-4",
+          "bg-background sticky top-0 flex h-16 items-center px-6 shadow lg:px-4",
           className,
         )}
       >

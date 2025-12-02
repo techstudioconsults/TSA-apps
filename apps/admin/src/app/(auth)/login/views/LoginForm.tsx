@@ -2,20 +2,20 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader } from "lucide-react";
 import { CustomButton } from "@workspace/ui/lib";
-import { useLoginMutation } from "@/lib/services/auth/auth.mutations";
 import { signInFormData, signInSchema } from "@/schemas";
 import { tokenManager } from "@/lib/http/token-manager";
+import { useLogin } from "@/lib/services/auth/auth.mutations";
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-  const { mutateAsync: loginMutate, isPending } = useLoginMutation();
+  const { mutateAsync: login, isPending } = useLogin();
   const isSubmitting = isPending;
 
   const {
@@ -33,17 +33,10 @@ const LoginForm: FC = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    // Redirect if already authenticated
-    if (tokenManager.isAuthenticated()) {
-      router.replace("/");
-    }
-  }, [router]);
-
   const onSubmit = async (data: signInFormData) => {
     setFormError(null);
     try {
-      const result = await loginMutate({
+      const result = await login({
         email: data.email,
         password: data.password,
       });

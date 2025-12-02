@@ -1,6 +1,7 @@
 export const queryKeys = {
   auth: {
     login: () => ["auth", "login"] as const,
+    currentUser: () => ["auth", "currentUser"] as const,
   },
   dashboard: {
     activities: (page: number, limit: number) =>

@@ -2,6 +2,7 @@
 
 import TopBar from "@/components/shared/top-bar";
 import { ActiveTargetProvider } from "@/context/active-target";
+import { useCurrentUser } from "@/lib/services/auth/auth.mutations";
 import { SidebarInset, SidebarProvider } from "@workspace/ui/components";
 import { AppSidebar, Logo, Wrapper } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
@@ -18,6 +19,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { data: currentUser } = useCurrentUser();
   return (
     <SidebarProvider>
       <AppSidebar
@@ -41,9 +43,9 @@ export default function DashboardLayout({
       <SidebarInset className="dark:bg-background bg-[#F8F8F9]">
         <ActiveTargetProvider>
           <TopBar
-            adminName={`Kingsley Solomon`}
-            adminRole={`Administrator`}
-            adminEmail={`kinxly@gmail.com`}
+            adminName={`${currentUser?.data.lastName}`}
+            adminRole={currentUser?.data.role}
+            adminEmail={`${currentUser?.data.email}`}
             notifications={[]}
           />
           <Wrapper className="max-w-[1440px] py-10">{children}</Wrapper>
