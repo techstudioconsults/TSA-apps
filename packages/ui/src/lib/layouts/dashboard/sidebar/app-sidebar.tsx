@@ -1,29 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import * as React from "react";
+import { useActiveNavigation } from "@workspace/ui/hooks/use-active-navigation";
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
   SquareTerminal,
 } from "lucide-react";
+import * as React from "react";
+
+import { NavMain } from "../components/nav-main";
+import { NavProjects } from "../components/nav-projects";
+import { NavUser } from "../components/nav-user";
+import { TeamSwitcher } from "../components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "../../../../components";
-import { NavMain } from "../components/nav-main";
-import { NavProjects } from "../components/nav-projects";
-import { NavUser } from "../components/nav-user";
-import { TeamSwitcher } from "../components/team-switcher";
+} from "@workspace/ui/components";
 
 /**
  * Reusable Dashboard Sidebar Types
@@ -36,17 +36,18 @@ export type DashboardUser = {
 
 export type DashboardTeam = {
   name: string;
-  logo: React.ElementType;
+  logo: React.ReactNode;
+  // logo: React.ReactNode | React.ElementType | string;
   plan: string;
 };
 
 export type DashboardNavItem = {
-  title: string;
+  name: string;
   url: string;
   icon?: any;
   isActive?: boolean;
   items?: {
-    title: string;
+    name: string;
     url: string;
   }[];
 };
@@ -57,7 +58,9 @@ export type DashboardProject = {
   icon?: any;
 };
 
-export interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+export interface AppSidebarProperties extends React.ComponentProps<
+  typeof Sidebar
+> {
   user?: DashboardUser;
   teams?: DashboardTeam[];
   navMain?: DashboardNavItem[];
@@ -80,62 +83,62 @@ const defaultData: {
   teams: [
     {
       name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      logo: ``,
       plan: "Enterprise",
     },
     {
       name: "Acme Corp.",
-      logo: AudioWaveform,
+      logo: ``,
       plan: "Startup",
     },
     {
       name: "Evil Corp.",
-      logo: Command,
+      logo: ``,
       plan: "Free",
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      name: "Playground",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
-        { title: "History", url: "#" },
-        { title: "Starred", url: "#" },
-        { title: "Settings", url: "#" },
+        { name: "History", url: "#" },
+        { name: "Starred", url: "#" },
+        { name: "Settings", url: "#" },
       ],
     },
     {
-      title: "Models",
+      name: "Models",
       url: "#",
       icon: Bot,
       items: [
-        { title: "Genesis", url: "#" },
-        { title: "Explorer", url: "#" },
-        { title: "Quantum", url: "#" },
+        { name: "Genesis", url: "#" },
+        { name: "Explorer", url: "#" },
+        { name: "Quantum", url: "#" },
       ],
     },
     {
-      title: "Documentation",
+      name: "Documentation",
       url: "#",
       icon: BookOpen,
       items: [
-        { title: "Introduction", url: "#" },
-        { title: "Get Started", url: "#" },
-        { title: "Tutorials", url: "#" },
-        { title: "Changelog", url: "#" },
+        { name: "Introduction", url: "#" },
+        { name: "Get Started", url: "#" },
+        { name: "Tutorials", url: "#" },
+        { name: "Changelog", url: "#" },
       ],
     },
     {
-      title: "Settings",
+      name: "Settings",
       url: "#",
       icon: Settings2,
       items: [
-        { title: "General", url: "#" },
-        { title: "Team", url: "#" },
-        { title: "Billing", url: "#" },
-        { title: "Limits", url: "#" },
+        { name: "General", url: "#" },
+        { name: "Team", url: "#" },
+        { name: "Billing", url: "#" },
+        { name: "Limits", url: "#" },
       ],
     },
   ],
@@ -153,31 +156,37 @@ export function AppSidebar({
   navSecondary,
   navMainTitle,
   secondaryTitle,
-  ...props
-}: AppSidebarProps) {
+  ...properties
+}: AppSidebarProperties) {
   const resolved = {
     user: user ?? defaultData.user,
     teams: teams ?? defaultData.teams,
     navMain: navMain ?? defaultData.navMain,
     projects: navSecondary ?? defaultData.projects,
-    mainTitle: navMainTitle ?? `Platform`,
-    secondaryTitle: secondaryTitle ?? `project`,
+    mainTitle: navMainTitle,
+    secondaryTitle: secondaryTitle,
   };
 
+  // Use active navigation hook to determine active states
+  const activeNavItems = useActiveNavigation(resolved.navMain);
+  const projectNavItems = useActiveNavigation(resolved.projects);
+
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...properties}>
       <SidebarHeader>
         <TeamSwitcher teams={resolved.teams} />
       </SidebarHeader>
       <SidebarContent>
-        {navMainTitle && (
-          <NavMain title={resolved.mainTitle} items={resolved.navMain} />
-        )}
-        {secondaryTitle && (
+        {navMainTitle ? (
+          <NavMain title={resolved.mainTitle} items={activeNavItems} />
+        ) : null}
+        {secondaryTitle ? (
           <NavProjects
             title={resolved.secondaryTitle}
-            projects={resolved.projects}
+            projects={projectNavItems}
           />
+        ) : (
+          <NavProjects projects={projectNavItems} />
         )}
       </SidebarContent>
       <SidebarFooter>

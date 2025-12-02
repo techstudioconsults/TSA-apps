@@ -12,22 +12,20 @@ type LogoProperties = {
 };
 
 export const Logo: FC<LogoProperties> = ({
-  logo,
-  width = 120,
-  height = 37,
+  logo = "/images/logo.svg",
+  width = 89,
+  height = 60,
   className,
 }) => {
   return (
     <Link href="/" data-testid="logo" className="">
       {logo ? (
         <Image
-          priority
           src={logo}
           alt="Logo"
           width={width}
           height={height}
           className={className}
-          style={{ height: "auto", width: "auto" }}
         />
       ) : (
         <p className="text-xl font-bold">LOGO</p>

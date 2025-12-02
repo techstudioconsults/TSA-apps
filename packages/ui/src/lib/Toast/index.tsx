@@ -1,21 +1,14 @@
 "use client";
 
-import { Toaster } from "../../components/ui/sonner";
+import { Toaster } from "@workspace/ui/components";
 
-const Toast = () => {
+export const Toast = () => {
   return (
     <Toaster
-      richColors
+      closeButton
       position="bottom-center"
-      // toastOptions={{
-      //   classNames: {
-      //     toast: "!bg-accent !w-full !absolute",
-      //   },
-      // }}
+      expand={false}
+      duration={5000}
     />
   );
 };
-
-export { Toast };
-export { Toaster } from "../../components/ui/sonner";
-export { toast } from "sonner";

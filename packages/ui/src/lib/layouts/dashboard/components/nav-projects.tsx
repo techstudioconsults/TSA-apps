@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "../../../../components/ui/sidebar";
+} from "@workspace/ui/components";
+import { cn } from "../../../utils";
+import Link from "next/link";
 
 export function NavProjects({
   title,
@@ -19,22 +21,38 @@ export function NavProjects({
     name: string;
     url: string;
     icon?: any;
+    isActive?: boolean;
   }[];
 }) {
-  // const { isMobile } = useSidebar();
+  const { state } = useSidebar();
 
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup className="">
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu className="gap-5">
         {projects.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
+          <SidebarMenuItem
+            className={cn(
+              state === "collapsed" && "flex items-center justify-center",
+            )}
+            key={item.name}
+          >
+            <Link href={item.url}>
+              <SidebarMenuButton
+                className={cn(
+                  "hover:bg-primary/10 w-full cursor-pointer p-6 transition-all duration-75",
+                  item.isActive &&
+                    "border-primary bg-primary/40 border-3 font-medium shadow-[0px_0px_0px_2px_#0266F333]",
+                )}
+              >
+                <div>
+                  {item.icon && <item.icon className={cn("-ml-1 size-5!")} />}
+                </div>
+                <span className="group-data-[collapsible=icon]:hidden">
+                  {item.name}
+                </span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

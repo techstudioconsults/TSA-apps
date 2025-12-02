@@ -1,3 +1,4 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -50,7 +51,7 @@ export default function Providers({ children }: PropsWithChildren) {
     <QueryClientProvider client={queryClient}>
       {children}
       {process.env.NODE_ENV !== "production" ? (
-        <ReactQueryDevtools buttonPosition="bottom-left" />
+        <ReactQueryDevtools buttonPosition="bottom-right" />
       ) : null}
     </QueryClientProvider>
   );

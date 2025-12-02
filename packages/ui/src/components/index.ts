@@ -42,3 +42,4 @@ export * from "./ui/tooltip";
 export * from "./ui/button";
 export * from "./ui/sonner";
 export * from "./ui/pagination";
+export * from "./ui/empty";

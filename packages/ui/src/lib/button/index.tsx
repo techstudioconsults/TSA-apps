@@ -1,27 +1,35 @@
-import { LucideLoader, LucidePlusCircle } from "lucide-react";
+"use client";
+
+import { LucideLoader, LucidePlus } from "lucide-react";
+import Link from "next/link";
 import {
   cloneElement,
   forwardRef,
   MouseEventHandler,
   ReactElement,
   ReactNode,
+  useState,
 } from "react";
-import { Button } from "../../components/ui/button";
-import Link from "next/link";
+import { cn } from "../utils";
+import { Button } from "@workspace/ui/components";
 
 type Variant =
   | "default"
   | "primary"
+  | "primaryOutline"
   | "destructive"
+  | "destructiveOutline"
   | "subtle"
   | "loading"
   | "outline"
   | "secondary"
   | "ghost"
-  | "link";
-type Size = "default" | "sm" | "lg" | "xl" | "link" | "icon" | "circle";
+  | "link"
+  | "accent"
+  | "accentOutline";
+type Size = "default" | "sm" | "lg" | "xl" | "2xl" | "link" | "icon" | "circle";
 
-interface ButtonProperties {
+interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "submit" | "button" | "reset";
   /** Specifies the button style variant */
   variant?: Variant;
@@ -62,7 +70,7 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProperties>(
     {
       type = "button",
       variant,
-      size,
+      size = "lg",
       children,
       isLoading = false,
       isLeftIconVisible = false,
@@ -74,19 +82,22 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProperties>(
       href,
       className,
       onClick,
+      ...properties
     },
     reference,
   ) => {
+    const [, setIsPressed] = useState(false);
+
     const modifiedIcon = icon ? (
       cloneElement(
-        icon as ReactElement<{ className?: string; "data-testid"?: string }>,
+        icon as ReactElement,
         {
-          className: "w-[1rem] h-[1rem] dark:invert dark:filter",
+          className: "w-[1rem] h-[1rem] shadow-none",
           "data-testid": "icon",
-        },
+        } as React.HTMLAttributes<HTMLElement>,
       )
     ) : (
-      <LucidePlusCircle className="h-4 w-4" data-testid="icon" />
+      <LucidePlus className="h-[1rem] w-[1rem]" data-testid="icon" />
     );
 
     const buttonContent = (
@@ -94,7 +105,7 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProperties>(
         {isLeftIconVisible && !isLoading && modifiedIcon}
         {isLoading && (
           <LucideLoader
-            className="h-4 w-4 animate-spin"
+            className="h-[1rem] w-[1rem] animate-spin"
             data-testid="loading-spinner"
           />
         )}
@@ -105,77 +116,97 @@ const CustomButton = forwardRef<HTMLButtonElement, ButtonProperties>(
       </>
     );
 
-    const buttonClasses = `transition-all duration-300 ease-in-out ${
-      isDisabled
-        ? "opacity-50 cursor-not-allowed"
-        : "hover:shadow-sneob dark:hover:shadow-sneobw focus:shadow-none"
-    } ${className}`;
+    const buttonClasses = cn(
+      "transition-all duration-300 ease-in-out rounded-md",
+      // isDisabled
+      //   ? "opacity-50 cursor-not-allowed"
+      //   : isPressed
+      //     ? "shadow-none hover:cursor-pointer"
+      //     : "hover:shadow-xl hover:cursor-pointer",
+      className,
+    );
+    //  const buttonClasses = cn(
+    //   "transition-all duration-300 ease-in-out rounded-md",
+    //   isDisabled
+    //     ? "opacity-50 cursor-not-allowed"
+    //     : isPressed
+    //       ? "shadow-none hover:cursor-pointer"
+    //       : "hover:shadow-xl hover:cursor-pointer",
+    //   className,
+    // );
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (!isDisabled) {
+        setIsPressed(true);
+        setTimeout(() => setIsPressed(false), 200);
+      }
+      onClick?.(event);
+    };
 
     if (href) {
       const isExternal = /^https?:\/\//.test(href);
 
       if (isExternal) {
         return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaLabel}
+          >
+            <Button
+              type={type}
+              variant={variant}
+              size={size}
+              disabled={isDisabled}
+              aria-label={ariaLabel}
+              className={buttonClasses}
+              onClick={handleClick}
+              role="button"
+              ref={reference}
+            >
+              {buttonContent}
+            </Button>
+          </a>
+        );
+      }
+
+      return (
+        <Link href={isDisabled ? "" : href} passHref aria-label={ariaLabel}>
           <Button
-            asChild
-            type={type}
             variant={variant}
             size={size}
             disabled={isDisabled}
             aria-label={ariaLabel}
             className={buttonClasses}
-            onClick={onClick}
+            onClick={handleClick}
             role="button"
             ref={reference}
           >
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={ariaLabel}
-            >
-              {buttonContent}
-            </a>
-          </Button>
-        );
-      }
-
-      return (
-        <Button
-          asChild
-          variant={variant}
-          size={size}
-          disabled={isDisabled}
-          aria-label={ariaLabel}
-          className={buttonClasses}
-          onClick={onClick}
-          role="button"
-          ref={reference}
-        >
-          <Link href={isDisabled ? "" : href} aria-label={ariaLabel}>
             {buttonContent}
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       );
     }
 
     return (
       <Button
+        type={type}
         variant={variant}
         size={size}
         disabled={isDisabled}
         aria-label={ariaLabel}
         className={buttonClasses}
-        onClick={onClick}
+        onClick={handleClick}
         role="button"
         ref={reference}
+        {...properties}
       >
         {buttonContent}
       </Button>
     );
   },
 );
-
-CustomButton.displayName = "CustomButton";
+CustomButton.displayName = "CustomButton"; // This is useful for debugging in React DevTools
 
 export { CustomButton };
