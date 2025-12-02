@@ -5,9 +5,9 @@ export function TableSkeleton() {
   //   const totalColumns = columns + (showDragColumn ? 1 : 0) + (showSelectColumn ? 1 : 0) + (showActionsColumn ? 1 : 0);
 
   return (
-    <section className="flex min-h-[76dvh] w-full flex-col justify-between gap-4">
+    <section className="flex min-h-[666px] w-full flex-col justify-between gap-4">
       <div>
-        <Skeleton className="mb-4 h-[70dvh] w-full" />
+        <Skeleton className="mb-4 h-[666px] w-full" />
       </div>
       <div className="text-muted-foreground flex flex-col-reverse gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center justify-between md:w-[50%]">

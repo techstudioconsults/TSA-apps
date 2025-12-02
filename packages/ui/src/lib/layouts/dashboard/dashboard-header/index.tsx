@@ -10,7 +10,7 @@ export const DashboardHeader = ({
   icon,
 }: {
   actionComponent?: React.ReactNode;
-  title: string;
+  title: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
   // showSubscriptionBanner?: boolean;
   titleClassName?: string;
@@ -29,7 +29,7 @@ export const DashboardHeader = ({
           <div>
             <h4
               className={cn(
-                "text-foreground flex items-center gap-2",
+                "text-foreground flex items-center gap-2 capitalize",
                 titleClassName,
               )}
             >

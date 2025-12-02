@@ -9,5 +9,11 @@ export const queryKeys = {
     stats: () => ["dashboard", "stats"] as const,
   },
 
+  courses: {
+    list: () => ["courses", "list"] as const,
+    byId: (id: string) => ["courses", "byId", id] as const,
+    total: () => ["courses", "total"] as const,
+  },
+
   // Add other domains as needed
 };

@@ -3,8 +3,8 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  TsaButton,
-} from "@strategic-dot/components";
+  Button,
+} from "@workspace/ui/components";
 import { Check, X } from "lucide-react";
 
 interface SuccessModalProperties {
@@ -51,13 +51,13 @@ const SuccessModal: React.FC<SuccessModalProperties> = ({
 
         {onAction && (
           <div className="mt-6">
-            <TsaButton
+            <Button
               onClick={onAction}
               variant="primary"
               className="w-full bg-blue-600"
             >
               {actionLabel}
-            </TsaButton>
+            </Button>
           </div>
         )}
       </DialogContent>

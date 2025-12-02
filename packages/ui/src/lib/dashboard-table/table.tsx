@@ -243,7 +243,7 @@ function convertColumnsToTanStackFormat<T extends DataItem>(
       accessorKey: column.accessorKey as string,
       header: ({ column: tanstackColumn }) => {
         if (!enableSorting) {
-          return <div>{column.header}</div>;
+          return <div className="!text-white">{column.header}</div>;
         }
 
         return (
@@ -253,7 +253,7 @@ function convertColumnsToTanStackFormat<T extends DataItem>(
                 tanstackColumn.getIsSorted() === "asc",
               )
             }
-            className="flex h-8 cursor-pointer items-center font-semibold hover:bg-transparent"
+            className="flex text-white h-8 cursor-pointer items-center font-semibold hover:bg-transparent"
           >
             <span>{column.header}</span>
             {tanstackColumn.getIsSorted() === "asc" ? (
@@ -609,7 +609,7 @@ export function AdvancedDataTable<T extends DataItem>({
   };
 
   return (
-    <div className="flex min-h-[76dvh] w-full flex-col justify-between gap-4">
+    <div className="flex w-full flex-col justify-between gap-4">
       <div>
         {renderHeader()}
         {/* Desktop Table View */}
@@ -628,7 +628,11 @@ export function AdvancedDataTable<T extends DataItem>({
                     <TableRow key={headerGroup.id} className="border-border/50">
                       {headerGroup.headers.map((header) => {
                         return (
-                          <TableHead key={header.id} colSpan={header.colSpan}>
+                          <TableHead
+                            className="!text-white"
+                            key={header.id}
+                            colSpan={header.colSpan}
+                          >
                             {header.isPlaceholder
                               ? null
                               : flexRender(
@@ -639,7 +643,7 @@ export function AdvancedDataTable<T extends DataItem>({
                         );
                       })}
                       {rowActions && (
-                        <TableHead className="w-[50px]"></TableHead>
+                        <TableHead className="!text-white w-[50px]"></TableHead>
                       )}
                     </TableRow>
                   ))}
@@ -674,12 +678,16 @@ export function AdvancedDataTable<T extends DataItem>({
             </DndContext>
           ) : (
             <Table>
-              <TableHeader className="!bg-muted sticky top-0 z-10">
+              <TableHeader className="sticky bg-primary top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id} className="border-border/50">
                     {headerGroup.headers.map((header) => {
                       return (
-                        <TableHead key={header.id} colSpan={header.colSpan}>
+                        <TableHead
+                          className=""
+                          key={header.id}
+                          colSpan={header.colSpan}
+                        >
                           {header.isPlaceholder
                             ? null
                             : flexRender(
@@ -689,7 +697,9 @@ export function AdvancedDataTable<T extends DataItem>({
                         </TableHead>
                       );
                     })}
-                    {rowActions && <TableHead className="w-[50px]"></TableHead>}
+                    {rowActions && (
+                      <TableHead className=" w-[50px]"></TableHead>
+                    )}
                   </TableRow>
                 ))}
               </TableHeader>

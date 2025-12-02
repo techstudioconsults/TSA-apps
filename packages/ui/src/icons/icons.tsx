@@ -43,6 +43,7 @@ import {
 // ============================================================================
 import {
   BookOpen,
+  Edit,
   FileSpreadsheet,
   Mail,
   MegaphoneIcon,
@@ -101,6 +102,7 @@ const LucideIcons = {
   book: BookOpen,
   sheet: FileSpreadsheet,
   megaphone: MegaphoneIcon,
+  edit: Edit,
 };
 
 const ReactIcons = {

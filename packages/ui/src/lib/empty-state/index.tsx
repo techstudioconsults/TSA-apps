@@ -257,7 +257,7 @@ export const ErrorEmptyState = ({
   onRetry: () => void;
 }) => (
   <EmptyState
-    className="bg-background mx-auto max-w-xl"
+    className="bg-background mx-auto max-w-full my-4"
     variant="icon"
     icon={<AlertCircle className="text-destructive" />}
     title={title}

@@ -1,9 +1,15 @@
 "use client";
 
 import { SidebarTrigger } from "@workspace/ui/components";
-import { NotificationWidget, UserMenu, Wrapper } from "@workspace/ui/lib";
+import {
+  CustomButton,
+  NotificationWidget,
+  UserMenu,
+  Wrapper,
+} from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
 import { signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { GlobalSearchInput } from "../search-input";
 
@@ -14,6 +20,7 @@ type TopBarProperties = {
   adminRole?: string;
   notifications?: Notification[];
   className?: string;
+  isLoading?: boolean;
 };
 
 const handleLogout = async () => {
@@ -33,6 +40,7 @@ export default function TopBar({
   adminAvatar,
   adminRole,
   notifications = [],
+  isLoading = false,
   className = "",
 }: TopBarProperties) {
   // locales removed; use root paths
@@ -77,9 +85,9 @@ export default function TopBar({
           {/* Search Input */}
           <h5>Dashboard</h5>
 
+          <TopBarActions />
           {/* Right Section */}
           <div className="flex items-center justify-end gap-2 md:gap-4">
-            <GlobalSearchInput />
             {/* Notification Widget */}
             <NotificationWidget
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,11 +114,51 @@ export default function TopBar({
               }}
               onLogout={handleLogout}
               className="min-w-fit"
+              isLoading={isLoading}
             />
           </div>
         </Wrapper>
       </header>
       {/* <AppEventsListener /> */}
     </>
+  );
+}
+
+function TopBarActions() {
+  const pathname = usePathname();
+
+  const map = [
+    {
+      match: (p: string) => p.includes("/courses"),
+      label: "Create Course",
+      href: "/createcourse",
+    },
+    {
+      match: (p: string) => p.includes("/classes"),
+      label: "Create Class",
+      href: "/classes/create",
+    },
+    {
+      match: (p: string) => p.includes("/cohorts"),
+      label: "Create Cohort",
+      href: "/cohorts/create",
+    },
+    {
+      match: (p: string) => p.includes("/sheets"),
+      label: "Create Sheet",
+      href: "/sheets/create",
+    },
+  ];
+
+  const fallback = { label: "Create", href: "#" };
+  const current = map.find((m) => m.match(pathname)) ?? fallback;
+
+  return (
+    <div className="flex gap-4">
+      <GlobalSearchInput className="max-w-md" />
+      <CustomButton variant="primary" href={current.href}>
+        {current.label}
+      </CustomButton>
+    </div>
   );
 }

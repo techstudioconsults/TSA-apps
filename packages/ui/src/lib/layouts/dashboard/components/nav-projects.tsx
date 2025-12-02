@@ -48,7 +48,7 @@ export function NavProjects({
                 <div>
                   {item.icon && <item.icon className={cn("-ml-1 size-5!")} />}
                 </div>
-                <span className="group-data-[collapsible=icon]:hidden">
+                <span className="group-data-[collapsible=icon]:hidden font-medium">
                   {item.name}
                 </span>
               </SidebarMenuButton>

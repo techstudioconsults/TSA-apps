@@ -4,20 +4,17 @@ import { useDashboardStatsQuery } from "@/lib/services/dashboard/dashboard.queri
 import { DashboardCard } from "@/components/shared/dashboard-card";
 import { Icon, Icons } from "@workspace/ui/icons";
 import { DashboardCardsLoader } from "../_components/loaders";
+import { ErrorEmptyState } from "@workspace/ui/lib";
 
 const Cards = () => {
-  const { data, isLoading, error } = useDashboardStatsQuery();
+  const { data, isLoading, error, refetch } = useDashboardStatsQuery();
 
   if (isLoading) {
     return <DashboardCardsLoader />;
   }
 
   if (error) {
-    return (
-      <div className="flex items-center justify-center py-8">
-        <div className="text-red-500">Error loading stats: {error.message}</div>
-      </div>
-    );
+    return <ErrorEmptyState onRetry={refetch} />;
   }
 
   const cards = [

@@ -13,14 +13,14 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: currentUser } = useCurrentUser();
+  const { data: currentUser, isLoading } = useCurrentUser();
   return (
     <SidebarProvider>
       <AppSidebar
         className={cn("z-1 bg-primary text-white")}
         navMain={[]}
         navSecondary={[
-          { name: "Dashboard", url: "/home", icon: Icons.dashboard },
+          { name: "Dashboard", url: "/", icon: Icons.dashboard },
           { name: "Courses", url: "/courses", icon: Icons.book },
           { name: "Classes", url: "/classes", icon: Icons.users },
           { name: "Sheets", url: "/sheets", icon: Icons.sheet },
@@ -41,6 +41,7 @@ export default function DashboardLayout({
             adminRole={currentUser?.data.role}
             adminEmail={`${currentUser?.data.email}`}
             notifications={[]}
+            isLoading={isLoading}
           />
           <Wrapper className="max-w-[1440px] py-10">{children}</Wrapper>
         </ActiveTargetProvider>
