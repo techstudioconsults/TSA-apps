@@ -26,12 +26,6 @@ export default function DashboardLayout({
         ]}
       />
       <SidebarInset className="dark:bg-background bg-[#F8F8F9]">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea corrupti
-          labore a maiores error doloribus eveniet iusto molestias maxime,
-          tempora fugit impedit. Numquam laborum officiis beatae? Tempore ullam
-          neque sequi!
-        </p>
         <ActiveTargetProvider>
           <TopBar
             adminName={`Kingsley Solomon`}
