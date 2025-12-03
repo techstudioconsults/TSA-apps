@@ -77,9 +77,9 @@ export function FormField({
     <div className="space-y-2">
       {label && (
         <div>
-          <Label className="text-[16px] font-medium">
+          <Label className="text-base font-medium">
             {label}
-            {required && <span className="text-destructive -ml-1">*</span>}
+            {required && <span className="text-destructive ml-1">*</span>}
           </Label>
           {labelDetailedNode && (
             <div className="text-mid-grey-II text-xs">{labelDetailedNode}</div>
@@ -111,7 +111,7 @@ export function FormField({
                   placeholder={placeholder}
                   disabled={disabled}
                   readOnly={readOnly}
-                  className={cn(inputClassName, "min-h-[80px] resize-y")}
+                  className={cn(inputClassName, "min-h-[200px] resize-y")}
                 />
               ) : type === "select" ? (
                 (() => {

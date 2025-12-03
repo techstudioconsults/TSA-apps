@@ -17,9 +17,9 @@ import {
   Wrapper,
   FileUpload,
 } from "@workspace/ui/lib";
-import { toast } from "sonner";
 import { useCreateCourseMutation } from "@/services/courses/course.queries";
 import { CourseFormSchema, courseFormData } from "@/schemas";
+import { toast } from "sonner";
 
 export default function CreateCoursePage() {
   const router = useRouter();
@@ -37,20 +37,39 @@ export default function CreateCoursePage() {
   });
 
   const onSubmit = async (data: courseFormData) => {
-    await createCourse(data);
-    toast.success("Course created successfully");
-    router.push("/courses");
+    await createCourse(data, {
+      onError: (error) => {
+        toast.error(
+          `Error creating course: ${error.response?.data.message || error}`,
+        );
+      },
+      onSuccess: () => {
+        toast.success(`Course created successfully`, {
+          description: `${data.title} Course created, check the courses list to view it.`,
+        });
+        router.push("/courses");
+      },
+    });
   };
 
   return (
-    <Wrapper className="max-w-3xl py-6">
+    <Wrapper className="max-w-4xl py-8">
       <FormProvider {...formMethods}>
-        <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-          <Card>
-            <CardHeader>
-              <CardTitle>Create Course</CardTitle>
+        <form
+          onSubmit={formMethods.handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
+          <Card className="border-none">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-2xl font-semibold tracking-tight">
+                Create Course
+              </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Provide clear details so learners understand the value and
+                structure.
+              </p>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <FormField
                 name="title"
                 label="Title"
@@ -94,7 +113,13 @@ export default function CreateCoursePage() {
               </div>
 
               <div className="space-y-2">
-                <Label>Curriculum (optional)</Label>
+                <Label className="text-base font-medium">
+                  Curriculum <span className="text-destructive ml-1">*</span>
+                </Label>
+                <p className="text-xs text-muted-foreground">
+                  Upload a single file (PDF or Word). This will be shared with
+                  learners.
+                </p>
                 <Controller
                   name="curriculum"
                   control={formMethods.control}
@@ -113,11 +138,12 @@ export default function CreateCoursePage() {
                 />
               </div>
             </CardContent>
-            <CardFooter className="flex justify-end gap-2">
+            <CardFooter className="flex items-center justify-end gap-3 border-t px-6 py-4">
               <CustomButton
                 type="button"
                 variant="secondary"
                 onClick={() => router.push("/courses")}
+                size="sm"
               >
                 Cancel
               </CustomButton>
@@ -125,6 +151,7 @@ export default function CreateCoursePage() {
                 type="submit"
                 variant="primary"
                 disabled={isPending}
+                size="sm"
               >
                 {isPending ? "Creating..." : "Create Course"}
               </CustomButton>
