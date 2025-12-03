@@ -10,7 +10,7 @@
   --black: oklch(0.213 0 0);
 
   /* Primary (High Blue) */
-  --primary: oklch(0.34 0.09 257);
+  --primary: oklch(0.19 0.09 269.39);
   --primary-foreground: oklch(0.98 0 0);
 
   /* Secondary (Mid Warning/Yellow) */

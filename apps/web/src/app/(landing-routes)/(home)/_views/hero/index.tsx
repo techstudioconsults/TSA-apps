@@ -19,7 +19,7 @@ export const Hero = () => {
   }, [winWidth]);
 
   return (
-    <section className="relative h-[80vh] flex justify-center w-full items-center overflow-hidden bg-primary bg-primary-gradient text-background">
+    <section className="relative h-[80vh] flex justify-center w-full items-center overflow-hidden bg-primary text-background">
       <Wrapper>
         <section className="mx-auto mt-[3rem] flex w-full flex-col items-center justify-between gap-[50px] lg:flex-row">
           <div className="flex flex-row gap-[7rem] lg:flex-col">
