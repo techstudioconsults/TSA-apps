@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 
 import { SheetFormData, SheetsFormSchema } from "@/schemas";
 import SuccessModal from "./topnav/response-modal";
-import { useSheetStore } from "@/lib/store/sheetStore";
+import { useSheetStore } from "@/store/sheetStore";
 
 interface CreateSheetModalProperties {
   isOpen: boolean;

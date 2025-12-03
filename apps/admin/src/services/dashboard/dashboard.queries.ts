@@ -1,10 +1,11 @@
-import { createServiceHooks } from "../../react-query/use-service-query";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createServiceHooks } from "../../lib/react-query/use-service-query";
 import {
   dashboardService,
   type ActivitiesResult,
   type DashboardStats,
 } from "./dashboard.service";
-import { queryKeys } from "../../react-query/query-keys";
+import { queryKeys } from "../../lib/react-query/query-keys";
 
 /**
  * Dashboard queries (React Query) layered over DashboardService.
@@ -17,21 +18,15 @@ import { queryKeys } from "../../react-query/query-keys";
 
 const { useServiceQuery } = createServiceHooks(dashboardService);
 
-export const useActivitiesQuery = (
-  page: number = 1,
-  limit: number = 10,
-  options?: Parameters<typeof useServiceQuery<ActivitiesResult>>[2],
-) => {
+export const useActivitiesQuery = (filters: Filters, options?: any) => {
   return useServiceQuery<ActivitiesResult>(
-    queryKeys.dashboard.activities(page, limit),
-    (service) => service.getActivities(page, limit),
+    queryKeys.dashboard.activities(filters),
+    (service) => service.getActivities(filters),
     options,
   );
 };
 
-export const useDashboardStatsQuery = (
-  options?: Parameters<typeof useServiceQuery<DashboardStats>>[2],
-) => {
+export const useDashboardStatsQuery = (options?: any) => {
   return useServiceQuery<DashboardStats>(
     queryKeys.dashboard.stats(),
     (service) => service.getDashboardStats(),

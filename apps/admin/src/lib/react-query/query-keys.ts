@@ -4,15 +4,19 @@ export const queryKeys = {
     currentUser: () => ["auth", "currentUser"] as const,
   },
   dashboard: {
-    activities: (page: number, limit: number) =>
-      ["dashboard", "activities", page, limit] as const,
+    activities: (filters: Filters) =>
+      ["dashboard", "activities", filters] as const,
     stats: () => ["dashboard", "stats"] as const,
   },
 
   courses: {
-    list: () => ["courses", "list"] as const,
-    byId: (id: string) => ["courses", "byId", id] as const,
-    total: () => ["courses", "total"] as const,
+    all: ["courses"] as const,
+    lists: () => [...queryKeys.courses.all, "list"] as const,
+    list: (filters: Filters) =>
+      [...queryKeys.courses.lists(), filters] as const,
+    details: () => [`courses`, "detail"] as const,
+    detail: (id: string) => [...queryKeys.courses.details(), id] as const,
+    total: () => [...queryKeys.courses.all, "total"] as const,
   },
 
   // Add other domains as needed

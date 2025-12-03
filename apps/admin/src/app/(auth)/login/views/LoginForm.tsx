@@ -9,7 +9,7 @@ import { Eye, EyeOff, Loader } from "lucide-react";
 import { CustomButton } from "@workspace/ui/lib";
 import { signInFormData, signInSchema } from "@/schemas";
 import { tokenManager } from "@/lib/http/token-manager";
-import { useLogin } from "@/lib/services/auth/auth.mutations";
+import { useLogin } from "@/services/auth/auth.mutations";
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);

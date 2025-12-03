@@ -16,7 +16,7 @@ import {
 } from "@workspace/ui/components";
 import { tokenManager } from "@/lib/http/token-manager";
 import { SheetFormData, SheetsFormSchema } from "@/schemas";
-import { useSheetStore } from "@/lib/store/sheetStore";
+import { useSheetStore } from "@/store/sheetStore";
 
 interface CreateSheetModalProperties {
   isOpen: boolean;

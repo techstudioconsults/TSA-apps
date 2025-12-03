@@ -1,7 +1,8 @@
 "use client";
 
-import { useActivitiesQuery } from "@/lib/services/dashboard/dashboard.queries";
-import { cn, ErrorEmptyState } from "@workspace/ui/lib";
+import { useActivitiesQuery } from "@/services/dashboard/dashboard.queries";
+import { Icons } from "@workspace/ui/icons";
+import { cn, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
 import {
   AdvancedDataTable,
   IColumnDefinition,
@@ -106,9 +107,11 @@ const RecentTable = () => {
         hasPreviousPage={hasPreviousPage}
         showPagination
         emptyState={
-          <div className="flex items-center justify-center p-8">
-            <div className="text-gray-500">No activities found</div>
-          </div>
+          <EmptyState
+            icon={<Icons.user />}
+            title="Table Activity"
+            description={`No recent activities found.`}
+          />
         }
       />
     </div>

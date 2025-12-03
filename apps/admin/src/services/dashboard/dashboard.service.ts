@@ -57,13 +57,9 @@ interface TotalSheetsResponseDTO {
 }
 
 export class DashboardService {
-  async getActivities(
-    page: number = 1,
-    limit: number = 10,
-  ): Promise<ActivitiesResult> {
+  async getActivities(filters: Filters): Promise<ActivitiesResult> {
     const response = await httpAdapter.get<ActivityResponseDTO>("/activities", {
-      page: page.toString(),
-      limit: limit.toString(),
+      ...filters,
     });
 
     if (!response?.data) {

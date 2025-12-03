@@ -1,6 +1,6 @@
 "use client";
 
-import { useCurrentUser } from "@/lib/services/auth/auth.mutations";
+import { useCurrentUser } from "@/services/auth/auth.mutations";
 import { CustomButton, DashboardHeader } from "@workspace/ui/lib";
 import { Skeleton } from "@workspace/ui/components";
 import { BookOpen, FileSpreadsheet } from "lucide-react";

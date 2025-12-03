@@ -75,7 +75,7 @@ export function UserMenu({
                 {userName}
               </span>
               {userEmail && (
-                <p className="text-muted-foreground text-sm font-normal">
+                <p className="text-muted-foreground text-xs font-normal">
                   {userEmail}
                 </p>
               )}

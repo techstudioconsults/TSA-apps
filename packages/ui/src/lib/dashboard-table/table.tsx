@@ -787,7 +787,7 @@ export function AdvancedDataTable<T extends DataItem>({
                       colSpan={columns.length + (rowActions ? 1 : 0)}
                       className="h-24 text-center"
                     >
-                      No results.
+                      {emptyState || "No results."}
                     </TableCell>
                   </TableRow>
                 )}

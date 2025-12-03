@@ -19,12 +19,13 @@ import { useMemo, useState } from "react";
 
 import WarningModal from "./WarningModal";
 import SuccessModal from "../../_components/topnav/response-modal";
+import { CustomButton, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
+import { Icons } from "@workspace/ui/icons";
 import {
   useCoursesQuery,
   useDeleteCourseMutation,
-} from "@/lib/react-query/courses";
-import { CustomButton, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
-import { Icons } from "@workspace/ui/icons";
+} from "@/services/courses/course.queries";
+import { Course } from "@/services/courses/course.service";
 
 const CourseCards = () => {
   const [warningModalOpen, setWarningModalOpen] = useState(false);
@@ -33,8 +34,16 @@ const CourseCards = () => {
 
   const router = useRouter();
 
-  const { data: coursesData, isLoading, isError, refetch } = useCoursesQuery();
-  const courses = useMemo(() => coursesData ?? [], [coursesData]);
+  const {
+    data: coursesData,
+    isLoading,
+    isError,
+    refetch,
+  } = useCoursesQuery({});
+  const courses: Course[] = useMemo(
+    () => coursesData?.data.items ?? [],
+    [coursesData],
+  );
 
   const { mutateAsync: deleteCourse, isPending: isDeleting } =
     useDeleteCourseMutation();
@@ -45,7 +54,7 @@ const CourseCards = () => {
 
   const confirmDelete = async () => {
     if (selectedCourseId) {
-      await deleteCourse({ id: selectedCourseId });
+      await deleteCourse(selectedCourseId);
       setWarningModalOpen(false);
       setShowSuccessModal(true);
     }
@@ -83,7 +92,7 @@ const CourseCards = () => {
     return <ErrorEmptyState onRetry={refetch} />;
   }
 
-  if (!courses || courses.length === 0) {
+  if (!courses) {
     return (
       <EmptyState
         icon={
@@ -109,7 +118,7 @@ const CourseCards = () => {
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
-        {courses.map((course) => (
+        {courses.map((course: Course) => (
           <Card key={course.id} className="group overflow-hidden border-none">
             <CardHeader className="flex flex-row items-start justify-between gap-2">
               <div className="flex items-center gap-2">

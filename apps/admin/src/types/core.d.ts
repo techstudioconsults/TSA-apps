@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 /**
  * Core types and utilities for the Ski Shop application
  */
@@ -23,13 +24,14 @@ declare global {
   interface ApiResponse<T> {
     success: boolean;
     data: T;
+    message: string;
   }
 
   /** Paginated API response wrapper */
-  interface PaginatedApiResponse<T> extends ApiResponse<T> {
+  interface PaginatedApiResponse<T> extends ApiResponse<{
     items: T[];
     metadata: PaginationMetadata;
-  }
+  }> {}
 
   // interface PaginationLink {
   //   url: string | null;

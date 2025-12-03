@@ -1,6 +1,6 @@
 "use client";
 
-import { useDashboardStatsQuery } from "@/lib/services/dashboard/dashboard.queries";
+import { useDashboardStatsQuery } from "@/services/dashboard/dashboard.queries";
 import { DashboardCard } from "@/components/shared/dashboard-card";
 import { Icon, Icons } from "@workspace/ui/icons";
 import { DashboardCardsLoader } from "../_components/loaders";

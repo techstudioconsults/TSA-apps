@@ -2,7 +2,7 @@
 
 import TopBar from "@/components/shared/top-bar";
 import { ActiveTargetProvider } from "@/context/active-target";
-import { useCurrentUser } from "@/lib/services/auth/auth.mutations";
+import { useCurrentUser } from "@/services/auth/auth.mutations";
 import { SidebarInset, SidebarProvider } from "@workspace/ui/components";
 import { Icons } from "@workspace/ui/icons";
 import { AppSidebar, Logo, Wrapper } from "@workspace/ui/lib";
@@ -37,7 +37,7 @@ export default function DashboardLayout({
       <SidebarInset className="dark:bg-background bg-[#F8F8F9]">
         <ActiveTargetProvider>
           <TopBar
-            adminName={`${currentUser?.data.lastName}`}
+            adminName={`${currentUser?.data.lastName} ${currentUser?.data.firstName}`}
             adminRole={currentUser?.data.role}
             adminEmail={`${currentUser?.data.email}`}
             notifications={[]}
