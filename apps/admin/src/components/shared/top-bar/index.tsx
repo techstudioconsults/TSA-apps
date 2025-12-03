@@ -82,9 +82,8 @@ export default function TopBar({
           <SidebarTrigger className="absolute top-16 -left-[30px] bg-[#1F2666] text-white shadow-none" />
         </div>
         <Wrapper className="flex items-center max-w-[1440px] justify-between">
-          {/* Search Input */}
-          <h5>Dashboard</h5>
-
+          {/* Dynamic Title */}
+          <TopBarTitle />
           <TopBarActions />
           {/* Right Section */}
           <div className="flex items-center justify-end gap-2 md:gap-4">
@@ -156,9 +155,34 @@ function TopBarActions() {
   return (
     <div className="flex gap-4">
       <GlobalSearchInput className="max-w-md" />
-      <CustomButton variant="primary" href={current.href}>
-        {current.label}
-      </CustomButton>
+      {pathname !== "/" && (
+        <CustomButton variant="primary" href={current.href}>
+          {current.label}
+        </CustomButton>
+      )}
     </div>
   );
+}
+
+function TopBarTitle() {
+  const pathname = usePathname();
+
+  const titleMap = [
+    {
+      match: (p: string) => p === "/" || p === "/Dashboard",
+      title: "Dashboard",
+    },
+    { match: (p: string) => p.includes("/courses"), title: "Courses" },
+    { match: (p: string) => p.includes("/classes"), title: "Classes" },
+    { match: (p: string) => p.includes("/cohorts"), title: "Cohorts" },
+    { match: (p: string) => p.includes("/sheets"), title: "Sheets" },
+    { match: (p: string) => p.includes("/activities"), title: "Activities" },
+    { match: (p: string) => p.includes("/settings"), title: "Settings" },
+    { match: (p: string) => p.includes("/profile"), title: "Profile" },
+  ];
+
+  const fallback = "Dashboard";
+  const current = titleMap.find((m) => m.match(pathname))?.title ?? fallback;
+
+  return <h5 className="">{current}</h5>;
 }

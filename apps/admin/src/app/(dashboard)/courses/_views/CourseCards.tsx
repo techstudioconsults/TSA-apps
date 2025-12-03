@@ -17,20 +17,18 @@ import { CalendarDays, MoreVertical } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
-import CourseModal from "./CourseModal";
 import WarningModal from "./WarningModal";
 import SuccessModal from "../../_components/topnav/response-modal";
 import {
   useCoursesQuery,
   useDeleteCourseMutation,
 } from "@/lib/react-query/courses";
-import { CustomButton, ErrorEmptyState } from "@workspace/ui/lib";
+import { CustomButton, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
 import { Icons } from "@workspace/ui/icons";
 
 const CourseCards = () => {
-  const [courseModalOpen, setCourseModalOpen] = useState(false);
   const [warningModalOpen, setWarningModalOpen] = useState(false);
-  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  const [selectedCourseId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const router = useRouter();
@@ -40,11 +38,6 @@ const CourseCards = () => {
 
   const { mutateAsync: deleteCourse, isPending: isDeleting } =
     useDeleteCourseMutation();
-
-  const openCourseModal = (courseId: string) => {
-    setSelectedCourseId(courseId);
-    setCourseModalOpen(true);
-  };
 
   const openWarningModal = () => {
     setWarningModalOpen(true);
@@ -92,9 +85,14 @@ const CourseCards = () => {
 
   if (!courses || courses.length === 0) {
     return (
-      <div className="text-center">
-        <p>No courses available</p>
-      </div>
+      <EmptyState
+        icon={
+          <Icons.book className="size-10 p-1.5 bg-primary/10 rounded-md text-primary" />
+        }
+        title="Course not found"
+        description={"No courses available."}
+        className="bg-background"
+      />
     );
   }
 
@@ -108,13 +106,6 @@ const CourseCards = () => {
         isOpen={warningModalOpen}
         onClose={() => setWarningModalOpen(false)}
         onConfirm={confirmDelete}
-      />
-
-      <CourseModal
-        open={courseModalOpen}
-        setOpen={setCourseModalOpen}
-        onEdit={() => router.push(`/courses/${selectedCourseId}`)}
-        onDelete={openWarningModal}
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
@@ -188,16 +179,10 @@ const CourseCards = () => {
             </CardContent>
             <CardFooter className="flex justify-end">
               <CustomButton
-                variant="ghost"
+                variant="primary"
                 onClick={() => router.push(`/courses/${course.id}`)}
               >
                 View details
-              </CustomButton>
-              <CustomButton
-                variant="primary"
-                onClick={() => openCourseModal(course.id)}
-              >
-                Manage
               </CustomButton>
             </CardFooter>
           </Card>

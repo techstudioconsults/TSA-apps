@@ -3,15 +3,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Loader } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { MappedCourseData, updateCourseAction } from "~/action/course.actions";
-import ConfirmationModal from "~/components/modals/ConfirmationModal";
-import SuccessModal from "~/components/modals/response-modal";
-import { courseFormData, CourseFormSchema } from "~/schemas";
-import { useAuthStore } from "~/stores/authStore";
-import { useCourseStore } from "~/stores/courseStore";
+import {
+  useCourseByIdQuery,
+  useUpdateCourseMutation,
+} from "@/lib/react-query/courses";
+import { courseFormData, CourseFormSchema } from "@/schemas";
+import ConfirmationModal from "@/app/(dashboard)/_components/modals/ConfirmationModal";
+import { ErrorEmptyState } from "@workspace/ui/lib";
+import SuccessModal from "@/app/(dashboard)/_components/modals/response-modal";
 
 interface ApiError {
   status: number;
@@ -23,13 +25,11 @@ interface ApiError {
 }
 
 const EditCourseForm = () => {
-  const { getCourseById, isLoading, error } = useCourseStore();
-  const { token } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [showCancelModal, setShowCancelModal] = useState<boolean>(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [course, setCourse] = useState<MappedCourseData | null>(null);
+  const [course, setCourse] = useState<courseFormData | null>(null);
   const [curriculumFileName, setCurriculumFileName] = useState<string | null>(
     null,
   );
@@ -70,70 +70,52 @@ const EditCourseForm = () => {
     formMethods.reset();
   };
 
+  const courseId = useMemo(
+    () => (Array.isArray(id) ? id[0] : id) as string | undefined,
+    [id],
+  );
+  const {
+    data: courseData,
+    isLoading,
+    isError,
+    refetch,
+  } = useCourseByIdQuery(courseId ?? "");
+
   useEffect(() => {
-    const loadCourseData = async () => {
-      if (!token || !id) {
-        return;
+    if (!courseData) return;
+
+    reset({
+      title: courseData.title,
+      about: courseData.about,
+      onlineDuration: courseData.duration?.online ?? 0,
+      weekdayDuration: courseData.duration?.weekday ?? 0,
+      weekendDuration: courseData.duration?.weekend ?? 0,
+    });
+
+    if (courseData.curriculum) {
+      let filename = "Current curriculum file";
+      if (typeof courseData.curriculum === "string") {
+        filename = courseData.curriculum.split("/").pop() || filename;
+      } else if (
+        typeof File !== "undefined" &&
+        courseData.curriculum instanceof File
+      ) {
+        filename = courseData.curriculum.name;
       }
+      setCurriculumFileName(filename);
+    }
+  }, [courseData, reset]);
 
-      const courseId = Array.isArray(id) ? id[0] : id;
-
-      try {
-        const course = await getCourseById(courseId as string, token);
-
-        if (course && "title" in course && "about" in course) {
-          setCourse(course as MappedCourseData);
-          reset({
-            title: course.title,
-            about: course.about,
-            onlineDuration: course.duration?.online ?? 0,
-            weekdayDuration: course.duration?.weekday ?? 0,
-            weekendDuration: course.duration?.weekend ?? 0,
-          });
-
-          if (course.curriculum) {
-            let filename = "Current curriculum file";
-            if (typeof course.curriculum === "string") {
-              filename = course.curriculum.split("/").pop() || filename;
-            } else if (
-              typeof File !== "undefined" &&
-              course.curriculum instanceof File
-            ) {
-              filename = course.curriculum.name;
-            }
-            setCurriculumFileName(filename);
-          }
-        }
-      } catch {
-        // handled by store error
-      } finally {
-        // no-op
-      }
-    };
-
-    loadCourseData();
-  }, [token, id, reset, getCourseById]);
+  const { mutateAsync: updateCourse } = useUpdateCourseMutation();
 
   const onSubmit = async (data: courseFormData) => {
-    const courseId = Array.isArray(id) ? id?.[0] : id;
-
-    if (!token || !courseId) {
-      console.error("User is not authenticated or course ID is missing.");
-      return;
-    }
-
+    if (!courseId) return;
     setIsSubmitting(true);
     setFormError(null);
-
     try {
       const formData = new FormData();
 
-      if (course && data.title !== course.title) {
-        formData.append("title", data.title);
-      } else if (!course) {
-        formData.append("title", data.title);
-      }
-
+      formData.append("title", data.title);
       formData.append("about", data.about);
       formData.append("onlineDuration", String(data.onlineDuration));
       formData.append("weekdayDuration", String(data.weekdayDuration));
@@ -143,7 +125,7 @@ const EditCourseForm = () => {
         formData.append("curriculum", data.curriculum);
       }
 
-      await updateCourseAction(courseId as string, formData, token);
+      await updateCourse({ id: courseId, formData });
       reset();
       setShowSuccessModal(true);
     } catch (error: unknown) {
@@ -172,8 +154,8 @@ const EditCourseForm = () => {
     );
   }
 
-  if (error) {
-    return <div className="text-center text-red-500">{error}</div>;
+  if (isError) {
+    return <ErrorEmptyState onRetry={refetch} />;
   }
 
   const weekOptions = Array.from({ length: 53 }, (_v, index) => index);
