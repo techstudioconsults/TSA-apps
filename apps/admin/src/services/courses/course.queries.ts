@@ -2,6 +2,7 @@
 import { createServiceHooks } from "@/lib/react-query/use-service-query";
 import { courseService } from "./course.service";
 import { queryKeys } from "@/lib/react-query/query-keys";
+import { courseFormData } from "@/schemas";
 
 const { useServiceQuery, useServiceMutation } =
   createServiceHooks(courseService);
@@ -35,7 +36,7 @@ export function useTotalCoursesQuery(options?: any) {
 
 export function useCreateCourseMutation() {
   return useServiceMutation(
-    (service, payload) => service.createCourse(payload),
+    (service, payload: courseFormData) => service.createCourse(payload),
     {
       invalidateQueries: () => [
         queryKeys.courses.lists(),
@@ -47,7 +48,7 @@ export function useCreateCourseMutation() {
 
 export function useUpdateCourseMutation() {
   return useServiceMutation(
-    (service, { id, payload }: { id: string; payload: any }) =>
+    (service, { id, payload }: { id: string; payload: courseFormData }) =>
       service.updateCourse(id, payload),
     {
       invalidateQueries: (_, { id }) => [

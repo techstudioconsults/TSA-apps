@@ -1,4 +1,5 @@
 import { HttpAdapter } from "@/lib/http/http-adapter";
+import { courseFormData } from "@/schemas";
 
 const httpAdapter = new HttpAdapter();
 
@@ -49,14 +50,17 @@ export class CourseService {
     }
   }
 
-  async createCourse(payload: any) {
-    const response = await httpAdapter.post("/courses", payload);
+  async createCourse(payload: courseFormData) {
+    const headers = {
+      "Content-Type": "multipart/form-data",
+    };
+    const response = await httpAdapter.post("/courses", payload, headers);
     if (response?.status === 201) {
       return response.data;
     }
   }
 
-  async updateCourse(id: string, payload: any) {
+  async updateCourse(id: string, payload: courseFormData) {
     const response = await httpAdapter.patch(`/courses/${id}`, payload);
     if (response?.status === 200) {
       return response.data;
