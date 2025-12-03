@@ -130,7 +130,7 @@ function TopBarActions() {
     {
       match: (p: string) => p.includes("/courses"),
       label: "Create Course",
-      href: "/createcourse",
+      href: "/courses/create",
     },
     {
       match: (p: string) => p.includes("/classes"),

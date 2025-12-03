@@ -142,7 +142,9 @@ const CourseCards = () => {
                   className="min-w-50 shadow-none"
                 >
                   <DropdownMenuItem
-                    onClick={() => router.push(`/courses/${course.id}`)}
+                    onClick={() =>
+                      router.push(`/courses/edit?courseid=${course.id}`)
+                    }
                   >
                     <Icons.edit />
                     Edit Course

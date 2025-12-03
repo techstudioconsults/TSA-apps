@@ -61,7 +61,14 @@ export class CourseService {
   }
 
   async updateCourse(id: string, payload: courseFormData) {
-    const response = await httpAdapter.patch(`/courses/${id}`, payload);
+    const headers = {
+      "Content-Type": "multipart/form-data",
+    };
+    const response = await httpAdapter.patch(
+      `/courses/${id}`,
+      payload,
+      headers,
+    );
     if (response?.status === 200) {
       return response.data;
     }

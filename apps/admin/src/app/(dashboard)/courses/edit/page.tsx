@@ -1,204 +1,222 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Controller, FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
   CardFooter,
-  Input,
-  Textarea,
   Label,
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
 } from "@workspace/ui/components";
-import { CustomButton, Wrapper } from "@workspace/ui/lib";
-import { toast } from "sonner";
+import {
+  CustomButton,
+  FormField,
+  Wrapper,
+  FileUpload,
+} from "@workspace/ui/lib";
 import {
   useCourseByIdQuery,
   useUpdateCourseMutation,
-} from "@/lib/react-query/courses";
-
-type FormState = {
-  title: string;
-  description: string;
-  durationWeeks: string;
-  level: string;
-  price: string;
-};
+} from "@/services/courses/course.queries";
+import { CourseFormSchema, courseFormData } from "@/schemas";
+import { toast } from "sonner";
 
 export default function EditCoursePage() {
   const router = useRouter();
-  const params = useSearchParams();
-  const id = params.get("id") || "";
+  const searchParams = useSearchParams();
+  const courseId = searchParams.get("courseid") || "";
 
-  const { data, isLoading } = useCourseByIdQuery(id, { enabled: !!id });
-  const { mutateAsync, isPending } = useUpdateCourseMutation(id);
+  const { data: courseData, isLoading } = useCourseByIdQuery(courseId);
+  const { mutateAsync: updateCourse, isPending } = useUpdateCourseMutation();
 
-  const [form, setForm] = useState<FormState>({
-    title: "",
-    description: "",
-    durationWeeks: "",
-    level: "beginner",
-    price: "",
+  const formMethods = useForm<courseFormData>({
+    // In edit mode, curriculum should be optional
+    resolver: zodResolver(CourseFormSchema.omit({ curriculum: true })),
+    defaultValues: {
+      title: "",
+      about: "",
+      onlineDuration: 0,
+      weekdayDuration: 0,
+      weekendDuration: 0,
+      curriculum: undefined,
+    },
   });
 
   useEffect(() => {
-    if (data) {
-      setForm({
-        title: (data as any).title ?? "",
-        description: (data as any).description ?? "",
-        durationWeeks: String((data as any).durationWeeks ?? ""),
-        level: (data as any).level ?? "beginner",
-        price: String((data as any).price ?? ""),
-      });
-    }
-  }, [data]);
+    if (!courseData) return;
+    formMethods.reset({
+      title: courseData.title || "",
+      about: courseData.about || "",
+      onlineDuration: courseData.duration?.online ?? 0,
+      weekdayDuration: courseData.duration?.weekday ?? 0,
+      weekendDuration: courseData.duration?.weekend ?? 0,
+    });
+  }, [courseData, formMethods]);
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await mutateAsync({
-        title: form.title.trim(),
-        description: form.description.trim(),
-        durationWeeks: Number(form.durationWeeks) || 0,
-        level: form.level,
-        price: Number(form.price) || 0,
-      } as any);
-      toast.success("Course updated successfully");
-      router.push("/courses");
-    } catch (err) {
-      toast.error("Failed to update course");
+  const onSubmit = async (data: courseFormData) => {
+    const formData = new FormData();
+
+    formData.append("title", data.title);
+    formData.append("about", data.about);
+    formData.append("onlineDuration", String(data.onlineDuration));
+    formData.append("weekdayDuration", String(data.weekdayDuration));
+    formData.append("weekendDuration", String(data.weekendDuration));
+
+    if (typeof File !== "undefined" && data.curriculum instanceof File) {
+      formData.append("curriculum", data.curriculum);
     }
+
+    await updateCourse(
+      {
+        id: courseId,
+        payload: formData as unknown as courseFormData,
+      },
+      {
+        onError: (error) => {
+          toast.error(
+            `Error updating course: ${error.response?.data.message || error}`,
+          );
+        },
+        onSuccess: () => {
+          toast.success(`Course updated successfully`, {
+            description: `${data.title} has been updated.`,
+          });
+          router.push("/courses");
+        },
+      },
+    );
   };
 
-  const update = (key: keyof FormState, value: string) =>
-    setForm((prev) => ({ ...prev, [key]: value }));
-
-  if (!id) {
-    return (
-      <Wrapper className="max-w-3xl py-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Missing course id</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Provide an `id` in the query string, e.g. /courses/edit?id=123
-          </CardContent>
-          <CardFooter>
-            <CustomButton variant="secondary" href="/courses">
-              Back to Courses
-            </CustomButton>
-          </CardFooter>
-        </Card>
-      </Wrapper>
-    );
-  }
-
   return (
-    <Wrapper className="max-w-3xl py-6">
-      <form onSubmit={onSubmit}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Edit Course</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {isLoading ? (
-              <div className="text-sm text-muted-foreground">Loading...</div>
-            ) : (
-              <>
-                <div className="space-y-2">
-                  <Label htmlFor="title">Title</Label>
-                  <Input
-                    id="title"
-                    value={form.title}
-                    onChange={(e) => update("title", e.target.value)}
-                    required
-                  />
-                </div>
+    <Wrapper className="max-w-4xl py-8">
+      <FormProvider {...formMethods}>
+        <form
+          onSubmit={formMethods.handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
+          <Card className="border-none">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-2xl font-semibold tracking-tight">
+                Edit Course
+              </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Update details to keep information accurate and helpful.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <FormField
+                name="title"
+                label="Title"
+                placeholder="Introduction to Programming"
+                type="text"
+                disabled={isLoading}
+              />
 
-                <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea
-                    id="description"
-                    value={form.description}
-                    onChange={(e) => update("description", e.target.value)}
-                    rows={4}
-                    required
-                  />
-                </div>
+              <FormField
+                name="about"
+                label="About"
+                placeholder="Brief course overview"
+                type="textarea"
+                disabled={isLoading}
+              />
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                  <div className="space-y-2">
-                    <Label htmlFor="durationWeeks">Duration (weeks)</Label>
-                    <Input
-                      id="durationWeeks"
-                      type="number"
-                      min={0}
-                      value={form.durationWeeks}
-                      onChange={(e) => update("durationWeeks", e.target.value)}
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <FormField
+                  name="onlineDuration"
+                  label="Online Duration (weeks)"
+                  type="number"
+                  placeholder="12"
+                  disabled={isLoading}
+                />
+
+                <FormField
+                  name="weekdayDuration"
+                  label="Weekday Duration (weeks)"
+                  type="number"
+                  placeholder="12"
+                  disabled={isLoading}
+                />
+
+                <FormField
+                  name="weekendDuration"
+                  label="Weekend Duration (weeks)"
+                  type="number"
+                  placeholder="12"
+                  disabled={isLoading}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-base font-medium">
+                  Curriculum <span className="text-destructive ml-1">*</span>
+                </Label>
+                <p className="text-xs text-muted-foreground">
+                  Upload a single file (PDF or Word). This will be shared with
+                  learners.
+                </p>
+                <Controller
+                  name="curriculum"
+                  control={formMethods.control}
+                  render={({ field }) => (
+                    <FileUpload
+                      onFileChange={(files) => {
+                        if (files.length > 0) {
+                          const file = files[0];
+                          field.onChange(file);
+                        }
+                      }}
+                      acceptedFileTypes=".pdf,.doc,.docx"
+                      maxFiles={1}
                     />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Level</Label>
-                    <Select
-                      value={form.level}
-                      onValueChange={(val) => update("level", val)}
-                    >
-                      <SelectTrigger>
-                        <Input readOnly value={form.level} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="beginner">Beginner</SelectItem>
-                        <SelectItem value="intermediate">
-                          Intermediate
-                        </SelectItem>
-                        <SelectItem value="advanced">Advanced</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="price">Price</Label>
-                    <Input
-                      id="price"
-                      type="number"
-                      min={0}
-                      step={0.01}
-                      value={form.price}
-                      onChange={(e) => update("price", e.target.value)}
-                    />
-                  </div>
-                </div>
-              </>
-            )}
-          </CardContent>
-          <CardFooter className="flex justify-end gap-2">
-            <CustomButton
-              type="button"
-              variant="secondary"
-              onClick={() => router.push("/courses")}
-            >
-              Cancel
-            </CustomButton>
-            <CustomButton type="submit" variant="primary" disabled={isPending}>
-              {isPending ? "Saving..." : "Save Changes"}
-            </CustomButton>
-          </CardFooter>
-        </Card>
-      </form>
+                  )}
+                />
+                {typeof courseData?.curriculum === "string" &&
+                  courseData.curriculum &&
+                  (() => {
+                    let name = "";
+                    try {
+                      const url = new URL(courseData.curriculum as string);
+                      name = url.pathname.split("/").pop() || "";
+                    } catch {
+                      name =
+                        (courseData.curriculum as string).split("/").pop() ||
+                        "";
+                    }
+                    name = decodeURIComponent(name);
+                    return (
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Current curriculum:{" "}
+                        <span className="font-medium break-all">{name}</span>
+                      </p>
+                    );
+                  })()}
+              </div>
+            </CardContent>
+            <CardFooter className="flex items-center justify-end gap-3 border-t px-6 py-4">
+              <CustomButton
+                type="button"
+                variant="secondary"
+                onClick={() => router.push("/courses")}
+                size="sm"
+              >
+                Cancel
+              </CustomButton>
+              <CustomButton
+                type="submit"
+                variant="primary"
+                disabled={isPending}
+                size="sm"
+              >
+                {isPending ? "Updating..." : "Update Course"}
+              </CustomButton>
+            </CardFooter>
+          </Card>
+        </form>
+      </FormProvider>
     </Wrapper>
   );
 }
-import React from "react";
-
-const EditCourses = () => {
-  return <div>EditCourses</div>;
-};
-
-export default EditCourses;

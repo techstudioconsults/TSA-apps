@@ -28,7 +28,7 @@ const Hero = () => {
           </CustomButton>
 
           <CustomButton
-            href="/createcourse"
+            href="/courses/create"
             variant="primary"
             isLeftIconVisible
             icon={<BookOpen />}
