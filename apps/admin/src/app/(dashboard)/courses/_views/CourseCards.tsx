@@ -19,7 +19,12 @@ import { useMemo, useState } from "react";
 
 import WarningModal from "./WarningModal";
 import SuccessModal from "../../_components/topnav/response-modal";
-import { CustomButton, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
+import {
+  AlertModal,
+  CustomButton,
+  EmptyState,
+  ErrorEmptyState,
+} from "@workspace/ui/lib";
 import { Icons } from "@workspace/ui/icons";
 import {
   useCoursesQuery,
@@ -111,21 +116,31 @@ const CourseCards = () => {
 
   return (
     <>
-      <WarningModal
+      <AlertModal
         isOpen={warningModalOpen}
         onClose={() => setWarningModalOpen(false)}
         onConfirm={confirmDelete}
+        type={"warning"}
+        title={"Delete Course"}
+        description={
+          "Are you sure you want to delete this course? This action cannot be undone."
+        }
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
         {courses.map((course: Course) => (
-          <Card key={course.id} className="group overflow-hidden border-none">
+          <Card
+            key={course.id}
+            className="group overflow-hidden flex flex-col justify-between border-none"
+          >
             <CardHeader className="flex flex-row items-start justify-between gap-2">
               <div className="flex items-center gap-2">
-                <span className="rounded bg-primary-75 p-2 text-primary">
+                <span className="rounded bg-primary/10 p-2 text-primary">
                   <Icons.book className="h-4 w-4" />
                 </span>
-                <CardTitle className="text-base">{course.title}</CardTitle>
+                <CardTitle className="text-base capitalize">
+                  {course.title}
+                </CardTitle>
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -160,27 +175,27 @@ const CourseCards = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1 flex flex-col justify-between">
               <p className="line-clamp-3 text-sm text-muted-foreground">
                 {course.about}
               </p>
               <div className="mt-4 flex justify-between items-center gap-2">
                 <Badge
-                  variant="outline"
+                  variant="secondaryOutline"
                   className="flex items-center justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />
                   <span>Weekday: {course.duration?.weekday || 0}w</span>
                 </Badge>
                 <Badge
-                  variant="outline"
+                  variant="secondaryOutline"
                   className="flex items-center justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />
                   <span>Weekend: {course.duration?.weekend || 0}w</span>
                 </Badge>
                 <Badge
-                  variant="outline"
+                  variant="secondaryOutline"
                   className="flex items-center justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />

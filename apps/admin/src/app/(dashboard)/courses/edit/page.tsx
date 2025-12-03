@@ -93,7 +93,7 @@ export default function EditCoursePage() {
   };
 
   return (
-    <Wrapper className="max-w-4xl py-8">
+    <Wrapper className="max-w-4xl p-0 my-0">
       <FormProvider {...formMethods}>
         <form
           onSubmit={formMethods.handleSubmit(onSubmit)}
