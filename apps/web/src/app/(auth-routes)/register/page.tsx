@@ -12,29 +12,14 @@ import { SignUpFormData, signUpFormSchema } from "@/schemas";
 import useCohortStore from "@/stores/cohort.store";
 import useCoursesStore from "@/stores/course.store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Checkbox,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@workspace/ui/components";
-import {
-  CustomButton,
-  Form,
-  FormControl,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  PrimitiveFormField,
-  toast,
-} from "@workspace/ui/lib";
+
+import { CustomButton, FormField, SwitchField } from "@workspace/ui/lib";
+
 import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { FC, Suspense, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Form, FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 // import useFacebookPixel from "~/lib/utils/pixel-tracker";
 
@@ -72,15 +57,7 @@ const RegistrationForm: FC = () => {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-    watch,
-    setValue,
-    clearErrors,
-  } = formMethods;
+  const { handleSubmit, reset, watch, setValue, clearErrors } = formMethods;
 
   const watchedCourseId = watch("courseId");
   const watchedCohortId = watch("cohortId");
@@ -91,6 +68,15 @@ const RegistrationForm: FC = () => {
   const selectedCohortTitle = cohorts?.find(
     (c) => c.id === watchedCohortId,
   )?.title;
+
+  const courseOptions = (allCourses || []).map((c: any) => ({
+    value: c.id,
+    label: c.title,
+  }));
+  const cohortOptions = (cohorts || []).map((c: any) => ({
+    value: c.id,
+    label: c.title,
+  }));
 
   // Fetch marketing cycle on mount
   useEffect(() => {
@@ -198,7 +184,7 @@ const RegistrationForm: FC = () => {
   };
 
   return (
-    <>
+    <FormProvider {...formMethods}>
       <div className="rounded-md p-0 shadow-none lg:p-8 lg:shadow-lg">
         <Form {...formMethods}>
           <form
@@ -213,206 +199,70 @@ const RegistrationForm: FC = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* First Name */}
-              <PrimitiveFormField
+              <FormField
                 name="firstName"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="First Name"
-                        {...field}
-                        className="w-full rounded-md border px-4 py-2"
-                      />
-                    </FormControl>
-                    {errors.firstName && (
-                      <FormMessage>{errors.firstName?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="First Name"
+                placeholder="First Name"
+                type="text"
               />
 
-              {/* Last Name */}
-              <PrimitiveFormField
+              <FormField
                 name="lastName"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Last Name"
-                        {...field}
-                        className="w-full rounded-md border px-4 py-2"
-                      />
-                    </FormControl>
-                    {errors.lastName && (
-                      <FormMessage>{errors.lastName?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="Last Name"
+                placeholder="Last Name"
+                type="text"
               />
 
-              {/* Course */}
-              <PrimitiveFormField
+              <FormField
                 name="courseId"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Course</FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <SelectTrigger
-                          className="w-full truncate"
-                          title={selectedCourseTitle}
-                        >
-                          <SelectValue placeholder="Choose a course" />
-                        </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-auto">
-                          {loading ? (
-                            <Loader className="animate-spin" />
-                          ) : (
-                            allCourses?.map((course: any) => (
-                              <SelectItem
-                                key={course.id}
-                                value={course.id}
-                                className="whitespace-normal break-words"
-                              >
-                                {course.title}
-                              </SelectItem>
-                            ))
-                          )}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    {errors.courseId && (
-                      <FormMessage>{errors.courseId?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="Course"
+                type="select"
+                placeholder="Choose a course"
+                options={courseOptions}
+                containerClassName="w-full"
+                className="truncate"
+                readOnly={false}
+                disabled={loading}
+                title={selectedCourseTitle}
               />
 
-              {/* Cohort */}
-              <PrimitiveFormField
+              <FormField
                 name="cohortId"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Cohort</FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <SelectTrigger
-                          className="w-full truncate"
-                          disabled={
-                            !isCourseSelected ||
-                            cohortsLoading ||
-                            (cohorts?.length ?? 0) === 0
-                          }
-                          title={selectedCohortTitle}
-                        >
-                          <SelectValue
-                            placeholder={
-                              isCourseSelected
-                                ? "Choose a cohort"
-                                : "Select a course first"
-                            }
-                          />
-                        </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-auto">
-                          {cohortsLoading ? (
-                            <Loader className="animate-spin" />
-                          ) : (
-                            cohorts?.map((cohort) => (
-                              <SelectItem
-                                key={cohort.id}
-                                value={cohort.id}
-                                className="whitespace-normal break-words"
-                              >
-                                {cohort.title}
-                              </SelectItem>
-                            ))
-                          )}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    {errors.cohortId && (
-                      <FormMessage>{errors.cohortId?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="Cohort"
+                type="select"
+                options={cohortOptions}
+                placeholder={
+                  isCourseSelected ? "Choose a cohort" : "Select a course first"
+                }
+                disabled={
+                  !isCourseSelected ||
+                  cohortsLoading ||
+                  (cohorts?.length ?? 0) === 0
+                }
+                containerClassName="w-full"
+                className="truncate"
+                title={selectedCohortTitle}
               />
 
-              {/* Phone Number */}
-              <PrimitiveFormField
+              <FormField
                 name="phoneNumber"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Phone Number"
-                        {...field}
-                        className="w-full rounded-md border px-4 py-2"
-                      />
-                    </FormControl>
-                    {errors.phoneNumber && (
-                      <FormMessage>{errors.phoneNumber?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="Phone Number"
+                placeholder="Phone Number"
+                type="text"
               />
 
-              {/* Email */}
-              <PrimitiveFormField
+              <FormField
                 name="email"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Email Address"
-                        {...field}
-                        className="w-full rounded-md border px-4 py-2"
-                      />
-                    </FormControl>
-                    {errors.email && (
-                      <FormMessage>{errors.email?.message}</FormMessage>
-                    )}
-                  </FormItem>
-                )}
+                label="Email Address"
+                placeholder="Email Address"
+                type="email"
               />
             </div>
 
             {/* Newsletter Checkbox */}
-            <PrimitiveFormField
+            <SwitchField
               name="joinNewsLetter"
-              control={control}
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={(checked) => {
-                        field.onChange(!!checked);
-                      }}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>Send me alerts and weekly newsletters</FormLabel>
-                  </div>
-                </FormItem>
-              )}
+              label="Send me alerts and weekly newsletters"
             />
 
             {/* Submit Button */}
@@ -441,7 +291,7 @@ const RegistrationForm: FC = () => {
           isError={false}
         />
       )}
-    </>
+    </FormProvider>
   );
 };
 

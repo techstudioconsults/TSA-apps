@@ -19,8 +19,8 @@ export const Hero = () => {
   }, [winWidth]);
 
   return (
-    <section className="relative w-full items-center overflow-hidden bg-primary bg-primary-gradient text-background">
-      <Wrapper className="">
+    <section className="relative h-[80vh] flex justify-center w-full items-center overflow-hidden bg-primary bg-primary-gradient text-background">
+      <Wrapper>
         <section className="mx-auto mt-[3rem] flex w-full flex-col items-center justify-between gap-[50px] lg:flex-row">
           <div className="flex flex-row gap-[7rem] lg:flex-col">
             <Image
@@ -67,7 +67,10 @@ export const Hero = () => {
               </span>
               With Us Today!
             </h1>
-            <EmailForm className="mt-[44px]" buttonTitle={"Explore Courses"} />
+            <EmailForm
+              className="mt-[44px] lg:w-[30rem]"
+              buttonTitle={"Explore Courses"}
+            />
           </article>
           <div className="flex flex-row gap-[7rem] lg:flex-col">
             <Image

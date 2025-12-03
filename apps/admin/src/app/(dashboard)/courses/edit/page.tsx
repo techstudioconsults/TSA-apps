@@ -24,6 +24,7 @@ import {
 } from "@/services/courses/course.queries";
 import { CourseFormSchema, courseFormData } from "@/schemas";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function EditCoursePage() {
   const router = useRouter();
@@ -190,7 +191,13 @@ export default function EditCoursePage() {
                     return (
                       <p className="text-xs text-muted-foreground mt-2">
                         Current curriculum:{" "}
-                        <span className="font-medium break-all">{name}</span>
+                        <Link
+                          target="_blank"
+                          href={courseData.curriculum as string}
+                          className="font-medium hover:text-primary hover:underline break-all"
+                        >
+                          {name}
+                        </Link>
                       </p>
                     );
                   })()}
@@ -201,7 +208,6 @@ export default function EditCoursePage() {
                 type="button"
                 variant="secondary"
                 onClick={() => router.push("/courses")}
-                size="sm"
               >
                 Cancel
               </CustomButton>
@@ -209,7 +215,6 @@ export default function EditCoursePage() {
                 type="submit"
                 variant="primary"
                 disabled={isPending}
-                size="sm"
               >
                 {isPending ? "Updating..." : "Update Course"}
               </CustomButton>

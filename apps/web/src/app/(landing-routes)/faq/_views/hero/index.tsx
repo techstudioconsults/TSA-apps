@@ -1,6 +1,7 @@
 "use client";
 
-import { Input, Wrapper } from "@workspace/ui/lib";
+import { Input } from "@workspace/ui/components";
+import { Wrapper } from "@workspace/ui/lib";
 import { FC } from "react";
 
 export const Hero: FC = () => {

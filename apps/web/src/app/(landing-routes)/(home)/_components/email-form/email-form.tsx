@@ -3,21 +3,14 @@
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, HtmlHTMLAttributes, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 import { LuLoader } from "react-icons/lu";
-import {
-  cn,
-  CustomButton,
-  Form,
-  FormControl,
-  FormItem,
-  Input,
-  PrimitiveFormField,
-  toast,
-} from "@workspace/ui/lib";
+
 import { newsletterFormData, newsletterFormSchema } from "@/schemas";
 import { submitNewsletterForm } from "@/action/email.action";
+import { CustomButton, FormField } from "@workspace/ui/lib";
+import { toast } from "sonner";
 
 interface EmailFormProperties extends HtmlHTMLAttributes<HTMLFormElement> {
   buttonTitle: string;
@@ -39,12 +32,7 @@ export const EmailForm: FC<EmailFormProperties> = ({
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-  } = formMethods;
+  const { handleSubmit, reset } = formMethods;
 
   const onSubmit = async (data: newsletterFormData) => {
     setIsSubmitting(true);
@@ -72,36 +60,21 @@ export const EmailForm: FC<EmailFormProperties> = ({
   };
 
   return (
-    <Form {...formMethods}>
+    <FormProvider {...formMethods}>
       <form
         {...rest}
         onSubmit={handleSubmit(onSubmit)}
-        className={cn(`flex h-[48px] max-w-[521px] items-center`, className)}
+        className={`flex h-[48px] max-w-[521px] items-center ${className ?? ""}`}
       >
-        <PrimitiveFormField
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <FormItem className="h-full">
-              <FormControl>
-                <Input
-                  data-testid="email-input"
-                  placeholder={
-                    errors.email
-                      ? errors.email.message
-                      : "Enter Your Email Address"
-                  }
-                  className={cn(
-                    "h-full rounded-none rounded-s-[5px] text-black",
-                    errors.email && `placeholder:text-destructive`,
-                  )}
-                  size={384}
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+        <div className="flex-1 h-full">
+          <FormField
+            name="email"
+            label={undefined}
+            placeholder="Enter Your Email Address"
+            type="email"
+            className="!h-[47px] rounded-none rounded-s-[5px] text-black"
+          />
+        </div>
         <CustomButton
           type="submit"
           variant="primary"
@@ -111,6 +84,6 @@ export const EmailForm: FC<EmailFormProperties> = ({
           {isSubmitting ? <LuLoader /> : buttonTitle}
         </CustomButton>
       </form>
-    </Form>
+    </FormProvider>
   );
 };

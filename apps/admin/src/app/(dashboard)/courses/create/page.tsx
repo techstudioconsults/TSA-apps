@@ -143,7 +143,6 @@ export default function CreateCoursePage() {
                 type="button"
                 variant="secondary"
                 onClick={() => router.push("/courses")}
-                size="sm"
               >
                 Cancel
               </CustomButton>
@@ -151,7 +150,6 @@ export default function CreateCoursePage() {
                 type="submit"
                 variant="primary"
                 disabled={isPending}
-                size="sm"
               >
                 {isPending ? "Creating..." : "Create Course"}
               </CustomButton>

@@ -3,23 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
 import { FC, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 import { submitContactForm } from "../../action";
 
-import {
-  CustomButton,
-  Form,
-  FormControl,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  PrimitiveFormField,
-  toast,
-} from "@workspace/ui/lib";
 import { ContactFormData, contactFormSchema } from "@/schemas";
 import ResponseModal from "@/components/modals/response-modal";
+import { CustomButton, FormField } from "@workspace/ui/lib";
+import { toast } from "sonner";
 
 export const ContactForm: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,12 +26,7 @@ export const ContactForm: FC = () => {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-  } = formMethods;
+  const { handleSubmit, reset } = formMethods;
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -66,78 +52,31 @@ export const ContactForm: FC = () => {
 
   return (
     <>
-      <Form {...formMethods}>
+      <FormProvider {...formMethods}>
         <section className="max-w-[504px] rounded-lg border-t-8 border-mid-blue bg-white p-6 shadow-lg lg:p-12">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {/* Full Name */}
-            <PrimitiveFormField
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
               name="fullName"
-              control={control}
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  <FormLabel>Full Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Full Name"
-                      className="text-dark w-full rounded-md border px-4 py-2"
-                      {...field}
-                    />
-                  </FormControl>
-                  {errors.fullName && (
-                    <FormMessage className="text-xs italic text-destructive">
-                      {errors.fullName?.message}
-                    </FormMessage>
-                  )}
-                </FormItem>
-              )}
+              label="Full Name"
+              placeholder="Full Name"
+              type="text"
+              className="text-dark"
             />
 
-            {/* Email */}
-            <PrimitiveFormField
+            <FormField
               name="email"
-              control={control}
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  <FormLabel>Email Address</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="example@example.com"
-                      className="text-dark w-full rounded-md border px-4 py-2"
-                      {...field}
-                    />
-                  </FormControl>
-                  {errors.email && (
-                    <FormMessage className="text-xs italic text-destructive">
-                      {errors.email?.message}
-                    </FormMessage>
-                  )}
-                </FormItem>
-              )}
+              label="Email Address"
+              placeholder="example@example.com"
+              type="email"
+              className="text-dark"
             />
 
-            {/* Message */}
-            <PrimitiveFormField
+            <FormField
               name="message"
-              control={control}
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  <FormLabel>Message or Questions</FormLabel>
-                  <FormControl>
-                    <textarea
-                      className="text-dark w-full rounded-md border px-4 py-2"
-                      rows={4}
-                      placeholder="Type your message, questions, or inquiries here"
-                      {...field}
-                    />
-                  </FormControl>
-                  {errors.message && (
-                    <FormMessage className="text-xs italic text-destructive">
-                      {errors.message?.message}
-                    </FormMessage>
-                  )}
-                </FormItem>
-              )}
+              label="Message or Questions"
+              placeholder="Type your message, questions, or inquiries here"
+              type="textarea"
+              className="text-dark"
             />
 
             {/* Submit Button */}
@@ -158,7 +97,7 @@ export const ContactForm: FC = () => {
             </div>
           </form>
         </section>
-      </Form>
+      </FormProvider>
 
       {/* Response Modal */}
       <ResponseModal

@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 import { Toaster } from "@workspace/ui/components";
 import { WhatsAppIcon } from "../components/miscellaneous/whatsapp";
 import { SourceTracker } from "../lib/utils/source-tracker";
-import { cn, CustomButton } from "@workspace/ui/lib";
+import { cn } from "@workspace/ui/lib";
 
 import "@workspace/ui/globals.css";
 
@@ -29,7 +29,6 @@ export default function RootLayout({
           <SourceTracker />
         </Suspense>
         {children}
-        <CustomButton variant={`primary`}>Click Me</CustomButton>
       </body>
     </html>
   );

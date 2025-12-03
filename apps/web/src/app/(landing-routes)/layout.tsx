@@ -1,12 +1,13 @@
 "use client";
 
-import { cn, useScrolled } from "@workspace/ui/lib";
+import { cn } from "@workspace/ui/lib";
 import dynamic from "next/dynamic";
 import { ReactNode, useEffect } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "../../action/courses.action";
 import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
+import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
 
 const DynamicNavbar = dynamic(

@@ -1,7 +1,7 @@
 "use client";
 
-import { SelectSeparator } from "@workspace/ui/components";
-import { cn, CustomButton, Input, Logo } from "@workspace/ui/lib";
+import { Input, SelectSeparator } from "@workspace/ui/components";
+import { cn, CustomButton, Logo } from "@workspace/ui/lib";
 import Link from "next/link";
 import { FC } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
