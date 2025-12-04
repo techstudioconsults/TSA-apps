@@ -20,6 +20,7 @@ import {
 import { useCreateCourseMutation } from "@/services/courses/course.queries";
 import { CourseFormSchema, courseFormData } from "@/schemas";
 import { toast } from "sonner";
+import { Icons } from "@workspace/ui/icons";
 
 export default function CreateCoursePage() {
   const router = useRouter();
@@ -38,10 +39,11 @@ export default function CreateCoursePage() {
 
   const onSubmit = async (data: courseFormData) => {
     await createCourse(data, {
-      onError: (error) => {
-        toast.error(
-          `Error creating course: ${error.response?.data.message || error}`,
-        );
+      onError: (error: any) => {
+        toast.error(`Error creating course`, {
+          description:
+            error?.response?.data?.message || "Failed to create course.",
+        });
       },
       onSuccess: () => {
         toast.success(`Course created successfully`, {
@@ -59,15 +61,19 @@ export default function CreateCoursePage() {
           onSubmit={formMethods.handleSubmit(onSubmit)}
           className="space-y-6"
         >
-          <Card className="border-none">
-            <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-semibold tracking-tight">
-                Create Course
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Provide clear details so learners understand the value and
-                structure.
-              </p>
+          <Card className="border-none space-y-5 p-5">
+            <CardHeader className=" gap-2 flex flex-row items-center px-6 py-4">
+              <span className="size-14 mb-0 inline-flex items-center justify-center rounded-md bg-primary/10 text-primary">
+                <Icons.book className="" size={30} />
+              </span>
+              <div>
+                <CardTitle className="text-xl gap-2 font-bold tracking-tight">
+                  Create Course
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Fill the details below to create a new course.
+                </p>
+              </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField

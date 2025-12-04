@@ -47,7 +47,8 @@ interface AlertModalProperties {
     | "secondary"
     | "ghost"
     | "link"
-    | "accent";
+    | "accent"
+    | "destructiveOutline";
   /**
    * Override the cancel button variant. Defaults to "outline".
    */
@@ -61,7 +62,8 @@ interface AlertModalProperties {
     | "secondary"
     | "ghost"
     | "link"
-    | "accent";
+    | "accent"
+    | "destructiveOutline";
 }
 
 const SuccessIcon = () => (

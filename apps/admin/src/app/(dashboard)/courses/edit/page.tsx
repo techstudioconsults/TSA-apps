@@ -25,6 +25,7 @@ import {
 import { CourseFormSchema, courseFormData } from "@/schemas";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Icons } from "@workspace/ui/icons";
 
 export default function EditCoursePage() {
   const router = useRouter();
@@ -77,10 +78,11 @@ export default function EditCoursePage() {
         payload: formData as unknown as courseFormData,
       },
       {
-        onError: (error) => {
-          toast.error(
-            `Error updating course: ${error.response?.data.message || error}`,
-          );
+        onError: (error: any) => {
+          toast.error(`An error occurred while updating course`, {
+            description:
+              error?.response?.data?.message || "Failed to update course.",
+          });
         },
         onSuccess: () => {
           toast.success(`Course updated successfully`, {
@@ -99,14 +101,19 @@ export default function EditCoursePage() {
           onSubmit={formMethods.handleSubmit(onSubmit)}
           className="space-y-6"
         >
-          <Card className="border-none">
-            <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-semibold tracking-tight">
-                Edit Course
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Update details to keep information accurate and helpful.
-              </p>
+          <Card className="border-none space-y-5 p-5">
+            <CardHeader className=" gap-2 flex flex-row items-center px-6 py-4">
+              <span className="size-14 mb-0 inline-flex items-center justify-center rounded-md bg-primary/10 text-primary">
+                <Icons.book className="" size={30} />
+              </span>
+              <div>
+                <CardTitle className="text-xl gap-2 font-bold tracking-tight">
+                  Edit Course
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Update details to keep information accurate and helpful.
+                </p>
+              </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField

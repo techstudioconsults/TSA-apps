@@ -17,8 +17,6 @@ import { CalendarDays, MoreVertical } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
-import WarningModal from "./WarningModal";
-import SuccessModal from "../../_components/topnav/response-modal";
 import {
   AlertModal,
   CustomButton,
@@ -136,7 +134,7 @@ const CourseCards = () => {
             <CardHeader className="flex flex-row items-start justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="rounded bg-primary/10 p-2 text-primary">
-                  <Icons.book className="h-4 w-4" />
+                  <Icons.book className="size-4" />
                 </span>
                 <CardTitle className="text-base capitalize">
                   {course.title}
@@ -149,7 +147,7 @@ const CourseCards = () => {
                     size="icon"
                     disabled={isDeleting}
                     isIconOnly
-                    icon={<MoreVertical className="h-4 w-4" />}
+                    icon={<Icons.ellipsis className="size-4" />}
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -176,27 +174,27 @@ const CourseCards = () => {
               </DropdownMenu>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between">
-              <p className="line-clamp-3 text-sm text-muted-foreground">
+              <p className="text-xs leading-5 mb-6 text-muted-foreground line-clamp-4 mb-4">
                 {course.about}
               </p>
               <div className="mt-4 flex justify-between items-center gap-2">
                 <Badge
                   variant="secondaryOutline"
-                  className="flex items-center justify-center gap-1 w-full"
+                  className="flex items-center tracking-widest text-[11px] justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />
                   <span>Weekday: {course.duration?.weekday || 0}w</span>
                 </Badge>
                 <Badge
                   variant="secondaryOutline"
-                  className="flex items-center justify-center gap-1 w-full"
+                  className="flex  items-center tracking-widest text-[11px] justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />
                   <span>Weekend: {course.duration?.weekend || 0}w</span>
                 </Badge>
                 <Badge
                   variant="secondaryOutline"
-                  className="flex items-center justify-center gap-1 w-full"
+                  className="flex items-center tracking-widest text-[11px] justify-center gap-1 w-full"
                 >
                   <CalendarDays className="size-3" />
                   <span>Online: {course.duration?.online || 0}w</span>
@@ -215,13 +213,13 @@ const CourseCards = () => {
         ))}
       </div>
 
-      <SuccessModal
+      <AlertModal
         isOpen={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         title="Course Deleted Successfully"
         description="Selected Course has been deleted"
-        actionLabel="Continue"
-        onAction={handleContinue}
+        onConfirm={handleContinue}
+        type={"success"}
       />
     </>
   );

@@ -154,7 +154,7 @@ function TopBarActions() {
 
   return (
     <div className="flex gap-4">
-      <GlobalSearchInput className="max-w-md bg-muted" />
+      <GlobalSearchInput className="max-w-md bg-primary/10" />
       {pathname !== "/" && (
         <CustomButton variant="primary" href={current.href}>
           {current.label}

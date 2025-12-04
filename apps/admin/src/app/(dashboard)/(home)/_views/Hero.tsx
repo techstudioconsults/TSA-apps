@@ -3,7 +3,7 @@
 import { useCurrentUser } from "@/services/auth/auth.mutations";
 import { CustomButton, DashboardHeader } from "@workspace/ui/lib";
 import { Skeleton } from "@workspace/ui/components";
-import { BookOpen, FileSpreadsheet } from "lucide-react";
+import { Icons } from "@workspace/ui/icons";
 
 const Hero = () => {
   const { data: currentUser, isLoading } = useCurrentUser();
@@ -22,7 +22,7 @@ const Hero = () => {
             href="/sheets"
             variant="primaryOutline"
             isLeftIconVisible
-            icon={<FileSpreadsheet />}
+            icon={<Icons.sheet />}
           >
             Create Sheet
           </CustomButton>
@@ -31,7 +31,7 @@ const Hero = () => {
             href="/courses/create"
             variant="primary"
             isLeftIconVisible
-            icon={<BookOpen />}
+            icon={<Icons.book />}
           >
             Create Course
           </CustomButton>

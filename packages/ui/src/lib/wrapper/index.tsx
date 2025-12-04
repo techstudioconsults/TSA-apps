@@ -1,4 +1,5 @@
 import { cn } from "@workspace/ui/lib/utils";
+// import { usePathname } from 'next/navigation'
 import { FC, HtmlHTMLAttributes, ReactNode } from "react";
 
 interface WrapperProperties extends HtmlHTMLAttributes<HTMLDivElement> {
@@ -14,11 +15,14 @@ export const Wrapper: FC<WrapperProperties> = ({
   className,
   ...rest
 }) => {
+  // const pathname = usePathname()
+
   return (
     <section
       {...rest}
       className={cn(
-        `mx-auto ${width} ${height} px-4 max-w-[1240px] my-20`,
+        `mx-auto ${width} ${height} px-4 max-w-[1240px]`,
+        // pathname.includes('dashboard') && 'pt-6 pb-10',
         className,
       )}
     >

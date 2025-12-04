@@ -19,5 +19,15 @@ export const queryKeys = {
     total: () => [...queryKeys.courses.all, "total"] as const,
   },
 
+  classes: {
+    all: ["classes"] as const,
+    lists: () => [...queryKeys.classes.all, "list"] as const,
+    list: (filters: Filters) =>
+      [...queryKeys.classes.lists(), filters] as const,
+    details: () => ["classes", "detail"] as const,
+    detail: (id: string) => [...queryKeys.classes.details(), id] as const,
+    total: () => [...queryKeys.classes.all, "total"] as const,
+  },
+
   // Add other domains as needed
 };

@@ -43,6 +43,7 @@ import {
 // ============================================================================
 import {
   BookOpen,
+  Calendar,
   Edit,
   FileSpreadsheet,
   Mail,
@@ -53,6 +54,8 @@ import {
 // ============================================================================
 // REACT ICONS
 // ============================================================================
+import { GrMoney } from "react-icons/gr";
+import { GiDuration } from "react-icons/gi";
 import { FaGamepad } from "react-icons/fa";
 import { IoRibbonOutline } from "react-icons/io5";
 import { LuBike } from "react-icons/lu";
@@ -103,6 +106,7 @@ const LucideIcons = {
   sheet: FileSpreadsheet,
   megaphone: MegaphoneIcon,
   edit: Edit,
+  calendar: Calendar,
 };
 
 const ReactIcons = {
@@ -113,6 +117,8 @@ const ReactIcons = {
   rider: LuBike,
   payouts: MdOutlineAddCard,
   controller: FaGamepad,
+  money: GrMoney,
+  duration: GiDuration,
 };
 
 // ============================================================================
@@ -125,4 +131,5 @@ const Icons = {
 };
 
 export type Icon = React.ComponentType<IconProps>;
+
 export { Icons, TablerIcons, LucideIcons, ReactIcons };
