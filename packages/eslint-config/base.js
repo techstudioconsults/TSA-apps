@@ -19,8 +19,6 @@ export const config = [
     },
     rules: {
       "turbo/no-undeclared-env-vars": "warn",
-      // Allow explicit `any` usage across the repo. Project policy permits
-      // some `any` usage in legacy code and for rapid iterations.
       "@typescript-eslint/no-explicit-any": "off",
     },
   },

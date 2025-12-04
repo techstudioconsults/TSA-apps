@@ -13,7 +13,7 @@ import {
   Badge,
   Separator,
 } from "@workspace/ui/components";
-import { CalendarDays, MoreVertical } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
