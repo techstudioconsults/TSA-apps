@@ -178,24 +178,15 @@ const CourseCards = () => {
                 {course.about}
               </p>
               <div className="mt-4 flex justify-between items-center gap-2">
-                <Badge
-                  variant="secondaryOutline"
-                  className="flex items-center tracking-widest text-[11px] justify-center gap-1 w-full"
-                >
+                <Badge className="flex items-center tracking-widest text-[11px] justify-center gap-1 w-full bg-indigo-100 text-indigo-800">
                   <CalendarDays className="size-3" />
                   <span>Weekday: {course.duration?.weekday || 0}w</span>
                 </Badge>
-                <Badge
-                  variant="secondaryOutline"
-                  className="flex  items-center tracking-widest text-[11px] justify-center gap-1 w-full"
-                >
+                <Badge className="flex  items-center tracking-widest text-[11px] justify-center gap-1 w-full bg-indigo-100 text-indigo-800">
                   <CalendarDays className="size-3" />
                   <span>Weekend: {course.duration?.weekend || 0}w</span>
                 </Badge>
-                <Badge
-                  variant="secondaryOutline"
-                  className="flex items-center tracking-widest text-[11px] justify-center gap-1 w-full"
-                >
+                <Badge className="flex  items-center tracking-widest text-[11px] justify-center gap-1 w-full bg-indigo-100 text-indigo-800">
                   <CalendarDays className="size-3" />
                   <span>Online: {course.duration?.online || 0}w</span>
                 </Badge>

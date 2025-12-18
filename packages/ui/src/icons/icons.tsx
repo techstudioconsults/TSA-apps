@@ -60,7 +60,7 @@ import { FaGamepad } from "react-icons/fa";
 import { IoRibbonOutline } from "react-icons/io5";
 import { LuBike } from "react-icons/lu";
 import { MdOutlineAddCard } from "react-icons/md";
-import { PiUsersThreeLight } from "react-icons/pi";
+import { PiEmptyBold, PiUsersThreeLight } from "react-icons/pi";
 import { RiAdvertisementLine, RiShoppingCartLine } from "react-icons/ri";
 
 const TablerIcons = {
@@ -119,6 +119,7 @@ const ReactIcons = {
   controller: FaGamepad,
   money: GrMoney,
   duration: GiDuration,
+  empty: PiEmptyBold,
 };
 
 // ============================================================================

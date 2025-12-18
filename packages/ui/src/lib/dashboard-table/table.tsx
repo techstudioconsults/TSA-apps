@@ -253,7 +253,7 @@ function convertColumnsToTanStackFormat<T extends DataItem>(
                 tanstackColumn.getIsSorted() === "asc",
               )
             }
-            className="flex text-white h-8 cursor-pointer items-center font-semibold hover:bg-transparent"
+            className="flex text-primary h-8 cursor-pointer items-center font-semibold hover:bg-transparent"
           >
             <span>{column.header}</span>
             {tanstackColumn.getIsSorted() === "asc" ? (
@@ -678,7 +678,7 @@ export function AdvancedDataTable<T extends DataItem>({
             </DndContext>
           ) : (
             <Table>
-              <TableHeader className="sticky bg-primary top-0 z-10">
+              <TableHeader className="sticky bg-muted/70 top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id} className="border-border/50">
                     {headerGroup.headers.map((header) => {

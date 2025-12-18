@@ -2,7 +2,7 @@ import { Skeleton } from "@workspace/ui/components";
 
 export const DashboardCardSkeleton = () => {
   return (
-    <div className="bg-background min-h-[203px] rounded-xl p-10 shadow">
+    <Skeleton className="min-h-[203px] rounded-xl p-10">
       {/* Title skeleton */}
       <Skeleton className="mb-2 h-5 w-32" />
 
@@ -17,7 +17,7 @@ export const DashboardCardSkeleton = () => {
         <Skeleton className="h-4 w-16" />
         <Skeleton className="h-4 w-24" />
       </div>
-    </div>
+    </Skeleton>
   );
 };
 

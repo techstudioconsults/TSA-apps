@@ -26,18 +26,21 @@ const formatDateTime = (dateString: string): string => {
   }
 };
 
-const getRowTextColor = (activity: string): string => {
-  const a = activity.toLowerCase();
-  if (a.includes("sheet")) return "text-blue-800";
-  if (a.includes("class") || a.includes("cohort")) return "text-green-800";
-  if (a.includes("course")) return "text-purple-800";
-  return "text-gray-800";
-};
+// const getRowTextColor = (activity: string): string => {
+//   const a = activity.toLowerCase()
+//   if (a.includes('sheet')) return 'text-blue-800'
+//   if (a.includes('class') || a.includes('cohort')) return 'text-green-800'
+//   if (a.includes('course')) return 'text-purple-800'
+//   return 'text-gray-800'
+// }
 
 const RecentTable = () => {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, error, refetch } = useActivitiesQuery(page, 10);
+  const { data, isLoading, error, refetch } = useActivitiesQuery({
+    page,
+    limit: 6,
+  });
 
   const activities = (data?.activities || []) as Activity[];
   const totalPages = data?.totalPages || 1;
@@ -48,9 +51,12 @@ const RecentTable = () => {
     {
       header: "Activity",
       accessorKey: "activity",
-      render: (value, row) => (
+      render: (value) => (
         <span
-          className={cn("text-sm font-medium", getRowTextColor(row.activity))}
+          className={cn(
+            "text-sm font-medium",
+            // getRowTextColor(row.activity)
+          )}
         >
           {value as string}
         </span>
@@ -59,19 +65,15 @@ const RecentTable = () => {
     {
       header: "Description",
       accessorKey: "description",
-      render: (value, row) => (
-        <span className={cn("text-sm", getRowTextColor(row.activity))}>
-          {value as string}
-        </span>
+      render: (value) => (
+        <span className={cn("text-sm text-gray-600")}>{value as string}</span>
       ),
     },
     {
       header: "Date & Time",
       accessorKey: "createdAt",
-      render: (value, row) => (
-        <span
-          className={cn("text-sm capitalize", getRowTextColor(row.activity))}
-        >
+      render: (value) => (
+        <span className={cn("text-sm capitalize")}>
           {formatDateTime(value as string)}
         </span>
       ),

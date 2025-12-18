@@ -12,6 +12,7 @@ import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { GlobalSearchInput } from "../search-input";
+import { useModalStore } from "@/store/modalStore";
 
 type TopBarProperties = {
   adminName: string;
@@ -89,7 +90,6 @@ export default function TopBar({
           <div className="flex items-center justify-end gap-2 md:gap-4">
             {/* Notification Widget */}
             <NotificationWidget
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               notifications={notifications as any}
               onNotificationClick={() => {}}
               onMarkAsRead={() => {}}
@@ -112,7 +112,7 @@ export default function TopBar({
                 window.location.href = `/settings`;
               }}
               onLogout={handleLogout}
-              className="min-w-fit"
+              className="min-w-fit cursor-pointer"
               isLoading={isLoading}
             />
           </div>
@@ -125,38 +125,47 @@ export default function TopBar({
 
 function TopBarActions() {
   const pathname = usePathname();
+  const { openCreateSheetModal } = useModalStore();
 
   const map = [
     {
       match: (p: string) => p.includes("/courses"),
       label: "Create Course",
       href: "/courses/create",
+      onClick: undefined,
     },
     {
       match: (p: string) => p.includes("/classes"),
       label: "Create Class",
       href: "/classes/create",
+      onClick: undefined,
     },
     {
       match: (p: string) => p.includes("/cohorts"),
       label: "Create Cohort",
       href: "/cohorts/create",
+      onClick: undefined,
     },
     {
       match: (p: string) => p.includes("/sheets"),
       label: "Create Sheet",
-      href: "/sheets/create",
+      href: "#",
+      onClick: openCreateSheetModal,
     },
   ];
 
-  const fallback = { label: "Create", href: "#" };
+  const fallback = { label: "Create", href: "#", onClick: undefined };
   const current = map.find((m) => m.match(pathname)) ?? fallback;
 
   return (
     <div className="flex gap-4">
-      <GlobalSearchInput className="max-w-md bg-primary/10" />
+      <GlobalSearchInput disabled className="max-w-md bg-primary/10" />
       {pathname !== "/" && (
-        <CustomButton variant="primary" href={current.href}>
+        <CustomButton
+          variant="primary"
+          href={current.onClick ? undefined : current.href}
+          onClick={current.onClick}
+        >
           {current.label}
         </CustomButton>
       )}

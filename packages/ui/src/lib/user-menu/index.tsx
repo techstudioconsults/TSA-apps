@@ -116,6 +116,7 @@ export function UserMenu({
               <DropdownMenuItem
                 onClick={onProfileClick}
                 className="cursor-pointer"
+                disabled
               >
                 <User className="mr-2 size-4" />
                 <span>My Profile</span>
@@ -123,6 +124,7 @@ export function UserMenu({
               <DropdownMenuItem
                 onClick={onSettingsClick}
                 className="cursor-pointer"
+                disabled
               >
                 <Settings className="mr-2 size-4" />
                 <span>Account Settings</span>

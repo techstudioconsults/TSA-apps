@@ -29,5 +29,14 @@ export const queryKeys = {
     total: () => [...queryKeys.classes.all, "total"] as const,
   },
 
+  sheets: {
+    all: ["sheets"] as const,
+    lists: () => [...queryKeys.sheets.all, "list"] as const,
+    list: (filters: Filters) => [...queryKeys.sheets.lists(), filters] as const,
+    details: () => ["sheets", "detail"] as const,
+    detail: (id: string) => [...queryKeys.sheets.details(), id] as const,
+    total: () => [...queryKeys.sheets.all, "total"] as const,
+  },
+
   // Add other domains as needed
 };
