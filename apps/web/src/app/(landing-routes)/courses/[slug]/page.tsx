@@ -10,8 +10,8 @@ import { SectionThree } from "../_views/section-three";
 import { SectionTwo } from "../_views/section-two";
 import { getCourseData } from "@/action/courses.action";
 
-const Courses = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+const Courses = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
   try {
     const course = await getCourseData(slug);
 
