@@ -42,15 +42,19 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
             <p className="pb-2.5 text-base font-bold">Courses</p>
             <ul className="flex flex-col gap-3">
               {navLinks.length
-                ? navLinks?.map((course: Course, index) => {
+                ? navLinks?.map((course: Course & { href?: string }, index) => {
+                    // Check if it's an online course (has href property) or backend course
+                    const href = (course as any).href 
+                      ? (course as any).href 
+                      : `/courses/${course.title
+                          .toLowerCase()
+                          .trim()
+                          .replaceAll(/[\s/]+/g, "-")}`;
                     return (
                       <li key={index}>
                         <Link
                           className="text-xs text-white hover:text-mid-danger"
-                          href={`/courses/${course.title
-                            .toLowerCase()
-                            .trim()
-                            .replaceAll(/[\s/]+/g, "-")}`}
+                          href={href}
                         >
                           {course.title}
                         </Link>

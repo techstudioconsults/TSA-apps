@@ -2,13 +2,14 @@
 
 import { cn } from "@workspace/ui/lib";
 import dynamic from "next/dynamic";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "../../action/courses.action";
 import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
+import { onlineCourses } from "./online/data";
 
 const DynamicNavbar = dynamic(
   () => import("@workspace/ui/lib").then((m) => m.Navbar),
@@ -41,25 +42,40 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
     fetchAllCourses();
   }, []);
 
-  const featuresList: FeatureItem[] = loading
-    ? [
+  const featuresList: FeatureItem[] = useMemo(() => {
+    if (loading) {
+      return [
         {
           title: "Loading course data...please wait",
           href: "",
           description: "",
         },
-      ]
-    : allCourses.map((course) => {
-        const courseSlug = course.title
-          .toLowerCase()
-          .trim()
-          .replaceAll(/[\s/]+/g, "-");
-        return {
-          title: course.title,
-          href: `/courses/${courseSlug}`,
-          description: course.about,
-        };
-      });
+      ];
+    }
+
+    // Map backend courses
+    const backendCourses: FeatureItem[] = allCourses.map((course) => {
+      const courseSlug = course.title
+        .toLowerCase()
+        .trim()
+        .replaceAll(/[\s/]+/g, "-");
+      return {
+        title: course.title,
+        href: `/courses/${courseSlug}`,
+        description: course.about,
+      };
+    });
+
+    // Map hardcoded online courses
+    const onlineCoursesList: FeatureItem[] = onlineCourses.map((course) => ({
+      title: course.title,
+      href: `/online/${course.slug}`,
+      description: course.description,
+    }));
+
+    // Combine both lists - online courses first, then backend courses
+    return [...onlineCoursesList, ...backendCourses];
+  }, [allCourses, loading]);
 
   const pathname = usePathname();
   const isDarkMode =
@@ -89,11 +105,33 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         containerClassName="max-w-[1240px] mx-auto lg:p-0"
       />
       {children}
-      <TsaFooter
-        navLinks={allCourses}
-        subscribeComponent={<EmailForm buttonTitle={"Subscribe"} />}
-        logopath={"logoPath"}
-      />
+      {(() => {
+        // Combine backend courses and online courses for footer
+        // Create objects with title and href for online courses
+        const onlineCoursesForFooter = onlineCourses.map((course) => ({
+          title: course.title,
+          href: `/online/${course.slug}`,
+        }));
+        // Map backend courses to include href
+        const backendCoursesForFooter = allCourses.map((course) => ({
+          ...course,
+          href: `/courses/${course.title
+            .toLowerCase()
+            .trim()
+            .replaceAll(/[\s/]+/g, "-")}`,
+        }));
+        const combinedFooterCourses = [
+          ...onlineCoursesForFooter,
+          ...backendCoursesForFooter,
+        ];
+        return (
+          <TsaFooter
+            navLinks={combinedFooterCourses as any}
+            subscribeComponent={<EmailForm buttonTitle={"Subscribe"} />}
+            logopath={"logoPath"}
+          />
+        );
+      })()}
     </main>
   );
 };

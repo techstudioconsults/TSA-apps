@@ -210,7 +210,7 @@ const Navbar = ({
                             >
                               <div>
                                 <p className="flex items-start gap-2 mb-2">
-                                  <Moon className="size-5" />
+                                  {/* <Moon className="size-5" /> */}
                                   <span className="text-foreground font-semibold">
                                     {feature.title}
                                   </span>
