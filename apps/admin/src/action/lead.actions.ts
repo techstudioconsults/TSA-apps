@@ -1,4 +1,4 @@
-import { LeadResponse } from "~/schemas/lead.schema";
+import { LeadResponse } from "@/schemas/lead.schema";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

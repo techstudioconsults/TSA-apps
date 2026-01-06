@@ -1,5 +1,5 @@
-import { SheetFormData } from "~/schemas";
-import { httpAdapter } from "@/lib/http/http-adapter";
+import http from "@/lib/http/httpConfig";
+import { SheetFormData } from "@/schemas";
 
 const BASE_URL = `/spreadsheets`;
 
@@ -8,7 +8,7 @@ export const createSpreadsheetAction = async (
   data: SheetFormData,
 ): Promise<void> => {
   try {
-    await httpAdapter.post(BASE_URL, data);
+    await http.post(BASE_URL, data);
   } catch (error) {
     console.error("Error in createSpreadsheetAction:", error);
     throw error;
@@ -18,7 +18,7 @@ export const createSpreadsheetAction = async (
 // Get All Spreadsheets Action
 export const getSpreadsheetsAction = async () => {
   try {
-    const response = await httpAdapter.get(BASE_URL);
+    const response = await http.get(BASE_URL);
     return response.data?.items || []; // Ensure we extract the correct array
   } catch (error) {
     console.error("Error in getSpreadsheetsAction:", error);
@@ -28,7 +28,7 @@ export const getSpreadsheetsAction = async () => {
 
 export const getTotalSheetAction = async (): Promise<number> => {
   try {
-    const response = await httpAdapter.get(`${BASE_URL}/total`);
+    const response = await http.get(`${BASE_URL}/total`);
 
     // Add validation for response structure
     if (typeof response.data?.totalSpreadsheet !== "number") {

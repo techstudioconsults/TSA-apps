@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { formatTime } from "~/lib/utils";
+import { formatTime } from "@/lib/utils";
 
 const COUNTDOWN_KEY = "weekday-class-countdown";
 
