@@ -1,6 +1,6 @@
 "use server";
 
-import { ContactFormData } from "~/schemas";
+import { ContactFormData } from "@/schemas";
 
 const BASE_URL = process.env["NEXT_PUBLIC_API_URL"] || "http://localhost:3000";
 const API_URL = `${BASE_URL}/contactus`;
