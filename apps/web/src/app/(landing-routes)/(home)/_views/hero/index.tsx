@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 
 import { EmailForm } from "../../_components/email-form/email-form";
 import { HeroCanvas } from "../../_components/canvas/hero-canvas";
-import { Wrapper } from "@workspace/ui/lib";
 import { useWindowWidth } from "@workspace/ui/hooks";
 
 export const Hero = () => {
@@ -20,7 +19,7 @@ export const Hero = () => {
 
   return (
     <section className="relative h-[80vh] flex justify-center w-full items-center overflow-hidden bg-primary text-background">
-      <Wrapper>
+      <main className="mx-auto min-w-[1240px]">
         <section className="mx-auto mt-[3rem] flex w-full flex-col items-center justify-between gap-[50px] lg:flex-row">
           <div className="flex flex-row gap-[7rem] lg:flex-col">
             <Image
@@ -99,7 +98,7 @@ export const Hero = () => {
             />
           </div>
         </section>
-      </Wrapper>
+      </main>
       <canvas
         className="absolute top-0 w-full"
         ref={canvaReference}
