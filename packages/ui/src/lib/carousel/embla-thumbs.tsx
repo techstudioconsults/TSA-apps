@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { HTMLAttributes, useRef } from "react";
 
 interface ThumbProperties extends HTMLAttributes<HTMLDivElement> {
