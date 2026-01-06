@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Example usage of the TopBar component with the new NotificationWidget and UserMenu
 
 import { Notification } from "@workspace/ui/lib";
@@ -59,7 +60,7 @@ export function ExampleLayout() {
         adminEmail="kingsley@example.com"
         adminRole="System Administrator"
         adminAvatar="https://github.com/shadcn.png" // Replace with actual avatar
-        notifications={sampleNotifications}
+        // notifications={sampleNotifications}
       />
       {/* Rest of your layout */}
     </div>
