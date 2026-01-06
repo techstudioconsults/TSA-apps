@@ -3,7 +3,8 @@ import Image from "next/image";
 import Script from "next/script";
 
 export default async function RegistrationSuccessPage(
-  props: PageProps<"/courses/[slug]/success">,
+  props: any,
+  // props: PageProps<"/courses/[slug]/success">,
 ) {
   const { slug } = await props.params;
   //   const searchParameters = useSearchParams();
