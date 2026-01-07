@@ -39,8 +39,29 @@ http.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    const status: number | undefined = error.response?.status;
+    const responseMessage = String(
+      error.response?.data?.message ??
+        error.response?.data?.error ??
+        error.message ??
+        "",
+    ).toLowerCase();
+
+    // If the backend tells us the JWT is expired, force logout.
+    // (Useful when refresh isn't possible / refresh also fails.)
+    if (
+      (status === 401 || status === 403) &&
+      responseMessage.includes("jwt expired")
+    ) {
+      tokenManager.logout();
+      if (typeof window !== "undefined") {
+        window.location.href = "/login";
+      }
+      throw error;
+    }
+
     // If we get a 401 and haven't already retried, try to refresh the token
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
@@ -54,9 +75,8 @@ http.interceptors.response.use(
           return http(originalRequest);
         }
       } catch (refreshError) {
-        // If refresh fails, invalidate cache and redirect to login
-        tokenManager.invalidate();
-        // Optionally redirect to login page
+        // If refresh fails, clear auth and redirect to login
+        tokenManager.logout();
         if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
@@ -65,8 +85,8 @@ http.interceptors.response.use(
     }
 
     // For other errors or if refresh failed, invalidate the token cache
-    if (error.response?.status === 401) {
-      tokenManager.invalidate();
+    if (status === 401 || status === 403) {
+      tokenManager.logout();
     }
 
     throw error;

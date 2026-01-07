@@ -8,11 +8,11 @@ import {
   Wrapper,
 } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
-import { signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { GlobalSearchInput } from "../search-input";
 import { useModalStore } from "@/store/modalStore";
+import { tokenManager } from "@/lib/http/token-manager";
 
 type TopBarProperties = {
   adminName: string;
@@ -24,17 +24,6 @@ type TopBarProperties = {
   isLoading?: boolean;
 };
 
-const handleLogout = async () => {
-  try {
-    await signOut({
-      redirect: true,
-      callbackUrl: `/login`,
-    });
-  } catch {
-    toast.error(`Something went wrong`);
-  }
-};
-
 export default function TopBar({
   adminName,
   adminEmail,
@@ -44,6 +33,18 @@ export default function TopBar({
   isLoading = false,
   className = "",
 }: TopBarProperties) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    try {
+      // Logout = remove tokens stored in the browser (cookies) and redirect.
+      tokenManager.logout();
+      router.push("/login");
+    } catch {
+      toast.error("Something went wrong");
+    }
+  };
+
   // locales removed; use root paths
   // const [notificationsList, setNotificationsList] =
   //   useState<Notification[]>(notifications)
@@ -82,10 +83,12 @@ export default function TopBar({
         <div className="relative hidden w-fit items-center gap-4 md:flex">
           <SidebarTrigger className="absolute top-16 -left-[30px] bg-[#1F2666] text-white shadow-none" />
         </div>
-        <Wrapper className="flex items-center max-w-[1440px] justify-between">
+        <Wrapper className="flex flex-row items-center max-w-[1440px] justify-between">
           {/* Dynamic Title */}
           <TopBarTitle />
-          <TopBarActions />
+          <div className="">
+            <TopBarActions />
+          </div>
           {/* Right Section */}
           <div className="flex items-center justify-end gap-2 md:gap-4">
             {/* Notification Widget */}
@@ -125,9 +128,19 @@ export default function TopBar({
 
 function TopBarActions() {
   const pathname = usePathname();
-  const { openCreateSheetModal } = useModalStore();
+  const { openCreateSheetModal, openCreateMarketingCycleModal } =
+    useModalStore();
 
   const map = [
+    {
+      match: (p: string) => p.includes("/market-cycle"),
+      label: "Create Marketing Cycle",
+      href: "#",
+      onClick: () => {
+        openCreateMarketingCycleModal();
+        console.log(`testing`);
+      },
+    },
     {
       match: (p: string) => p.includes("/courses"),
       label: "Create Course",
@@ -180,6 +193,10 @@ function TopBarTitle() {
     {
       match: (p: string) => p === "/" || p === "/Dashboard",
       title: "Dashboard",
+    },
+    {
+      match: (p: string) => p.includes("/market-cycle"),
+      title: "Marketing Cycles",
     },
     { match: (p: string) => p.includes("/courses"), title: "Courses" },
     { match: (p: string) => p.includes("/classes"), title: "Classes" },
