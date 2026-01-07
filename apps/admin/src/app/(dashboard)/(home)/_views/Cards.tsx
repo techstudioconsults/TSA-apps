@@ -46,7 +46,7 @@ const Cards = () => {
 
   return (
     <div>
-      <section className="grid grid-cols-3 justify-between gap-5 py-8">
+      <section className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {cards.map((card) => (
           <DashboardCard
             key={card.title}

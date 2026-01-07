@@ -1,6 +1,9 @@
 import * as React from "react";
 
-const MOBILE_BREAKPOINT = 768;
+// Treat viewports narrower than this as "mobile" for layout purposes.
+// This is aligned with the design requirement that the sidebar
+// becomes a drawer below ~1440px wide.
+const MOBILE_BREAKPOINT = 1440;
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>();

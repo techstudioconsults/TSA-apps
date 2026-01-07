@@ -159,26 +159,6 @@ export default function MarketingCycleList() {
 
   return (
     <>
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-900">
-            Marketing Cycles
-          </h2>
-          <p className="text-sm text-gray-600">Manage your marketing cycles</p>
-        </div>
-        <CustomButton
-          variant="primary"
-          isLeftIconVisible
-          icon={<Icons.plus />}
-          onClick={() => {
-            setEditingCycle(null);
-            openCreateMarketingCycleModal();
-          }}
-        >
-          Create New
-        </CustomButton>
-      </div>
-
       {content}
 
       <MarketingCycleForm

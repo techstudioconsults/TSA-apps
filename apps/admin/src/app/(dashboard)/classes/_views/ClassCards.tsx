@@ -316,13 +316,13 @@ const ClassCards = () => {
         value={courseIdToUse}
         onValueChange={(val) => setActiveCourseId(val)}
       >
-        <TabsList className="flex items-center justify-between h-fit bg-primary/10 gap-2">
+        <TabsList className="flex items-center justify-between h-fit max-w-[1150px] 2xl:max-w-full mx-auto bg-primary/10 gap-2 overflow-x-auto hide-scrollbar">
           {courses.map((course: Course) => (
             <TabsTrigger
               key={course.id}
               value={course.id}
               className={cn(
-                "border-b-2 min-w-md rounded-md border-transparent hover:bg-primary/20 capitalize",
+                "border-b-2 min-w-fit rounded-md border-transparent hover:bg-primary/20 capitalize",
                 course.id === courseIdToUse && " font-medium !bg-mid-warning",
               )}
             >
