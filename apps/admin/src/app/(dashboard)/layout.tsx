@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import TopBar from "@/components/shared/top-bar";
 import { ActiveTargetProvider } from "@/context/active-target";
 import { useCurrentUser } from "@/services/auth/auth.mutations";
@@ -43,7 +44,9 @@ export default function DashboardLayout({
             notifications={[]}
             isLoading={isLoading}
           />
-          <Wrapper className="max-w-[1440px] py-10 !my-0">{children}</Wrapper>
+          <Suspense fallback={<div>Loading dashboard...</div>}>
+            <Wrapper className="max-w-[1440px] py-10 !my-0">{children}</Wrapper>
+          </Suspense>
         </ActiveTargetProvider>
       </SidebarInset>
     </SidebarProvider>
