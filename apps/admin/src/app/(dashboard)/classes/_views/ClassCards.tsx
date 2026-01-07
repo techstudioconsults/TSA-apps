@@ -322,7 +322,7 @@ const ClassCards = () => {
               key={course.id}
               value={course.id}
               className={cn(
-                "border-b-2 rounded-md border-transparent w-full hover:bg-primary/20 capitalize",
+                "border-b-2 min-w-md rounded-md border-transparent hover:bg-primary/20 capitalize",
                 course.id === courseIdToUse && " font-medium !bg-mid-warning",
               )}
             >

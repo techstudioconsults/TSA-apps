@@ -43,7 +43,7 @@ export default function DashboardLayout({
             notifications={[]}
             isLoading={isLoading}
           />
-          <Wrapper className="max-w-[1440px] py-10">{children}</Wrapper>
+          <Wrapper className="max-w-[1440px] py-10 !my-0">{children}</Wrapper>
         </ActiveTargetProvider>
       </SidebarInset>
     </SidebarProvider>

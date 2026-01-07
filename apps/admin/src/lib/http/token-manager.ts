@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Token Manager - Efficient JWT token caching and management
  *
@@ -7,6 +9,8 @@
 
 import Cookies from "js-cookie";
 
+import { refreshAuthTokens } from "@/services/auth/auth.refresh";
+
 interface CachedToken {
   accessToken: string;
   expiresAt: number; // timestamp in milliseconds
@@ -15,6 +19,7 @@ interface CachedToken {
 class TokenManager {
   private cache: CachedToken | null = null;
   private pendingRequest: Promise<string | null> | null = null;
+  private pendingRefresh: Promise<string | null> | null = null;
   private readonly REFRESH_BUFFER = 5 * 60 * 1000; // 5 minutes before expiry
 
   /**
@@ -31,8 +36,8 @@ class TokenManager {
       return this.pendingRequest;
     }
 
-    // Fetch token from cookies
-    this.pendingRequest = this.fetchTokenFromCookies();
+    // Fetch token from cookies; if expired/near-expiry, refresh first.
+    this.pendingRequest = this.getOrRefreshToken();
 
     try {
       const token = await this.pendingRequest;
@@ -40,6 +45,22 @@ class TokenManager {
     } finally {
       this.pendingRequest = null;
     }
+  }
+
+  /**
+   * Resolve a usable access token:
+   * - Return cookie token if still valid
+   * - Otherwise refresh using refresh token
+   */
+  private async getOrRefreshToken(): Promise<string | null> {
+    const tokenFromCookies = await this.fetchTokenFromCookies();
+
+    if (tokenFromCookies && this.cache && this.isTokenValid()) {
+      return tokenFromCookies;
+    }
+
+    // Cookie token missing/expired: attempt refresh
+    return this.refreshAccessToken();
   }
 
   /**
@@ -64,8 +85,9 @@ class TokenManager {
       sameSite: "strict",
     });
 
-    // Update cache
-    const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 days
+    // Update cache using the access token's JWT exp when possible.
+    const expiresAt =
+      this.getJwtExpiryMs(accessToken) ?? Date.now() + 7 * 24 * 60 * 60 * 1000; // fallback
     this.cache = {
       accessToken,
       expiresAt,
@@ -102,8 +124,9 @@ class TokenManager {
         return null;
       }
 
-      // Cache the token with expiry time (7 days as set in authStore)
-      const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 days
+      // Cache the token with a realistic expiry (prefer JWT exp; fallback to cookie lifetime)
+      const expiresAt =
+        this.getJwtExpiryMs(token) ?? Date.now() + 7 * 24 * 60 * 60 * 1000; // fallback
 
       this.cache = {
         accessToken: token,
@@ -119,65 +142,66 @@ class TokenManager {
   }
 
   /**
+   * Decode JWT exp (seconds since epoch) without verifying signature.
+   * Returns null if token is not a JWT or cannot be decoded.
+   */
+  private getJwtExpiryMs(token: string): number | null {
+    try {
+      const parts = token.split(".");
+      if (parts.length < 2) return null;
+
+      // base64url -> base64
+      const payloadBase64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+      const padded = payloadBase64.padEnd(
+        payloadBase64.length + ((4 - (payloadBase64.length % 4)) % 4),
+        "=",
+      );
+
+      const json = atob(padded);
+      const payload = JSON.parse(json) as { exp?: number };
+
+      if (!payload.exp || typeof payload.exp !== "number") return null;
+      return payload.exp * 1000;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
    * Refresh the access token using the refresh token
    * Calls backend directly to get a new access token
    */
   async refreshAccessToken(): Promise<string | null> {
-    try {
-      const refreshToken = Cookies.get("refreshToken");
+    // De-dupe concurrent refreshes (multiple 401s at once)
+    if (this.pendingRefresh) return this.pendingRefresh;
 
-      if (!refreshToken) {
-        console.error("TokenManager: No refresh token available");
+    this.pendingRefresh = (async () => {
+      try {
+        const currentRefreshToken = Cookies.get("refreshToken");
+
+        if (!currentRefreshToken) {
+          console.error("TokenManager: No refresh token available");
+          this.invalidate();
+          return null;
+        }
+
+        const refreshed = await refreshAuthTokens(currentRefreshToken);
+        const newAccessToken = refreshed.accessToken;
+        const newRefreshToken = refreshed.refreshToken ?? currentRefreshToken;
+
+        // Persist tokens + cache
+        this.setAuth(newAccessToken, newRefreshToken);
+        return newAccessToken;
+      } catch (error) {
+        console.error("TokenManager: Failed to refresh token", error);
         this.invalidate();
         return null;
+      } finally {
+        this.pendingRefresh = null;
       }
+    })();
 
-      // Call backend refresh endpoint directly
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            refreshToken,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error(`Failed to refresh token: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.message === "success" && data.data?.tokens?.access) {
-        const newAccessToken = data.data.tokens.access;
-
-        // Update cookies
-        Cookies.set("authToken", newAccessToken, {
-          expires: 7,
-          secure: true,
-          sameSite: "strict",
-        });
-
-        // Update cache
-        const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 days
-        this.cache = {
-          accessToken: newAccessToken,
-          expiresAt,
-        };
-
-        return this.cache.accessToken;
-      }
-
-      return null;
-    } catch (error) {
-      console.error("TokenManager: Failed to refresh token", error);
-      this.invalidate();
-      return null;
-    }
+    return this.pendingRefresh;
   }
 
   /**

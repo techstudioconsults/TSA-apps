@@ -91,10 +91,6 @@ const CourseCards = () => {
     );
   }
 
-  if (isError) {
-    return <ErrorEmptyState onRetry={refetch} />;
-  }
-
   if (!courses) {
     return (
       <EmptyState
@@ -106,6 +102,10 @@ const CourseCards = () => {
         className="bg-background"
       />
     );
+  }
+
+  if (isError) {
+    return <ErrorEmptyState onRetry={refetch} />;
   }
 
   const handleContinue = () => {

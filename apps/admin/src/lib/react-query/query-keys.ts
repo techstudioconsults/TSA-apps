@@ -38,5 +38,15 @@ export const queryKeys = {
     total: () => [...queryKeys.sheets.all, "total"] as const,
   },
 
+  marketingCycles: {
+    all: ["marketing-cycles"] as const,
+    lists: () => [...queryKeys.marketingCycles.all, "list"] as const,
+    list: (filters: Filters) =>
+      [...queryKeys.marketingCycles.lists(), filters] as const,
+    details: () => ["marketing-cycles", "detail"] as const,
+    detail: (id: string) =>
+      [...queryKeys.marketingCycles.details(), id] as const,
+  },
+
   // Add other domains as needed
 };
