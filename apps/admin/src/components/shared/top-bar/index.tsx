@@ -1,12 +1,7 @@
 "use client";
 
 import { SidebarTrigger } from "@workspace/ui/components";
-import {
-  CustomButton,
-  NotificationWidget,
-  UserMenu,
-  Wrapper,
-} from "@workspace/ui/lib";
+import { CustomButton, NotificationWidget, UserMenu } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -76,16 +71,16 @@ export default function TopBar({
     <>
       <header
         className={cn(
-          "bg-background sticky top-0 flex h-16 items-center px-6 shadow lg:px-4",
+          "bg-background sticky z-[555] top-0 flex h-16 items-center px-2 shadow",
           className,
         )}
       >
-        <div className="relative hidden w-fit items-center gap-4 md:flex">
-          <SidebarTrigger className="absolute top-16 -left-[30px] bg-[#1F2666] text-white shadow-none" />
-        </div>
-        <Wrapper className="flex flex-row items-center max-w-[1440px] justify-between">
+        <section className="flex flex-row items-center justify-between w-full max-w-[1440px] gap-2 sm:gap-4">
+          <div className="flex items-center gap-2">
+            <SidebarTrigger className="" />
+            <TopBarTitle />
+          </div>
           {/* Dynamic Title */}
-          <TopBarTitle />
           <div className="">
             <TopBarActions />
           </div>
@@ -119,7 +114,7 @@ export default function TopBar({
               isLoading={isLoading}
             />
           </div>
-        </Wrapper>
+        </section>
       </header>
       {/* <AppEventsListener /> */}
     </>
@@ -171,11 +166,15 @@ function TopBarActions() {
   const current = map.find((m) => m.match(pathname)) ?? fallback;
 
   return (
-    <div className="flex gap-4">
-      <GlobalSearchInput disabled className="max-w-md bg-primary/10" />
+    <div className="flex items-center gap-2 sm:gap-3 justify-end">
+      {/* Search only on large screens and above to reduce crowding */}
+      <div className="hidden xl:block flex-1">
+        <GlobalSearchInput disabled className="w-full bg-primary/10" />
+      </div>
       {pathname !== "/" && (
         <CustomButton
           variant="primary"
+          className="whitespace-nowrap px-3 py-1 text-xs sm:text-sm"
           href={current.onClick ? undefined : current.href}
           onClick={current.onClick}
         >
@@ -210,5 +209,5 @@ function TopBarTitle() {
   const fallback = "Dashboard";
   const current = titleMap.find((m) => m.match(pathname))?.title ?? fallback;
 
-  return <h5 className="">{current}</h5>;
+  return <h5 className="hidden lg:flex">{current}</h5>;
 }

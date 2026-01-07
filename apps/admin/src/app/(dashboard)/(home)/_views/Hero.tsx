@@ -26,24 +26,29 @@ const Hero = () => {
           )
         }
         actionComponent={
-          <div className="flex gap-4">
-            <CustomButton
-              variant="primaryOutline"
-              isLeftIconVisible
-              icon={<Icons.sheet />}
-              onClick={openCreateSheetModal}
-            >
-              Create Sheet
-            </CustomButton>
-
-            <CustomButton
-              href="/courses/create"
-              variant="primary"
-              isLeftIconVisible
-              icon={<Icons.book />}
-            >
-              Create Course
-            </CustomButton>
+          <div className="flex gap-4 w-full lg:w-fit justify-center lg:justify-between">
+            <div>
+              <CustomButton
+                className="w-full"
+                variant="primaryOutline"
+                isLeftIconVisible
+                icon={<Icons.sheet />}
+                onClick={openCreateSheetModal}
+              >
+                Create Sheet
+              </CustomButton>
+            </div>
+            <div>
+              <CustomButton
+                className="w-full"
+                href="/courses/create"
+                variant="primary"
+                isLeftIconVisible
+                icon={<Icons.book />}
+              >
+                Create Course
+              </CustomButton>
+            </div>
           </div>
         }
       />
