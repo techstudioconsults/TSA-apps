@@ -33,10 +33,10 @@ export const BonusesSection: FC<BonusesSectionProps> = ({ course }) => {
  
 
   return (
-    <section className={`py-16 lg:py-24 ${isUIUX || isFullStack ? "bg-white" : "bg-[#EDF5FF]"} `}>
+    <section className={`py-16 lg:py-24 bg-white`}>
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4 max-w-2xl mx-auto">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-2xl mx-auto">
             Exclusive Bonuses Included at No Extra Cost
           </h2>
         </div>

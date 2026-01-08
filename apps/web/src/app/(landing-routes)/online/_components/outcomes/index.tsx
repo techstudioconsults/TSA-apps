@@ -10,14 +10,14 @@ interface OutcomesSectionProps {
 }
 
 export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
-  const isUIUX = course.slug === "ui-ux-design";
-  const isDataAnalytics = course.slug === "data-analytics";
-  const isCybersecurity = course.slug === "cybersecurity";
+  // const isUIUX = course.slug === "ui-ux-design";
+  // const isDataAnalytics = course.slug === "data-analytics";
+  // const isCybersecurity = course.slug === "cybersecurity";
   
   return (
-    <section className={`${isDataAnalytics || isUIUX || isCybersecurity? "bg-[#EDF5FF]" : "bg-white"} py-16 lg:py-20 `}>
+    <section className={`bg-[#EDF5FF] py-16 lg:py-20 `}>
       <Wrapper className="max-w-7xl">
-        {isUIUX || isCybersecurity ? (
+        {/* {isUIUX || isCybersecurity ? (
           <div className="flex flex-col lg:flex-row gap-10">
           <div className="w-full lg:w-[37%]">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-6 text-center lg:text-left">
@@ -52,64 +52,73 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
               ))}
             </div>
           </div>
-        ) : isDataAnalytics ? (
+        ) : isDataAnalytics ? ( */}
           <div className="">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
+              <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
                 {course.outcomes.title}
               </h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-[#595959] max-w-xl mx-auto">
+              <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-xl mx-auto">
               Walk away with real skills, a professional portfolio, and the confidence to land your first data role.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {(() => {
-                // Map outcomes items to cards with titles and descriptions for data analytics
-                const outcomeCards = [
-                  {
-                    icon: "/icons/Code.svg",
-                    title: "Practical Skills",
-                    description: "Excel, SQL, Python, Power BI / Tableau, and Machine Learning fundamentals",
-                  },
-                  {
-                    icon: "/icons/FolderOpen.svg",
-                    title: "Portfolio-Ready Projects",
-                    description: "Work with real datasets and complete a capstone project",
-                  },
-                  {
-                    icon: "/icons/UsersThree.svg",
-                    title: "Career Support",
-                    description: "Resume, LinkedIn, and job-application guidance",
-                  },
-                  {
-                    icon: "/icons/GraduationCap.svg",
-                    title: "Mentorship & Guidance",
-                    description: "Expert support throughout your learning journey",
-                  },
-                  {
-                    icon: "/icons/Clock.svg",
-                    title: "Flexible Online Learning",
-                    description: "Fully online with recorded lessons to learn at your own pace",
-                  },
-                ];
-                return outcomeCards.map((card, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+           
+                {/* // Map outcomes items to cards with titles and descriptions for data analytics
+                // const outcomeCards = [
+                //   {
+                //     icon: "/icons/Code.svg",
+                //     title: "Practical Skills",
+                //     description: "Excel, SQL, Python, Power BI / Tableau, and Machine Learning fundamentals",
+                //   },
+                //   {
+                //     icon: "/icons/FolderOpen.svg",
+                //     title: "Portfolio-Ready Projects",
+                //     description: "Work with real datasets and complete a capstone project",
+                //   },
+                //   {
+                //     icon: "/icons/UsersThree.svg",
+                //     title: "Career Support",
+                //     description: "Resume, LinkedIn, and job-application guidance",
+                //   },
+                //   {
+                //     icon: "/icons/GraduationCap.svg",
+                //     title: "Mentorship & Guidance",
+                //     description: "Expert support throughout your learning journey",
+                //   },
+                //   {
+                //     icon: "/icons/Clock.svg",
+                //     title: "Flexible Online Learning",
+                //     description: "Fully online with recorded lessons to learn at your own pace",
+                //   },
+                // ]; */}
+                {course.outcomes.items.map((card, index) => (
                   <div
-                    key={index}
-                    className="flex flex-col items-center text-center p-1"
-                  >
-                  
-                    <Image src={card.icon} alt={card.title} width={54} height={53} className="mb-6 lg:mb-9"/>
-                  
-                    <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
+                  key={index}
+                  className="flex flex-col items-center text-center p-5 h-full"
+                >
+                  <Image
+                    src={card.icon}
+                    alt={card.title}
+                    width={54}
+                    height={53}
+                    className="mb-4 lg:mb-7"
+                  />
+                
+                  <div className="flex flex-col justify-between h-full">
+                    <h3 className="text-lg md:text-[26px] font-bold text-black mb-2 max-w-[330px] mx-auto">
                       {card.title}
                     </h3>
-                    <p className="text-base text-[#595959]">{card.description}</p>
+                    <p className="text-base text-[#595959]">
+                      {card.description}
+                    </p>
                   </div>
-                ));
-              })()}
+                </div>
+                
+                ))}
             </div>
           </div>
-        ) : (
+        {/* ) : (
           <div className="flex flex-col">
             <div className="text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4">
@@ -149,7 +158,7 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
           
             </div>
           </div>
-        )}
+        )} */}
       </Wrapper>
     </section>
   );

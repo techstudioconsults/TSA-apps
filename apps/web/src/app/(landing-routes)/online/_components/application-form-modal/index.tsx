@@ -20,7 +20,11 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh]">
+      <DialogContent
+        className="max-w-2xl max-h-[90vh]"
+        onPointerDownOutside={onClose}
+        onEscapeKeyDown={onClose}
+      >
         <div className="pr-4">
           <LeadForm slug={course.slug} />
         </div>
@@ -28,4 +32,3 @@ export const ApplicationFormModal: React.FC<ApplicationFormModalProps> = ({
     </Dialog>
   );
 };
-

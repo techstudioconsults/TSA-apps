@@ -35,29 +35,34 @@ const OnlineCoursePage = async ({ params }: OnlineCoursePageProps) => {
   return (
     <main className="open-sans">
       <OnlineCourseHero course={course} />
-      {isFullStack && <WhyStruggleSection />}
-      {isFullStack && <GuidedPathSection />}
-      {isUIUX && <WhyLearnUIUXSection course={course} />}
+      <WhoShouldJoinSection course={course} />
+      {/* {isFullStack && <WhyStruggleSection />} */}
+      {/* {isFullStack && <GuidedPathSection />} */}
+      {/* {isUIUX && <WhyLearnUIUXSection course={course} />} */}
       <WhyChooseSection course={course} />
-      {course.coreSkills && <CoreSkillsSection course={course} />}
-      {isDataAnalytics && <OutcomesSection course={course} />}
+      {/* {course.coreSkills && <CoreSkillsSection course={course} />} */}
+      {/* {isDataAnalytics && <OutcomesSection course={course} />} */}
       <LearningJourneySection course={course} />
-      {isUIUX  && <TestimonialsSection course={course} />}
-      {isFullStack && <TestimonialsSection course={course} />}
-      {isUIUX && <OutcomesSection course={course} />}
-      {isFullStack && <OutcomesSection course={course} />}
-      {isUIUX && <BonusesSection course={course} />}
-      {isUIUX && <PricingSection course={course} />}
-      {isCybersecurity && <WhoShouldJoinSection course={course} />}
-      {isUIUX && <WhoShouldJoinSection course={course} />}
-      {isDataAnalytics && <WhoShouldJoinSection course={course} />}
-      {!isDataAnalytics || isUIUX && <OutcomesSection course={course} />}
-      {isCybersecurity && <OutcomesSection course={course} />}
-      {!isUIUX || isFullStack && <TestimonialsSection course={course} />}
-      {isDataAnalytics && <TestimonialsSection course={course}/>}
-      {isCybersecurity && <TestimonialsSection course={course}/>}
-      {!isUIUX  && <BonusesSection course={course} />}
-      {!isUIUX  && <PricingSection course={course} />}
+      <TestimonialsSection course={course} />
+      <OutcomesSection course={course} />
+      <BonusesSection course={course} />
+      <PricingSection course={course} />
+      {/* {isUIUX  && <TestimonialsSection course={course} />} */}
+      {/* {isFullStack && <TestimonialsSection course={course} />} */}
+      {/* {isUIUX && <OutcomesSection course={course} />} */}
+      {/* {isFullStack && <OutcomesSection course={course} />} */}
+      {/* {isUIUX && <BonusesSection course={course} />} */}
+      {/* {isUIUX && <PricingSection course={course} />} */}
+      {/* {isCybersecurity && <WhoShouldJoinSection course={course} />} */}
+      {/* {isUIUX && <WhoShouldJoinSection course={course} />} */}
+      {/* {isDataAnalytics && <WhoShouldJoinSection course={course} />} */}
+      {/* {!isDataAnalytics || isUIUX && <OutcomesSection course={course} />} */}
+      {/* {isCybersecurity && <OutcomesSection course={course} />} */}
+      {/* {!isUIUX || isFullStack && <TestimonialsSection course={course} />} */}
+      {/* {isDataAnalytics && <TestimonialsSection course={course}/>} */}
+      {/* {isCybersecurity && <TestimonialsSection course={course}/>} */}
+      {/* {!isUIUX  && <BonusesSection course={course} />} */}
+      {/* {!isUIUX  && <PricingSection course={course} />} */}
       <FAQSection course={course} />
       <CTASection course={course} />
       {!isFullStack && !isUIUX && !isCybersecurity && !isDataAnalytics && <WhoShouldJoinSection course={course} />}

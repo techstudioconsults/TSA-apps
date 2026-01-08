@@ -26,13 +26,13 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
         );
       });
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-20">
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4 max-w-2xl mx-auto">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-xl mx-auto">
             Trusted by Over 3,000 Graduates Worldwide
           </h2>
-          <p className="text-lg md:text-xl lg:text-2xl text-[#595959] max-w-5xl mx-auto">
+          <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-5xl mx-auto">
           Our graduates work at leading Nigerian and international companies
           </p>
         </div>

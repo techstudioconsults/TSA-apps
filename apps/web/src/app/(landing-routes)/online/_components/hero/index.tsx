@@ -27,11 +27,11 @@ export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
   return (
     <>
       <header className="relative lg:min-h-[737px] pt-32 md:pt-44 w-full bg-[#162143]  py-[100px] bg-cover bg-center text-white overflow-hidden" style={{ backgroundImage: `url(${course.hero.backgroundImage})`}}> 
-      <div className="absolute inset-0 bg-[#1F2666]/60 z-0" /> 
+      <div className="absolute inset-0  z-0" /> 
         <Wrapper className="relative max-w-7xl">
           <section className="flex flex-col lg:flex-row justify-between gap-10  items-center text-center lg:text-left">
-            <div className="w-full lg:w-[45%]">
-            <h1 className="mb-5 lg:mb-8 text-3xl lg:text-4xl font-bold text-white">
+            <div className="w-full lg:w-[44%]">
+            <h1 className="mb-5 lg:mb-8 text-3xl lg:text-[42px] font-bold text-white">
               {course.hero.title}
             </h1>
             <p className="mb-9 lg:mb-12 text-lg md:text-xl text-white/90 text-center lg:text-start">
@@ -59,7 +59,7 @@ export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
 
 
             </div>
-            <div className="w-full lg:w-[40%]">
+            <div className="w-full lg:w-[43%]">
               <Image src={course.hero.image} width={100} height={100} alt="" className="w-full border-4 border-[#5F76E6] rounded-[27px]"/>
             </div>
           </section>

@@ -47,7 +47,11 @@ export interface OnlineCourse {
   outcomes: {
     title: string;
     description?: string;
-    items: string[];
+    items: Array<{
+      icon: string;
+      title: string;
+      description: string;
+    }>;
   };
   testimonials: Array<{
     name: string;
@@ -87,27 +91,42 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Become a Cybersecurity Specialist Career-Ready in Just 12 Weeks",
       subTitle: "Learn to analyze, visualize, and model data using industry-standard tools fully online, beginner-friendly, and designed to help you build a strong data portfolio.",
-      backgroundImage: "/images/cyber.png",
+      backgroundImage: "/images/programming-coding1.png",
       image: "/images/cybersecurity.png"
     },
     whyChoose: {
-      title: "Why Choose This Cybersecurity Training Program?",
-      description: "Our program equips you with the skills, and hands-on experience to defend against modern cyber threats.",
+      title: "Why Choose Our Online Cyber Security Program?",
+      description: "A practical, beginner-friendly program focused on real-world cybersecurity skills and hands-on practice.",
       features: [
         {
-          icon: "/icons/Brain.svg",
-          title: "Think Like a Defender",
-          description: "Learn how attackers think—and how to stop them.",
+          icon: "/icons/MonitorPlay.svg",
+          title: "Online Classes",
+          description: "Live, interactive sessions with guided walkthroughs and real-time Q&A.",
         },
         {
-          icon: "/icons/Warning.svg",
-          title: "Identify & Mitigate Threats",
-          description: "Detect vulnerabilities and respond to incidents effectively.",
+          icon: "/icons/wifi.svg",
+          title: "100% Online Learning",
+          description: "Learn from anywhere with just your laptop and internet connection .",
         },
         {
-          icon: "/icons/LockKey.svg",
-          title: "Secure Digital Assets",
-          description: "Protect systems, and applications using industry best practices.",
+          icon: "/icons/BookOpen.svg",
+          title: "Beginner-Friendly",
+          description: "No prior IT or security experience required. We start from the basics.",
+        },
+        {
+          icon: "/icons/Kanban.svg",
+          title: "Hands-On Projects",
+          description: "Practice with real-world security scenarios and practical exercises.",
+        },
+        {
+          icon: "/icons/PenNib.svg",
+          title: "Modern Tools",
+          description: "Learn and work with industry-relevant tools for networking & system security.",
+        },
+        {
+          icon: "/icons/PersonSimpleSwim.svg",
+          title: "Complete Journey",
+          description: "From threat awareness and network security to access control, etc.",
         },
       ],
     },
@@ -209,40 +228,70 @@ export const onlineCourses: OnlineCourse[] = [
     },
     whoShouldJoin: {
       title: "Who Should Join This Program?",
-      description: "Our program is designed for everyone, no matter where you are in your career journey.",
+      description: "Our program is designed to meet you where you are and take you where you want to go.",
       audiences: [
         {
-          icon: "/icons/Users2.svg",
-          title: "Complete Beginners",
-          description: "No prior IT or security experience needed",
+          icon: "/icons/RocketLaunch.svg",
+          title: "Absolute Beginners",
+          description: "Starting a career in cybersecurity with no prior IT or security experience",
         },
         {
-          icon: "/icons/Laptop.svg",
-          title: "IT Professionals",
-          description: "IT professionals transitioning into cybersecurity",
+          icon: "/icons/Briefcase.svg",
+          title: "Professionals Upskilling",
+          description: "Adding in-demand cybersecurity skills to strengthen your technical profile",
         },
         {
-          icon: "/icons/GraduationCap2.svg",
-          title: "Students & Graduates",
-          description: "Students and graduates ready to secure tech roles",
+          icon: "/icons/ArrowsClockwise.svg",
+          title: "Career Switchers",
+          description: "Transitioning into cybersecurity roles from IT or non-tech backgrounds",
         },
-        {
-          icon: "/icons/Briefcase2.svg",
-          title: "Career Changers",
-          description: "Aspiring Analysts, Engineers, or Incident Responders",
-        },
+        // {
+        //   icon: "/icons/Briefcase2.svg",
+        //   title: "Career Changers",
+        //   description: "Aspiring Analysts, Engineers, or Incident Responders",
+        // },
       ],
     },
     outcomes: {
       title: "What You'll Be Able to Do After 12 Weeks",
       description: "Graduate with practical, job-ready skills that employers are actively seeking in the cybersecurity field.",
       items: [
-        "Master core cybersecurity principles & terminology",
-        "Secure networks, systems, and applications",
-        "Detect, analyze, and respond to cyber threats",
-        "Implement access control and encryption",
-        "Apply security policies and compliance standards",
-        "Build a strong portfolio showcasing your skills",
+        {
+              icon: "/icons/mark.svg",
+              title: "Threat Analysis & Risk Management",
+              description: "Identify,and prioritize security threats while implementing risk mitigation strategies.",
+            },
+            {
+              icon: "/icons/mark.svg",
+              title: "Network & System Security",
+              description: "Secure networks, systems, and infrastructure from intrusions.",
+            },
+            {
+              icon: "/icons/mark.svg",
+              title: "Access Control & Identity",
+              description: "Implement authentication and authorization systems.",
+            },
+            {
+              icon: "/icons/mark.svg",
+              title: "Cryptography & Data Protection",
+              description: "Master encryption and secure data handling techniques.",
+            },
+            {
+              icon: "/icons/mark.svg",
+              title: "Web & Application Security",
+              description: "Prevent common web vulnerabilities using OWASP best practices.",
+            },
+            {
+              icon: "/icons/mark.svg",
+              title: "Incident Response & Compliance",
+              description: "Handle security incidents and meet compliance standards.",
+            },
+        // "Identify,and prioritize security threats while implementing risk mitigation strategies.",
+        // "Secure networks, systems, and infrastructure from intrusions.",
+        // "Implement authentication and authorization systems.",
+        // "Master encryption and secure data handling techniques.",
+        // "Prevent common web vulnerabilities using OWASP best practices.",
+        // "Handle security incidents and meet compliance standards.",
       ],
     },
     testimonials: [
@@ -331,32 +380,62 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Turn Your Curiosity Into a Data Career in Just 12 Weeks",
       subTitle: "Learn to analyze, visualize, and model data using industry-standard tools fully online, beginner-friendly, and designed to help you build a strong data portfolio.",
-      backgroundImage: "/images/data.png",
+      backgroundImage: "/images/programming-coding1.png",
       image: "/images/data-analysis.png"
     },
     whyChoose: {
-      title: "What You'll Learn and Build",
-      description: "Everything you need to go from complete beginner to job-ready data analyst.",
+      title: "Why Choose Our Online Data Analysis Program?",
+      description: "A practical, beginner-friendly program focused on real-world data skills and portfolio-ready projects.",
       features: [
+        // {
+        //   icon: "/icons/RocketLaunch.svg",
+        //   title: "Absolute Beginners",
+        //   description: "Starting a career in data with no prior experience",
+        // },
+        // {
+        //   icon: "/icons/Briefcase.svg",
+        //   title: "Professionals Upskilling",
+        //   description: "Adding high-demand data skills to your toolkit",
+        // },
+        // {
+        //   icon: "/icons/ArrowsClockwise.svg",
+        //   title: "Career Switchers",
+        //   description: "Transitioning into analytics or tech from another field",
+        // },
+        // {
+        //   icon: "/icons/LightbulbFilament.svg",
+        //   title: "Curious Learners",
+        //   description: "Anyone wanting practical, hands-on data experience",
+        // },
         {
-          icon: "/icons/RocketLaunch.svg",
-          title: "Absolute Beginners",
-          description: "Starting a career in data with no prior experience",
+          icon: "/icons/MonitorPlay.svg",
+          title: "Online Classes",
+          description: "Live, interactive sessions with guided walkthroughs and real-time Q&A.",
         },
         {
-          icon: "/icons/Briefcase.svg",
-          title: "Professionals Upskilling",
-          description: "Adding high-demand data skills to your toolkit",
+          icon: "/icons/wifi.svg",
+          title: "100% Online Learning",
+          description: "Learn from anywhere with just your laptop and internet connection.",
         },
         {
-          icon: "/icons/ArrowsClockwise.svg",
-          title: "Career Switchers",
-          description: "Transitioning into analytics or tech from another field",
+          icon: "/icons/BookOpen.svg",
+          title: "Beginner-Friendly",
+          description: "No prior data experience needed, we start from the fundamentals.",
         },
         {
-          icon: "/icons/LightbulbFilament.svg",
-          title: "Curious Learners",
-          description: "Anyone wanting practical, hands-on data experience",
+          icon: "/icons/Kanban.svg",
+          title: "Hands-On Projects",
+          description: "Work on real-world datasets and practical tasks to reinforce learning.",
+        },
+        {
+          icon: "/icons/PenNib.svg",
+          title: "Modern Tools",
+          description: "Learn and practice with Excel, SQL, Python, and Power BI / Tableau.",
+        },
+        {
+          icon: "/icons/PersonSimpleSwim.svg",
+          title: "Complete Journey",
+          description: "From data cleaning and analysis to visualization and basic machine learning.",
         },
       ],
     },
@@ -424,45 +503,71 @@ export const onlineCourses: OnlineCourse[] = [
       description: "Our program is designed to meet you where you are and take you where you want to go.",
       audiences: [
         {
-          icon: "/icons/Globe2.svg",
-          title: "100% Online Learning",
-          description: "Learn from anywhere with flexible scheduling",
+          icon: "/icons/RocketLaunch.svg",
+          title: "Absolute Beginners",
+          description: "Starting a career in data with no prior experience",
         },
         {
-          icon: "/icons/Database.svg",
-          title: "Hands-On Real-World Datasets",
-          description: "Practice with actual industry data",
+          icon: "/icons/Briefcase.svg",
+          title: "Professionals Upskilling",
+          description: "Adding high-demand data skills to your toolkit",
         },
         {
-          icon: "/icons/Stack.svg",
-          title: "Full Data Stack Training",
-          description: "Master the complete data toolkit",
+          icon: "/icons/ArrowsClockwise.svg",
+          title: "Career Switchers",
+          description: "Transitioning into analytics or tech from another field",
         },
-        {
-          icon: "/icons/Headset.svg",
-          title: "Mentorship Support",
-          description: "Get guidance from experienced professionals",
-        },
-        {
-          icon: "/icons/Briefcase2.svg",
-          title: "Portfolio-Ready",
-          description: "Build projects that impress employers to hire you",
-        },
-        {
-          icon: "/icons/BookOpen2.svg",
-          title: "Beginner-friendly Structure",
-          description: "No prior experience require",
-        },
+        // {
+        //   icon: "/icons/Briefcase2.svg",
+        //   title: "Portfolio-Ready",
+        //   description: "Build projects that impress employers to hire you",
+        // },
+        // {
+        //   icon: "/icons/BookOpen2.svg",
+        //   title: "Beginner-friendly Structure",
+        //   description: "No prior experience require",
+        // },
       ],
     },
     outcomes: {
-      title: "What You'll Achieve in 12 Weeks",
+      title: "Data Analysis Skills You'll Gain",
+      description: "Build practical data skills to analyze, visualize, and extract insights from real-world data.",
       items: [
-        "Gain core data analysis skills and industry-relevant tools",
-        "Build real-world projects for your portfolio",
-        "Receive job search assistance and interview guidance",
-        "Get personalized support throughout your learning journey",
-        "Study online with convenient access to learn at your own pace",
+        {
+          icon: "/icons/mark.svg",
+          title: "Data Cleaning & Preparation",
+          description: "Organize, clean, and prepare raw data for accurate analysis.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "SQL & Data Querying",
+          description: "Query, filter, and join datasets using SQL to answer real business questions.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Data Analysis with Python",
+          description: "Analyze datasets using Python, NumPy, and Pandas for deeper insights.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Data Visualization & Dashboards",
+          description: "Create clear, interactive dashboards using Power BI or Tableau.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Statistical Thinking & Insights",
+          description: "Interpret trends, patterns, and results to support decision-making.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Introductory Machine Learning",
+          description: "Build basic predictive models and understand core machine learning concepts.",
+        },
+        // "Gain core data analysis skills and industry-relevant tools",
+        // "Build real-world projects for your portfolio",
+        // "Receive job search assistance and interview guidance",
+        // "Get personalized support throughout your learning journey",
+        // "Study online with convenient access to learn at your own pace",
       ],
     },
     testimonials: [
@@ -563,43 +668,73 @@ export const onlineCourses: OnlineCourse[] = [
       image: "/images/full-stack.png"
     },
     whyChoose: {
-      title: "What You'll Learn and Build",
-      description: "Here's how we help you go from complete beginner to a job-ready full-stack developer in 18 weeks.",
+      title: "Why Choose Our Online Full Stack Web Development Program?",
+      description: "A practical, beginner-friendly program focused on building real-world web applications and portfolio-ready projects.",
       features: [
-        {
-          icon: "/icons/Code.svg",
-          title: "Learn by Doing",
-          description: "Build websites, dashboards, APIs, and full-stack apps from day one.",
-        },
-        {
-          icon: "/icons/CalendarBlank.svg",
-          title: "Structured Curriculum",
-          description: "HTML→ CSS→Tailwind→JavaScript →TypeScript→React→Node.js→ Express→MongoDB→ SQL",
-        },
+        // {
+        //   icon: "/icons/Code.svg",
+        //   title: "Learn by Doing",
+        //   description: "Build websites, dashboards, APIs, and full-stack apps from day one.",
+        // },
+        // {
+        //   icon: "/icons/CalendarBlank.svg",
+        //   title: "Structured Curriculum",
+        //   description: "HTML→ CSS→Tailwind→JavaScript →TypeScript→React→Node.js→ Express→MongoDB→ SQL",
+        // },
+        // {
+        //   icon: "/icons/MonitorPlay.svg",
+        //   title: "Live Weekend Learning",
+        //   description: "Perfect for full-time workers and busy schedules. Learn without quitting your job.",
+        // },
+        // {
+        //   icon: "/icons/Clock.svg",
+        //   title: "Self-Paced Recordings",
+        //   description: "Missed a class? Catch up anytime with high-quality recorded sessions.",
+        // },
+        // {
+        //   icon: "/icons/BriefcaseMetal.svg",
+        //   title: "Real Portfolio Projects",
+        //   description: "Graduate with 3+ portfolio-ready projects to show employers what you can build.",
+        // },
+        // {
+        //   icon: "/icons/UsersThree.svg",
+        //   title: "Community & Support",
+        //   description: "Access tutors + active student community for daily help and networking.",
+        // },
         {
           icon: "/icons/MonitorPlay.svg",
-          title: "Live Weekend Learning",
-          description: "Perfect for full-time workers and busy schedules. Learn without quitting your job.",
+          title: "Online Classes",
+          description: "Live, interactive coding sessions with guided explanations and live demos",
         },
         {
-          icon: "/icons/Clock.svg",
-          title: "Self-Paced Recordings",
-          description: "Missed a class? Catch up anytime with high-quality recorded sessions.",
+          icon: "/icons/wifi.svg",
+          title: "100% Online Learning",
+          description: "Learn from anywhere with just your laptop and internet connection.",
         },
         {
-          icon: "/icons/BriefcaseMetal.svg",
-          title: "Real Portfolio Projects",
-          description: "Graduate with 3+ portfolio-ready projects to show employers what you can build.",
+          icon: "/icons/BookOpen.svg",
+          title: "Beginner-Friendly",
+          description: "No prior coding experience needed, we start from the fundamentals.",
         },
         {
-          icon: "/icons/UsersThree.svg",
-          title: "Community & Support",
-          description: "Access tutors + active student community for daily help and networking.",
+          icon: "/icons/Kanban.svg",
+          title: "Hands-On Projects",
+          description: "Build real-world frontend and backend applications to reinforce learning.",
+        },
+        {
+          icon: "/icons/PenNib.svg",
+          title: "Modern Tools",
+          description: "Learn and work with modern technologies.",
+        },
+        {
+          icon: "/icons/PersonSimpleSwim.svg",
+          title: "Complete Journey",
+          description: "From frontend interfaces to backend logic and deployment.",
         },
       ],
     },
     learningJourney: {
-      title: "What You'll Learn in 18 Weeks",
+      title: "What You'll Learn in 16 Weeks",
       description: "A comprehensive learning journey designed to take you from beginner to a job-ready full-stack developer.",
       units: [
         {
@@ -660,38 +795,68 @@ export const onlineCourses: OnlineCourse[] = [
     },
     whoShouldJoin: {
       title: "Who Should Join This Program?",
-      description: "Our program is designed for everyone, no matter where you are in your career journey.",
+      description: "Our program is designed to meet you where you are and take you where you want to go.",
       audiences: [
         {
-          icon: "beginner",
-          title: "Complete Beginners",
-          description: "No prior coding experience required.",
+          icon: "/icons/RocketLaunch.svg",
+          title: "Absolute Beginners",
+          description: "Starting a career in web development with no prior coding experience",
         },
         {
-          icon: "career",
+          icon: "/icons/Briefcase.svg",
+          title: "Professionals Upskilling",
+          description: "Adding modern frontend and backend development skills to your toolkit",
+        },
+        {
+          icon: "/icons/ArrowsClockwise.svg",
           title: "Career Switchers",
-          description: "Transition into tech from any field.",
+          description: "Transitioning into software development from another career path",
         },
-        {
-          icon: "student",
-          title: "Students & Graduates",
-          description: "Gain practical skills to kickstart your career.",
-        },
-        {
-          icon: "professional",
-          title: "IT Professionals",
-          description: "Enhance your existing skills and become full-stack ready.",
-        },
+        // {
+        //   icon: "professional",
+        //   title: "IT Professionals",
+        //   description: "Enhance your existing skills and become full-stack ready.",
+        // },
       ],
     },
     outcomes: {
-      title: "What You'll Get in 18 Weeks",
-      description: "Everything you need to transition from beginner to job-ready full-stack engineer",
+      title: "Full Stack Web Development Skills You'll Gain",
+      description: "Deploy applications and connect frontend, backend, and databases",
       items: [
-        "18 weeks live training",
-        "Quality curriculum",
-        "Mentor support",
-        "Certificate included",
+        {
+          icon: "/icons/mark.svg",
+          title: "Frontend Development",
+          description: "Build responsive user interfaces using HTML, CSS, JavaScript, and modern frameworks.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "JavaScript & TypeScript Fundamentals",
+          description: "Write clean, reliable code using modern JavaScript and TypeScript.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Backend Development",
+          description: "Create servers, APIs, and application logic using Node.js and Express.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Database Management",
+          description: "Store and manage data using databases like MongoDB and SQL.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Version Control & Collaboration",
+          description: "Work professionally with Git, GitHub, branches, and pull requests.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Deployment & Full-Stack Integration",
+          description: "Deploy applications and connect frontend, backend, and databases",
+        },
+        // "18 weeks live training",
+        // "Quality curriculum",
+        // "Mentor support",
+        // "Certificate included",
       ],
     },
     testimonials: [
@@ -784,42 +949,72 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Learn How to Design Beautiful, User-Friendly Digital Products",
       subTitle: "Our program is designed to help you develop the skills, knowledge, and portfolio needed to launch your career in UI/UX design.",
-      backgroundImage: "/images/uiux.png",
+      backgroundImage: "/images/programming-coding1.png",
       image: "/images/ui-ux-design.png"
     },
     whyChoose: {
       title: "Why Learn UI/UX Design?",
       description: "Everything you need to launch your design career, packaged into a flexible format.",
       features: [
+        // {
+        //   icon: "/icons/VideoCamera.svg",
+        //   title: "Online Classes",
+        //   description: "Interactive sessions with real-time feedback and Q&A",
+        // },
+        // {
+        //   icon: "/icons/wifi.svg",
+        //   title: "100% Online Learning",
+        //   description: "Learn from anywhere with just your laptop and internet connection",
+        // },
+        // {
+        //   icon: "/icons/BookOpen.svg",
+        //   title: "Beginner-Friendly",
+        //   description: "No prior design experience needed, we start from the fundamentals",
+        // },
+        // {
+        //   icon: "/icons/Kanban.svg",
+        //   title: "Hands-On Projects",
+        //   description: "Apply what you learn through real-world design challenges",
+        // },
+        // {
+        //   icon: "/icons/PenNib.svg",
+        //   title: "Modern Tools",
+        //   description: "Master industry-standard tools like Figma, FigJam, and Miro",
+        // },
+        // {
+        //   icon: "/icons/PersonSimpleSwim.svg",
+        //   title: "Complete Journey",
+        //   description: "From research to prototyping — learn the full product design process",
+        // },
         {
-          icon: "/icons/VideoCamera.svg",
+          icon: "/icons/MonitorPlay.svg",
           title: "Online Classes",
           description: "Interactive sessions with real-time feedback and Q&A",
         },
         {
           icon: "/icons/wifi.svg",
           title: "100% Online Learning",
-          description: "Learn from anywhere with just your laptop and internet connection",
+          description: "Learn from anywhere with just your laptop and internet connection.",
         },
         {
           icon: "/icons/BookOpen.svg",
           title: "Beginner-Friendly",
-          description: "No prior design experience needed, we start from the fundamentals",
+          description: "No prior design experience needed, we start from the fundamentals.",
         },
         {
           icon: "/icons/Kanban.svg",
           title: "Hands-On Projects",
-          description: "Apply what you learn through real-world design challenges",
+          description: "Apply what you learn through real-world design challenges.",
         },
         {
           icon: "/icons/PenNib.svg",
           title: "Modern Tools",
-          description: "Master industry-standard tools like Figma, FigJam, and Miro",
+          description: "Master industry-standard tools like Figma, FigJam, and Miro.",
         },
         {
           icon: "/icons/PersonSimpleSwim.svg",
           title: "Complete Journey",
-          description: "From research to prototyping — learn the full product design process",
+          description: "From research to prototyping — learn the full product design process.",
         },
       ],
     },
@@ -888,49 +1083,79 @@ export const onlineCourses: OnlineCourse[] = [
       description: "Our program is designed to meet you where you are and take you where you want to go.",
       audiences: [
         {
-          icon: "/icons/Users2.svg",
-          title: "Beginners",
-          description: "Starting from scratch with no design experience",
+          icon: "/icons/RocketLaunch.svg",
+          title: "Absolute Beginners",
+          description: "Starting a career in UI/UX design with no prior design experience",
         },
         {
-          icon: "/icons/ArrowsClockwise2.svg",
+          icon: "/icons/Briefcase.svg",
+          title: "Professionals Upskilling",
+          description: "Adding product design and UI/UX skills to your existing career toolkit",
+        },
+        {
+          icon: "/icons/ArrowsClockwise.svg",
           title: "Career Switchers",
-          description: "Transitioning from another field into tech",
+          description: "Transitioning into product design from non-design or non-tech roles",
         },
-        {
-          icon: "/icons/PaintBrush.svg",
-          title: "Creatives & Artists",
-          description: "Looking to apply creative skills digitally",
-        },
-        {
-          icon: "/icons/GraduationCap2.svg",
-          title: "Students",
-          description: "Building skills for future career opportunities",
-        },
-        {
-          icon: "/icons/Briefcase2.svg",
-          title: "Young Professionals",
-          description: "Adding design skills to your toolkit",
-        },
-        {
-          icon: "/icons/Lightbulb.svg",
-          title: "Curious Minds",
-          description: "Anyone interested in product or UX/UI design",
-        },
+        // {
+        //   icon: "/icons/GraduationCap2.svg",
+        //   title: "Students",
+        //   description: "Building skills for future career opportunities",
+        // },
+        // {
+        //   icon: "/icons/Briefcase2.svg",
+        //   title: "Young Professionals",
+        //   description: "Adding design skills to your toolkit",
+        // },
+        // {
+        //   icon: "/icons/Lightbulb.svg",
+        //   title: "Curious Minds",
+        //   description: "Anyone interested in product or UX/UI design",
+        // },
       ],
     },
     outcomes: {
       title: "What You'll Be Able to Do After 12 Weeks",
       description: "Great digital products don't happen by accident, they're intentionally designed with empathy, clarity, and purpose.. UI/UX remains one of the most in-demand careers in tech and digital product teams worldwide.",
       items: [
-        "Create wireframes & flows",
-        "user journeys",
-        "Conduct user research",
-        "Design modern UI screens",
-        "Build interactive prototypes",
-        "Usability Testing",
-        "Present a full product case study",
-        "Build a polished portfolio project",
+        {
+          icon: "/icons/mark.svg",
+          title: "User Research & Problem Definition",
+          description: "Understand user needs through research, interviews, and insights to define problems.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Information Architecture & UX Flows",
+          description: "Structure content and design clear user journeys, flows, and navigation systems.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Wireframing & Layout Design",
+          description: "Create low- to mid-fidelity wireframes that translate ideas into usable layouts.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Visual & Interface Design",
+          description: "Design clean, modern interfaces with strong design principles.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Prototyping & Interaction Design",
+          description: "Build interactive prototypes to test ideas and demonstrate product behavior.",
+        },
+        {
+          icon: "/icons/mark.svg",
+          title: "Usability Testing & Iteration",
+          description: "Validate designs through testing and refine solutions based on feedback.",
+        },
+        // "Create wireframes & flows",
+        // "user journeys",
+        // "Conduct user research",
+        // "Design modern UI screens",
+        // "Build interactive prototypes",
+        // "Usability Testing",
+        // "Present a full product case study",
+        // "Build a polished portfolio project",
       ],
     },
     testimonials: [

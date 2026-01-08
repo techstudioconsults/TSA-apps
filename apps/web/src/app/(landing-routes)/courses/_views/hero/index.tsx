@@ -11,7 +11,7 @@ interface CourseHeroProperty {
 
 export const Hero: FC<CourseHeroProperty> = ({ intro, slug }) => {
   return (
-    <header className="min-h-[737px] pt-32 w-full bg-[#162143DE] bg-[url('/images/guy-on-laptop.png')] py-[100px] bg-cover bg-center text-white">
+    <header className="min-h-[737px] pt-32 w-full bg-[#162143DE] bg-[url('/images/guy-on-laptop.png')]  py-[100px] bg-cover bg-center text-white">
       <Wrapper>
         <section className="flex flex-col items-center gap-[50px] text-center lg:gap-[171px] xl:flex-row xl:text-left">
           <div className="flex-1">
