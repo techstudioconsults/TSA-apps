@@ -23,7 +23,7 @@ export const DashboardCardSkeleton = () => {
 
 export const DashboardCardsLoader = () => {
   return (
-    <div className="grid grid-cols-3 justify-between gap-5 py-8">
+    <div className="grid grid-cols-1 gap-5 py-8 sm:grid-cols-2 lg:grid-cols-3">
       <DashboardCardSkeleton />
       <DashboardCardSkeleton />
       <DashboardCardSkeleton />

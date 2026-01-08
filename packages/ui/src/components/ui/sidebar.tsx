@@ -2,20 +2,13 @@
 
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Menu } from "lucide-react";
 import * as React from "react";
 import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "./sheet";
 import { Separator } from "@radix-ui/react-context-menu";
 import { Input } from "./input";
 import { Skeleton } from "./skeleton";
@@ -23,6 +16,7 @@ import { Button } from "./button";
 import { Tooltip } from "./tooltip";
 import { useIsMobile } from "@workspace/ui/hooks";
 import { cn } from "@workspace/ui/lib";
+import { MdCancel } from "react-icons/md";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -183,13 +177,24 @@ function Sidebar({
 
   if (isMobile) {
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...properties}>
-        <SheetContent
+      <>
+        <div
+          data-sidebar="backdrop"
+          className={cn(
+            "fixed inset-0 z-40 bg-black/40 transition-all duration-300",
+            openMobile
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none",
+          )}
+          onClick={() => setOpenMobile(false)}
+        />
+        <div
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
           className={cn(
-            "bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden",
+            "fixed inset-y-0 left-0 z-50 flex h-full w-(--sidebar-width) transform-gpu bg-sidebar text-sidebar-foreground p-0 transition-transform duration-300 ease-in-out",
+            openMobile ? "translate-x-0" : "-translate-x-full",
             className,
           )}
           style={
@@ -197,15 +202,11 @@ function Sidebar({
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
             } as React.CSSProperties
           }
-          side={side}
+          {...properties}
         >
-          <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
-          </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
-        </SheetContent>
-      </Sheet>
+        </div>
+      </>
     );
   }
 
@@ -278,9 +279,9 @@ function SidebarTrigger({
       {...properties}
     >
       {open ? (
-        <ChevronLeft size={16} className="stroke-3" />
+        <Menu size={16} className="stroke-3" />
       ) : (
-        <ChevronRight size={16} className="stroke-3" />
+        <MdCancel size={16} className="" />
       )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>

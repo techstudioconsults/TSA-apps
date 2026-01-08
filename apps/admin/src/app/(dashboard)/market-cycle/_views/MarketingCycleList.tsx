@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Calendar, Loader, Users } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 
 import { Icons } from "@workspace/ui/icons";
 import { CustomButton, EmptyState, ErrorEmptyState } from "@workspace/ui/lib";
@@ -16,6 +16,8 @@ import {
 import { useModalStore } from "@/store/modalStore";
 import MarketingCycleForm from "./MarketingCycleForm";
 import ConfirmationModal from "@/app/(dashboard)/_components/modals/ConfirmationModal";
+import { Card } from "iconsax-reactjs";
+import { CardContent, CardFooter, CardHeader } from "@workspace/ui/components";
 
 export default function MarketingCycleList() {
   const router = useRouter();
@@ -63,7 +65,33 @@ export default function MarketingCycleList() {
   };
 
   const content = (() => {
-    if (isLoading) return <Loader />;
+    if (isLoading) {
+      return (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Card
+              key={i}
+              className="animate-pulse flex flex-col justify-between min-h-[274px] border-none shadow-none"
+            >
+              <CardHeader>
+                <div className="h-4 w-1/2 rounded bg-muted" />
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <div className="h-3 w-full rounded bg-muted" />
+                  <div className="size-3/4 rounded bg-muted" />
+                  <div className="h-3 w-2/4 rounded bg-muted" />
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-end gap-4">
+                <div className="h-8 w-24 rounded bg-muted" />
+                <div className="h-8 w-24 rounded bg-muted" />
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      );
+    }
     if (error) return <ErrorEmptyState onRetry={refetch} />;
     if (!cycles.length) {
       return (
