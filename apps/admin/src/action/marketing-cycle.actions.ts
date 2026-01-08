@@ -1,7 +1,7 @@
 import {
   MarketingCycle,
   MarketingCycleFormData,
-} from "~/schemas/marketing-cycle.schema";
+} from "@/schemas/marketing-cycle.schema";
 
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/marketing-cycles`;
 

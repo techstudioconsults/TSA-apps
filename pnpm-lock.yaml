@@ -69,7 +69,7 @@ importers:
     dependencies:
       "@bprogress/next":
         specifier: ^3.2.12
-        version: 3.2.12(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 3.2.12(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       "@googlemaps/js-api-loader":
         specifier: ^1.16.10
         version: 1.16.10
@@ -117,7 +117,7 @@ importers:
         version: 3.58.1
       "@vercel/speed-insights":
         specifier: ^1.2.0
-        version: 1.3.0(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
+        version: 1.3.0(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
       "@wojtekmaj/react-hooks":
         specifier: ^1.22.0
         version: 1.22.0(@types/react@19.2.7)(react@19.2.0)
@@ -173,20 +173,20 @@ importers:
         specifier: ^11.18.2
         version: 11.18.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next:
-        specifier: ^15.4.5
-        version: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: 15.4.10
+        version: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-auth:
         specifier: 5.0.0-beta.28
-        version: 5.0.0-beta.28(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 5.0.0-beta.28(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nextjs-toploader:
         specifier: ^3.8.16
-        version: 3.9.17(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 3.9.17(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nuqs:
         specifier: ^2.4.3
-        version: 2.8.2(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 2.8.2(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       openai:
         specifier: ^4.104.0
         version: 4.104.0(ws@8.18.3)(zod@3.25.76)
@@ -331,7 +331,7 @@ importers:
     dependencies:
       "@bprogress/next":
         specifier: ^3.2.12
-        version: 3.2.12(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 3.2.12(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       "@googlemaps/js-api-loader":
         specifier: ^1.16.10
         version: 1.16.10
@@ -379,7 +379,7 @@ importers:
         version: 3.58.1
       "@vercel/speed-insights":
         specifier: ^1.2.0
-        version: 1.3.0(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
+        version: 1.3.0(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
       "@wojtekmaj/react-hooks":
         specifier: ^1.22.0
         version: 1.22.0(@types/react@19.2.7)(react@19.2.0)
@@ -435,20 +435,20 @@ importers:
         specifier: ^11.18.2
         version: 11.18.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next:
-        specifier: ^15.4.5
-        version: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: 15.4.10
+        version: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-auth:
         specifier: 5.0.0-beta.28
-        version: 5.0.0-beta.28(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 5.0.0-beta.28(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nextjs-toploader:
         specifier: ^3.8.16
-        version: 3.9.17(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 3.9.17(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nuqs:
         specifier: ^2.4.3
-        version: 2.8.2(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 2.8.2(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       openai:
         specifier: ^4.104.0
         version: 4.104.0(ws@8.18.3)(zod@3.25.76)
@@ -809,6 +809,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.17)
+      use-debounce:
+        specifier: ^10.0.5
+        version: 10.0.6(react@19.2.0)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2847,6 +2850,12 @@ packages:
         integrity: sha512-IHeyk2s9/fVDAGDLNbBkCSG8XBabhuMajiaJggjsg4GyFIswh78DzLo5Nl5th8QTs3U/teYeczvfeV9w1Tx3qA==,
       }
 
+  "@next/env@15.4.10":
+    resolution:
+      {
+        integrity: sha512-knhmoJ0Vv7VRf6pZEPSnciUG1S4bIhWx+qTYBW/AjxEtlzsiNORPk8sFDCEvqLfmKuey56UB9FL1UdHEV3uBrg==,
+      }
+
   "@next/env@15.5.6":
     resolution:
       {
@@ -2859,6 +2868,15 @@ packages:
         integrity: sha512-YxDvsT2fwy1j5gMqk3ppXlsgDopHnkM4BoxSVASbvvgh5zgsK8lvWerDzPip8k3WVzsTZ1O7A7si1KNfN4OZfQ==,
       }
 
+  "@next/swc-darwin-arm64@15.4.8":
+    resolution:
+      {
+        integrity: sha512-Pf6zXp7yyQEn7sqMxur6+kYcywx5up1J849psyET7/8pG2gQTVMjU3NzgIt8SeEP5to3If/SaWmaA6H6ysBr1A==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [arm64]
+    os: [darwin]
+
   "@next/swc-darwin-arm64@15.5.6":
     resolution:
       {
@@ -2866,6 +2884,15 @@ packages:
       }
     engines: { node: ">= 10" }
     cpu: [arm64]
+    os: [darwin]
+
+  "@next/swc-darwin-x64@15.4.8":
+    resolution:
+      {
+        integrity: sha512-xla6AOfz68a6kq3gRQccWEvFC/VRGJmA/QuSLENSO7CZX5WIEkSz7r1FdXUjtGCQ1c2M+ndUAH7opdfLK1PQbw==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [x64]
     os: [darwin]
 
   "@next/swc-darwin-x64@15.5.6":
@@ -2877,10 +2904,28 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  "@next/swc-linux-arm64-gnu@15.4.8":
+    resolution:
+      {
+        integrity: sha512-y3fmp+1Px/SJD+5ntve5QLZnGLycsxsVPkTzAc3zUiXYSOlTPqT8ynfmt6tt4fSo1tAhDPmryXpYKEAcoAPDJw==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [arm64]
+    os: [linux]
+
   "@next/swc-linux-arm64-gnu@15.5.6":
     resolution:
       {
         integrity: sha512-qvz4SVKQ0P3/Im9zcS2RmfFL/UCQnsJKJwQSkissbngnB/12c6bZTCB0gHTexz1s6d/mD0+egPKXAIRFVS7hQg==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [arm64]
+    os: [linux]
+
+  "@next/swc-linux-arm64-musl@15.4.8":
+    resolution:
+      {
+        integrity: sha512-DX/L8VHzrr1CfwaVjBQr3GWCqNNFgyWJbeQ10Lx/phzbQo3JNAxUok1DZ8JHRGcL6PgMRgj6HylnLNndxn4Z6A==,
       }
     engines: { node: ">= 10" }
     cpu: [arm64]
@@ -2895,10 +2940,28 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  "@next/swc-linux-x64-gnu@15.4.8":
+    resolution:
+      {
+        integrity: sha512-9fLAAXKAL3xEIFdKdzG5rUSvSiZTLLTCc6JKq1z04DR4zY7DbAPcRvNm3K1inVhTiQCs19ZRAgUerHiVKMZZIA==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [x64]
+    os: [linux]
+
   "@next/swc-linux-x64-gnu@15.5.6":
     resolution:
       {
         integrity: sha512-3QnHGFWlnvAgyxFxt2Ny8PTpXtQD7kVEeaFat5oPAHHI192WKYB+VIKZijtHLGdBBvc16tiAkPTDmQNOQ0dyrA==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [x64]
+    os: [linux]
+
+  "@next/swc-linux-x64-musl@15.4.8":
+    resolution:
+      {
+        integrity: sha512-s45V7nfb5g7dbS7JK6XZDcapicVrMMvX2uYgOHP16QuKH/JA285oy6HcxlKqwUNaFY/UC6EvQ8QZUOo19cBKSA==,
       }
     engines: { node: ">= 10" }
     cpu: [x64]
@@ -2913,6 +2976,15 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  "@next/swc-win32-arm64-msvc@15.4.8":
+    resolution:
+      {
+        integrity: sha512-KjgeQyOAq7t/HzAJcWPGA8X+4WY03uSCZ2Ekk98S9OgCFsb6lfBE3dbUzUuEQAN2THbwYgFfxX2yFTCMm8Kehw==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [arm64]
+    os: [win32]
+
   "@next/swc-win32-arm64-msvc@15.5.6":
     resolution:
       {
@@ -2920,6 +2992,15 @@ packages:
       }
     engines: { node: ">= 10" }
     cpu: [arm64]
+    os: [win32]
+
+  "@next/swc-win32-x64-msvc@15.4.8":
+    resolution:
+      {
+        integrity: sha512-Exsmf/+42fWVnLMaZHzshukTBxZrSwuuLKFvqhGHJ+mC1AokqieLY/XzAl3jc/CqhXLqLY3RRjkKJ9YnLPcRWg==,
+      }
+    engines: { node: ">= 10" }
+    cpu: [x64]
     os: [win32]
 
   "@next/swc-win32-x64-msvc@15.5.6":
@@ -10373,12 +10454,37 @@ packages:
       react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
       react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
 
+  next@15.4.10:
+    resolution:
+      {
+        integrity: sha512-itVlc79QjpKMFMRhP+kbGKaSG/gZM6RCvwhEbwmCNF06CdDiNaoHcbeg0PqkEa2GOcn8KJ0nnc7+yL7EjoYLHQ==,
+      }
+    engines: { node: ^18.18.0 || ^19.8.0 || >= 20.0.0 }
+    hasBin: true
+    peerDependencies:
+      "@opentelemetry/api": ^1.1.0
+      "@playwright/test": ^1.51.1
+      babel-plugin-react-compiler: "*"
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+      react-dom: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+      sass: ^1.3.0
+    peerDependenciesMeta:
+      "@opentelemetry/api":
+        optional: true
+      "@playwright/test":
+        optional: true
+      babel-plugin-react-compiler:
+        optional: true
+      sass:
+        optional: true
+
   next@15.5.6:
     resolution:
       {
         integrity: sha512-zTxsnI3LQo3c9HSdSf91O1jMNsEzIXDShXd4wVdg9y5shwLqBXi4ZtUUJyB86KGVSJLZx0PFONvO54aheGX8QQ==,
       }
     engines: { node: ^18.18.0 || ^19.8.0 || >= 20.0.0 }
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
     hasBin: true
     peerDependencies:
       "@opentelemetry/api": ^1.1.0
@@ -13942,6 +14048,7 @@ packages:
         integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==,
       }
     engines: { node: ">=18" }
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution:
@@ -14460,11 +14567,11 @@ snapshots:
 
   "@bprogress/core@1.3.4": {}
 
-  "@bprogress/next@3.2.12(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)":
+  "@bprogress/next@3.2.12(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)":
     dependencies:
       "@bprogress/core": 1.3.4
       "@bprogress/react": 1.2.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      next: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
@@ -15555,31 +15662,57 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  "@next/env@15.4.10": {}
+
   "@next/env@15.5.6": {}
 
   "@next/eslint-plugin-next@15.5.6":
     dependencies:
       fast-glob: 3.3.1
 
+  "@next/swc-darwin-arm64@15.4.8":
+    optional: true
+
   "@next/swc-darwin-arm64@15.5.6":
+    optional: true
+
+  "@next/swc-darwin-x64@15.4.8":
     optional: true
 
   "@next/swc-darwin-x64@15.5.6":
     optional: true
 
+  "@next/swc-linux-arm64-gnu@15.4.8":
+    optional: true
+
   "@next/swc-linux-arm64-gnu@15.5.6":
+    optional: true
+
+  "@next/swc-linux-arm64-musl@15.4.8":
     optional: true
 
   "@next/swc-linux-arm64-musl@15.5.6":
     optional: true
 
+  "@next/swc-linux-x64-gnu@15.4.8":
+    optional: true
+
   "@next/swc-linux-x64-gnu@15.5.6":
+    optional: true
+
+  "@next/swc-linux-x64-musl@15.4.8":
     optional: true
 
   "@next/swc-linux-x64-musl@15.5.6":
     optional: true
 
+  "@next/swc-win32-arm64-msvc@15.4.8":
+    optional: true
+
   "@next/swc-win32-arm64-msvc@15.5.6":
+    optional: true
+
+  "@next/swc-win32-x64-msvc@15.4.8":
     optional: true
 
   "@next/swc-win32-x64-msvc@15.5.6":
@@ -17430,11 +17563,11 @@ snapshots:
       - rollup
       - supports-color
 
-  "@vercel/speed-insights@1.3.0(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))":
+  "@vercel/speed-insights@1.3.0(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nuxt@4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2))(react@19.2.0)(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))":
     dependencies:
       nuxt: 4.2.1(@parcel/watcher@2.5.1)(@types/node@20.19.25)(@vue/compiler-sfc@3.5.25)(db0@0.3.4)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(typescript@5.9.3)(vite@7.2.6(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.2))(yaml@2.8.2)
     optionalDependencies:
-      next: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
       vue: 3.5.25(typescript@5.9.3)
       vue-router: 4.6.3(vue@3.5.25(typescript@5.9.3))
@@ -20488,16 +20621,40 @@ snapshots:
 
   netmask@2.0.2: {}
 
-  next-auth@5.0.0-beta.28(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
+  next-auth@5.0.0-beta.28(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
     dependencies:
       "@auth/core": 0.39.1
-      next: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
 
   next-themes@0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
+
+  next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      "@next/env": 15.4.10
+      "@swc/helpers": 0.5.15
+      caniuse-lite: 1.0.30001757
+      postcss: 8.4.31
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      styled-jsx: 5.1.6(@babel/core@7.28.5)(react@19.2.0)
+    optionalDependencies:
+      "@next/swc-darwin-arm64": 15.4.8
+      "@next/swc-darwin-x64": 15.4.8
+      "@next/swc-linux-arm64-gnu": 15.4.8
+      "@next/swc-linux-arm64-musl": 15.4.8
+      "@next/swc-linux-x64-gnu": 15.4.8
+      "@next/swc-linux-x64-musl": 15.4.8
+      "@next/swc-win32-arm64-msvc": 15.4.8
+      "@next/swc-win32-x64-msvc": 15.4.8
+      "@playwright/test": 1.57.0
+      sharp: 0.34.5
+    transitivePeerDependencies:
+      - "@babel/core"
+      - babel-plugin-macros
 
   next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -20523,9 +20680,9 @@ snapshots:
       - "@babel/core"
       - babel-plugin-macros
 
-  nextjs-toploader@3.9.17(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  nextjs-toploader@3.9.17(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
-      next: 15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nprogress: 0.2.0
       prop-types: 15.8.1
       react: 19.2.0
@@ -20695,6 +20852,13 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
+
+  nuqs@2.8.2(next@15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
+    dependencies:
+      "@standard-schema/spec": 1.0.0
+      react: 19.2.0
+    optionalDependencies:
+      next: 15.4.10(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
 
   nuqs@2.8.2(next@15.5.6(@babel/core@7.28.5)(@playwright/test@1.57.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
     dependencies:

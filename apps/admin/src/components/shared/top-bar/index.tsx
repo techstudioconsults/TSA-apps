@@ -1,18 +1,13 @@
 "use client";
 
 import { SidebarTrigger } from "@workspace/ui/components";
-import {
-  CustomButton,
-  NotificationWidget,
-  UserMenu,
-  Wrapper,
-} from "@workspace/ui/lib";
+import { CustomButton, NotificationWidget, UserMenu } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
-import { signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { GlobalSearchInput } from "../search-input";
 import { useModalStore } from "@/store/modalStore";
+import { tokenManager } from "@/lib/http/token-manager";
 
 type TopBarProperties = {
   adminName: string;
@@ -24,17 +19,6 @@ type TopBarProperties = {
   isLoading?: boolean;
 };
 
-const handleLogout = async () => {
-  try {
-    await signOut({
-      redirect: true,
-      callbackUrl: `/login`,
-    });
-  } catch {
-    toast.error(`Something went wrong`);
-  }
-};
-
 export default function TopBar({
   adminName,
   adminEmail,
@@ -44,6 +28,18 @@ export default function TopBar({
   isLoading = false,
   className = "",
 }: TopBarProperties) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    try {
+      // Logout = remove tokens stored in the browser (cookies) and redirect.
+      tokenManager.logout();
+      router.push("/login");
+    } catch {
+      toast.error("Something went wrong");
+    }
+  };
+
   // locales removed; use root paths
   // const [notificationsList, setNotificationsList] =
   //   useState<Notification[]>(notifications)
@@ -75,17 +71,19 @@ export default function TopBar({
     <>
       <header
         className={cn(
-          "bg-background sticky top-0 flex h-16 items-center px-6 shadow lg:px-4",
+          "bg-background sticky z-[555] top-0 flex h-16 items-center px-2 shadow",
           className,
         )}
       >
-        <div className="relative hidden w-fit items-center gap-4 md:flex">
-          <SidebarTrigger className="absolute top-16 -left-[30px] bg-[#1F2666] text-white shadow-none" />
-        </div>
-        <Wrapper className="flex items-center max-w-[1440px] justify-between">
+        <section className="flex flex-row items-center justify-between w-full max-w-[1440px] gap-2 sm:gap-4">
+          <div className="flex items-center gap-2">
+            <SidebarTrigger className="" />
+            <TopBarTitle />
+          </div>
           {/* Dynamic Title */}
-          <TopBarTitle />
-          <TopBarActions />
+          <div className="">
+            <TopBarActions />
+          </div>
           {/* Right Section */}
           <div className="flex items-center justify-end gap-2 md:gap-4">
             {/* Notification Widget */}
@@ -116,7 +114,7 @@ export default function TopBar({
               isLoading={isLoading}
             />
           </div>
-        </Wrapper>
+        </section>
       </header>
       {/* <AppEventsListener /> */}
     </>
@@ -125,9 +123,19 @@ export default function TopBar({
 
 function TopBarActions() {
   const pathname = usePathname();
-  const { openCreateSheetModal } = useModalStore();
+  const { openCreateSheetModal, openCreateMarketingCycleModal } =
+    useModalStore();
 
   const map = [
+    {
+      match: (p: string) => p.includes("/market-cycle"),
+      label: "Create Marketing Cycle",
+      href: "#",
+      onClick: () => {
+        openCreateMarketingCycleModal();
+        console.log(`testing`);
+      },
+    },
     {
       match: (p: string) => p.includes("/courses"),
       label: "Create Course",
@@ -158,11 +166,15 @@ function TopBarActions() {
   const current = map.find((m) => m.match(pathname)) ?? fallback;
 
   return (
-    <div className="flex gap-4">
-      <GlobalSearchInput disabled className="max-w-md bg-primary/10" />
+    <div className="flex items-center gap-2 sm:gap-3 justify-end">
+      {/* Search only on large screens and above to reduce crowding */}
+      <div className="hidden xl:block flex-1">
+        <GlobalSearchInput disabled className="w-full bg-primary/10" />
+      </div>
       {pathname !== "/" && (
         <CustomButton
           variant="primary"
+          className="whitespace-nowrap px-3 py-1 text-xs sm:text-sm"
           href={current.onClick ? undefined : current.href}
           onClick={current.onClick}
         >
@@ -181,6 +193,10 @@ function TopBarTitle() {
       match: (p: string) => p === "/" || p === "/Dashboard",
       title: "Dashboard",
     },
+    {
+      match: (p: string) => p.includes("/market-cycle"),
+      title: "Marketing Cycles",
+    },
     { match: (p: string) => p.includes("/courses"), title: "Courses" },
     { match: (p: string) => p.includes("/classes"), title: "Classes" },
     { match: (p: string) => p.includes("/cohorts"), title: "Cohorts" },
@@ -193,5 +209,5 @@ function TopBarTitle() {
   const fallback = "Dashboard";
   const current = titleMap.find((m) => m.match(pathname))?.title ?? fallback;
 
-  return <h5 className="">{current}</h5>;
+  return <h5 className="hidden lg:flex">{current}</h5>;
 }

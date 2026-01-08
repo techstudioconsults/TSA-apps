@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Menu as MenuIcon, Moon } from "lucide-react";
@@ -27,6 +28,7 @@ import {
 } from "../../../components/ui/accordion";
 import { cn } from "../../utils";
 import { Logo } from "../../logo";
+import NavbarDropdown from "../_components/navbar-dropdown";
 
 const defaultFeatures: FeatureItem[] = [
   { title: "Dashboard", description: "Overview of your activity", href: "#" },
@@ -84,43 +86,54 @@ const Navbar = ({
   const showDesktopMenu = showFeatures || desktopNav.length > 0;
   const showActions = actions.length > 0;
 
+  const featureSections = [
+    {
+      title: undefined,
+      items: featuresList.map((feature) => ({
+        label: feature.title,
+        href: feature.href,
+        description: feature.description,
+      })),
+    },
+  ];
+
   return (
-    <section className={`py-4 fixed w-full top-0 z-[8888] ${className}`}>
+    <section className={`py-4 fixed w-full  top-0 z-[999] ${className}`}>
       <div className={`container px-4 ${containerClassName}`}>
         <nav className="flex items-center justify-between">
           <Logo logo={brandLogoSrc} />
           {showDesktopMenu && (
             <NavigationMenu className="hidden lg:block">
               <NavigationMenuList>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger
                     className={cn(
                       `bg-transparent rounded-none hover:!bg-transparent hover:underline`,
-                      navLinkClassNames,
+                      navLinkClassNames
                     )}
                   >
                     {featuresLabel}
                   </NavigationMenuTrigger>
                   {showFeatures && (
-                    <NavigationMenuContent className="">
-                      <div className="grid w-[1000px] grid-cols-2 p-3">
+                    <NavigationMenuContent className='w-full'>
+                      <div className='grid w-[100vw] grid-cols-2 p-3'>
                         {featuresList.map((feature, index) => (
                           <NavigationMenuLink
-                            href={feature.href || "#"}
+                            href={feature.href || '#'}
                             key={`${feature.title}-${index}`}
-                            className="hover:bg-muted/70 rounded-md p-3 transition-colors"
+                            className='hover:bg-muted/70 rounded-md p-3 transition-colors'
                           >
                             <div>
-                              <p className="flex items-start gap-3 mb-1">
+                              <p className='flex items-start gap-3 mb-1'>
                                 {feature.icon && (
-                                  <span className="size-4">{feature.icon}</span>
+                                  <span className='size-4'>{feature.icon}</span>
                                 )}
-                                <span className="text-foreground font-semibold">
+                                <span className='text-foreground font-semibold'>
                                   {feature.title}
                                 </span>
                               </p>
                               {feature.description ? (
-                                <p className="text-muted-foreground text-justify text-xs">
+                                <p className='text-muted-foreground text-justify text-xs'>
                                   {feature.description}
                                 </p>
                               ) : null}
@@ -130,7 +143,13 @@ const Navbar = ({
                       </div>
                     </NavigationMenuContent>
                   )}
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
+                {showFeatures && (
+                  <NavbarDropdown
+                    label={featuresLabel}
+                    sections={featureSections}
+                  />
+                )}
 
                 {desktopNav.map((link) => (
                   <NavigationMenuItem key={link.label}>

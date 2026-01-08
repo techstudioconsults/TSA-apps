@@ -32,7 +32,7 @@ import { Course } from "@/services/courses/course.service";
 
 const CourseCards = () => {
   const [warningModalOpen, setWarningModalOpen] = useState(false);
-  const [selectedCourseId] = useState<string | null>(null);
+  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const router = useRouter();
@@ -51,12 +51,16 @@ const CourseCards = () => {
   const { mutateAsync: deleteCourse, isPending: isDeleting } =
     useDeleteCourseMutation();
 
-  const openWarningModal = () => {
+  const openWarningModal = (courseId: string) => {
+    setSelectedCourseId(courseId);
     setWarningModalOpen(true);
   };
 
   const confirmDelete = async () => {
+    console.log(`clicked outside`);
+
     if (selectedCourseId) {
+      console.log(`clicked inside`);
       await deleteCourse(selectedCourseId);
       setWarningModalOpen(false);
       setShowSuccessModal(true);
@@ -91,11 +95,7 @@ const CourseCards = () => {
     );
   }
 
-  if (isError) {
-    return <ErrorEmptyState onRetry={refetch} />;
-  }
-
-  if (!courses) {
+  if (courses.length === 0) {
     return (
       <EmptyState
         icon={
@@ -104,8 +104,20 @@ const CourseCards = () => {
         title="Course not found"
         description={"No courses available."}
         className="bg-background"
+        actionButton={
+          <CustomButton
+            variant="primary"
+            onClick={() => router.push("/courses/create")}
+          >
+            Create Course
+          </CustomButton>
+        }
       />
     );
+  }
+
+  if (isError) {
+    return <ErrorEmptyState onRetry={refetch} />;
   }
 
   const handleContinue = () => {
@@ -164,7 +176,7 @@ const CourseCards = () => {
                   </DropdownMenuItem>
                   <Separator />
                   <DropdownMenuItem
-                    onClick={openWarningModal}
+                    onClick={() => openWarningModal(course.id)}
                     className="text-destructive"
                   >
                     <Icons.trash className="text-destructive" />

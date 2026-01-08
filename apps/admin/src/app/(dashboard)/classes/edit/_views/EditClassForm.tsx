@@ -118,7 +118,7 @@ const EditClassForm = () => {
     <Wrapper className="max-w-4xl p-0 my-0">
       <FormProvider {...formMethods}>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <Card className="border-none space-y-5 p-5">
+          <Card className="border-none space-y-5 lg:p-5">
             <CardHeader className=" gap-2 flex flex-row items-center px-6 py-4">
               <span className="size-14 mb-0 inline-flex items-center justify-center rounded-md bg-success/10 text-success">
                 <Icons.users className="stroke-3" size={30} />
@@ -205,6 +205,7 @@ const EditClassForm = () => {
                 type="button"
                 variant="secondary"
                 onClick={handleCancelClick}
+                className="flex-1"
               >
                 Cancel
               </CustomButton>
@@ -212,6 +213,7 @@ const EditClassForm = () => {
                 type="submit"
                 variant="primary"
                 disabled={isPending}
+                className="flex-1"
               >
                 {isPending ? "Updating..." : "Update Class"}
               </CustomButton>

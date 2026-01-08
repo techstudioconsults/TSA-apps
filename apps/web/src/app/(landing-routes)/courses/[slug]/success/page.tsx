@@ -1,17 +1,12 @@
-"use client";
-
 import { CustomButton, Wrapper } from "@workspace/ui/lib";
 import Image from "next/image";
 import Script from "next/script";
 
-// import { useSearchParams } from "next/navigation";
-
-interface PageProperties {
-  params: { slug: string };
-}
-
-export default function RegistrationSuccessPage({ params }: PageProperties) {
-  const { slug } = params;
+export default async function RegistrationSuccessPage(
+  props: any,
+  // props: PageProps<"/courses/[slug]/success">,
+) {
+  const { slug } = await props.params;
   //   const searchParameters = useSearchParams();
   const message =
     // searchParameters.get("msg") ||

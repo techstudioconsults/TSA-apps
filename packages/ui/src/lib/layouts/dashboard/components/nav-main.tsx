@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { cn } from "../../../utils";
@@ -18,6 +17,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@workspace/ui/components";
 
 export function NavMain({
@@ -37,6 +37,14 @@ export function NavMain({
     }[];
   }[];
 }) {
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  const handleItemClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
@@ -56,7 +64,7 @@ export function NavMain({
             >
               <SidebarMenuItem className="flex items-center justify-center">
                 <CollapsibleTrigger asChild>
-                  <Link href={item.url}>
+                  <Link href={item.url} onClick={handleItemClick}>
                     <SidebarMenuButton
                       className={cn(
                         "w-full p-6 transition-colors",
@@ -84,7 +92,7 @@ export function NavMain({
                               "bg-accent text-accent-foreground font-medium",
                           )}
                         >
-                          <Link href={subItem.url}>
+                          <Link href={subItem.url} onClick={handleItemClick}>
                             <span>{subItem.name}</span>
                           </Link>
                         </SidebarMenuSubButton>

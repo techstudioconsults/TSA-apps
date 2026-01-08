@@ -1,6 +1,6 @@
 "use server";
 
-import { LeadFormData, MarketingCycle } from "~/schemas/lead-form";
+import { LeadFormData, MarketingCycle } from "@/schemas/lead-form";
 
 const BASE_URL = process.env["NEXT_PUBLIC_API_URL"];
 

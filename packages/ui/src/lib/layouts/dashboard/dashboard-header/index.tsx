@@ -19,14 +19,14 @@ export const DashboardHeader = ({
 }) => {
   return (
     <>
-      <section className="flex items-center justify-between">
+      <section className="flex flex-col lg:flex-row gap-8 items-center justify-between">
         <div className="flex items-center gap-4">
           {icon && (
             <span className="bg-primary-50 text-primary flex size-14 items-center justify-center rounded-md p-3">
               {icon}
             </span>
           )}
-          <div>
+          <div className="">
             <h4
               className={cn(
                 "text-foreground flex items-center gap-2 capitalize",
