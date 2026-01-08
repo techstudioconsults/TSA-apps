@@ -15,8 +15,11 @@ export const CTASection: FC<CTASectionProps> = ({ course }) => {
 
   return (
     <>
-      <section className="py-16 lg:py-24 bg-white text-white relative overflow-hidden">
-        <Wrapper className={`max-w-[330px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl relative z-10 rounded-[25px] bg-[#1F2666] py-14 bg-cover`} style={{ backgroundImage: `url(${course.cta.bg})` }}>
+      <section className="py-5 lg:py-10 bg-white text-white relative overflow-hidden">
+        <Wrapper
+          className={`max-w-[330px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl relative z-10 rounded-[25px] bg-[#1F2666] py-14 bg-cover`}
+          style={{ backgroundImage: `url(${course.cta.bg})` }}
+        >
           <div className={`text-center `}>
             <h2 className="text-[24px] lg:text-[36px] font-bold mb-4 text-white max-w-xl lg:max-w-2xl mx-auto">
               {course.cta.title}
@@ -43,4 +46,3 @@ export const CTASection: FC<CTASectionProps> = ({ course }) => {
     </>
   );
 };
-

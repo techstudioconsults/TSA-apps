@@ -46,7 +46,7 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
   //             <p>Often requires full-time commitment</p>
   //           </div>
   //           </div>
-        
+
   //           <div className=" rounded-lg p-6  relative border border-[#1F2666] bg-[url('/images/pricebg.png')] ">
   //             <span className="absolute -top-3 left-1/3 transform -translate-x-1/2 bg-[#E0ECFF] text-[#0266F4] border border-[#0266F4] px-4 py-1 rounded-full text-sm font-semibold">
   //               Best Value
@@ -98,20 +98,24 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
   // Default pricing card for other courses
   return (
     <>
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-5 lg:py-10 bg-white">
         <Wrapper className="max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
               Program Investment
             </h2>
             <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-3xl mx-auto">
-            One-time payment for complete access to everything you need.
+              One-time payment for complete access to everything you need.
             </p>
           </div>
           <div className="rounded-lg px-5 md:px-10 pt-5 md:pt-10 pb-10 md:pb-14  relative border border-[#1F2666] max-w-xl mx-auto  bg-[url('/images/pricebg.png')] bg-cover bg-center">
             <div className="mb-8">
-              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">{course.pricing.title}</h3>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white">{course.pricing.price}</h1>
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">
+                {course.pricing.title}
+              </h3>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white">
+                {course.pricing.price}
+              </h1>
               <p className="text-blue-100">{course.pricing.paymentOption}</p>
             </div>
             <ul className="space-y-4 mb-8 text-white">
@@ -155,4 +159,3 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
     </>
   );
 };
-

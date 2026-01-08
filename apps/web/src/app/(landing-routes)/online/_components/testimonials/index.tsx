@@ -13,35 +13,32 @@ interface TestimonialsSectionProps {
 export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
   course,
 }) => {
-    const companiesList = COMPANIES.map((company, index) => {
-        return (
-          <Image
-            priority
-            width={100}
-            height={50}
-            key={index}
-            src={company}
-            alt="company"
-          />
-        );
-      });
+  const companiesList = COMPANIES.map((company, index) => {
+    return (
+      <Image
+        priority
+        width={100}
+        height={50}
+        key={index}
+        src={company}
+        alt="company"
+      />
+    );
+  });
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-5 lg:py-10">
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-xl mx-auto">
             Trusted by Over 3,000 Graduates Worldwide
           </h2>
           <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-5xl mx-auto">
-          Our graduates work at leading Nigerian and international companies
+            Our graduates work at leading Nigerian and international companies
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {course.testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg p-6 border"
-            >
+            <div key={index} className="bg-white rounded-lg p-6 border">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg
@@ -58,13 +55,21 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
                   {testimonial.avatar ? (
-                    <Image src={testimonial.avatar} width={50} height={50} alt={testimonial.name} className="rounded-full"/>
+                    <Image
+                      src={testimonial.avatar}
+                      width={50}
+                      height={50}
+                      alt={testimonial.name}
+                      className="rounded-full"
+                    />
                   ) : (
                     <span>{testimonial.name.charAt(0).toUpperCase()}</span>
                   )}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#162143]">{testimonial.name}</p>
+                  <p className="font-semibold text-[#162143]">
+                    {testimonial.name}
+                  </p>
                   <p className="text-sm text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
@@ -73,10 +78,9 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
         </div>
         {/* Partner logos section */}
         <TsaMarquee className="h-[85px] space-x-[30px] lg:space-x-[73px] mt-10">
-        {companiesList}
-      </TsaMarquee>
+          {companiesList}
+        </TsaMarquee>
       </Wrapper>
     </section>
   );
 };
-

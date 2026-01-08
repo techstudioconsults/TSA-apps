@@ -13,9 +13,9 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
   // const isUIUX = course.slug === "ui-ux-design";
   // const isDataAnalytics = course.slug === "data-analytics";
   // const isCybersecurity = course.slug === "cybersecurity";
-  
+
   return (
-    <section className={`bg-[#EDF5FF] py-16 lg:py-20 `}>
+    <section className={`bg-[#EDF5FF] py-5 lg:py-10 `}>
       <Wrapper className="max-w-7xl">
         {/* {isUIUX || isCybersecurity ? (
           <div className="flex flex-col lg:flex-row gap-10">
@@ -53,18 +53,18 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
             </div>
           </div>
         ) : isDataAnalytics ? ( */}
-          <div className="">
-            <div className="text-center mb-12">
-              <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
-                {course.outcomes.title}
-              </h2>
-              <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-xl mx-auto">
-              Walk away with real skills, a professional portfolio, and the confidence to land your first data role.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-           
-                {/* // Map outcomes items to cards with titles and descriptions for data analytics
+        <div className="">
+          <div className="text-center mb-12">
+            <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
+              {course.outcomes.title}
+            </h2>
+            <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-xl mx-auto">
+              Walk away with real skills, a professional portfolio, and the
+              confidence to land your first data role.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* // Map outcomes items to cards with titles and descriptions for data analytics
                 // const outcomeCards = [
                 //   {
                 //     icon: "/icons/Code.svg",
@@ -92,32 +92,29 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
                 //     description: "Fully online with recorded lessons to learn at your own pace",
                 //   },
                 // ]; */}
-                {course.outcomes.items.map((card, index) => (
-                  <div
-                  key={index}
-                  className="flex flex-col items-center text-center p-5 h-full"
-                >
-                  <Image
-                    src={card.icon}
-                    alt={card.title}
-                    width={54}
-                    height={53}
-                    className="mb-4 lg:mb-7"
-                  />
-                
-                  <div className="flex flex-col justify-between h-full">
-                    <h3 className="text-lg md:text-[26px] font-bold text-black mb-2 max-w-[330px] mx-auto">
-                      {card.title}
-                    </h3>
-                    <p className="text-base text-[#595959]">
-                      {card.description}
-                    </p>
-                  </div>
+            {course.outcomes.items.map((card, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center p-5 h-full"
+              >
+                <Image
+                  src={card.icon}
+                  alt={card.title}
+                  width={54}
+                  height={53}
+                  className="mb-4 lg:mb-7"
+                />
+
+                <div className="flex flex-col justify-between h-full">
+                  <h3 className="text-lg md:text-[26px] font-bold text-black mb-2 max-w-[330px] mx-auto">
+                    {card.title}
+                  </h3>
+                  <p className="text-base text-[#595959]">{card.description}</p>
                 </div>
-                
-                ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
         {/* ) : (
           <div className="flex flex-col">
             <div className="text-center">
@@ -163,4 +160,3 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
     </section>
   );
 };
-
