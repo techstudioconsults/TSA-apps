@@ -2,7 +2,7 @@
 
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Menu } from "lucide-react";
 import * as React from "react";
 import {
   TooltipContent,
@@ -23,6 +23,7 @@ import { Button } from "./button";
 import { Tooltip } from "./tooltip";
 import { useIsMobile } from "@workspace/ui/hooks";
 import { cn } from "@workspace/ui/lib";
+import { MdCancel } from "react-icons/md";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -278,9 +279,9 @@ function SidebarTrigger({
       {...properties}
     >
       {open ? (
-        <ChevronLeft size={16} className="stroke-3" />
+        <Menu size={16} className="stroke-3" />
       ) : (
-        <ChevronRight size={16} className="stroke-3" />
+        <MdCancel size={16} className="" />
       )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>

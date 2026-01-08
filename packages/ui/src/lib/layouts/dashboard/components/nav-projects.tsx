@@ -23,7 +23,13 @@ export function NavProjects({
     isActive?: boolean;
   }[];
 }) {
-  const { state } = useSidebar();
+  const { state, isMobile, setOpenMobile } = useSidebar();
+
+  const handleProjectClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <SidebarGroup className="">
@@ -36,12 +42,12 @@ export function NavProjects({
             )}
             key={item.name}
           >
-            <Link href={item.url}>
+            <Link href={item.url} onClick={handleProjectClick}>
               <SidebarMenuButton
                 className={cn(
                   "hover:bg-primary/10 w-full cursor-pointer p-6 transition-all duration-75",
                   item.isActive &&
-                    "border-primary bg-primary/40 border-3 font-medium shadow-[0px_0px_0px_2px_#0266F333]",
+                    " bg-white text-primary border-3 font-medium shadow-[0px_0px_0px_2px_#0266F333]",
                 )}
               >
                 <div>

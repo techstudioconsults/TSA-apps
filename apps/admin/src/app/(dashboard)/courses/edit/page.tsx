@@ -101,7 +101,7 @@ export default function EditCoursePage() {
           onSubmit={formMethods.handleSubmit(onSubmit)}
           className="space-y-6"
         >
-          <Card className="border-none space-y-5 p-5">
+          <Card className="border-none space-y-5 lg:p-5">
             <CardHeader className=" gap-2 flex flex-row items-center px-6 py-4">
               <span className="size-14 mb-0 inline-flex items-center justify-center rounded-md bg-primary/10 text-primary">
                 <Icons.book className="" size={30} />
@@ -215,6 +215,7 @@ export default function EditCoursePage() {
                 type="button"
                 variant="secondary"
                 onClick={() => router.push("/courses")}
+                className="flex-1"
               >
                 Cancel
               </CustomButton>
@@ -222,6 +223,7 @@ export default function EditCoursePage() {
                 type="submit"
                 variant="primary"
                 disabled={isPending}
+                className="flex-1"
               >
                 {isPending ? "Updating..." : "Update Course"}
               </CustomButton>

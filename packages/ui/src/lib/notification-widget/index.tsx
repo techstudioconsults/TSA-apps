@@ -55,7 +55,7 @@ export function NotificationWidget({
         </CustomButton>
       </PopoverTrigger>
       <PopoverContent
-        className="min-w-[500px] p-0 shadow-none"
+        className="min-w-[100vw] lg:min-w-[500px] p-0 shadow-none"
         align="end"
         sideOffset={16}
       >

@@ -260,7 +260,12 @@ const ClassCards = () => {
 
   const router = useRouter();
 
-  const { data: coursesData } = useCoursesQuery({});
+  const {
+    data: coursesData,
+    isLoading: isCoursesLoading,
+    isError: isCoursesError,
+    refetch: refetchCourses,
+  } = useCoursesQuery({});
   const courses = useMemo(() => coursesData?.data.items ?? [], [coursesData]);
   const initialCourseId = courses[0]?.id ?? null;
 
@@ -298,6 +303,59 @@ const ClassCards = () => {
       setWarningModalOpen(false);
     }
   };
+
+  if (isCoursesLoading) {
+    return (
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Card
+            key={i}
+            className="animate-pulse flex flex-col justify-between min-h-[240px] border-none shadow-none"
+          >
+            <CardHeader>
+              <div className="h-4 w-1/2 rounded bg-muted" />
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="h-3 w-full rounded bg-muted" />
+                <div className="h-3 w-3/4 rounded bg-muted" />
+                <div className="h-3 w-2/4 rounded bg-muted" />
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-end gap-4">
+              <div className="h-8 w-24 rounded bg-muted" />
+              <div className="h-8 w-24 rounded bg-muted" />
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
+  if (isCoursesError) {
+    return <ErrorEmptyState onRetry={refetchCourses} />;
+  }
+
+  if (courses.length === 0) {
+    return (
+      <EmptyState
+        icon={
+          <Icons.book className="size-10 p-1.5 bg-primary/10 rounded-md text-primary" />
+        }
+        title="Course not found"
+        description={"No courses available."}
+        className="bg-background"
+        actionButton={
+          <CustomButton
+            variant="primary"
+            onClick={() => router.push("/classes/create")}
+          >
+            Create Course
+          </CustomButton>
+        }
+      />
+    );
+  }
 
   return (
     <>
