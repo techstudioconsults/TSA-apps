@@ -29,9 +29,14 @@ export const CoreSkillsSection: FC<CoreSkillsSectionProps> = ({ course }) => {
               key={index}
               className="flex flex-col items-center text-center p-1 md:p-3"
             >
-            
-                <Image src={skill.icon} alt={skill.title} width={54} height={53} className="mb-6 lg:mb-9"/>
-        
+              <Image
+                src={skill.icon}
+                alt={skill.title}
+                width={54}
+                height={53}
+                className="mb-6 lg:mb-9"
+              />
+
               <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
                 {skill.title}
               </h3>
@@ -43,4 +48,3 @@ export const CoreSkillsSection: FC<CoreSkillsSectionProps> = ({ course }) => {
     </section>
   );
 };
-

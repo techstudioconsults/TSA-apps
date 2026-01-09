@@ -22,7 +22,10 @@ export const Hero: FC<CourseHeroProperty> = ({ intro, slug }) => {
           </div>
           <div className="flex-1">
             {/* <RegisterForm slug={slug} /> */}
-            <LeadForm slug={slug} />
+            <LeadForm
+              slug={slug}
+              className="before:absolute before:left-[66px] before:top-[-60px] before:z-[-1] before:hidden before:h-[387px] before:w-[467px] before:rounded-[15px] before:bg-[#072C5B] before:content-empty before:lg:block"
+            />
           </div>
         </section>
       </Wrapper>

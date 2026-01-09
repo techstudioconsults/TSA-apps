@@ -58,28 +58,41 @@ export const GuidedPathSection: FC<GuidedPathSectionProps> = ({
   return (
     <section className="py-16 lg:py-24 bg-gray-50">
       <Wrapper className="max-w-6xl">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-8 text-center max-w-4xl mx-auto">
-              {title}
-            </h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-8 text-center max-w-4xl mx-auto">
+          {title}
+        </h2>
         <div className="flex flex-col lg:flex-row gap-12 items-center justify-between ">
-            <div className=" rounded-2xl p-1  flex items-center justify-center w-full lg:w-[55%] bg-[#EDF5FF]">
-              <Image width={300} height={300} src={"/images/code-editor.png"} alt="code-editor" className="w-full h-full object-cover"/>
-            </div>
-            <div className="space-y-8 w-full lg:w-[40%]">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-4 border p-2.5 rounded-lg">
-                  <div className="mt-1 p-3 bg-[#E8F1FF] rounded-[17.38px]">{getIcon(feature.icon)}</div>
-                  <div className="">
-                    <h3 className="text-lg font-semibold text-[#303030]">{feature.title}</h3>
-                    <p className="text-base text-[#595959]">{feature.description}</p>
-                  </div>
+          <div className=" rounded-2xl p-1  flex items-center justify-center w-full lg:w-[55%] bg-[#EDF5FF]">
+            <Image
+              width={300}
+              height={300}
+              src={"/images/code-editor.png"}
+              alt="code-editor"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="space-y-8 w-full lg:w-[40%]">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-4 border p-2.5 rounded-lg"
+              >
+                <div className="mt-1 p-3 bg-[#E8F1FF] rounded-[17.38px]">
+                  {getIcon(feature.icon)}
                 </div>
-              ))}
-            </div>
-     
+                <div className="">
+                  <h3 className="text-lg font-semibold text-[#303030]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-base text-[#595959]">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Wrapper>
     </section>
   );
 };
-

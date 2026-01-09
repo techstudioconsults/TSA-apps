@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  Dialog,
-  DialogContent,
-} from "@workspace/ui/components";
-import LeadForm from "../../../courses/_components/register-form/lead-form";
+import { Dialog, DialogContent } from "@workspace/ui/components";
+import LeadForm from "../../../_components/register-form/lead-form";
 import type { OnlineCourse } from "../../data";
 
 interface ApplicationFormModalProps {

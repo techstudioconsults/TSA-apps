@@ -65,10 +65,11 @@ const OnlineCoursePage = async ({ params }: OnlineCoursePageProps) => {
       {/* {!isUIUX  && <PricingSection course={course} />} */}
       <FAQSection course={course} />
       <CTASection course={course} />
-      {!isFullStack && !isUIUX && !isCybersecurity && !isDataAnalytics && <WhoShouldJoinSection course={course} />}
+      {!isFullStack && !isUIUX && !isCybersecurity && !isDataAnalytics && (
+        <WhoShouldJoinSection course={course} />
+      )}
     </main>
   );
 };
 
 export default OnlineCoursePage;
-
