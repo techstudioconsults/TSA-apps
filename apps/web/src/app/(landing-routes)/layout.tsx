@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
-import { onlineCourses } from "./online/data";
+import { onlineCourses } from "./courses/online/data";
 
 const DynamicNavbar = dynamic(
   () => import("@workspace/ui/lib").then((m) => m.Navbar),
@@ -69,7 +69,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
     // Map hardcoded online courses
     const onlineCoursesList: FeatureItem[] = onlineCourses.map((course) => ({
       title: course.title,
-      href: `/online/${course.slug}`,
+      href: `/courses/online/${course.slug}`,
       description: course.description,
     }));
 
@@ -110,7 +110,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         // Create objects with title and href for online courses
         const onlineCoursesForFooter = onlineCourses.map((course) => ({
           title: course.title,
-          href: `/online/${course.slug}`,
+          href: `/courses/online/${course.slug}`,
         }));
         // Map backend courses to include href
         const backendCoursesForFooter = allCourses.map((course) => ({
