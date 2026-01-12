@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
-import { onlineCourses } from "./courses/online/data";
 
 const DynamicNavbar = dynamic(
   () => import("@workspace/ui/lib").then((m) => m.Navbar),
@@ -61,20 +60,23 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         .replaceAll(/[\s/]+/g, "-");
       return {
         title: course.title,
-        href: `/courses/${courseSlug}`,
+        href: course.slug
+          ? `/courses/online/${course.slug}`
+          : `/courses/${courseSlug}`,
         description: course.about,
       };
     });
 
     // Map hardcoded online courses
-    const onlineCoursesList: FeatureItem[] = onlineCourses.map((course) => ({
-      title: course.title,
-      href: `/courses/online/${course.slug}`,
-      description: course.description,
-    }));
+    // const onlineCoursesList: FeatureItem[] = onlineCourses.map((course) => ({
+    //   title: course.title,
+    //   href: `/courses/online/${course.slug}`,
+    //   description: course.description,
+    // }))
 
     // Combine both lists - online courses first, then backend courses
-    return [...onlineCoursesList, ...backendCourses];
+    return [...backendCourses];
+    // return [...onlineCoursesList, ...backendCourses]
   }, [allCourses, loading]);
 
   const pathname = usePathname();
@@ -108,20 +110,22 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
       {(() => {
         // Combine backend courses and online courses for footer
         // Create objects with title and href for online courses
-        const onlineCoursesForFooter = onlineCourses.map((course) => ({
-          title: course.title,
-          href: `/courses/online/${course.slug}`,
-        }));
+        // const onlineCoursesForFooter = onlineCourses.map((course) => ({
+        //   title: course.title,
+        //   href: `/courses/online/${course.slug}`,
+        // }))
         // Map backend courses to include href
         const backendCoursesForFooter = allCourses.map((course) => ({
           ...course,
-          href: `/courses/${course.title
-            .toLowerCase()
-            .trim()
-            .replaceAll(/[\s/]+/g, "-")}`,
+          href: course.slug
+            ? `/courses/online/${course.slug}`
+            : `/courses/${course.title
+                .toLowerCase()
+                .trim()
+                .replaceAll(/[\s/]+/g, "-")}`,
         }));
         const combinedFooterCourses = [
-          ...onlineCoursesForFooter,
+          // ...onlineCoursesForFooter,
           ...backendCoursesForFooter,
         ];
         return (

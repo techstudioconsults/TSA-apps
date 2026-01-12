@@ -30,6 +30,7 @@ export default function CreateCoursePage() {
     resolver: zodResolver(CourseFormSchema),
     defaultValues: {
       title: "",
+      slug: "",
       about: "",
       onlineDuration: 0,
       weekdayDuration: 0,
@@ -80,6 +81,14 @@ export default function CreateCoursePage() {
                 name="title"
                 label="Title"
                 placeholder="Introduction to Programming"
+                type="text"
+                required
+              />
+
+              <FormField
+                name="slug"
+                label="Slug"
+                placeholder="introduction-to-programming"
                 type="text"
                 required
               />

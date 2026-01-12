@@ -23,7 +23,7 @@ export const SectionFour = () => {
 
   return (
     <section>
-      <div className="h-fit w-full lg:min-h-[706px]">
+      {/* <div className="h-fit w-full lg:min-h-[706px]">
         <BlurImage
           priority
           width={1440}
@@ -32,7 +32,7 @@ export const SectionFour = () => {
           alt="employees"
           className="object-contain object-top lg:object-cover mx-auto w-full"
         />
-      </div>
+      </div> */}
       <div className=" py-[70px]">
         <Wrapper className="grid grid-cols-1 justify-center gap-[28px] gap-y-0 text-center lg:grid-cols-3 lg:text-left">
           <div>
