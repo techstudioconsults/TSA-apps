@@ -36,6 +36,7 @@ const CTAs: CTAItem[] = [
 const ExternalLayout = ({ children }: { children: ReactNode }) => {
   const { allCourses, loading } = useCoursesStore();
   const { scrolled } = useScrolled({ threshold: 10 });
+  const pathname = usePathname();
 
   useEffect(() => {
     fetchAllCourses();
@@ -52,7 +53,6 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
       ];
     }
 
-    // Map backend courses
     const backendCourses: FeatureItem[] = allCourses.map((course) => {
       const courseSlug = course.title
         .toLowerCase()
@@ -67,30 +67,34 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
       };
     });
 
-    // Map hardcoded online courses
-    // const onlineCoursesList: FeatureItem[] = onlineCourses.map((course) => ({
-    //   title: course.title,
-    //   href: `/courses/online/${course.slug}`,
-    //   description: course.description,
-    // }))
-
-    // Combine both lists - online courses first, then backend courses
     return [...backendCourses];
-    // return [...onlineCoursesList, ...backendCourses]
   }, [allCourses, loading]);
 
-  const pathname = usePathname();
-  const isDarkMode =
-    pathname === "/about" ||
-    pathname === "/explore" ||
-    pathname.includes("/success");
-  const logoPath = isDarkMode
-    ? "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png"
-    : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png";
+  const isDarkMode = useMemo(
+    () =>
+      pathname === "/about" ||
+      pathname === "/explore" ||
+      pathname.includes("/success"),
+    [pathname],
+  );
+
+  const logoPath = useMemo(
+    () =>
+      isDarkMode
+        ? "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png"
+        : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png",
+    [isDarkMode],
+  );
+
   const linkClassName = cn(`hover:!text-red-500`);
-  const bgScrollColor = cn(
-    isDarkMode ? "backdrop-blur-3xl" : "text-background",
-    !isDarkMode && scrolled ? "bg-primary" : ``,
+
+  const bgScrollColor = useMemo(
+    () =>
+      cn(
+        isDarkMode ? "backdrop-blur-3xl" : "text-background",
+        !isDarkMode && scrolled ? "bg-primary" : ``,
+      ),
+    [isDarkMode, scrolled],
   );
 
   return (

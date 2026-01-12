@@ -1,21 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { EmailForm } from "../../_components/email-form/email-form";
 import { HeroCanvas } from "../../_components/canvas/hero-canvas";
-import { useWindowWidth } from "@workspace/ui/hooks";
 
 export const Hero = () => {
-  const canvaReference = React.useRef<HTMLCanvasElement>(null);
-  const { winWidth } = useWindowWidth();
+  const canvaReference = useRef<HTMLCanvasElement>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (!canvaReference.current) return;
+
+    // Set initial height
     canvaReference.current.style.height = `${window.innerHeight}px`;
-    HeroCanvas(canvaReference.current);
-  }, [winWidth]);
+
+    // Initialize canvas and store cleanup function
+    cleanupRef.current = HeroCanvas(canvaReference.current);
+
+    // Cleanup on unmount
+    return () => {
+      if (cleanupRef.current) {
+        cleanupRef.current();
+        cleanupRef.current = null;
+      }
+    };
+  }, []); // Only run once on mount
 
   return (
     <section className="relative h-[80vh] flex justify-center w-full items-center overflow-hidden bg-primary text-background">
