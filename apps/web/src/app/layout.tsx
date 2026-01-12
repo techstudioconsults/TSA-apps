@@ -5,6 +5,7 @@ import { Toaster } from "@workspace/ui/components";
 import { WhatsAppIcon } from "../components/miscellaneous/whatsapp";
 import { SourceTracker } from "../lib/utils/source-tracker";
 import { cn } from "@workspace/ui/lib";
+import { LenisProvider } from "../components/miscellaneous/lenis-provider";
 
 import "@workspace/ui/globals.css";
 
@@ -23,12 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(openSans.className)}>
-        <Toaster />
-        <WhatsAppIcon />
-        <Suspense fallback={null}>
-          <SourceTracker />
-        </Suspense>
-        {children}
+        <LenisProvider>
+          <Toaster />
+          <WhatsAppIcon />
+          <Suspense fallback={null}>
+            <SourceTracker />
+          </Suspense>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

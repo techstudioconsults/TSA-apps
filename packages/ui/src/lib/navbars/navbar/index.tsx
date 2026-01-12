@@ -98,7 +98,7 @@ const Navbar = ({
   ];
 
   return (
-    <section className={`py-4 fixed w-full  top-0 z-[999] ${className}`}>
+    <section className={`py-4 fixed w-full !z-[999] top-0  ${className}`}>
       <div className={`container px-4 ${containerClassName}`}>
         <nav className="flex items-center justify-between">
           <Logo logo={brandLogoSrc} />
@@ -157,7 +157,7 @@ const Navbar = ({
                       href={link.href}
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        `bg-transparent rounded-none hover:bg-transparent hover:underline`,
+                        `bg-transparent rounded-none hover:bg-transparent hover:underline font-semibold`,
                         navLinkClassNames,
                       )}
                     >

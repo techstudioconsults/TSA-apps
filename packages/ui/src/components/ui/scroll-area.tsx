@@ -11,6 +11,9 @@ const ScrollArea = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
+    data-lenis-prevent
+    data-lenis-prevent-wheel
+    data-lenis-prevent-touch
     className={cn("relative overflow-hidden", className)}
     {...props}
   >

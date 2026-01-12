@@ -23,6 +23,7 @@
 export type Course = {
   imageUrl: string;
   id: string;
+  slug: string;
   title: string;
   description: string;
   about: string;

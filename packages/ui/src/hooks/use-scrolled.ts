@@ -1,70 +1,55 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type ScrollDirection = "up" | "down" | "none";
 
 export type UseScrolledOptions = {
-  threshold?: number; // Pixels from top before considered "scrolled"
-  initial?: boolean; // If true, scrolled when y > threshold. If false, y >= threshold
-  debounce?: number; // Debounce time in ms. 0 = no debounce (uses rAF)
+  threshold?: number;
+  initial?: boolean;
 };
 
 export function useScrolled(options: UseScrolledOptions = {}) {
-  const { threshold = 10, initial = true, debounce = 0 } = options;
-  const [y, setY] = useState(0);
-  const [direction, setDirection] = useState<ScrollDirection>("none");
-  const lastYRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { threshold = 10, initial = true } = options;
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
+    // Initialize
+    const initY = window.scrollY || window.pageYOffset || 0;
+    const isScrolled = initial ? initY > threshold : initY >= threshold;
+    setScrolled(isScrolled);
+
+    // Use Lenis scroll event if available, otherwise fallback to window scroll
+    const handleScroll = () => {
       const currentY = window.scrollY || window.pageYOffset || 0;
+      const isNowScrolled = initial
+        ? currentY > threshold
+        : currentY >= threshold;
 
-      if (debounce > 0) {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => {
-          setY(currentY);
-          setDirection(
-            currentY > lastYRef.current
-              ? "down"
-              : currentY < lastYRef.current
-                ? "up"
-                : "none",
-          );
-          lastYRef.current = currentY;
-        }, debounce);
-        return;
-      }
-
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        setY(currentY);
-        setDirection(
-          currentY > lastYRef.current
-            ? "down"
-            : currentY < lastYRef.current
-              ? "up"
-              : "none",
-        );
-        lastYRef.current = currentY;
+      // Only update state if the scrolled status actually changes
+      setScrolled((prev) => {
+        if (prev !== isNowScrolled) {
+          return isNowScrolled;
+        }
+        return prev;
       });
     };
 
-    // initialize
-    const initY = window.scrollY || window.pageYOffset || 0;
-    setY(initY);
-    lastYRef.current = initY;
+    // Listen on Lenis instance if available
+    const lenis = (window as any).lenis;
+    if (lenis && typeof lenis.on === "function") {
+      lenis.on("scroll", handleScroll);
+      return () => {
+        lenis.off("scroll", handleScroll);
+      };
+    }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // Fallback to window scroll with passive listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [debounce]);
+  }, [threshold, initial]);
 
-  const scrolled = initial ? y > threshold : y >= threshold;
-  return { scrolled, y, direction };
+  return { scrolled };
 }

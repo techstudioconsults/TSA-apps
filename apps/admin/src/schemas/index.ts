@@ -41,6 +41,7 @@ export const SheetsFormSchema = z.object({
 
 export const CourseFormSchema = z.object({
   title: z.string().min(1, "Course title is required"),
+  slug: z.string().min(1, "Course slug is required"),
   about: z.string().min(1, "Description is required"),
   onlineDuration: z.number().min(1, "Online Duration must be at least 1 week"),
   weekdayDuration: z
