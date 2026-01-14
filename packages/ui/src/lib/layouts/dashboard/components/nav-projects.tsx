@@ -45,9 +45,9 @@ export function NavProjects({
             <Link href={item.url} onClick={handleProjectClick}>
               <SidebarMenuButton
                 className={cn(
-                  "hover:bg-primary/10 w-full cursor-pointer p-6 transition-all duration-75",
+                  "hover:bg-white/10 w-full cursor-pointer p-6 transition-all duration-75",
                   item.isActive &&
-                    " bg-white text-primary border-3 font-medium shadow-[0px_0px_0px_2px_#0266F333]",
+                    " bg-mid-blue text-white font-medium shadow-[0px_0px_0px_2px_#0266F333]",
                 )}
               >
                 <div>
