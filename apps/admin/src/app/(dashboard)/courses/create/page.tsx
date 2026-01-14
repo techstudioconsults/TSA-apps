@@ -90,7 +90,7 @@ export default function CreateCoursePage() {
                 label="Slug"
                 placeholder="introduction-to-programming"
                 type="text"
-                required
+                labelDetailedNode={`Only use for online courses`}
               />
 
               <FormField

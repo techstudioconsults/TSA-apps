@@ -1,7 +1,6 @@
 "use client";
 
-import { cn } from "@workspace/ui/lib";
-import dynamic from "next/dynamic";
+import { cn, Navbar } from "@workspace/ui/lib";
 import { ReactNode, useEffect, useMemo } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "../../action/courses.action";
@@ -9,13 +8,6 @@ import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
-
-const DynamicNavbar = dynamic(
-  () => import("@workspace/ui/lib").then((m) => m.Navbar),
-  {
-    ssr: false,
-  },
-);
 
 const STATIC_LINK: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
@@ -99,7 +91,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <main>
-      <DynamicNavbar
+      <Navbar
         ctas={CTAs}
         navLinkClassNames={linkClassName}
         className={cn(bgScrollColor)}
