@@ -248,18 +248,18 @@ const Navbar = ({
       {/* Mobile Menu Dropdown */}
       <div
         className={cn(
-          "fixed -z-10 inset-x-0 translate-y-0 h-0 overflow-hidden top-18 opacity-100 bg-background shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
+          "fixed -z-10 inset-x-0 translate-y-0 h-0 top-18 opacity-100 bg-background shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
           mobileMenuOpen
-            ? "pointer-events-auto h-screen"
-            : "pointer-events-none h-0",
+            ? "pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto"
+            : "pointer-events-none h-0 overflow-hidden",
         )}
       >
         <div className="container px-4 py-6">
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             {showFeatures && (
               <Accordion type="single" collapsible className="mb-2 mt-4">
                 <AccordionItem value="features" className="border-none">
-                  <AccordionTrigger className="text-base hover:no-underline">
+                  <AccordionTrigger className="text-base hover:no-underline font-bold">
                     {featuresLabel}
                   </AccordionTrigger>
                   <AccordionContent>

@@ -15,6 +15,7 @@ import { Fragment, useEffect, useState } from "react";
 import { fetchMarketingCycleLeads } from "@/action/lead.actions";
 import { tokenManager } from "@/lib/http/token-manager";
 import { Lead } from "@/schemas/lead.schema";
+import { formatDate } from "date-fns";
 
 export default function LeadsPage() {
   const { cycleId } = useParams();
@@ -235,6 +236,7 @@ export default function LeadsPage() {
                               <div className="text-sm text-gray-600">
                                 <span className="font-medium">Registered:</span>{" "}
                                 {new Date(lead.createdAt).toLocaleString()}
+                                {/* {formatDate(new Date(lead.createdAt), 'PPpp')} */}
                               </div>
                             </div>
                           </div>

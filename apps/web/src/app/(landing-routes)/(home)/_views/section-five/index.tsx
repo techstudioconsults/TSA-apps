@@ -27,7 +27,7 @@ export const SectionFive = () => {
         </div>
       </Wrapper>
       <Gallery />
-      <Wrapper className="mb-[100px] grid min-h-[593px] grid-cols-1 items-center gap-[28px] gap-y-0 text-center lg:grid-cols-2 lg:text-left">
+      <Wrapper className="mb-[100px] grid lg:min-h-[593px] grid-cols-1 items-center gap-[28px] gap-y-0 text-center lg:grid-cols-2 lg:text-left">
         <div className="flex-1">
           <BlurImage
             priority

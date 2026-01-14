@@ -12,7 +12,7 @@ export const TsaMarquee: FC<TsaMarqueeProperties> = ({
   return (
     <Marquee speed={50}>
       <div
-        className={cn(`mr-10 flex items-center gap-10 p-5`, className)}
+        className={cn(`mr-10 flex items-center gap-10`, className)}
         {...rest}
       >
         {children}

@@ -3,9 +3,22 @@
 import { useEffect } from "react";
 
 import { UpcomingClassesSkeleton } from "../skeleton/upcoming.skeleton";
-import { CalendarDays, Hourglass, MapPin } from "lucide-react";
+import {
+  CalendarDays,
+  Hourglass,
+  MapPin,
+  AlertCircle,
+  Calendar,
+} from "lucide-react";
 
 import { CustomButton } from "@workspace/ui/lib";
+import {
+  Empty,
+  EmptyHeader,
+  EmptyTitle,
+  EmptyDescription,
+  EmptyMedia,
+} from "@workspace/ui/components";
 import useCohortStore from "@/stores/cohort.store";
 import {
   fetchCohortsByCourseId,
@@ -46,8 +59,46 @@ export const UpcomingClasses = () => {
   const weekdayCohort = cohorts.find((cohort) => cohort.type === "weekday");
 
   if (cohortsLoading) return <UpcomingClassesSkeleton />;
-  if (cohortError) return <p>Error loading classes: {cohortError}</p>;
-  if (!cohort) return <p>No upcoming classes available.</p>;
+
+  if (cohortError) {
+    return (
+      <Empty className="border-none py-8">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <AlertCircle className="text-destructive" />
+          </EmptyMedia>
+          <EmptyTitle>Unable to Load Classes</EmptyTitle>
+          <EmptyDescription>
+            {cohortError || "An error occurred while loading upcoming classes."}
+          </EmptyDescription>
+        </EmptyHeader>
+        <CustomButton
+          onClick={() => fetchUpcomingCohorts(pagination.page, 1)}
+          variant="outline"
+          size="sm"
+        >
+          Try Again
+        </CustomButton>
+      </Empty>
+    );
+  }
+
+  if (!cohort) {
+    return (
+      <Empty className="border-none py-8">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <Calendar className="text-muted-foreground" />
+          </EmptyMedia>
+          <EmptyTitle>No Upcoming Classes</EmptyTitle>
+          <EmptyDescription>
+            There are currently no upcoming classes scheduled. Check back soon
+            for new opportunities!
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
+    );
+  }
 
   return (
     <section>

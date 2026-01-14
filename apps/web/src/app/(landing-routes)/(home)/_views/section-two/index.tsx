@@ -7,7 +7,7 @@ import { FC } from "react";
 
 export const SectionTwo: FC = () => {
   return (
-    <section className="relative min-h-[518px] overflow-hidden bg-accent py-[85px]">
+    <section className="relative min-h-[518px] overflow-hidden bg-accent lg:py-[85px]">
       <Wrapper>
         <section className="grid grid-cols-1 items-center gap-[28px] lg:grid-cols-2">
           <div className="text-center lg:text-left">
