@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,6 +32,7 @@ const LoginForm: FC = () => {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const onSubmit = async (data: signInFormData) => {
     setFormError(null);
@@ -47,7 +48,10 @@ const LoginForm: FC = () => {
           result.tokens.refreshToken,
         );
         reset();
-        router.push("/");
+
+        // Redirect to the original destination or home
+        const redirectTo = searchParams.get("redirect") || "/";
+        router.push(redirectTo);
       } else {
         setFormError(result.error ?? "Invalid email or password");
       }
