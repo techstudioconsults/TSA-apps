@@ -15,9 +15,9 @@ export const Hero: FC<CourseHeroProperty> = ({ intro, slug }) => {
       <Wrapper>
         <section className="flex flex-col items-center gap-[50px] text-center lg:gap-[171px] xl:flex-row xl:text-left">
           <div className="flex-1">
-            <h1 className="mb-[26px] leading-[61px] text-white">
+            <h2 className="mb-[26px] leading-[61px] text-white">
               {intro.title}
-            </h1>
+            </h2>
             <p>{intro.subTitle}</p>
           </div>
           <div className="flex-1">

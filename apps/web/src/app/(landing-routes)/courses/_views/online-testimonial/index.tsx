@@ -3,6 +3,7 @@
 import { ONLINETESTIMONIAL } from "@/lib/constants";
 import { CustomButton, Wrapper } from "@workspace/ui/lib";
 import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export const OnlineTestimonial = () => {
   const [isIOS, setIsIOS] = useState(false);
@@ -43,8 +44,10 @@ export const OnlineTestimonial = () => {
         <CustomButton
           href={whatsappLink}
           variant="primary"
-          size="lg"
-          className="w-[300px] bg-mid-blue"
+          size="xl"
+          className=" bg-[#00e676] text-white hover:bg-success hover:text-white"
+          isLeftIconVisible
+          icon={<FaWhatsapp className="!size-10" />}
         >
           Ask a Question on whatsapp
         </CustomButton>

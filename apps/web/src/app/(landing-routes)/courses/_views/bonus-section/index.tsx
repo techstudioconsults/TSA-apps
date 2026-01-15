@@ -2,6 +2,7 @@
 
 import { CustomButton, Wrapper } from "@workspace/ui/lib";
 import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export const BonusSection = () => {
   const [isIOS, setIsIOS] = useState(false);
@@ -24,7 +25,7 @@ export const BonusSection = () => {
           Enrol Now and Get These FREE Bonuses
         </h2>
         <div className="mb-14 grid grid-cols-1 items-center gap-5 lg:grid-cols-3">
-          <div className="flex flex-col gap-2 rounded-xl bg-white px-5 py-7 text-left">
+          <div className="flex flex-col gap-2 h-full rounded-xl bg-white px-5 py-7 text-left">
             <div className="w-full max-w-28 rounded-2xl bg-low-blue p-1 text-center">
               <p className="font-medium text-mid-blue">₦50k Value</p>
             </div>
@@ -36,7 +37,7 @@ export const BonusSection = () => {
               opportunities
             </p>
           </div>
-          <div className="flex flex-col gap-2 rounded-xl bg-white px-5 py-7 text-left">
+          <div className="flex flex-col gap-2 h-full rounded-xl bg-white px-5 py-7 text-left">
             <div className="w-full max-w-28 rounded-2xl bg-low-blue p-1 text-center">
               <p className="font-medium text-mid-blue">₦50k Value</p>
             </div>
@@ -47,7 +48,7 @@ export const BonusSection = () => {
               Proven templates and strategies for landing your first tech job
             </p>
           </div>
-          <div className="flex flex-col gap-2 rounded-xl bg-white px-5 py-7 text-left">
+          <div className="flex flex-col gap-2 h-full rounded-xl bg-white px-5 py-7 text-left">
             <div className="w-full max-w-28 rounded-2xl bg-low-blue p-1 text-center">
               <p className="font-medium text-mid-blue">₦50k Value</p>
             </div>
@@ -62,8 +63,10 @@ export const BonusSection = () => {
         <CustomButton
           href={whatsappLink}
           variant="primary"
-          size="lg"
-          className="w-[300px] bg-mid-blue"
+          size="xl"
+          className=" bg-[#00e676] text-white hover:bg-success hover:text-white"
+          isLeftIconVisible
+          icon={<FaWhatsapp className="!size-10" />}
         >
           Ask a Question on whatsapp
         </CustomButton>

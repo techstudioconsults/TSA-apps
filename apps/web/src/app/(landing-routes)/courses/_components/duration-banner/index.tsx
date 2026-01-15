@@ -187,11 +187,11 @@ export const DurationBanner: FC<DurationBannerProperties> = ({ slug }) => {
       </p>
       <section className="flex flex-col items-center justify-between gap-5 text-center md:flex-row lg:text-left">
         <div>
-          <h2 className="m-0 text-mid-blue">
+          <h3 className="m-0 text-mid-blue font-black">
             {weekdayCohort?.startDate
               ? formatDateTime(weekdayCohort.startDate).date
               : "No Date Yet"}
-          </h2>
+          </h3>
           <p className="m-0 text-sm font-bold text-gray-700">
             Weekday Class:{" "}
             {weekdayCohort?.startDate
@@ -201,11 +201,11 @@ export const DurationBanner: FC<DurationBannerProperties> = ({ slug }) => {
         </div>
 
         <div className={`${`removeWeekend`}`}>
-          <h2 className="m-0 text-mid-blue">
+          <h3 className="m-0 text-mid-blue font-black">
             {weekendCohort?.startDate
               ? formatDateTime(weekendCohort.startDate).date
               : "No Date Yet"}
-          </h2>
+          </h3>
           <p className="m-0 text-sm font-bold text-gray-700">
             Weekend Class, Online Class:{" "}
             {weekendCohort?.startDate

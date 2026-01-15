@@ -108,7 +108,7 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto lg:px-4 lg:py-6">
       {/* Header Section */}
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-4">
@@ -138,7 +138,11 @@ export default function LeadsPage() {
             <SelectTrigger className="w-full sm:w-[250px]">
               <SelectValue placeholder="All Courses" />
             </SelectTrigger>
-            <SelectContent className="lg:ml-[-10rem]">
+            <SelectContent
+              className="max-h-[300px] w-[var(--radix-select-trigger-width)] max-w-[90vw]"
+              position="popper"
+              sideOffset={5}
+            >
               <SelectItem value="all">All Courses</SelectItem>
               {uniqueCourses.map((course) => (
                 <SelectItem key={course.id} value={course.id}>

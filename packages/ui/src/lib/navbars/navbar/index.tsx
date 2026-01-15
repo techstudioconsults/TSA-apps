@@ -63,6 +63,7 @@ const Navbar = ({
   desktopLinks,
   mobileLinks,
   ctas,
+  isLoading = false,
 
   menuButtonAriaLabel = "Open menu",
 
@@ -79,7 +80,7 @@ const Navbar = ({
   const actions = Array.isArray(ctas) ? ctas : defaultCTAs;
 
   const showFeatures = featuresList.length > 0;
-  const showDesktopMenu = showFeatures || desktopNav.length > 0;
+  const showDesktopMenu = desktopNav.length > 0;
   const showActions = actions.length > 0;
 
   const featureSections = [
@@ -92,6 +93,9 @@ const Navbar = ({
       })),
     },
   ];
+
+  // Always show the features label even when loading
+  const showFeaturesLabel = true;
 
   const pathname = usePathname();
   const isDarkRoute = React.useMemo(
@@ -170,27 +174,33 @@ const Navbar = ({
                     </NavigationMenuContent>
                   )}
                 </NavigationMenuItem> */}
-                {showFeatures && (
+                {showFeaturesLabel && (
                   <NavbarDropdown
                     label={featuresLabel}
                     sections={featureSections}
+                    isLoading={isLoading}
                   />
                 )}
 
-                {desktopNav.map((link) => (
-                  <NavigationMenuItem key={link.label}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        `bg-transparent rounded-none hover:bg-transparent hover:underline font-semibold`,
-                        navLinkClassNames,
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  </NavigationMenuItem>
-                ))}
+                {desktopNav.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <NavigationMenuItem key={link.label}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          `bg-transparent rounded-md hover:bg-transparent focus:bg-transparent transition-all focus:text-mid-danger hover:underline font-semibold`,
+                          navLinkClassNames,
+                          isActive &&
+                            "text-mid-danger font-bold transition-all",
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </NavigationMenuItem>
+                  );
+                })}
               </NavigationMenuList>
             </NavigationMenu>
           )}
@@ -256,7 +266,7 @@ const Navbar = ({
       >
         <div className="container px-4 py-6">
           <div className="flex flex-col items-center">
-            {showFeatures && (
+            {showFeaturesLabel && (
               <Accordion type="single" collapsible className="mb-2 mt-4">
                 <AccordionItem value="features" className="border-none">
                   <AccordionTrigger className="text-base hover:no-underline font-bold">
@@ -293,16 +303,22 @@ const Navbar = ({
 
             {mobileNav.length > 0 && (
               <div className="flex flex-col gap-6 items-center">
-                {mobileNav.map((link) => (
-                  <Link
-                    href={link.href}
-                    key={link.label}
-                    className="text-foreground hover:underline !font-bold"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {mobileNav.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      href={link.href}
+                      key={link.label}
+                      className={cn(
+                        "text-foreground hover:underline !font-bold",
+                        isActive && "text-red-500",
+                      )}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </div>
             )}
 

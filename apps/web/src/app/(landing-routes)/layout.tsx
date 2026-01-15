@@ -35,14 +35,8 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const featuresList: FeatureItem[] = useMemo(() => {
-    if (loading) {
-      return [
-        {
-          title: "Loading course data...please wait",
-          href: "",
-          description: "",
-        },
-      ];
+    if (loading || allCourses.length === 0) {
+      return [];
     }
 
     const backendCourses: FeatureItem[] = allCourses.map((course) => {
@@ -100,7 +94,8 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         featuresLabel="Courses"
         desktopLinks={STATIC_LINK}
         mobileLinks={STATIC_LINK}
-        containerClassName="max-w-[1240px] mx-auto lg:p-0"
+        containerClassName="max-w-[1240px] mx-auto xl:p-0"
+        isLoading={loading}
       />
       {children}
       {(() => {
@@ -127,7 +122,9 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         return (
           <TsaFooter
             navLinks={combinedFooterCourses as any}
-            subscribeComponent={<EmailForm buttonTitle={"Subscribe"} />}
+            subscribeComponent={
+              <EmailForm className="w-full" buttonTitle={"Subscribe"} />
+            }
             logopath={"logoPath"}
           />
         );

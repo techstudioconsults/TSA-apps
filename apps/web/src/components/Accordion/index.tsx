@@ -22,10 +22,10 @@ export const TsaAccordion: React.FC = () => {
   }, [getFAQ]);
 
   return (
-    <section className="min-h-[857px]">
-      <Wrapper className="min-h-[580px] lg:!mt-0">
+    <section className="">
+      <Wrapper className="!my-0 p-0">
         {/* Render the Accordion when the data is loaded */}
-        <section className="min-h-[580px]">
+        <section className="">
           {loading && <AccordionSkeleton />}
           {error && (
             <p className="text-center text-lg text-red-500">
@@ -36,7 +36,7 @@ export const TsaAccordion: React.FC = () => {
             <Accordion type="multiple">
               {faq.map((faqItem) => (
                 <AccordionItem key={faqItem.id} value={`item-${faqItem.id}`}>
-                  <AccordionTrigger className="group flex h-[80px] w-full items-center justify-between text-left text-sm transition-all lg:text-xl">
+                  <AccordionTrigger className="group flex w-full items-center justify-between text-left text-sm transition-all lg:text-xl">
                     <span>{faqItem.question}</span>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -54,7 +54,7 @@ export const TsaAccordion: React.FC = () => {
         </div>
 
         {/* Fallback message */}
-        <p className="text-center">
+        <p className="text-center text-sm lg:text-base">
           Can’t find the answer you are looking for?{" "}
           <Link href="/contact" className="font-semibold text-primary">
             Send us a message here
