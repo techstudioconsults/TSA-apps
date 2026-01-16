@@ -85,7 +85,7 @@ export interface OnlineCourse {
 
 export const onlineCourses: OnlineCourse[] = [
   {
-    slug: "cybersecurity",
+    slug: "cyber-security",
     title: "Cybersecurity Specialist",
     description:
       "Become a Cybersecurity Specialist Career-Ready in Just 12 Weeks",
@@ -712,7 +712,7 @@ export const onlineCourses: OnlineCourse[] = [
     },
   },
   {
-    slug: "full-stack-development",
+    slug: "fullstack-development",
     title: "Full-Stack Development",
     description:
       "Turn Your Passion for Tech Into a N250k - N1.5M+/Month Career",
@@ -1023,7 +1023,7 @@ export const onlineCourses: OnlineCourse[] = [
     },
   },
   {
-    slug: "ui-ux-design",
+    slug: "product-design",
     title: "UI/UX Design",
     description:
       "Learn How to Design Beautiful, User-Friendly Digital Products",

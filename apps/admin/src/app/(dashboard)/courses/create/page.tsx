@@ -39,7 +39,13 @@ export default function CreateCoursePage() {
   });
 
   const onSubmit = async (data: courseFormData) => {
-    await createCourse(data, {
+    const payload: any = { ...data };
+
+    if (!payload.slug) {
+      delete payload.slug;
+    }
+
+    await createCourse(payload, {
       onError: (error: any) => {
         toast.error(`Error creating course`, {
           description:
