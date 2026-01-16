@@ -84,13 +84,20 @@ const LeadForm = ({
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Find the course using the slug
-  const course = allCourses.find(
-    (course) =>
+  const isOnlineRoute = window.location.pathname.includes("/courses/online/");
+  const course = allCourses.find((course) => {
+    if (isOnlineRoute) {
+      return course.slug === slug;
+    }
+    return (
       course.title
         .trim()
         .replaceAll(/[\s/]+/g, "-")
-        .toLowerCase() === slug,
-  );
+        .toLowerCase() === slug
+    );
+  });
+
+  console.log(course);
 
   // Fetch cohorts when course is found
   useEffect(() => {

@@ -13,7 +13,7 @@ interface OnlineCourseHeroProps {
 
 export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
+  const [, setIsIOS] = useState(false);
 
   useEffect(() => {
     const userAgent =
