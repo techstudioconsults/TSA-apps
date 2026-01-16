@@ -48,6 +48,9 @@ declare global {
     // Actions
     ctas?: CTAItem[];
 
+    // State
+    isLoading?: boolean;
+
     // Accessibility
     menuButtonAriaLabel?: string;
 

@@ -79,7 +79,7 @@ const SheetCards = () => {
             <div className="mb-4 flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-muted text-foreground/70">
                     {sheet.month} {sheet.year}
                   </span>
                 </div>

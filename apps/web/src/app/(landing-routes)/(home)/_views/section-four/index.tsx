@@ -21,7 +21,7 @@ export const SectionFour = () => {
           <VerticalStepper steps={STEPS} currentStep={currentStep} />
         </div>
         <div
-          className="flex-1 h-[500px]"
+          className="flex-1 lg:h-[500px]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

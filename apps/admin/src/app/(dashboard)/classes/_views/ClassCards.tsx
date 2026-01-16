@@ -138,10 +138,7 @@ const CourseClassesTabContent = ({
                 </Avatar>
                 <div>
                   <CardTitle className="text-base">{item.title}</CardTitle>
-                  <Badge
-                    variant="secondaryOutline"
-                    className="text-[10px] tracking-widest"
-                  >
+                  <Badge className="text-[10px] tracking-widest bg-muted text-foreground/70 capitalize">
                     {item.type ?? "General"}
                   </Badge>
                 </div>
@@ -381,7 +378,8 @@ const ClassCards = () => {
               value={course.id}
               className={cn(
                 "border-b-2 min-w-fit rounded-md border-transparent hover:bg-primary/20 capitalize",
-                course.id === courseIdToUse && " font-medium !bg-mid-warning",
+                course.id === courseIdToUse &&
+                  " font-medium !bg-destructive !text-white",
               )}
             >
               {course.title}

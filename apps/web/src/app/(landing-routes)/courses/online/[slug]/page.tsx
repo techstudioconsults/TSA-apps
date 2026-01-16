@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { getOnlineCourseBySlug } from "../data/online-courses.data";
 import { OnlineCourseHero } from "../_components/hero";
-import { WhyStruggleSection } from "../_components/why-struggle";
-import { GuidedPathSection } from "../_components/guided-path";
-import { WhyLearnUIUXSection } from "../_components/why-learn-uiux";
+// import { WhyStruggleSection } from "../_components/why-struggle";
+// import { GuidedPathSection } from "../_components/guided-path";
+// import { WhyLearnUIUXSection } from "../_components/why-learn-uiux";
 import { WhyChooseSection } from "../_components/why-choose";
-import { CoreSkillsSection } from "../_components/core-skills";
+// import { CoreSkillsSection } from "../_components/core-skills";
 import { LearningJourneySection } from "../_components/learning-journey";
 import { WhoShouldJoinSection } from "../_components/who-should-join";
 import { OutcomesSection } from "../_components/outcomes";

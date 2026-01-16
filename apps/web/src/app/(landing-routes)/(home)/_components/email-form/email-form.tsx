@@ -5,8 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, HtmlHTMLAttributes, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { LuLoader } from "react-icons/lu";
-
 import { newsletterFormData, newsletterFormSchema } from "@/schemas";
 import { submitNewsletterForm } from "@/action/email.action";
 import { cn, CustomButton, FormField } from "@workspace/ui/lib";
@@ -69,9 +67,12 @@ export const EmailForm: FC<EmailFormProperties> = ({
       <form
         {...rest}
         onSubmit={handleSubmit(onSubmit)}
-        className={cn(`flex h-[48px] max-w-[521px] items-center`, className)}
+        className={cn(
+          `flex flex-col sm:flex-row gap-2 sm:gap-0 w-full sm:h-[48px] sm:max-w-[521px] items-stretch sm:items-center`,
+          className,
+        )}
       >
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-[48px] w-full">
           <FormField
             name="email"
             label={undefined}
@@ -81,7 +82,7 @@ export const EmailForm: FC<EmailFormProperties> = ({
               errors.email ? errors.email.message : "Enter Your Email Address"
             }
             className={cn(
-              "!h-[48px] rounded-none rounded-s-[5px] text-black placeholder:text-muted-foreground",
+              "!h-[48px] rounded-[5px] sm:rounded-none sm:rounded-s-[5px] text-black placeholder:text-muted-foreground",
               errors.email && `placeholder:text-destructive`,
             )}
             size={384}
@@ -91,7 +92,7 @@ export const EmailForm: FC<EmailFormProperties> = ({
           type="submit"
           variant="primary"
           isDisabled={isSubmitting}
-          className="tsaButton h-[100%] w-[138px] rounded-none rounded-e-[5px] bg-mid-blue"
+          className="tsaButton h-[48px] w-full sm:w-[138px] rounded-[5px] sm:rounded-none sm:rounded-e-[5px] bg-mid-blue"
         >
           {isSubmitting ? (
             <Loader className="animate-spin text-white" />

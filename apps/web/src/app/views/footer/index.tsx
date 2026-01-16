@@ -1,7 +1,7 @@
 "use client";
 
-import { Input, SelectSeparator } from "@workspace/ui/components";
-import { cn, CustomButton, Logo } from "@workspace/ui/lib";
+import { SelectSeparator } from "@workspace/ui/components";
+import { cn, Logo } from "@workspace/ui/lib";
 import Link from "next/link";
 import { FC } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
@@ -16,14 +16,14 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
   return (
     <div
       className={cn(
-        `bg-primary px-[1rem] py-[64px] text-white lg:px-0`,
+        `bg-primary px-[1rem] py-[64px] text-white xl:px-0`,
         className,
       )}
       {...rest}
     >
-      <footer className="mx-auto max-w-[1240px]">
-        <section className="flex flex-col gap-8 lg:flex-row lg:justify-between lg:gap-0">
-          <div className="flex flex-col">
+      <footer className="mx-auto max-w-[1240px] text-center xl:text-left">
+        <section className="flex flex-col gap-8 xl:flex-row xl:justify-between xl:gap-0">
+          <div className="flex flex-col items-center xl:w-1/3 xl:items-start">
             <Logo
               logo={
                 "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png"
@@ -38,14 +38,14 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
               </li>
             </ul>
           </div>
-          <div className="flex flex-col lg:w-1/6">
+          <div className="flex flex-col xl:w-1/6">
             <p className="pb-2.5 text-base font-bold">Courses</p>
             <ul className="flex flex-col gap-3">
               {navLinks.length
                 ? navLinks?.map((course: Course & { href?: string }, index) => {
                     // Check if it's an online course (has href property) or backend course
-                    const href = (course as any).href 
-                      ? (course as any).href 
+                    const href = (course as any).href
+                      ? (course as any).href
                       : `/courses/${course.title
                           .toLowerCase()
                           .trim()
@@ -64,7 +64,7 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
                 : `Loading Links`}
             </ul>
           </div>
-          <div className="flex flex-col lg:w-1/6">
+          <div className="flex flex-col xl:w-1/6">
             <h5 className="text-base text-white">About Us</h5>
             <ul className="mt-3 flex flex-col gap-3">
               <li>
@@ -93,38 +93,17 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
               </li>
             </ul>
           </div>
-          <div className="flex flex-col lg:w-1/3">
-            <div>
+          <div className="flex flex-col items-center xl:w-1/3 xl:items-start">
+            <div className="w-full flex flex-col items-center xl:items-start">
               <h5 className="pb-2.5 text-base text-white">
                 Subscribe to our newsletter
               </h5>
-              {subscribeComponent || (
-                <div className="flex items-center justify-between rounded-lg bg-white p-1">
-                  <span className="w-full">
-                    <Input
-                      disabled
-                      type="email"
-                      className="border-none py-2 text-xs text-black"
-                      placeholder="Email Address"
-                      aria-label="Email Address"
-                      aria-describedby="button-addon2"
-                    />
-                  </span>
-                  <CustomButton
-                    isDisabled={true}
-                    size="lg"
-                    variant="primary"
-                    className="bg-mid-blue"
-                  >
-                    Subscribe
-                  </CustomButton>
-                </div>
-              )}
+              {subscribeComponent}
             </div>
           </div>
         </section>
         <SelectSeparator className="mb-[30px] mt-[32px]" />
-        <section className="flex flex-col items-center justify-between gap-5 pt-4 lg:flex-row">
+        <section className="flex flex-col items-center justify-between gap-5 pt-4 xl:flex-row">
           <p>&copy; {new Date().getFullYear()} TechStudio Academy</p>
           <ul className="flex items-center gap-[33px]">
             <p className="font-light">Terms and Policy</p>

@@ -47,48 +47,79 @@ http.interceptors.response.use(
         "",
     ).toLowerCase();
 
-    // If the backend tells us the JWT is expired, force logout.
-    // (Useful when refresh isn't possible / refresh also fails.)
-    if (
-      (status === 401 || status === 403) &&
-      responseMessage.includes("jwt expired")
-    ) {
-      tokenManager.logout();
-      if (typeof window !== "undefined") {
-        window.location.href = "/login";
-      }
-      throw error;
-    }
+    // Handle 401 or 403 - unauthorized/forbidden
+    if (status === 401 || status === 403) {
+      // Check if backend explicitly says JWT expired
+      if (
+        responseMessage.includes("jwt expired") ||
+        responseMessage.includes("unauthorized")
+      ) {
+        // Try to refresh token first if we haven't retried yet
+        if (!originalRequest._retry) {
+          originalRequest._retry = true;
 
-    // If we get a 401 and haven't already retried, try to refresh the token
-    if (status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+          try {
+            const newAccessToken = await tokenManager.refreshAccessToken();
 
-      try {
-        // Try to refresh the access token
-        const newAccessToken = await tokenManager.refreshAccessToken();
-
-        if (newAccessToken) {
-          // Update the original request with the new token
-          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          // Retry the original request
-          return http(originalRequest);
+            if (newAccessToken) {
+              // Successfully refreshed, retry the request
+              originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+              return http(originalRequest);
+            }
+          } catch (refreshError) {
+            // Refresh failed - force logout and redirect
+            tokenManager.logout();
+            if (typeof window !== "undefined") {
+              window.location.href = "/login";
+            }
+            return Promise.reject(refreshError);
+          }
         }
-      } catch (refreshError) {
-        // If refresh fails, clear auth and redirect to login
+
+        // If retry already happened or refresh failed, logout
         tokenManager.logout();
         if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
-        throw refreshError;
+        return Promise.reject(error);
       }
-    }
 
-    // For other errors or if refresh failed, invalidate the token cache
-    if (status === 401 || status === 403) {
+      // For any other 401/403, also try refresh once
+      if (!originalRequest._retry) {
+        originalRequest._retry = true;
+
+        try {
+          const newAccessToken = await tokenManager.refreshAccessToken();
+
+          if (newAccessToken) {
+            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+            return http(originalRequest);
+          } else {
+            // No new token - logout and redirect
+            tokenManager.logout();
+            if (typeof window !== "undefined") {
+              window.location.href = "/login";
+            }
+            return Promise.reject(error);
+          }
+        } catch (refreshError) {
+          tokenManager.logout();
+          if (typeof window !== "undefined") {
+            window.location.href = "/login";
+          }
+          return Promise.reject(refreshError);
+        }
+      }
+
+      // Already retried - force logout
       tokenManager.logout();
+      if (typeof window !== "undefined") {
+        window.location.href = "/login";
+      }
+      return Promise.reject(error);
     }
 
+    // For all other errors, just reject
     throw error;
   },
 );

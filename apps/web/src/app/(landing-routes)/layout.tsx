@@ -1,7 +1,6 @@
 "use client";
 
-import { cn } from "@workspace/ui/lib";
-import dynamic from "next/dynamic";
+import { cn, Navbar } from "@workspace/ui/lib";
 import { ReactNode, useEffect, useMemo } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "../../action/courses.action";
@@ -9,13 +8,6 @@ import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
-
-const DynamicNavbar = dynamic(
-  () => import("@workspace/ui/lib").then((m) => m.Navbar),
-  {
-    ssr: false,
-  },
-);
 
 const STATIC_LINK: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
@@ -43,14 +35,8 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const featuresList: FeatureItem[] = useMemo(() => {
-    if (loading) {
-      return [
-        {
-          title: "Loading course data...please wait",
-          href: "",
-          description: "",
-        },
-      ];
+    if (loading || allCourses.length === 0) {
+      return [];
     }
 
     const backendCourses: FeatureItem[] = allCourses.map((course) => {
@@ -99,7 +85,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <main>
-      <DynamicNavbar
+      <Navbar
         ctas={CTAs}
         navLinkClassNames={linkClassName}
         className={cn(bgScrollColor)}
@@ -108,7 +94,8 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         featuresLabel="Courses"
         desktopLinks={STATIC_LINK}
         mobileLinks={STATIC_LINK}
-        containerClassName="max-w-[1240px] mx-auto lg:p-0"
+        containerClassName="max-w-[1240px] mx-auto xl:p-0"
+        isLoading={loading}
       />
       {children}
       {(() => {
@@ -135,7 +122,9 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         return (
           <TsaFooter
             navLinks={combinedFooterCourses as any}
-            subscribeComponent={<EmailForm buttonTitle={"Subscribe"} />}
+            subscribeComponent={
+              <EmailForm className="w-full" buttonTitle={"Subscribe"} />
+            }
             logopath={"logoPath"}
           />
         );

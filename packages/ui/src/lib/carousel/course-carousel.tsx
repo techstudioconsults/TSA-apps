@@ -71,7 +71,7 @@ export const CourseCarousel: React.FC<CourseCarouselProps> = ({
             <div className="h-full overflow-hidden rounded-t-[1rem] p-1">
               <Card className="relative overflow-hidden rounded-t-[1rem]">
                 <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-[23px] bg-gray-900 bg-opacity-70 p-2">
-                  <p className="text-center text-4xl font-[700] text-white">
+                  <p className="text-center text-2xl font-[700] text-white">
                     {content.name}
                   </p>
                   <CustomButton

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "../../utils";
 import { ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type NavbarDropdownItem = {
   label: string;
@@ -17,6 +18,7 @@ type NavbarDropdownProps = {
   label: string;
   sections: NavbarDropdownSection[];
   className?: string;
+  isLoading?: boolean;
 };
 
 const CLOSE_DELAY = 120;
@@ -25,9 +27,12 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
   label,
   sections,
   className,
+  isLoading = false,
 }) => {
   const [open, setOpen] = React.useState(false);
   const closeTimeout = React.useRef<number | null>(null);
+  const pathname = usePathname();
+  const isActive = pathname?.startsWith("/course");
 
   const clearCloseTimeout = () => {
     if (closeTimeout.current !== null) {
@@ -61,7 +66,8 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
       <button
         type="button"
         className={cn(
-          "inline-flex hover:text-danger  h-10 items-center gap-1 border-b-2 border-transparent px-3 text-sm font-medium transition-colors hover:border-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "inline-flex hover:text-danger h-10 items-center gap-1 border-b-2 border-transparent px-3 text-sm font-medium transition-colors hover:border-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          isActive && "text-mid-danger",
         )}
         aria-haspopup="true"
         aria-expanded={open}
@@ -92,30 +98,45 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
         onMouseLeave={closeMenuWithDelay}
       >
         <div className="mx-auto max-w-7xl px-8 py-6">
-          {sections.map((section, sectionIndex) => (
-            <div
-              key={section.title ?? sectionIndex}
-              className="grid grid-cols-3 gap-4"
-            >
-              {section.items.map((item, itemIndex) => (
-                <span key={`${item.label}-${itemIndex}`}>
-                  <a
-                    href={item.href ?? "#"}
-                    className="block rounded-md h-full text-left text-foreground/90 transition-colors hover:bg-mid-blue/10 p-4 hover:text-foreground"
-                  >
-                    <div className="font-bold text-primary leading-snug">
-                      {item.label}
-                    </div>
-                    {item.description && (
-                      <p className="mt-1 text-sm !font-medium leading-snug text-muted-foreground">
-                        {item.description}
-                      </p>
-                    )}
-                  </a>
-                </span>
+          {isLoading ? (
+            <div className="grid grid-cols-3 gap-4">
+              {[...Array(6)].map((_, index) => (
+                <div
+                  key={`skeleton-${index}`}
+                  className="block rounded-md h-full p-4 animate-pulse"
+                >
+                  <div className="h-5 bg-muted rounded w-3/4 mb-2"></div>
+                  <div className="h-3 bg-muted rounded w-full mb-1"></div>
+                  <div className="h-3 bg-muted rounded w-5/6"></div>
+                </div>
               ))}
             </div>
-          ))}
+          ) : (
+            sections.map((section, sectionIndex) => (
+              <div
+                key={section.title ?? sectionIndex}
+                className="grid grid-cols-3 gap-4"
+              >
+                {section.items.map((item, itemIndex) => (
+                  <span key={`${item.label}-${itemIndex}`}>
+                    <a
+                      href={item.href ?? "#"}
+                      className="block rounded-md h-full text-left text-foreground/90 transition-colors hover:bg-mid-blue/10 p-4 hover:text-foreground"
+                    >
+                      <div className="font-bold text-primary leading-snug">
+                        {item.label}
+                      </div>
+                      {item.description && (
+                        <p className="mt-1 text-sm !font-medium leading-snug text-muted-foreground">
+                          {item.description}
+                        </p>
+                      )}
+                    </a>
+                  </span>
+                ))}
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

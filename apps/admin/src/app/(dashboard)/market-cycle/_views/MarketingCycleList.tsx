@@ -16,8 +16,12 @@ import {
 import { useModalStore } from "@/store/modalStore";
 import MarketingCycleForm from "./MarketingCycleForm";
 import ConfirmationModal from "@/app/(dashboard)/_components/modals/ConfirmationModal";
-import { Card } from "iconsax-reactjs";
-import { CardContent, CardFooter, CardHeader } from "@workspace/ui/components";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@workspace/ui/components";
 
 export default function MarketingCycleList() {
   const router = useRouter();
@@ -71,7 +75,7 @@ export default function MarketingCycleList() {
           {Array.from({ length: 6 }).map((_, i) => (
             <Card
               key={i}
-              className="animate-pulse flex flex-col justify-between min-h-[274px] border-none shadow-none"
+              className="animate-pulse flex flex-col w-full justify-between min-h-[274px] border-none shadow-none"
             >
               <CardHeader>
                 <div className="h-4 w-1/2 rounded bg-muted" />
@@ -113,11 +117,11 @@ export default function MarketingCycleList() {
             key={cycle.id}
             className="group relative overflow-hidden rounded-xl p-6 shadow"
           >
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col justify-between">
               <div className="mb-4 flex items-start justify-between">
                 <div className="flex-1">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-semibold text-indigo-800">
+                    <span className="inline-flex items-center rounded-md bg-muted px-2.5 py-0.5 text-xs font-semibold text-foreground/70">
                       {new Date(cycle.startDate).toLocaleDateString()} -{" "}
                       {new Date(cycle.endDate).toLocaleDateString()}
                     </span>

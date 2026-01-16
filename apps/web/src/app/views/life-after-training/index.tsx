@@ -34,7 +34,7 @@ export const LifeAfterTraining = () => {
           </p>
         </div>
       </Wrapper>
-      <TsaMarquee className="h-[85px] space-x-[30px] lg:space-x-[73px]">
+      <TsaMarquee className="h-fit space-x-[30px] lg:space-x-[73px]">
         {companiesList}
       </TsaMarquee>
     </>

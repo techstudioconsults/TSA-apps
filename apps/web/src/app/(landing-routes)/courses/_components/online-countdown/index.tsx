@@ -125,7 +125,7 @@ export const OnlineCountdownBanner = ({
   return (
     <Wrapper
       className={cn(
-        "relative mx-auto flex w-full flex-col items-center gap-7 rounded-xl bg-primary px-6 py-10 text-center text-white shadow-lg",
+        "relative !my-0 mx-auto flex w-full flex-col items-center gap-7 rounded-xl bg-primary px-6 py-10 text-center text-white shadow-lg",
         className,
       )}
     >

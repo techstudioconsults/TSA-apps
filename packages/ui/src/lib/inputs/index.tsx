@@ -82,7 +82,7 @@ export function FormField({
             {required && <span className="text-destructive ml-1">*</span>}
           </Label>
           {labelDetailedNode && (
-            <div className="text-mid-grey-II text-xs">{labelDetailedNode}</div>
+            <div className="text-mid-blue text-xs">{labelDetailedNode}</div>
           )}
         </div>
       )}

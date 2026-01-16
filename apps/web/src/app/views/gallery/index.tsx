@@ -30,14 +30,14 @@ export const GALLARY_CONTENT = [
 
 export const Gallery = () => {
   return (
-    <section className="relative p-4 lg:p-0 flex flex-col lg:flex-row max-w-[1240px] mx-auto lg:items-center">
-      <div className="lg:w-[130%]">
+    <section className="relative p-0 flex flex-col xl:flex-row max-w-[1240px] mx-auto xl:items-center">
+      <div className="xl:w-[130%]">
         <TsaCarousel variant="gallery" galleryContent={GALLARY_CONTENT} />
       </div>
-      <div className="lg:w-[15%] p-4">
-        <div className="lg:w-[450px] z-10 relative lg:translate-x-[-263px] translate-y-[-5rem] lg:translate-y-0  shadow-lg rounded-2xl !bg-white p-8 lg:p-10">
+      <div className="xl:w-[15%] p-4">
+        <div className="xl:w-[450px] z-10 relative xl:translate-x-[-263px] translate-y-[-5rem] xl:translate-y-0  shadow-xl rounded-2xl !bg-white p-8 xl:p-10">
           <h6 className="font-bold">A World-Class Learning Facility</h6>
-          <p className="my-[25px] text-xs lg:text-base leading-[26px]">
+          <p className="my-[25px] text-xs xl:text-base leading-[26px]">
             At Tech Studio Academy, we have created a conducive environment for
             learning, combining exceptional school structures, inspiring
             classrooms, and dedicated tutors. We understand that the physical
@@ -45,7 +45,7 @@ export const Gallery = () => {
             strive to provide a nurturing setting that fosters academic growth,
             creativity, and personal development.
           </p>
-          <p className="leading-[26px] text-xs lg:text-base">
+          <p className="leading-[26px] text-xs xl:text-base">
             Our classrooms are carefully designed to facilitate effective
             teaching and learning to enable tutors to deliver dynamic and
             engaging lessons that captivate students attention and spark their

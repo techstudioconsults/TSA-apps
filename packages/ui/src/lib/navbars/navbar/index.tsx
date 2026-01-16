@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Menu as MenuIcon, Moon } from "lucide-react";
+import { Menu as MenuIcon, Moon, X } from "lucide-react";
+import * as React from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,22 +14,17 @@ import {
 } from "../../../components/ui/navigation-menu";
 
 import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "../../../components/ui/sheet";
-import { CustomButton } from "../../button";
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../../../components/ui/accordion";
+import { CustomButton } from "../../button";
 import { cn } from "../../utils";
 import { Logo } from "../../logo";
 import NavbarDropdown from "../_components/navbar-dropdown";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const defaultFeatures: FeatureItem[] = [
   { title: "Dashboard", description: "Overview of your activity", href: "#" },
@@ -67,6 +63,7 @@ const Navbar = ({
   desktopLinks,
   mobileLinks,
   ctas,
+  isLoading = false,
 
   menuButtonAriaLabel = "Open menu",
 
@@ -83,7 +80,7 @@ const Navbar = ({
   const actions = Array.isArray(ctas) ? ctas : defaultCTAs;
 
   const showFeatures = featuresList.length > 0;
-  const showDesktopMenu = showFeatures || desktopNav.length > 0;
+  const showDesktopMenu = desktopNav.length > 0;
   const showActions = actions.length > 0;
 
   const featureSections = [
@@ -96,6 +93,39 @@ const Navbar = ({
       })),
     },
   ];
+
+  // Always show the features label even when loading
+  const showFeaturesLabel = true;
+
+  const pathname = usePathname();
+  const isDarkRoute = React.useMemo(
+    () =>
+      pathname === "/about" ||
+      pathname === "/explore" ||
+      pathname.includes("/success"),
+    [pathname],
+  );
+
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const closeTimeout = React.useRef<number | null>(null);
+
+  const clearCloseTimeout = () => {
+    if (closeTimeout.current !== null) {
+      window.clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    clearCloseTimeout();
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      clearCloseTimeout();
+    };
+  }, []);
 
   return (
     <section className={`py-4 fixed w-full !z-[999] top-0  ${className}`}>
@@ -144,27 +174,33 @@ const Navbar = ({
                     </NavigationMenuContent>
                   )}
                 </NavigationMenuItem> */}
-                {showFeatures && (
+                {showFeaturesLabel && (
                   <NavbarDropdown
                     label={featuresLabel}
                     sections={featureSections}
+                    isLoading={isLoading}
                   />
                 )}
 
-                {desktopNav.map((link) => (
-                  <NavigationMenuItem key={link.label}>
-                    <NavigationMenuLink
-                      href={link.href}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        `bg-transparent rounded-none hover:bg-transparent hover:underline font-semibold`,
-                        navLinkClassNames,
-                      )}
-                    >
-                      {link.label}
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
+                {desktopNav.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <NavigationMenuItem key={link.label}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          `bg-transparent rounded-md hover:bg-transparent focus:bg-transparent transition-all focus:text-mid-danger hover:underline font-semibold`,
+                          navLinkClassNames,
+                          isActive &&
+                            "text-mid-danger font-bold transition-all",
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </NavigationMenuItem>
+                  );
+                })}
               </NavigationMenuList>
             </NavigationMenu>
           )}
@@ -192,102 +228,124 @@ const Navbar = ({
             </div>
           )}
 
-          <Sheet>
-            <SheetTrigger asChild className="lg:hidden">
-              <CustomButton
-                variant="outline"
-                size="icon"
-                ariaLabel={menuButtonAriaLabel}
-              >
-                <MenuIcon className={`size-4`} />
-              </CustomButton>
-            </SheetTrigger>
-            <SheetContent
-              side="top"
-              className="max-h-screen z-[9999] overflow-auto"
+          <div className="lg:hidden">
+            <CustomButton
+              variant="default"
+              size="icon"
+              ariaLabel={menuButtonAriaLabel}
+              onClick={toggleMobileMenu}
             >
-              <SheetHeader>
-                <SheetTitle>
-                  <Logo logo={brandLogoSrc} />
-                </SheetTitle>
-              </SheetHeader>
-
-              <div className="flex flex-col">
-                {showFeatures && (
-                  <Accordion type="single" collapsible className="mb-2 mt-4">
-                    <AccordionItem value="features" className="border-none">
-                      <AccordionTrigger className="text-base hover:no-underline">
-                        {featuresLabel}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {featuresList.map((feature, index) => (
-                            <a
-                              href={feature.href || "#"}
-                              key={`${feature.title}-${index}`}
-                              className="hover:bg-muted/70 rounded-md transition-colors"
-                            >
-                              <div>
-                                <p className="flex items-start gap-2 mb-2">
-                                  {/* <Moon className="size-5" /> */}
-                                  <span className="text-foreground font-semibold">
-                                    {feature.title}
-                                  </span>
-                                </p>
-                                {feature.description ? (
-                                  <p className="text-muted-foreground text-justify text-sm">
-                                    {feature.description}
-                                  </p>
-                                ) : null}
-                              </div>
-                            </a>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
-                )}
-
-                {mobileNav.length > 0 && (
-                  <div className="flex flex-col gap-6">
-                    {mobileNav.map((link) => (
-                      <a
-                        href={link.href}
-                        key={link.label}
-                        className="font-medium"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-
-                {showActions && (
-                  <div className="mt-6 flex flex-col gap-4">
-                    {actions.map((action, idx) => (
-                      <CustomButton
-                        key={`mobile-${action.label}-${idx}`}
-                        href={action.href}
-                        variant={action.variant}
-                        size={action.size}
-                        ariaLabel={action.ariaLabel || action.label}
-                        icon={action.icon}
-                        isIconOnly={action.isIconOnly}
-                        isLeftIconVisible={action.isLeftIconVisible}
-                        isRightIconVisible={action.isRightIconVisible}
-                        isLoading={action.isLoading}
-                        isDisabled={action.isDisabled}
-                        className={action.className}
-                      >
-                        {!action.isIconOnly && action.label}
-                      </CustomButton>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </SheetContent>
-          </Sheet>
+              {mobileMenuOpen ? (
+                <X
+                  className={cn(
+                    "size-6",
+                    isDarkRoute ? "text-black" : "text-white",
+                  )}
+                />
+              ) : (
+                <MenuIcon
+                  className={cn(
+                    "size-6",
+                    isDarkRoute ? "text-black" : "text-white",
+                  )}
+                />
+              )}
+            </CustomButton>
+          </div>
         </nav>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div
+        className={cn(
+          "fixed -z-10 inset-x-0 translate-y-0 h-0 top-18 opacity-100 bg-background shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
+          mobileMenuOpen
+            ? "pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto"
+            : "pointer-events-none h-0 overflow-hidden",
+        )}
+      >
+        <div className="container px-4 py-6">
+          <div className="flex flex-col items-center">
+            {showFeaturesLabel && (
+              <Accordion type="single" collapsible className="mb-2 mt-4">
+                <AccordionItem value="features" className="border-none">
+                  <AccordionTrigger className="text-base hover:no-underline font-bold">
+                    {featuresLabel}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {featuresList.map((feature, index) => (
+                        <Link
+                          href={feature.href || "#"}
+                          key={`${feature.title}-${index}`}
+                          className="hover:bg-muted/70 rounded-md transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <div>
+                            <p className="flex items-start gap-2 mb-2">
+                              <span className="text-foreground font-semibold">
+                                {feature.title}
+                              </span>
+                            </p>
+                            {feature.description ? (
+                              <p className="text-muted-foreground text-justify text-sm">
+                                {feature.description}
+                              </p>
+                            ) : null}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+
+            {mobileNav.length > 0 && (
+              <div className="flex flex-col gap-6 items-center">
+                {mobileNav.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      href={link.href}
+                      key={link.label}
+                      className={cn(
+                        "text-foreground hover:underline !font-bold",
+                        isActive && "text-red-500",
+                      )}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
+            {showActions && (
+              <div className="mt-6 flex flex-col gap-4 items-center">
+                {actions.map((action, idx) => (
+                  <CustomButton
+                    key={`mobile-${action.label}-${idx}`}
+                    href={action.href}
+                    variant={action.variant}
+                    size={action.size}
+                    ariaLabel={action.ariaLabel || action.label}
+                    icon={action.icon}
+                    isIconOnly={action.isIconOnly}
+                    isLeftIconVisible={action.isLeftIconVisible}
+                    isRightIconVisible={action.isRightIconVisible}
+                    isLoading={action.isLoading}
+                    isDisabled={action.isDisabled}
+                    className={action.className}
+                  >
+                    {!action.isIconOnly && action.label}
+                  </CustomButton>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

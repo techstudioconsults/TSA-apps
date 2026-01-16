@@ -32,13 +32,13 @@ export const SectionThree = ({
         <CarouselBanner />
       </Wrapper>
       {slug.includes(`weekday-online-class`) ? (
-        <Wrapper className="">
-          <h2 className="text-center">FREQUENTLY ASKED QUESTIONS</h2>
+        <Wrapper className="!my-0">
+          <h4 className="text-center">FREQUENTLY ASKED QUESTIONS</h4>
           <OnlineClassAccordion />
         </Wrapper>
       ) : (
-        <Wrapper className="">
-          <h2 className="text-center">FREQUENTLY ASKED QUESTIONS</h2>
+        <Wrapper className="!my-0">
+          <h5 className="text-center">FREQUENTLY ASKED QUESTIONS</h5>
           <TsaAccordion />
         </Wrapper>
       )}

@@ -179,7 +179,7 @@
 
 @keyframes slide-in-from-top {
   from {
-    transform: translateY(-1rem);
+    transform: translateY(-100%);
     opacity: 0;
   }
   to {
@@ -227,7 +227,7 @@
     opacity: 1;
   }
   to {
-    transform: translateY(-1rem);
+    transform: translateY(-100%);
     opacity: 0;
   }
 }
