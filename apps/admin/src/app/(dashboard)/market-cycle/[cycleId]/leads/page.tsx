@@ -139,13 +139,16 @@ export default function LeadsPage() {
               <SelectValue placeholder="All Courses" />
             </SelectTrigger>
             <SelectContent
-              className="max-h-[300px] w-[var(--radix-select-trigger-width)] max-w-[90vw]"
+              className="max-h-[300px] max-w-[var(--radix-select-trigger-width)] sm:max-w-none lg:w-[20vw]"
               position="popper"
-              sideOffset={5}
             >
               <SelectItem value="all">All Courses</SelectItem>
               {uniqueCourses.map((course) => (
-                <SelectItem key={course.id} value={course.id}>
+                <SelectItem
+                  key={course.id}
+                  value={course.id}
+                  className="truncate"
+                >
                   {course.name}
                 </SelectItem>
               ))}
