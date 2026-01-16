@@ -1,7 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Menu as MenuIcon, Moon, X } from "lucide-react";
+import {
+  Menu as MenuIcon,
+  Moon,
+  X,
+  Code2,
+  Database,
+  Palette,
+  Server,
+  ShieldCheck,
+  LineChart,
+  Cpu,
+  Globe2,
+  PenTool,
+} from "lucide-react";
 import * as React from "react";
 import {
   NavigationMenu,
@@ -98,11 +111,8 @@ const Navbar = ({
   const showFeaturesLabel = true;
 
   const pathname = usePathname();
-  const isDarkRoute = React.useMemo(
-    () =>
-      pathname === "/about" ||
-      pathname === "/explore" ||
-      pathname.includes("/success"),
+  const isLightNavbar = React.useMemo(
+    () => pathname === "/about" || pathname === "/explore",
     [pathname],
   );
 
@@ -127,8 +137,118 @@ const Navbar = ({
     };
   }, []);
 
+  const getMobileIconConfig = (item: FeatureItem) => {
+    if (item.icon) {
+      return {
+        icon: item.icon,
+        bgClass: "bg-blue-50",
+        iconClass: "text-blue-600",
+      };
+    }
+
+    const label = item.title.toLowerCase();
+
+    if (
+      label.includes("frontend") ||
+      label.includes("react") ||
+      label.includes("javascript")
+    ) {
+      return {
+        icon: <Code2 className="h-5 w-5" />,
+        bgClass: "bg-sky-50",
+        iconClass: "text-sky-600",
+      };
+    }
+
+    if (
+      label.includes("backend") ||
+      label.includes("node") ||
+      label.includes("api")
+    ) {
+      return {
+        icon: <Server className="h-5 w-5" />,
+        bgClass: "bg-indigo-50",
+        iconClass: "text-indigo-600",
+      };
+    }
+
+    if (
+      label.includes("design") ||
+      label.includes("ui") ||
+      label.includes("ux")
+    ) {
+      return {
+        icon: <Palette className="h-5 w-5" />,
+        bgClass: "bg-pink-50",
+        iconClass: "text-pink-600",
+      };
+    }
+
+    if (
+      label.includes("data") ||
+      label.includes("analytics") ||
+      label.includes("science")
+    ) {
+      return {
+        icon: <Database className="h-5 w-5" />,
+        bgClass: "bg-emerald-50",
+        iconClass: "text-emerald-600",
+      };
+    }
+
+    if (label.includes("product") || label.includes("management")) {
+      return {
+        icon: <LineChart className="h-5 w-5" />,
+        bgClass: "bg-amber-50",
+        iconClass: "text-amber-600",
+      };
+    }
+
+    if (label.includes("cyber") || label.includes("security")) {
+      return {
+        icon: <ShieldCheck className="h-5 w-5" />,
+        bgClass: "bg-red-50",
+        iconClass: "text-red-600",
+      };
+    }
+
+    if (label.includes("cloud") || label.includes("devops")) {
+      return {
+        icon: <Globe2 className="h-5 w-5" />,
+        bgClass: "bg-blue-50",
+        iconClass: "text-blue-600",
+      };
+    }
+
+    if (label.includes("writing") || label.includes("copy")) {
+      return {
+        icon: <PenTool className="h-5 w-5" />,
+        bgClass: "bg-violet-50",
+        iconClass: "text-violet-600",
+      };
+    }
+
+    return {
+      icon: <Cpu className="h-5 w-5" />,
+      bgClass: "bg-slate-50",
+      iconClass: "text-slate-600",
+    };
+  };
+
+  const truncateMobileDescription = (description?: string, maxLength = 110) => {
+    if (!description) return;
+    if (description.length <= maxLength) return description;
+    return description.slice(0, maxLength).trimEnd() + "…";
+  };
+
   return (
-    <section className={`py-4 fixed w-full !z-[999] top-0  ${className}`}>
+    <section
+      className={cn(
+        "py-4 fixed w-full !z-[999] top-0 transition-colors duration-300",
+        isLightNavbar ? "bg-white text-black" : "bg-primary text-white",
+        className,
+      )}
+    >
       <div className={`container px-4 ${containerClassName}`}>
         <nav className="flex items-center justify-between">
           <Logo logo={brandLogoSrc} />
@@ -239,14 +359,14 @@ const Navbar = ({
                 <X
                   className={cn(
                     "size-6",
-                    isDarkRoute ? "text-black" : "text-white",
+                    isLightNavbar ? "text-black" : "text-white",
                   )}
                 />
               ) : (
                 <MenuIcon
                   className={cn(
                     "size-6",
-                    isDarkRoute ? "text-black" : "text-white",
+                    isLightNavbar ? "text-black" : "text-white",
                   )}
                 />
               )}
@@ -258,41 +378,74 @@ const Navbar = ({
       {/* Mobile Menu Dropdown */}
       <div
         className={cn(
-          "fixed -z-10 inset-x-0 translate-y-0 h-0 top-18 opacity-100 bg-background shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
+          "-z-10 translate-y-0 h-0 top-18 opacity-100 shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
+          isLightNavbar ? "bg-white text-black" : "bg-primary text-white",
           mobileMenuOpen
-            ? "pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto"
+            ? "pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto !p-0"
             : "pointer-events-none h-0 overflow-hidden",
         )}
       >
-        <div className="container px-4 py-6">
+        <div className="px-4 py-6">
           <div className="flex flex-col items-center">
             {showFeaturesLabel && (
-              <Accordion type="single" collapsible className="mb-2 mt-4">
+              <Accordion type="single" collapsible className="mb-2 mt-4 !p-0">
                 <AccordionItem value="features" className="border-none">
-                  <AccordionTrigger className="text-base hover:no-underline font-bold">
+                  <AccordionTrigger
+                    className={cn(
+                      "text-base hover:no-underline font-bold",
+                      isLightNavbar ? "text-black" : "text-white",
+                    )}
+                  >
                     {featuresLabel}
                   </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="grid md:grid-cols-2 gap-4">
+                  <AccordionContent className="">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {featuresList.map((feature, index) => (
                         <Link
                           href={feature.href || "#"}
                           key={`${feature.title}-${index}`}
-                          className="hover:bg-muted/70 rounded-md transition-colors"
+                          className="flex items-start gap-4 rounded-xl border border-transparent bg-background text-left text-foreground/90 transition-colors hover:border-mid-blue/30 hover:bg-mid-blue/5 p-4"
                           onClick={() => setMobileMenuOpen(false)}
                         >
-                          <div>
-                            <p className="flex items-start gap-2 mb-2">
-                              <span className="text-foreground font-semibold">
-                                {feature.title}
-                              </span>
-                            </p>
-                            {feature.description ? (
-                              <p className="text-muted-foreground text-justify text-sm">
-                                {feature.description}
-                              </p>
-                            ) : null}
-                          </div>
+                          {(() => {
+                            const { icon, bgClass, iconClass } =
+                              getMobileIconConfig(feature);
+                            const truncatedDescription =
+                              truncateMobileDescription(feature.description);
+
+                            return (
+                              <>
+                                <div
+                                  className={cn(
+                                    "mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
+                                    bgClass,
+                                  )}
+                                >
+                                  <span
+                                    className={cn(
+                                      "inline-flex text-[18px] leading-none",
+                                      iconClass,
+                                    )}
+                                  >
+                                    {icon}
+                                  </span>
+                                </div>
+                                <div>
+                                  <p className="text-foreground font-semibold leading-snug mb-1">
+                                    {feature.title}
+                                  </p>
+                                  {truncatedDescription && (
+                                    <p
+                                      className="text-muted-foreground text-sm leading-snug"
+                                      title={feature.description}
+                                    >
+                                      {truncatedDescription}
+                                    </p>
+                                  )}
+                                </div>
+                              </>
+                            );
+                          })()}
                         </Link>
                       ))}
                     </div>
@@ -310,7 +463,8 @@ const Navbar = ({
                       href={link.href}
                       key={link.label}
                       className={cn(
-                        "text-foreground hover:underline !font-bold",
+                        "hover:underline !font-bold",
+                        isLightNavbar ? "text-black" : "text-white",
                         isActive && "text-red-500",
                       )}
                       onClick={() => setMobileMenuOpen(false)}

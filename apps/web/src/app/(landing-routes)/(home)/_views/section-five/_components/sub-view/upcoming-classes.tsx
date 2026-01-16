@@ -35,6 +35,8 @@ export const UpcomingClasses = () => {
     pagination,
   } = useCohortStore();
 
+  console.log(upcomingCohorts);
+
   useEffect(() => {
     fetchUpcomingCohorts(pagination.page, 1);
   }, [pagination.page]);
@@ -137,10 +139,14 @@ export const UpcomingClasses = () => {
 
       <div className="mt-[33px] flex flex-col justify-between gap-[20px] md:flex-row lg:items-center lg:gap-0">
         <CustomButton
-          href={`/courses/${cohort.title
-            .trim()
-            .replaceAll(/[\s/]+/g, "-")
-            .toLowerCase()}`}
+          href={
+            cohort.slug
+              ? `/courses/online/${cohort.slug}`
+              : `/courses/${cohort.title
+                  .trim()
+                  .replaceAll(/[\s/]+/g, "-")
+                  .toLowerCase()}`
+          }
           variant="primary"
           size="lg"
           className="w-full bg-mid-blue lg:max-w-[136px]"
