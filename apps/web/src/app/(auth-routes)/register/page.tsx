@@ -17,7 +17,7 @@ import { CustomButton, FormField, SwitchField } from "@workspace/ui/lib";
 import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { FC, Suspense, useEffect, useState } from "react";
-import { Form, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 // import useFacebookPixel from "~/lib/utils/pixel-tracker";
