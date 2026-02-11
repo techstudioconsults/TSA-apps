@@ -25,6 +25,7 @@ const CreateSheetModal: React.FC<CreateSheetModalProperties> = ({
     resolver: zodResolver(SheetsFormSchema),
     defaultValues: {
       title: "",
+      type: "physical",
     },
   });
 
@@ -61,6 +62,17 @@ const CreateSheetModal: React.FC<CreateSheetModalProperties> = ({
               label="Sheet Name"
               placeholder="Enter Sheet Name"
               type="text"
+              required
+            />
+            <FormField
+              name="type"
+              label="Sheet Type"
+              placeholder="Select Sheet Type"
+              type="select"
+              options={[
+                { value: "online", label: "Online" },
+                { value: "physical", label: "Physical" },
+              ]}
               required
             />
 

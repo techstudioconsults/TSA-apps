@@ -33,7 +33,7 @@ const HelpBanner = () => {
           className="object-cover"
         />
       </div>
-      <div className="absolute left-[-2rem] top-[-2rem] hidden overflow-hidden xl:block">
+      <div className="absolute left-[-2rem] top-[-2rem] hidden overflow-hidden 2xl:block">
         <Image
           width={116}
           height={118}
@@ -42,7 +42,7 @@ const HelpBanner = () => {
           className="object-cover"
         />
       </div>
-      <div className="absolute bottom-[-2rem] right-[-2rem] hidden overflow-hidden xl:block">
+      <div className="absolute bottom-[-2rem] right-[-2rem] hidden overflow-hidden 2xl:block">
         <Image
           width={90}
           height={72}
