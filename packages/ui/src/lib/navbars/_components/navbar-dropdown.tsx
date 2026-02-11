@@ -218,7 +218,7 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
         onMouseEnter={openMenu}
         onMouseLeave={closeMenuWithDelay}
       >
-        <div className="mx-auto max-w-9xl px-8 py-6">
+        <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[...Array(6)].map((_, index) => (
@@ -238,7 +238,7 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
             sections.map((section, sectionIndex) => (
               <div
                 key={section.title ?? sectionIndex}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6"
               >
                 {section.items.map((item, itemIndex) => (
                   <span key={`${item.label}-${itemIndex}`}>
@@ -275,7 +275,7 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
                               </div>
                               {truncatedDescription && (
                                 <p
-                                  className="mt-1 text-sm font-medium leading-snug text-muted-foreground"
+                                  className="mt-1 text-xs font-medium leading-snug text-muted-foreground"
                                   title={item.description}
                                 >
                                   {truncatedDescription}

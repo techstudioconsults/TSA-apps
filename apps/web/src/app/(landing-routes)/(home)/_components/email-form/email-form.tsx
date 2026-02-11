@@ -68,7 +68,7 @@ export const EmailForm: FC<EmailFormProperties> = ({
         {...rest}
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
-          `flex flex-col sm:flex-row gap-2 sm:gap-0 w-full sm:h-[48px] sm:max-w-[521px] items-stretch sm:items-center`,
+          `flex flex-col sm:flex-row gap-2 sm:gap-0 w-full sm:h-[48px] sm:max-w-[521px] items-stretch sm:items-center rounded-sm overflow-hidden`,
           className,
         )}
       >

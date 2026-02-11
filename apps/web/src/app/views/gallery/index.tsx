@@ -35,7 +35,7 @@ export const Gallery = () => {
         <TsaCarousel variant="gallery" galleryContent={GALLARY_CONTENT} />
       </div>
       <div className="xl:w-[15%] p-4">
-        <div className="xl:w-[450px] z-10 relative xl:translate-x-[-263px] translate-y-[-5rem] xl:translate-y-0  shadow-xl rounded-2xl !bg-white p-8 xl:p-10">
+        <div className="xl:w-[450px] z-10 relative xl:translate-x-[-280px] translate-y-[-5rem] xl:translate-y-0  shadow-xl rounded-2xl !bg-white p-8 xl:p-10">
           <h6 className="font-bold">A World-Class Learning Facility</h6>
           <p className="my-[25px] text-xs xl:text-base leading-[26px]">
             At Tech Studio Academy, we have created a conducive environment for

@@ -37,6 +37,7 @@ export const classSubmitFormSchema = z.object({
 
 export const SheetsFormSchema = z.object({
   title: z.string().min(1, "Sheet title is required"),
+  type: z.enum(["online", "physical"]).optional(),
 });
 
 export const CourseFormSchema = z.object({
