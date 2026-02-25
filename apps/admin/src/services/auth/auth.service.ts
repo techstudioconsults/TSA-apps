@@ -43,7 +43,6 @@ export class AuthService {
         email,
         password,
       });
-
       if (!response?.data) {
         return {
           success: false,
@@ -52,12 +51,9 @@ export class AuthService {
       }
 
       const dto = response.data;
+      console.log(dto.data?.tokens);
 
-      if (
-        dto.message === "success" &&
-        dto.data?.tokens?.access &&
-        dto.data?.tokens?.refresh
-      ) {
+      if (dto.data?.tokens?.access && dto.data?.tokens?.refresh) {
         return {
           success: true,
           tokens: {

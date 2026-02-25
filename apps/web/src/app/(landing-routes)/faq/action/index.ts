@@ -46,7 +46,7 @@ const useFAQStore = create<FAQState>()(
         const data = await response.json();
 
         set({
-          faq: data.data.data,
+          faq: data.data.data || data.data.content,
           currentPage: data.data.pageNumber,
           totalPages: data.data.pages,
           loading: false,

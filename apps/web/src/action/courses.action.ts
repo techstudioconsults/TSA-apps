@@ -69,7 +69,7 @@ export const fetchAllCourses = async () => {
     }
 
     const data = await response.json();
-    setCourses(data.data.items);
+    setCourses(data.data.items || data.data.content);
   } catch (error: unknown) {
     if (error instanceof Error) {
       setError(error.message);
