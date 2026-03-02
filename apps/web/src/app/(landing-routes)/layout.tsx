@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { cn, Navbar } from "@workspace/ui/lib";
-import { ReactNode, useEffect, useMemo } from "react";
-import useCoursesStore from "../../stores/course.store";
-import { fetchAllCourses } from "../../action/courses.action";
-import { usePathname } from "next/navigation";
-import { TsaFooter } from "../views/footer";
-import { useScrolled } from "@workspace/ui/hooks";
-import { EmailForm } from "./(home)/_components/email-form/email-form";
+import { cn, Navbar } from '@workspace/ui/lib';
+import { ReactNode, useEffect, useMemo } from 'react';
+import useCoursesStore from '../../stores/course.store';
+import { fetchAllCourses } from '@/action/courses.action';
+import { usePathname } from 'next/navigation';
+import { TsaFooter } from '../views/footer';
+import { useScrolled } from '@workspace/ui/hooks';
+import { EmailForm } from './(home)/_components/email-form/email-form';
 
 const STATIC_LINK: NavLinkItem[] = [
-  { label: "About Us", href: "/about" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact Us", href: "/contact" },
+  { label: 'About Us', href: '/about' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 const CTAs: CTAItem[] = [
   {
-    label: "Register",
+    label: 'Register',
     variant: `primary`,
-    href: "/register",
+    href: '/register',
     size: `lg`,
     className: `bg-mid-blue`,
   },
 ];
 
 const ExternalLayout = ({ children }: { children: ReactNode }) => {
-  const { allCourses, loading } = useCoursesStore();
+  const { allCourses, loading, error } = useCoursesStore();
   const { scrolled } = useScrolled({ threshold: 10 });
   const pathname = usePathname();
 
@@ -34,53 +34,51 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
     fetchAllCourses();
   }, []);
 
+  // Log error to console for debugging
+  useEffect(() => {
+    if (error) {
+      console.error('Failed to fetch courses:', error);
+    }
+  }, [error]);
+
   const featuresList: FeatureItem[] = useMemo(() => {
-    if (loading || allCourses.length === 0) {
+    if (loading || allCourses?.length === 0) {
       return [];
     }
 
-    const backendCourses: FeatureItem[] = allCourses.map((course) => {
+    const backendCourses: FeatureItem[] = allCourses?.map((course) => {
       const courseSlug = course.title
         .toLowerCase()
         .trim()
-        .replaceAll(/[\s/]+/g, "-");
+        .replaceAll(/[\s/]+/g, '-');
       return {
         title: course.title,
-        href: course.slug
-          ? `/courses/online/${course.slug}`
-          : `/courses/${courseSlug}`,
+        href: course.slug ? `/courses/online/${course.slug}` : `/courses/${courseSlug}`,
         description: course.about,
       };
     });
 
-    return [...backendCourses];
+    return backendCourses;
   }, [allCourses, loading]);
 
   const isDarkMode = useMemo(
-    () =>
-      pathname === "/about" ||
-      pathname === "/explore" ||
-      pathname.includes("/success"),
-    [pathname],
+    () => pathname === '/about' || pathname === '/explore' || pathname.includes('/success'),
+    [pathname]
   );
 
   const logoPath = useMemo(
     () =>
       isDarkMode
-        ? "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png"
-        : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png",
-    [isDarkMode],
+        ? 'https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png'
+        : 'https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png',
+    [isDarkMode]
   );
 
   const linkClassName = cn(`hover:!text-red-500`);
 
   const bgScrollColor = useMemo(
-    () =>
-      cn(
-        isDarkMode ? "backdrop-blur-3xl" : "text-background",
-        !isDarkMode && scrolled ? "bg-primary" : ``,
-      ),
-    [isDarkMode, scrolled],
+    () => cn(isDarkMode ? 'backdrop-blur-3xl' : 'text-background', !isDarkMode && scrolled ? 'bg-primary' : ``),
+    [isDarkMode, scrolled]
   );
 
   return (
@@ -113,7 +111,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
             : `/courses/${course.title
                 .toLowerCase()
                 .trim()
-                .replaceAll(/[\s/]+/g, "-")}`,
+                .replaceAll(/[\s/]+/g, '-')}`,
         }));
         const combinedFooterCourses = [
           // ...onlineCoursesForFooter,
@@ -122,10 +120,8 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         return (
           <TsaFooter
             navLinks={combinedFooterCourses as any}
-            subscribeComponent={
-              <EmailForm className="w-full" buttonTitle={"Subscribe"} />
-            }
-            logopath={"logoPath"}
+            subscribeComponent={<EmailForm className="w-full" buttonTitle={'Subscribe'} />}
+            logopath={'logoPath'}
           />
         );
       })()}

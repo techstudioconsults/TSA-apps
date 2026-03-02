@@ -1,16 +1,14 @@
-import http from "@/lib/http/httpConfig";
-import { SheetFormData } from "@/schemas";
+import http from '@/lib/http/httpConfig';
+import { SheetFormData } from '@/schemas';
 
 const BASE_URL = `/spreadsheets`;
 
 // Create Spreadsheet Action
-export const createSpreadsheetAction = async (
-  data: SheetFormData,
-): Promise<void> => {
+export const createSpreadsheetAction = async (data: SheetFormData): Promise<void> => {
   try {
     await http.post(BASE_URL, data);
   } catch (error) {
-    console.error("Error in createSpreadsheetAction:", error);
+    console.error('Error in createSpreadsheetAction:', error);
     throw error;
   }
 };
@@ -21,7 +19,7 @@ export const getSpreadsheetsAction = async () => {
     const response = await http.get(BASE_URL);
     return response.data?.items || []; // Ensure we extract the correct array
   } catch (error) {
-    console.error("Error in getSpreadsheetsAction:", error);
+    console.error('Error in getSpreadsheetsAction:', error);
     throw error;
   }
 };
@@ -31,13 +29,13 @@ export const getTotalSheetAction = async (): Promise<number> => {
     const response = await http.get(`${BASE_URL}/total`);
 
     // Add validation for response structure
-    if (typeof response.data?.totalSpreadsheet !== "number") {
-      throw new TypeError("Invalid total spreadsheet count format");
+    if (typeof response.data?.totalSpreadsheet !== 'number') {
+      throw new TypeError('Invalid total spreadsheet count format');
     }
 
     return response.data.totalSpreadsheet;
   } catch (error) {
-    console.error("Error in getTotalSheetAction:", error);
+    console.error('Error in getTotalSheetAction:', error);
     throw error;
   }
 };

@@ -1,4 +1,4 @@
-import { classFormData } from "@/schemas";
+import { classFormData } from '@/schemas';
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}`;
 
@@ -12,7 +12,7 @@ export interface ClassData {
   startDate: string;
   duration: string;
   courseId: string;
-  type: "online" | "weekday" | "weekend";
+  type: 'online' | 'weekday' | 'weekend';
 }
 
 interface APIError {
@@ -44,20 +44,20 @@ export interface SingleClassData {
   fee: number;
   startDate: string;
   // endDate: string;
-  type: "online" | "weekday" | "weekend";
+  type: 'online' | 'weekday' | 'weekend';
 }
 
 export const createClassAction = async (
   data: classFormData,
-  token: string,
+  token: string
   // courseId: string,
 ): Promise<ClassData> => {
   // Now returns ClassData
   try {
     const response = await fetch(`${BASE_URL}/cohorts`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
@@ -68,7 +68,7 @@ export const createClassAction = async (
     if (!response.ok) {
       throw {
         status: response.status,
-        message: responseData.message || "Failed to create class",
+        message: responseData.message || 'Failed to create class',
         details: responseData.errors || {},
       } as APIError;
     }
@@ -76,21 +76,18 @@ export const createClassAction = async (
     return responseData.data; // Return the created class
   } catch (error) {
     const apiError = error as APIError;
-    console.error("Error in createClassAction:", apiError);
+    console.error('Error in createClassAction:', apiError);
     throw {
-      message: apiError.message || "An unexpected error occurred.",
+      message: apiError.message || 'An unexpected error occurred.',
       details: apiError.details || {},
     } as APIError;
   }
 };
 
-export const fetchClassesByCourseIdAction = async (
-  courseId: string,
-  token: string,
-): Promise<ClassData[]> => {
+export const fetchClassesByCourseIdAction = async (courseId: string, token: string): Promise<ClassData[]> => {
   try {
     const response = await fetch(`${BASE_URL}/cohorts?courseId=${courseId}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -101,30 +98,27 @@ export const fetchClassesByCourseIdAction = async (
     if (!response.ok) {
       throw {
         status: response.status,
-        message: "Failed to fetch classes",
+        message: 'Failed to fetch classes',
       } as APIError;
     }
 
     return responseData.data?.items;
   } catch (error) {
     const apiError = error as APIError;
-    console.error("Error in fetchClassesByCourseIdAction:", apiError);
+    console.error('Error in fetchClassesByCourseIdAction:', apiError);
     throw {
-      message: apiError.message || "An unexpected error occurred.",
+      message: apiError.message || 'An unexpected error occurred.',
     } as APIError;
   }
 };
 
 // Delete class action
-export const deleteClassAction = async (
-  id: string,
-  token: string,
-): Promise<void> => {
+export const deleteClassAction = async (id: string, token: string): Promise<void> => {
   try {
     const response = await fetch(`${BASE_URL}/cohorts/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -133,15 +127,12 @@ export const deleteClassAction = async (
       throw new Error(`Failed to delete course: ${response.statusText}`);
     }
   } catch (error) {
-    console.error("Error in deleteCourseAction:", error);
+    console.error('Error in deleteCourseAction:', error);
     throw error;
   }
 };
 
-export const getSingleClassAction = async (
-  id: string,
-  token: string,
-): Promise<SingleClassData> => {
+export const getSingleClassAction = async (id: string, token: string): Promise<SingleClassData> => {
   try {
     const response = await fetch(`${BASE_URL}/cohorts/${id}`, {
       headers: {
@@ -150,9 +141,7 @@ export const getSingleClassAction = async (
     });
 
     if (!response.ok) {
-      throw new Error(
-        `Failed to fetch details for this class: ${response.statusText}`,
-      );
+      throw new Error(`Failed to fetch details for this class: ${response.statusText}`);
     }
 
     const singleClass = (await response.json()) as {
@@ -171,22 +160,18 @@ export const getSingleClassAction = async (
       fee: singleClass.data.fee,
     };
   } catch (error) {
-    console.error("Error in getSingleClassAction:", error);
+    console.error('Error in getSingleClassAction:', error);
     throw error;
   }
 };
 
 // Update class action
-export const updateClassAction = async (
-  id: string,
-  data: Partial<classFormData>,
-  token: string,
-): Promise<void> => {
+export const updateClassAction = async (id: string, data: Partial<classFormData>, token: string): Promise<void> => {
   try {
     const response = await fetch(`${BASE_URL}/cohorts/${id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
@@ -199,12 +184,12 @@ export const updateClassAction = async (
       const errorBody = await response.json();
       throw {
         status: response.status,
-        message: errorBody.message || "Failed to update course",
+        message: errorBody.message || 'Failed to update course',
         details: errorBody,
       };
     }
   } catch (error) {
-    console.error("Error in updateCourseAction:", error);
+    console.error('Error in updateCourseAction:', error);
     throw error;
   }
 };
@@ -224,7 +209,7 @@ export const getTotalCohortsAction = async (token: string): Promise<number> => {
     const data = await response.json();
     return data.data.totalCohorts;
   } catch (error) {
-    console.error("Error in getTotalCohortsAction:", error);
+    console.error('Error in getTotalCohortsAction:', error);
     throw error;
   }
 };

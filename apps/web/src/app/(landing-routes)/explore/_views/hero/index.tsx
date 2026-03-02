@@ -1,14 +1,13 @@
-"use client";
+'use client';
 
-import { fetchAllCourses } from "@/action/courses.action";
-import useCoursesStore from "@/stores/course.store";
-import { cn, CustomButton, Wrapper } from "@workspace/ui/lib";
-import { Loader } from "lucide-react";
-import { useEffect } from "react";
+import { fetchAllCourses } from '@/action/courses.action';
+import useCoursesStore from '@/stores/course.store';
+import { cn, CustomButton, Wrapper } from '@workspace/ui/lib';
+import { Loader, BookOpen } from 'lucide-react';
+import { useEffect } from 'react';
 
 export const Hero = () => {
-  const { loading, error, allCourses, setActiveCourse, activeCourse } =
-    useCoursesStore();
+  const { loading, error, allCourses, setActiveCourse, activeCourse } = useCoursesStore();
 
   useEffect(() => {
     fetchAllCourses();
@@ -33,35 +32,43 @@ export const Hero = () => {
         <div
           className={cn(
             `min-h-[36px] gap-[10px] flex flex-wrap lg:gap-[31px]`,
-            loading ? `grid-cols-1` : `grid-cols-2`,
+            loading ? `grid-cols-1` : `grid-cols-2`
           )}
         >
           {loading && (
             <div className="flex w-full justify-center gap-1">
               <Loader className="animate-spin text-primary" />
-              <span className="h-fit text-center text-[12px] lg:text-[16px]">
-                Getting All Courses... please wait.
-              </span>
+              <span className="h-fit text-center text-[12px] lg:text-[16px]">Getting All Courses... please wait.</span>
             </div>
           )}
-          {error && (
-            <p className="w-full text-mid-danger lg:text-center">
-              Error loading classes: {error}
-            </p>
+          {error && <p className="w-full text-mid-danger lg:text-center">Error loading classes: {error}</p>}
+          {!loading && !error && allCourses.length === 0 && (
+            <div className="flex flex-col items-center justify-center w-full py-12">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4">
+                <BookOpen className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">No Courses Available</h3>
+              <p className="text-sm text-muted-foreground text-center max-w-md">
+                We&apos;re currently updating our course catalog. Please check back soon for exciting new learning
+                opportunities!
+              </p>
+            </div>
           )}
-          {allCourses.map((course) => (
-            <CustomButton
-              key={course.id}
-              onClick={() => setActiveCourse(course)}
-              className={`w-fit rounded-[5px] px-[20px] py-[15px] text-center text-[10px] font-[600] xl:text-[14px] ${
-                activeCourse?.id === course.id
-                  ? "bg-mid-blue text-white" // Active styles
-                  : "bg-[#EBEBEB] text-black" // Default styles
-              }`}
-            >
-              {course.title}
-            </CustomButton>
-          ))}
+          {!loading &&
+            !error &&
+            allCourses.map((course) => (
+              <CustomButton
+                key={course.id}
+                onClick={() => setActiveCourse(course)}
+                className={`w-fit rounded-[5px] px-[20px] py-[15px] text-center text-[10px] font-[600] xl:text-[14px] ${
+                  activeCourse?.id === course.id
+                    ? 'bg-mid-blue text-white' // Active styles
+                    : 'bg-[#EBEBEB] text-black' // Default styles
+                }`}
+              >
+                {course.title}
+              </CustomButton>
+            ))}
         </div>
       </Wrapper>
     </header>

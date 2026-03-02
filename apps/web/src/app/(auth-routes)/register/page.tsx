@@ -1,38 +1,31 @@
-"use client";
+'use client';
 
-import { fetchCohortsByCourseId } from "@/action/cohort.action";
-import { fetchAllCourses } from "@/action/courses.action";
-import {
-  getLatestMarketingCycle,
-  submitLeadForm,
-} from "@/action/lead-form.action";
-import ResponseModal from "@/components/modals/response-modal";
-import { SignUpFormData, signUpFormSchema } from "@/schemas";
-import useCohortStore from "@/stores/cohort.store";
-import useCoursesStore from "@/stores/course.store";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { fetchCohortsByCourseId } from '@/action/cohort.action';
+import { fetchAllCourses } from '@/action/courses.action';
+import { getLatestMarketingCycle, submitLeadForm } from '@/action/lead-form.action';
+import ResponseModal from '@/components/modals/response-modal';
+import { SignUpFormData, signUpFormSchema } from '@/schemas';
+import useCohortStore from '@/stores/cohort.store';
+import useCoursesStore from '@/stores/course.store';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CustomButton, FormField, SwitchField } from "@workspace/ui/lib";
+import { CustomButton, FormField, SwitchField } from '@workspace/ui/lib';
 
-import { Loader } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import { FC, Suspense, useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { Loader } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { FC, Suspense, useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 // import useFacebookPixel from "~/lib/utils/pixel-tracker";
 
 const RegistrationForm: FC = () => {
   const searchParameters = useSearchParams();
   const { allCourses, loading } = useCoursesStore();
-  const {
-    cohorts,
-    loading: cohortsLoading,
-    error: cohortsError,
-  } = useCohortStore();
+  const { cohorts, loading: cohortsLoading, error: cohortsError } = useCohortStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [marketingCycleId, setMarketingCycleId] = useState<string>("");
+  const [marketingCycleId, setMarketingCycleId] = useState<string>('');
   // const { trackEvent } = useFacebookPixel("962870014990453", undefined, {
   //   autoConfig: true,
   //   debug: true,
@@ -40,33 +33,29 @@ const RegistrationForm: FC = () => {
 
   const formMethods = useForm<SignUpFormData>({
     resolver: zodResolver(signUpFormSchema),
-    mode: "onBlur",
+    mode: 'onBlur',
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      courseId: "",
-      cohortId: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      courseId: '',
+      cohortId: '',
       joinNewsLetter: false,
-      utm_source: "direct_from_web_app",
-      utm_medium: "direct_from_web_app",
-      utm_content: "direct_from_web_app",
-      utm_term: "direct_from_web_app",
+      utm_source: 'direct_from_web_app',
+      utm_medium: 'direct_from_web_app',
+      utm_content: 'direct_from_web_app',
+      utm_term: 'direct_from_web_app',
     },
   });
 
   const { handleSubmit, reset, watch, setValue, clearErrors } = formMethods;
 
-  const watchedCourseId = watch("courseId");
-  const watchedCohortId = watch("cohortId");
+  const watchedCourseId = watch('courseId');
+  const watchedCohortId = watch('cohortId');
   const isCourseSelected = Boolean(watchedCourseId);
-  const selectedCourseTitle = allCourses?.find(
-    (c) => c.id === watchedCourseId,
-  )?.title;
-  const selectedCohortTitle = cohorts?.find(
-    (c) => c.id === watchedCohortId,
-  )?.title;
+  const selectedCourseTitle = allCourses?.find((c) => c.id === watchedCourseId)?.title;
+  const selectedCohortTitle = cohorts?.find((c) => c.id === watchedCohortId)?.title;
 
   const courseOptions = (allCourses || []).map((c: any) => ({
     value: c.id,
@@ -85,7 +74,7 @@ const RegistrationForm: FC = () => {
         setMarketingCycleId(cycle.data.id);
       } catch {
         // Use a safe fallback id to avoid blocking submission
-        setMarketingCycleId("2bef4d8c-39da-4da0-a1e1-7f840ea32daf");
+        setMarketingCycleId('2bef4d8c-39da-4da0-a1e1-7f840ea32daf');
       }
     };
     fetchMarketingCycle();
@@ -94,7 +83,7 @@ const RegistrationForm: FC = () => {
   // Fetch cohorts when courseId changes and reset cohortId
   useEffect(() => {
     // Clear any previously selected cohort when course changes
-    setValue("cohortId", "");
+    setValue('cohortId', '');
     if (watchedCourseId) {
       fetchCohortsByCourseId(watchedCourseId);
     }
@@ -104,49 +93,45 @@ const RegistrationForm: FC = () => {
   useEffect(() => {
     const firstCohortId = cohorts?.[0]?.id;
     if (firstCohortId) {
-      setValue("cohortId", firstCohortId);
-      clearErrors("cohortId");
+      setValue('cohortId', firstCohortId);
+      clearErrors('cohortId');
     }
   }, [cohorts, setValue, clearErrors]);
 
   // Populate UTM parameters from URL query
   useEffect(() => {
-    const utmSource =
-      searchParameters.get("utm_source") || "direct_from_web_app";
-    const utmMedium =
-      searchParameters.get("utm_medium") || "direct_from_web_app";
-    const utmContent =
-      searchParameters.get("utm_content") || "direct_from_web_app";
-    const utmTerm = searchParameters.get("utm_term") || "direct_from_web_app";
+    const utmSource = searchParameters.get('utm_source') || 'direct_from_web_app';
+    const utmMedium = searchParameters.get('utm_medium') || 'direct_from_web_app';
+    const utmContent = searchParameters.get('utm_content') || 'direct_from_web_app';
+    const utmTerm = searchParameters.get('utm_term') || 'direct_from_web_app';
 
-    setValue("utm_source", utmSource);
-    setValue("utm_medium", utmMedium);
-    setValue("utm_content", utmContent);
-    setValue("utm_term", utmTerm);
+    setValue('utm_source', utmSource);
+    setValue('utm_medium', utmMedium);
+    setValue('utm_content', utmContent);
+    setValue('utm_term', utmTerm);
   }, [searchParameters, setValue]);
 
   const onSubmit = async (data: SignUpFormData) => {
     setIsSubmitting(true);
 
     if (cohortsLoading) {
-      toast.error("Please wait while we load the cohorts");
+      toast.error('Please wait while we load the cohorts');
       setIsSubmitting(false);
       return;
     }
     if (cohortsError) {
-      toast.error("Error loading course data");
+      toast.error('Error loading course data');
       setIsSubmitting(false);
       return;
     }
     if (!data.cohortId) {
-      toast.error("Cohort not available");
+      toast.error('Cohort not available');
       setIsSubmitting(false);
       return;
     }
     // Proceed even if no marketingCycleId by using a fallback id
 
-    const cycleIdToUse =
-      marketingCycleId || "2bef4d8c-39da-4da0-a1e1-7f840ea32daf";
+    const cycleIdToUse = marketingCycleId || '2bef4d8c-39da-4da0-a1e1-7f840ea32daf';
     try {
       await submitLeadForm(data, cycleIdToUse);
     } catch {
@@ -157,17 +142,14 @@ const RegistrationForm: FC = () => {
     setIsModalOpen(true);
     reset();
     // Re-set UTM parameters after reset
-    const utmSource =
-      searchParameters.get("utm_source") || "direct_from_web_app";
-    const utmMedium =
-      searchParameters.get("utm_medium") || "direct_from_web_app";
-    const utmContent =
-      searchParameters.get("utm_content") || "direct_from_web_app";
-    const utmTerm = searchParameters.get("utm_term") || "direct_from_web_app";
-    setValue("utm_source", utmSource);
-    setValue("utm_medium", utmMedium);
-    setValue("utm_content", utmContent);
-    setValue("utm_term", utmTerm);
+    const utmSource = searchParameters.get('utm_source') || 'direct_from_web_app';
+    const utmMedium = searchParameters.get('utm_medium') || 'direct_from_web_app';
+    const utmContent = searchParameters.get('utm_content') || 'direct_from_web_app';
+    const utmTerm = searchParameters.get('utm_term') || 'direct_from_web_app';
+    setValue('utm_source', utmSource);
+    setValue('utm_medium', utmMedium);
+    setValue('utm_content', utmContent);
+    setValue('utm_term', utmTerm);
 
     setIsSubmitting(false);
   };
@@ -185,96 +167,58 @@ const RegistrationForm: FC = () => {
   return (
     <FormProvider {...formMethods}>
       <div className="rounded-md p-0 shadow-none lg:p-8 lg:shadow-lg">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto space-y-8 lg:!w-[600px]"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="mx-auto space-y-8 lg:!w-[600px]">
           <div className="space-y-3">
-            <h2 className="text-xl font-bold">
-              One last step, let&apos;s get to know you
-            </h2>
+            <h2 className="text-xl font-bold">One last step, let&apos;s get to know you</h2>
             <p>Fill in your details to get started.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <FormField
-              name="firstName"
-              label="First Name"
-              placeholder="First Name"
-              type="text"
-            />
+            <FormField name="firstName" label="First Name" placeholder="First Name" type="text" />
 
-            <FormField
-              name="lastName"
-              label="Last Name"
-              placeholder="Last Name"
-              type="text"
-            />
+            <FormField name="lastName" label="Last Name" placeholder="Last Name" type="text" />
 
             <FormField
               name="courseId"
               label="Course"
               type="select"
-              placeholder="Choose a course"
+              placeholder={allCourses.length === 0 ? 'No courses available' : 'Choose a course'}
               options={courseOptions}
               containerClassName="w-full"
               className="truncate"
               readOnly={false}
-              disabled={loading}
+              disabled={loading || allCourses.length === 0}
               title={selectedCourseTitle}
             />
+            {!loading && allCourses.length === 0 && (
+              <p className="text-xs text-muted-foreground -mt-2 col-span-2">
+                No courses are currently available. Please check back later.
+              </p>
+            )}
 
             <FormField
               name="cohortId"
               label="Cohort"
               type="select"
               options={cohortOptions}
-              placeholder={
-                isCourseSelected ? "Choose a cohort" : "Select a course first"
-              }
-              disabled={
-                !isCourseSelected ||
-                cohortsLoading ||
-                (cohorts?.length ?? 0) === 0
-              }
+              placeholder={isCourseSelected ? 'Choose a cohort' : 'Select a course first'}
+              disabled={!isCourseSelected || cohortsLoading || (cohorts?.length ?? 0) === 0}
               containerClassName="w-full"
               className="truncate"
               title={selectedCohortTitle}
             />
 
-            <FormField
-              name="phoneNumber"
-              label="Phone Number"
-              placeholder="Phone Number"
-              type="text"
-            />
+            <FormField name="phoneNumber" label="Phone Number" placeholder="Phone Number" type="text" />
 
-            <FormField
-              name="email"
-              label="Email Address"
-              placeholder="Email Address"
-              type="email"
-            />
+            <FormField name="email" label="Email Address" placeholder="Email Address" type="email" />
           </div>
 
           {/* Newsletter Checkbox */}
-          <SwitchField
-            name="joinNewsLetter"
-            label="Send me alerts and weekly newsletters"
-          />
+          <SwitchField name="joinNewsLetter" label="Send me alerts and weekly newsletters" />
 
           {/* Submit Button */}
-          <CustomButton
-            type="submit"
-            variant="primary"
-            isDisabled={isSubmitting}
-            className="w-full bg-mid-blue"
-          >
-            {isSubmitting ? (
-              <Loader className="animate-spin text-white" />
-            ) : (
-              "Register"
-            )}
+          <CustomButton type="submit" variant="primary" isDisabled={isSubmitting} className="w-full bg-mid-blue">
+            {isSubmitting ? <Loader className="animate-spin text-white" /> : 'Register'}
           </CustomButton>
         </form>
       </div>
@@ -284,7 +228,7 @@ const RegistrationForm: FC = () => {
           title={`Course Registered Successfully!`}
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          responseMessage={""}
+          responseMessage={''}
           isError={false}
         />
       )}

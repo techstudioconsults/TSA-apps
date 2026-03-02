@@ -1,18 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="flex h-screen flex-col gap-4 xl:grid xl:grid-cols-2">
       {/* Logo and Image Section */}
       <section className="relative h-[15rem] xl:h-screen">
         <Link className="absolute left-4 top-4 hover:animate-pulse" href={`/`}>
-          <Image width={48} height={48} src={"/icons/logo.png"} alt="logo" />
+          <Image width={48} height={48} src={'/icons/logo.png'} alt="logo" />
         </Link>
         <Image
           width={742}
