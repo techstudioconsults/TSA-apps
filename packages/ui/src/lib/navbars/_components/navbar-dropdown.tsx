@@ -1,5 +1,5 @@
-import * as React from "react";
-import { cn } from "../../utils";
+import * as React from 'react';
+import { cn } from '../../utils';
 import {
   ChevronDown,
   Code2,
@@ -11,8 +11,9 @@ import {
   Cpu,
   Globe2,
   PenTool,
-} from "lucide-react";
-import { usePathname } from "next/navigation";
+  BookOpen,
+} from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 type NavbarDropdownItem = {
   label: string;
@@ -35,16 +36,11 @@ type NavbarDropdownProps = {
 
 const CLOSE_DELAY = 120;
 
-const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
-  label,
-  sections,
-  className,
-  isLoading = false,
-}) => {
+const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ label, sections, className, isLoading = false }) => {
   const [open, setOpen] = React.useState(false);
   const closeTimeout = React.useRef<number | null>(null);
   const pathname = usePathname();
-  const isActive = pathname?.startsWith("/course");
+  const isActive = pathname?.startsWith('/course');
 
   const clearCloseTimeout = () => {
     if (closeTimeout.current !== null) {
@@ -58,11 +54,7 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
     setOpen(true);
   };
 
-  const closeMenuWithDelay = () =>
-    (closeTimeout.current = window.setTimeout(
-      () => setOpen(false),
-      CLOSE_DELAY,
-    ));
+  const closeMenuWithDelay = () => (closeTimeout.current = window.setTimeout(() => setOpen(false), CLOSE_DELAY));
 
   React.useEffect(() => {
     return () => {
@@ -74,117 +66,98 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
     if (item.icon) {
       return {
         icon: item.icon,
-        bgClass: "bg-blue-50",
-        iconClass: "text-blue-600",
+        bgClass: 'bg-blue-50',
+        iconClass: 'text-blue-600',
       };
     }
 
     const label = item.label.toLowerCase();
 
-    if (
-      label.includes("frontend") ||
-      label.includes("react") ||
-      label.includes("javascript")
-    ) {
+    if (label.includes('frontend') || label.includes('react') || label.includes('javascript')) {
       return {
         icon: <Code2 className="h-5 w-5" />,
-        bgClass: "bg-sky-50",
-        iconClass: "text-sky-600",
+        bgClass: 'bg-sky-50',
+        iconClass: 'text-sky-600',
       };
     }
 
-    if (
-      label.includes("backend") ||
-      label.includes("node") ||
-      label.includes("api")
-    ) {
+    if (label.includes('backend') || label.includes('node') || label.includes('api')) {
       return {
         icon: <Server className="h-5 w-5" />,
-        bgClass: "bg-indigo-50",
-        iconClass: "text-indigo-600",
+        bgClass: 'bg-indigo-50',
+        iconClass: 'text-indigo-600',
       };
     }
 
-    if (
-      label.includes("design") ||
-      label.includes("ui") ||
-      label.includes("ux")
-    ) {
+    if (label.includes('design') || label.includes('ui') || label.includes('ux')) {
       return {
         icon: <Palette className="h-5 w-5" />,
-        bgClass: "bg-pink-50",
-        iconClass: "text-pink-600",
+        bgClass: 'bg-pink-50',
+        iconClass: 'text-pink-600',
       };
     }
 
-    if (
-      label.includes("data") ||
-      label.includes("analytics") ||
-      label.includes("science")
-    ) {
+    if (label.includes('data') || label.includes('analytics') || label.includes('science')) {
       return {
         icon: <Database className="h-5 w-5" />,
-        bgClass: "bg-emerald-50",
-        iconClass: "text-emerald-600",
+        bgClass: 'bg-emerald-50',
+        iconClass: 'text-emerald-600',
       };
     }
 
-    if (label.includes("product") || label.includes("management")) {
+    if (label.includes('product') || label.includes('management')) {
       return {
         icon: <LineChart className="h-5 w-5" />,
-        bgClass: "bg-amber-50",
-        iconClass: "text-amber-600",
+        bgClass: 'bg-amber-50',
+        iconClass: 'text-amber-600',
       };
     }
 
-    if (label.includes("cyber") || label.includes("security")) {
+    if (label.includes('cyber') || label.includes('security')) {
       return {
         icon: <ShieldCheck className="h-5 w-5" />,
-        bgClass: "bg-red-50",
-        iconClass: "text-red-600",
+        bgClass: 'bg-red-50',
+        iconClass: 'text-red-600',
       };
     }
 
-    if (label.includes("cloud") || label.includes("devops")) {
+    if (label.includes('cloud') || label.includes('devops')) {
       return {
         icon: <Globe2 className="h-5 w-5" />,
-        bgClass: "bg-blue-50",
-        iconClass: "text-blue-600",
+        bgClass: 'bg-blue-50',
+        iconClass: 'text-blue-600',
       };
     }
 
-    if (label.includes("writing") || label.includes("copy")) {
+    if (label.includes('writing') || label.includes('copy')) {
       return {
         icon: <PenTool className="h-5 w-5" />,
-        bgClass: "bg-violet-50",
-        iconClass: "text-violet-600",
+        bgClass: 'bg-violet-50',
+        iconClass: 'text-violet-600',
       };
     }
 
     return {
       icon: <Cpu className="h-5 w-5" />,
-      bgClass: "bg-slate-50",
-      iconClass: "text-slate-600",
+      bgClass: 'bg-slate-50',
+      iconClass: 'text-slate-600',
     };
   };
 
   const truncateDescription = (description?: string) => {
     if (!description) return;
-    const firstPeriodIndex = description.indexOf(".");
+    const firstPeriodIndex = description.indexOf('.');
     if (firstPeriodIndex === -1) return description;
     return description.slice(0, firstPeriodIndex + 1);
   };
 
   return (
-    <div
-      className={`relative h-full ${className ?? ""}`}
-      onMouseEnter={openMenu}
-    >
+    <div className={`relative h-full ${className ?? ''}`} onMouseEnter={openMenu}>
       <button
         type="button"
         className={cn(
-          "inline-flex hover:text-danger h-10 items-center gap-1 border-b-2 border-transparent px-3 text-sm font-medium transition-colors hover:border-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          isActive && "text-mid-danger",
+          'inline-flex hover:text-danger h-10 items-center gap-1 border-b-2 border-transparent px-3 text-sm font-medium transition-colors hover:border-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          isActive && 'text-mid-danger'
         )}
         aria-haspopup="true"
         aria-expanded={open}
@@ -194,18 +167,14 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
         <ChevronDown
           size={16}
           aria-hidden="true"
-          className={`mt-0.5 inline-block text-xs transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`mt-0.5 inline-block text-xs transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
         />
       </button>
 
       <div
         className={cn(
-          "fixed -z-10 inset-x-0 translate-y-0 top-18 opacity-100 bg-background/95 backdrop-blur-xl shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top",
-          open
-            ? "pointer-events-auto max-h-[70vh] overflow-y-auto"
-            : "pointer-events-none max-h-0 overflow-hidden",
+          'fixed -z-10 inset-x-0 translate-y-0 top-18 opacity-100 bg-background/95 backdrop-blur-xl shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top',
+          open ? 'pointer-events-auto max-h-[70vh] overflow-y-auto' : 'pointer-events-none max-h-0 overflow-hidden'
         )}
         data-lenis-prevent
         data-lenis-prevent-wheel
@@ -234,6 +203,17 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
                 </div>
               ))}
             </div>
+          ) : sections.length === 0 || sections.every((section) => section.items.length === 0) ? (
+            <div className="flex flex-col items-center justify-center py-12 px-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-4">
+                <BookOpen className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">No Courses Available</h3>
+              <p className="text-sm text-muted-foreground text-center max-w-md">
+                We&apos;re currently updating our course catalog. Please check back soon for exciting new learning
+                opportunities!
+              </p>
+            </div>
           ) : (
             sections.map((section, sectionIndex) => (
               <div
@@ -244,35 +224,24 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({
                   <span key={`${item.label}-${itemIndex}`}>
                     {(() => {
                       const { icon, bgClass, iconClass } = getIconConfig(item);
-                      const truncatedDescription = truncateDescription(
-                        item.description,
-                      );
+                      const truncatedDescription = truncateDescription(item.description);
 
                       return (
                         <a
-                          href={item.href ?? "#"}
+                          href={item.href ?? '#'}
                           className="flex items-start bg-transparent justify-between gap-6 rounded-xl border border-transparent bg-background text-left text-foreground/90 transition-colors hover:border-mid-blue/30 hover:bg-mid-blue/5 p-4"
                         >
                           <div className="flex items-start gap-4">
                             <div
                               className={cn(
-                                "mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
-                                bgClass,
+                                'mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full',
+                                bgClass
                               )}
                             >
-                              <span
-                                className={cn(
-                                  "inline-flex text-[18px] leading-none",
-                                  iconClass,
-                                )}
-                              >
-                                {icon}
-                              </span>
+                              <span className={cn('inline-flex text-[18px] leading-none', iconClass)}>{icon}</span>
                             </div>
                             <div>
-                              <div className="font-semibold text-foreground leading-snug">
-                                {item.label}
-                              </div>
+                              <div className="font-semibold text-foreground leading-snug">{item.label}</div>
                               {truncatedDescription && (
                                 <p
                                   className="mt-1 text-xs font-medium leading-snug text-muted-foreground"

@@ -1,15 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@workspace/ui/components";
-import { CustomButton } from "@workspace/ui/lib";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@workspace/ui/components';
+import { CustomButton } from '@workspace/ui/lib';
 
 interface ConfirmationModalProperties {
   isOpen: boolean;
@@ -24,8 +18,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProperties> = ({
   isOpen,
   onClose,
   onConfirm,
-  title = "Are you sure?",
-  description = "Any unsaved changes will be lost. Do you want to continue?",
+  title = 'Are you sure?',
+  description = 'Any unsaved changes will be lost. Do you want to continue?',
   isSubmitting,
 }) => {
   return (
@@ -37,19 +31,12 @@ const ConfirmationModal: React.FC<ConfirmationModalProperties> = ({
           </DialogTitle>
         </DialogHeader>
 
-        <div className="text-center">
-          {description && <p className="text-gray-600">{description}</p>}
-        </div>
+        <div className="text-center">{description && <p className="text-gray-600">{description}</p>}</div>
 
         <DialogFooter>
           <div className="mx-auto flex w-52 flex-col justify-center gap-4">
-            <CustomButton
-              className="bg-mid-blue py-3"
-              onClick={onConfirm}
-              variant="primary"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Processing..." : "Confirm"}
+            <CustomButton className="bg-mid-blue py-3" onClick={onConfirm} variant="primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Processing...' : 'Confirm'}
             </CustomButton>
             <CustomButton
               className="border-red-500 text-red-500"

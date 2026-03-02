@@ -1,19 +1,19 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { Activity, getAllActivityAction } from "../activity.actions";
+import { Activity, getAllActivityAction } from '../activity.actions';
 
 const mockActivities: Activity[] = [
   {
-    id: "1",
-    activity: "Login",
-    description: "User logged in",
-    createdAt: "2024-04-08T10:00:00Z",
+    id: '1',
+    activity: 'Login',
+    description: 'User logged in',
+    createdAt: '2024-04-08T10:00:00Z',
   },
   {
-    id: "2",
-    activity: "Logout",
-    description: "User logged out",
-    createdAt: "2024-04-08T12:00:00Z",
+    id: '2',
+    activity: 'Logout',
+    description: 'User logged out',
+    createdAt: '2024-04-08T12:00:00Z',
   },
 ];
 
@@ -26,14 +26,14 @@ const mockResponseData = {
   },
 };
 
-describe("getAllActivityAction", () => {
-  const token = "fake-token";
+describe('getAllActivityAction', () => {
+  const token = 'fake-token';
 
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
-  it("fetches activities successfully", async () => {
+  it('fetches activities successfully', async () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => mockResponseData,
@@ -41,33 +41,28 @@ describe("getAllActivityAction", () => {
 
     const result = await getAllActivityAction(token, 1, 2);
 
-    expect(fetch).toHaveBeenCalledWith(
-      `${process.env.NEXT_PUBLIC_API_URL}/activities?page=1&limit=2`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    expect(fetch).toHaveBeenCalledWith(`${process.env.NEXT_PUBLIC_API_URL}/activities?page=1&limit=2`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    );
+    });
 
     expect(result.data).toEqual(mockActivities);
     expect(result.totalPages).toBe(5);
   });
 
-  it("throws an error when fetch fails", async () => {
+  it('throws an error when fetch fails', async () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: false,
-      statusText: "Unauthorized",
+      statusText: 'Unauthorized',
     });
 
-    await expect(getAllActivityAction(token)).rejects.toThrow(
-      "Failed to fetch activities: Unauthorized",
-    );
+    await expect(getAllActivityAction(token)).rejects.toThrow('Failed to fetch activities: Unauthorized');
   });
 
-  it("throws an error if fetch throws", async () => {
-    global.fetch = vi.fn().mockRejectedValue(new Error("Network error"));
+  it('throws an error if fetch throws', async () => {
+    global.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
 
-    await expect(getAllActivityAction(token)).rejects.toThrow("Network error");
+    await expect(getAllActivityAction(token)).rejects.toThrow('Network error');
   });
 });

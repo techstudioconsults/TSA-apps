@@ -1,4 +1,4 @@
-import { courseFormData } from "@/schemas";
+import { courseFormData } from '@/schemas';
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}/courses`;
 
@@ -49,9 +49,7 @@ export interface MappedCourseData {
 }
 
 // Fetch courses action
-export const fetchCoursesAction = async (
-  token: string,
-): Promise<MappedCourseData[]> => {
+export const fetchCoursesAction = async (token: string): Promise<MappedCourseData[]> => {
   try {
     const response = await fetch(`${BASE_URL}`, {
       headers: {
@@ -78,19 +76,16 @@ export const fetchCoursesAction = async (
       curriculum: course.curriculum,
     }));
   } catch (error) {
-    console.error("Error in fetchCoursesAction:", error);
+    console.error('Error in fetchCoursesAction:', error);
     throw error;
   }
 };
 
-export const createCourseAction = async (
-  formData: FormData,
-  token: string,
-): Promise<courseFormData> => {
+export const createCourseAction = async (formData: FormData, token: string): Promise<courseFormData> => {
   // Update return type
   try {
     const response = await fetch(`${BASE_URL}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -104,7 +99,7 @@ export const createCourseAction = async (
       // console.log(errorBody);
       throw {
         status: response.status,
-        message: errorBody.message || "Failed to create course",
+        message: errorBody.message || 'Failed to create course',
         details: errorBody,
       };
     }
@@ -113,16 +108,13 @@ export const createCourseAction = async (
     // console.log(data);
     return data; // Ensure function returns CourseFormData
   } catch (error) {
-    console.error("Error in createCourseAction:", error);
+    console.error('Error in createCourseAction:', error);
     throw error;
   }
 };
 
 // Get course by ID
-export const getCourseByIdAction = async (
-  id: string,
-  token: string,
-): Promise<MappedCourseData> => {
+export const getCourseByIdAction = async (id: string, token: string): Promise<MappedCourseData> => {
   try {
     const response = await fetch(`${BASE_URL}/${id}`, {
       headers: {
@@ -148,20 +140,16 @@ export const getCourseByIdAction = async (
       curriculum: course.data?.curriculum,
     };
   } catch (error) {
-    console.error("Error in getCourseByIdAction:", error);
+    console.error('Error in getCourseByIdAction:', error);
     throw error;
   }
 };
 
 // Update course action
-export const updateCourseAction = async (
-  id: string,
-  formData: FormData,
-  token: string,
-): Promise<void> => {
+export const updateCourseAction = async (id: string, formData: FormData, token: string): Promise<void> => {
   try {
     const response = await fetch(`${BASE_URL}/${id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -172,26 +160,23 @@ export const updateCourseAction = async (
       const errorBody = await response.json();
       throw {
         status: response.status,
-        message: errorBody.message || "Failed to update course",
+        message: errorBody.message || 'Failed to update course',
         details: errorBody,
       };
     }
   } catch (error) {
-    console.error("Error in updateCourseAction:", error);
+    console.error('Error in updateCourseAction:', error);
     throw error;
   }
 };
 
 // Delete course action
-export const deleteCourseAction = async (
-  id: string,
-  token: string,
-): Promise<void> => {
+export const deleteCourseAction = async (id: string, token: string): Promise<void> => {
   try {
     const response = await fetch(`${BASE_URL}/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -200,7 +185,7 @@ export const deleteCourseAction = async (
       throw new Error(`Failed to delete course: ${response.statusText}`);
     }
   } catch (error) {
-    console.error("Error in deleteCourseAction:", error);
+    console.error('Error in deleteCourseAction:', error);
     throw error;
   }
 };
