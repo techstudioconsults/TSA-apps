@@ -1,72 +1,90 @@
-'use client';
+"use client";
 
-import { fetchCohortsByCourseId } from '@/action/cohort.action';
-import { getLatestMarketingCycle, submitLeadForm } from '@/action/lead-form.action';
-import { LeadFormData } from '@/schemas/lead-form';
-import useCohortStore from '@/stores/cohort.store';
-import useCoursesStore from '@/stores/course.store';
-import { Loader } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { fetchCohortsByCourseId } from "@/action/cohort.action";
+import {
+  getLatestMarketingCycle,
+  submitLeadForm,
+} from "@/action/lead-form.action";
+import { LeadFormData } from "@/schemas/lead-form";
+import useCohortStore from "@/stores/cohort.store";
+import useCoursesStore from "@/stores/course.store";
+import { Loader } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const validateField = (name: string, value: string) => {
   switch (name) {
-    case 'firstName': {
-      if (!value.trim()) return 'First Name is required';
-      if (value.trim().length < 2) return 'First Name must be at least 2 characters long';
-      return '';
+    case "firstName": {
+      if (!value.trim()) return "First Name is required";
+      if (value.trim().length < 2)
+        return "First Name must be at least 2 characters long";
+      return "";
     }
-    case 'lastName': {
-      if (!value.trim()) return 'Last Name is required';
-      if (value.trim().length < 2) return 'Last Name must be at least 2 characters long';
-      return '';
+    case "lastName": {
+      if (!value.trim()) return "Last Name is required";
+      if (value.trim().length < 2)
+        return "Last Name must be at least 2 characters long";
+      return "";
     }
-    case 'email': {
-      if (!value.trim()) return 'Email Address is required';
+    case "email": {
+      if (!value.trim()) return "Email Address is required";
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) return 'Must be a valid email address';
-      return '';
+      if (!emailRegex.test(value)) return "Must be a valid email address";
+      return "";
     }
-    case 'phoneNumber': {
-      if (!value.trim()) return 'Phone Number is required';
-      if (value.trim().length < 11) return 'Phone Number must be at least 11 characters long';
-      return '';
+    case "phoneNumber": {
+      if (!value.trim()) return "Phone Number is required";
+      if (value.trim().length < 11)
+        return "Phone Number must be at least 11 characters long";
+      return "";
     }
     default: {
-      return '';
+      return "";
     }
   }
 };
 
-const LeadForm = ({ slug, className }: { slug: string; className?: string }) => {
+const LeadForm = ({
+  slug,
+  className,
+}: {
+  slug: string;
+  className?: string;
+}) => {
   const router = useRouter();
   const searchParameters = useSearchParams();
   const { allCourses } = useCoursesStore();
-  const { cohorts, loading: cohortsLoading, error: cohortsError } = useCohortStore();
+  const {
+    cohorts,
+    loading: cohortsLoading,
+    error: cohortsError,
+  } = useCohortStore();
   const [formData, setFormData] = useState<LeadFormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    courseId: '',
-    cohortId: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    courseId: "",
+    cohortId: "",
     joinNewsLetter: false,
-    utm_source: 'direct_from_web_app',
-    utm_medium: 'direct_from_web_app',
-    utm_content: 'direct_from_web_app',
-    utm_term: 'direct_from_web_app',
+    utm_source: "direct_from_web_app",
+    utm_medium: "direct_from_web_app",
+    utm_content: "direct_from_web_app",
+    utm_term: "direct_from_web_app",
   });
-  const [marketingCycleId, setMarketingCycleId] = useState<string>('2bef4d8c-39da-4da0-a1e1-7f840ea32daf');
+  const [marketingCycleId, setMarketingCycleId] = useState<string>(
+    "2bef4d8c-39da-4da0-a1e1-7f840ea32daf",
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [, setMessage] = useState<{
-    type: 'success' | 'error';
+    type: "success" | "error";
     text: string;
   } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Find the course using the slug
-  const isOnlineRoute = window.location.pathname.includes('/courses/online/');
+  const isOnlineRoute = window.location.pathname.includes("/courses/online/");
   const course = allCourses.find((course) => {
     if (isOnlineRoute) {
       return course.slug === slug;
@@ -74,12 +92,10 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
     return (
       course.title
         .trim()
-        .replaceAll(/[\s/]+/g, '-')
+        .replaceAll(/[\s/]+/g, "-")
         .toLowerCase() === slug
     );
   });
-
-  console.log(course);
 
   // Fetch cohorts when course is found
   useEffect(() => {
@@ -107,7 +123,7 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
         const cycle = await getLatestMarketingCycle();
         setMarketingCycleId(cycle.data.id);
       } catch {
-        setMarketingCycleId('2bef4d8c-39da-4da0-a1e1-7f840ea32daf');
+        setMarketingCycleId("2bef4d8c-39da-4da0-a1e1-7f840ea32daf");
       } finally {
         setIsLoading(false);
       }
@@ -117,10 +133,13 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
 
   // Populate UTM parameters from URL query
   useEffect(() => {
-    const utmSource = searchParameters.get('utm_source') || 'direct_from_web_app';
-    const utmMedium = searchParameters.get('utm_medium') || 'direct_from_web_app';
-    const utmContent = searchParameters.get('utm_content') || 'direct_from_web_app';
-    const utmTerm = searchParameters.get('utm_term') || 'direct_from_web_app';
+    const utmSource =
+      searchParameters.get("utm_source") || "direct_from_web_app";
+    const utmMedium =
+      searchParameters.get("utm_medium") || "direct_from_web_app";
+    const utmContent =
+      searchParameters.get("utm_content") || "direct_from_web_app";
+    const utmTerm = searchParameters.get("utm_term") || "direct_from_web_app";
 
     setFormData((previous) => ({
       ...previous,
@@ -143,81 +162,96 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
 
     // Validate all fields
     const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['firstName', 'lastName', 'email', 'phoneNumber'];
+    const fieldsToValidate = ["firstName", "lastName", "email", "phoneNumber"];
     for (const field of fieldsToValidate) {
-      const error = validateField(field, formData[field as keyof LeadFormData] as string);
+      const error = validateField(
+        field,
+        formData[field as keyof LeadFormData] as string,
+      );
       if (error) newErrors[field] = error;
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
     if (cohortsLoading || isLoading) {
-      setMessage({ type: 'error', text: 'Please wait while we load the form' });
+      setMessage({ type: "error", text: "Please wait while we load the form" });
       return;
     }
     if (cohortsError) {
-      setMessage({ type: 'error', text: 'Error loading course data' });
+      setMessage({ type: "error", text: "Error loading course data" });
       return;
     }
     if (!formData.courseId || !formData.cohortId) {
-      setMessage({ type: 'error', text: 'Course or cohort not available' });
+      setMessage({ type: "error", text: "Course or cohort not available" });
       return;
     }
     // No marketingCycleId available: proceed with fallback id to avoid blocking submission
 
     setIsSubmitting(true);
     try {
-      const cycleIdToUse = marketingCycleId || '2bef4d8c-39da-4da0-a1e1-7f840ea32daf';
+      const cycleIdToUse =
+        marketingCycleId || "2bef4d8c-39da-4da0-a1e1-7f840ea32daf";
       const result = await submitLeadForm(formData, cycleIdToUse);
-      const successMessage = result.success || "Registration successful. We'll contact you shortly.";
+      const successMessage =
+        result.success || "Registration successful. We'll contact you shortly.";
 
-      setMessage({ type: 'success', text: successMessage });
+      setMessage({ type: "success", text: successMessage });
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        courseId: course?.id || '',
-        cohortId: cohorts[0]?.id || '',
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        courseId: course?.id || "",
+        cohortId: cohorts[0]?.id || "",
         joinNewsLetter: false,
-        utm_source: searchParameters.get('utm_source') || 'direct_from_web_app',
-        utm_medium: searchParameters.get('utm_medium') || 'direct_from_web_app',
-        utm_content: searchParameters.get('utm_content') || 'direct_from_web_app',
-        utm_term: searchParameters.get('utm_term') || 'direct_from_web_app',
+        utm_source: searchParameters.get("utm_source") || "direct_from_web_app",
+        utm_medium: searchParameters.get("utm_medium") || "direct_from_web_app",
+        utm_content:
+          searchParameters.get("utm_content") || "direct_from_web_app",
+        utm_term: searchParameters.get("utm_term") || "direct_from_web_app",
       });
       // Route to success page regardless of API response to prevent discouragement
-      router.push(`/courses/${slug}/success?msg=${encodeURIComponent(successMessage)}`);
+      router.push(
+        `/courses/${slug}/success?msg=${encodeURIComponent(successMessage)}`,
+      );
     } catch {
-      const successMessage = "Registration successful. We'll contact you shortly.";
-      setMessage({ type: 'success', text: successMessage });
+      const successMessage =
+        "Registration successful. We'll contact you shortly.";
+      setMessage({ type: "success", text: successMessage });
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        courseId: course?.id || '',
-        cohortId: cohorts[0]?.id || '',
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        courseId: course?.id || "",
+        cohortId: cohorts[0]?.id || "",
         joinNewsLetter: false,
-        utm_source: searchParameters.get('utm_source') || 'direct_from_web_app',
-        utm_medium: searchParameters.get('utm_medium') || 'direct_from_web_app',
-        utm_content: searchParameters.get('utm_content') || 'direct_from_web_app',
-        utm_term: searchParameters.get('utm_term') || 'direct_from_web_app',
+        utm_source: searchParameters.get("utm_source") || "direct_from_web_app",
+        utm_medium: searchParameters.get("utm_medium") || "direct_from_web_app",
+        utm_content:
+          searchParameters.get("utm_content") || "direct_from_web_app",
+        utm_term: searchParameters.get("utm_term") || "direct_from_web_app",
       });
-      router.push(`/courses/${slug}/success?msg=${encodeURIComponent(successMessage)}`);
+      router.push(
+        `/courses/${slug}/success?msg=${encodeURIComponent(successMessage)}`,
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
     setFormData({
       ...formData,
       [event.target.name]: value,
     });
     // Clear error when user starts typing
     if (errors[event.target.name]) {
-      setErrors((previous) => ({ ...previous, [event.target.name]: '' }));
+      setErrors((previous) => ({ ...previous, [event.target.name]: "" }));
     }
   };
 
@@ -249,7 +283,11 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 placeholder="First Name"
                 disabled={isSubmitting}
               />
-              {errors['firstName'] && <p className="mt-1 text-sm text-red-600">{errors['firstName']}</p>}
+              {errors["firstName"] && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors["firstName"]}
+                </p>
+              )}
             </div>
             <div>
               <input
@@ -262,7 +300,11 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 placeholder="Last Name"
                 disabled={isSubmitting}
               />
-              {errors['lastName'] && <p className="mt-1 text-sm text-red-600">{errors['lastName']}</p>}
+              {errors["lastName"] && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors["lastName"]}
+                </p>
+              )}
             </div>
             <div className="col-span-2">
               <input
@@ -275,7 +317,9 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 placeholder="Email Address"
                 disabled={isSubmitting}
               />
-              {errors['email'] && <p className="mt-1 text-sm text-red-600">{errors['email']}</p>}
+              {errors["email"] && (
+                <p className="mt-1 text-sm text-red-600">{errors["email"]}</p>
+              )}
             </div>
             <div className="col-span-2">
               <input
@@ -288,7 +332,11 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 placeholder="Phone Number"
                 disabled={isSubmitting}
               />
-              {errors['phoneNumber'] && <p className="mt-1 text-sm text-red-600">{errors['phoneNumber']}</p>}
+              {errors["phoneNumber"] && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors["phoneNumber"]}
+                </p>
+              )}
             </div>
             <div className="col-span-2 flex items-center">
               <input
@@ -299,7 +347,9 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 className="mr-2"
                 disabled={isSubmitting}
               />
-              <label className="text-sm text-gray-600">Subscribe to newsletter</label>
+              <label className="text-sm text-gray-600">
+                Subscribe to newsletter
+              </label>
             </div>
             <div className="col-span-2">
               <button
@@ -307,8 +357,10 @@ const LeadForm = ({ slug, className }: { slug: string; className?: string }) => 
                 className="flex w-full items-center justify-center rounded-md bg-mid-blue py-2 text-white hover:bg-blue-700"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? <Loader className="mr-2 h-5 w-5 animate-spin" /> : null}
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isSubmitting ? (
+                  <Loader className="mr-2 h-5 w-5 animate-spin" />
+                ) : null}
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </div>
           </div>

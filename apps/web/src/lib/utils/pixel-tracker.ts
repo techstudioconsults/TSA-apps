@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use client";
 
 import { useEffect } from "react";
@@ -16,7 +13,7 @@ const trackEvent = (event: string, data?: any) => {
       .then((module) => {
         module.default.track(event, data);
       })
-      .catch(console.error);
+      .catch(() => {});
   }
 };
 
@@ -30,7 +27,6 @@ const useFacebookPixel = (
     if (typeof window === "undefined") return;
 
     if (!pixelId) {
-      console.warn("Facebook Pixel ID is required");
       return;
     }
 
@@ -44,9 +40,7 @@ const useFacebookPixel = (
           debug: options?.debug ?? false,
         });
       })
-      .catch((error) => {
-        console.error("Failed to load Facebook Pixel", error);
-      });
+      .catch(() => {});
   }, [pixelId, advancedMatching, options]);
 
   // Similar implementations for other tracking methods...

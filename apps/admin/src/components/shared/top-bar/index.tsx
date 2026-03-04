@@ -133,7 +133,6 @@ function TopBarActions() {
       href: "#",
       onClick: () => {
         openCreateMarketingCycleModal();
-        console.log(`testing`);
       },
     },
     {

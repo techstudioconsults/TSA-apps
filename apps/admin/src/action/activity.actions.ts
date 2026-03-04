@@ -9,7 +9,7 @@ export interface Activity {
 export const getAllActivityAction = async (
   token: string,
   page: number = 1,
-  limit: number = 10
+  limit: number = 10,
 ): Promise<{ data: Activity[]; totalPages: number }> => {
   try {
     const response = await fetch(`${BASE_URL}?page=${page}&limit=${limit}`, {
@@ -29,7 +29,6 @@ export const getAllActivityAction = async (
       totalPages: data.data.metadata.totalPages,
     };
   } catch (error) {
-    console.error('Error in getAllActivityAction:', error);
     throw error;
   }
 };

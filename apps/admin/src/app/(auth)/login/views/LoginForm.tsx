@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, Loader } from 'lucide-react';
-import { CustomButton } from '@workspace/ui/lib';
-import { signInFormData, signInSchema } from '@/schemas';
-import { tokenManager } from '@/lib/http/token-manager';
-import { useLogin } from '@/services/auth/auth.mutations';
+import { useRouter, useSearchParams } from "next/navigation";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff, Loader } from "lucide-react";
+import { CustomButton } from "@workspace/ui/lib";
+import { signInFormData, signInSchema } from "@/schemas";
+import { tokenManager } from "@/lib/http/token-manager";
+import { useLogin } from "@/services/auth/auth.mutations";
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -21,12 +21,11 @@ const LoginForm: FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<signInFormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
@@ -41,27 +40,19 @@ const LoginForm: FC = () => {
         password: data.password,
       });
 
-      if (result.success && result.tokens) {
-        tokenManager.setAuth(result.tokens.accessToken, result.tokens.refreshToken);
-        reset();
-
-        // Redirect to the original destination or home
-        const redirectTo = searchParams.get('redirect') || '/';
+      if (result?.tokens && result?.user) {
+        tokenManager.setAuth(
+          result.tokens.accessToken || result.tokens.access,
+          result.tokens.refreshToken || result.tokens.refresh,
+        );
+        const redirectTo = searchParams.get("redirect") || "/";
         router.push(redirectTo);
-      } else {
-        setFormError(result.error ?? 'Invalid email or password');
       }
-    } catch (error: unknown) {
-      let errorMessage = 'An unexpected error occurred. Please try again.';
-      if (
-        typeof error === 'object' &&
-        error !== null &&
-        'message' in error &&
-        typeof (error as any).message === 'string'
-      ) {
-        errorMessage = (error as any).message;
-      }
-      setFormError(errorMessage);
+    } catch (error: any) {
+      setFormError(
+        error.response.data.message ||
+          "Invalid email or password. Please try again.",
+      );
     }
   };
 
@@ -69,8 +60,12 @@ const LoginForm: FC = () => {
     <div className="container mx-auto flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
       <div className="animate-fade-in w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-lg">
         <div>
-          <h2 className="text-center text-2xl font-extrabold text-mid-blue">Welcome back</h2>
-          <p className="mt-2 text-center text-base text-gray-600">Please sign in to your account</p>
+          <h2 className="text-center text-2xl font-extrabold text-mid-blue">
+            Welcome back
+          </h2>
+          <p className="mt-2 text-center text-base text-gray-600">
+            Please sign in to your account
+          </p>
         </div>
 
         {formError && (
@@ -82,36 +77,50 @@ const LoginForm: FC = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email */}
           <div>
-            <label htmlFor="email" className="mb-1 block font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="mb-1 block font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
               id="email"
               type="email"
               placeholder="Enter your email"
-              {...register('email')}
+              {...register("email")}
               className={`w-full rounded-md border px-4 py-2 transition focus:outline-none focus:ring-2 focus:ring-mid-blue ${
-                errors.email ? 'border-red-400 focus:ring-red-300' : 'border-gray-300'
+                errors.email
+                  ? "border-red-400 focus:ring-red-300"
+                  : "border-gray-300"
               }`}
               disabled={isSubmitting}
               autoComplete="email"
             />
-            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="mb-1 block font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="mb-1 block font-medium text-gray-700"
+            >
               Password
             </label>
             <div className="relative">
               <input
                 id="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                {...register('password')}
+                {...register("password")}
                 className={`w-full rounded-md border px-4 py-2 transition focus:outline-none focus:ring-2 focus:ring-mid-blue ${
-                  errors.password ? 'border-red-400 focus:ring-red-300' : 'border-gray-300'
+                  errors.password
+                    ? "border-red-400 focus:ring-red-300"
+                    : "border-gray-300"
                 }`}
                 disabled={isSubmitting}
                 autoComplete="current-password"
@@ -120,13 +129,21 @@ const LoginForm: FC = () => {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-mid-blue focus:outline-none"
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                aria-label={showPassword ? "Hide password" : "Show password"}
                 tabIndex={0}
               >
-                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
               </button>
             </div>
-            {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center justify-between">
@@ -138,9 +155,17 @@ const LoginForm: FC = () => {
           </div>
 
           <div className="pt-2">
-            <CustomButton variant="primary" type="submit" className="w-full" size="xl" isDisabled={isSubmitting}>
-              {isSubmitting ? <Loader className="mr-2 h-5 w-5 animate-spin" /> : null}
-              {isSubmitting ? 'Signing in...' : 'Sign in'}
+            <CustomButton
+              variant="primary"
+              type="submit"
+              className="w-full"
+              size="xl"
+              isDisabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <Loader className="mr-2 h-5 w-5 animate-spin" />
+              ) : null}
+              {isSubmitting ? "Signing in..." : "Sign in"}
             </CustomButton>
           </div>
         </form>
@@ -152,8 +177,10 @@ const LoginForm: FC = () => {
         </div>
 
         <div className="text-center text-sm text-gray-500">
-          Don&apos;t have an account?{' '}
-          <span className="cursor-pointer font-medium text-mid-blue opacity-80 hover:underline">Contact admin</span>
+          Don&apos;t have an account?{" "}
+          <span className="cursor-pointer font-medium text-mid-blue opacity-80 hover:underline">
+            Contact admin
+          </span>
         </div>
       </div>
     </div>

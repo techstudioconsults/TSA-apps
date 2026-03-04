@@ -80,8 +80,7 @@ export const GoogleMap = ({ location, apiKey }: GoogleMapProperties) => {
           infoWindow.open(map, marker);
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Error loading Google Maps:", error);
+        // Error loading Google Maps
       }
     };
 

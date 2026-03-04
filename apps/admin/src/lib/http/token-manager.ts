@@ -123,7 +123,6 @@ class TokenManager {
         const currentRefreshToken = Cookies.get("refreshToken");
 
         if (!currentRefreshToken) {
-          console.error("TokenManager: No refresh token available");
           this.logout();
           return null;
         }
@@ -131,7 +130,6 @@ class TokenManager {
         const refreshed = await refreshAuthTokens(currentRefreshToken);
 
         if (!refreshed || !refreshed.accessToken) {
-          console.error("TokenManager: Refresh response invalid");
           this.logout();
           return null;
         }
@@ -143,7 +141,6 @@ class TokenManager {
         this.setAuth(newAccessToken, newRefreshToken);
         return newAccessToken;
       } catch (error) {
-        console.error("TokenManager: Failed to refresh token", error);
         this.logout();
         return null;
       } finally {

@@ -268,8 +268,6 @@ const ClassCards = () => {
 
   // Ensure active course is set once courses load
   useEffect(() => {
-    console.log(courses);
-
     if (!activeCourseId && initialCourseId) {
       setActiveCourseId(initialCourseId);
     }
@@ -296,7 +294,6 @@ const ClassCards = () => {
       setShowSuccessModal(true);
     } catch (error) {
       // TODO: Show error feedback
-      console.error(error);
       setWarningModalOpen(false);
     }
   };

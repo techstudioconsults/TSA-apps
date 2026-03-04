@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createServiceHooks } from "@/lib/react-query/use-service-query";
 import { queryKeys } from "@/lib/react-query/query-keys";
 import { classService } from "./class.service";
