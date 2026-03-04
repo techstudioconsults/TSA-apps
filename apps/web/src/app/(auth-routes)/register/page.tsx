@@ -215,14 +215,23 @@ const RegistrationForm: FC = () => {
               name="courseId"
               label="Course"
               type="select"
-              placeholder="Choose a course"
+              placeholder={
+                allCourses.length === 0
+                  ? "No courses available"
+                  : "Choose a course"
+              }
               options={courseOptions}
               containerClassName="w-full"
               className="truncate"
               readOnly={false}
-              disabled={loading}
+              disabled={loading || allCourses.length === 0}
               title={selectedCourseTitle}
             />
+            {!loading && allCourses.length === 0 && (
+              <p className="text-xs text-muted-foreground -mt-2 col-span-2">
+                No courses are currently available. Please check back later.
+              </p>
+            )}
 
             <FormField
               name="cohortId"

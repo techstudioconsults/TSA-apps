@@ -92,7 +92,10 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Become a Cybersecurity Specialist Career-Ready in Just 12 Weeks",
       subTitle:
-        "Learn to analyze, visualize, and model data using industry-standard tools fully online, beginner-friendly, and designed to help you build a strong data portfolio.",
+        "Our 12-week online Cybersecurity program equips you with real-world security skills, hands-on labs, " +
+        "and practical defense techniques to protect systems, detect threats, and launch your career even " +
+        "if you're starting from zero. You’ll also learn to leverage Generative AI " +
+        "and Prompt Engineering to analyze threats, interpret security logs, and automate security workflows.",
       backgroundImage: "/images/programming-coding1.png",
       image: "/images/cybersecurity.png",
     },
@@ -409,7 +412,9 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Turn Your Curiosity Into a Data Career in Just 12 Weeks",
       subTitle:
-        "Learn to analyze, visualize, and model data using industry-standard tools fully online, beginner-friendly, and designed to help you build a strong data portfolio.",
+        "Learn to analyze, visualize, and model data using industry-standard tools in a fully online, " +
+        "beginner-friendly program designed to help you build a strong data portfolio. You’ll also leverage Generative " +
+        "AI and Prompt Engineering to automate data cleaning, generate insights, and streamline intelligent workflows.",
       backgroundImage: "/images/programming-coding1.png",
       image: "/images/data-analysis.png",
     },
@@ -719,7 +724,10 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Turn Your Passion for Tech Into a N250k - N1.5M+/Month Career",
       subTitle:
-        "Our 18-week Online Full-Stack Development Program equips you with real coding skills, real projects, and a job-ready portfolio, even if you're starting from zero.",
+        "Our 16-week Online Full-Stack Development Program equips you with real coding skills, " +
+        "hands-on projects, and a job-ready portfolio, even if you're starting from zero. You'll also learn to leverage " +
+        "Generative AI and Prompt Engineering to accelerate development, " +
+        "generate production-ready code, debug efficiently, and build smarter web applications.",
       backgroundImage: "/images/programming-coding1.png",
       image: "/images/full-stack.png",
     },
@@ -1030,7 +1038,9 @@ export const onlineCourses: OnlineCourse[] = [
     hero: {
       title: "Learn How to Design Beautiful, User-Friendly Digital Products",
       subTitle:
-        "Our program is designed to help you develop the skills, knowledge, and portfolio needed to launch your career in UI/UX design.",
+        "Design beautiful, user-friendly digital products from scratch while learning UI/UX fundamentals, interaction design, " +
+        "and product thinking in a 12-week online program. You’ll also learn to leverage Generative AI and Prompt Engineering to accelerate ideation, " +
+        "generate user flows, create UX copy, and streamline research.",
       backgroundImage: "/images/programming-coding1.png",
       image: "/images/ui-ux-design.png",
     },

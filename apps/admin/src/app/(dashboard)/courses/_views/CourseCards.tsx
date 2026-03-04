@@ -56,10 +56,7 @@ const CourseCards = () => {
   };
 
   const confirmDelete = async () => {
-    console.log(`clicked outside`);
-
     if (selectedCourseId) {
-      console.log(`clicked inside`);
       await deleteCourse(selectedCourseId);
       setWarningModalOpen(false);
       setShowSuccessModal(true);

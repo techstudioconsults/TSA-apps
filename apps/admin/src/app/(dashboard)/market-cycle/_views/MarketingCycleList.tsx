@@ -55,7 +55,7 @@ export default function MarketingCycleList() {
       await deleteMarketingCycle(selectedCycle.id);
       setShowDeleteModal(false);
     } catch (error) {
-      console.error("Failed to delete marketing cycle:", error);
+      // Error deleting marketing cycle
     }
   };
 

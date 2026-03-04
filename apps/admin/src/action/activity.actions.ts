@@ -29,7 +29,6 @@ export const getAllActivityAction = async (
       totalPages: data.data.metadata.totalPages,
     };
   } catch (error) {
-    console.error("Error in getAllActivityAction:", error);
     throw error;
   }
 };

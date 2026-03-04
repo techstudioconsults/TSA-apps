@@ -35,8 +35,6 @@ export const UpcomingClasses = () => {
     pagination,
   } = useCohortStore();
 
-  console.log(upcomingCohorts);
-
   useEffect(() => {
     fetchUpcomingCohorts(pagination.page, 1);
   }, [pagination.page]);

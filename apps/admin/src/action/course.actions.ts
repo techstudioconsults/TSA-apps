@@ -64,7 +64,6 @@ export const fetchCoursesAction = async (
     }
 
     const data = (await response.json()) as CourseResponseData;
-    // console.log(data);
     const courses = data.data?.items || [];
     return courses.map((course: Course) => ({
       id: course.id,
@@ -78,7 +77,6 @@ export const fetchCoursesAction = async (
       curriculum: course.curriculum,
     }));
   } catch (error) {
-    console.error("Error in fetchCoursesAction:", error);
     throw error;
   }
 };
@@ -97,11 +95,8 @@ export const createCourseAction = async (
       body: formData,
     });
 
-    // console.log(response)
-
     if (!response.ok) {
       const errorBody = await response.json();
-      // console.log(errorBody);
       throw {
         status: response.status,
         message: errorBody.message || "Failed to create course",
@@ -110,10 +105,8 @@ export const createCourseAction = async (
     }
 
     const data: courseFormData = await response.json();
-    // console.log(data);
     return data; // Ensure function returns CourseFormData
   } catch (error) {
-    console.error("Error in createCourseAction:", error);
     throw error;
   }
 };
@@ -148,7 +141,6 @@ export const getCourseByIdAction = async (
       curriculum: course.data?.curriculum,
     };
   } catch (error) {
-    console.error("Error in getCourseByIdAction:", error);
     throw error;
   }
 };
@@ -177,7 +169,6 @@ export const updateCourseAction = async (
       };
     }
   } catch (error) {
-    console.error("Error in updateCourseAction:", error);
     throw error;
   }
 };
@@ -200,7 +191,6 @@ export const deleteCourseAction = async (
       throw new Error(`Failed to delete course: ${response.statusText}`);
     }
   } catch (error) {
-    console.error("Error in deleteCourseAction:", error);
     throw error;
   }
 };
@@ -216,7 +206,6 @@ export const getTotalCourseAction = async (token: string) => {
     const json = await response.json();
     return json.data.totalCourses;
   } catch (error) {
-    console.error(error);
     return 0;
   }
 };

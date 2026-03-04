@@ -56,7 +56,6 @@ export default function MarketingCycleForm({
   // Add useEffect to set form values when initialData changes
   useEffect(() => {
     if (initialData) {
-      console.log("Setting form with initial data:", initialData);
       setValue("title", initialData.title);
       setValue("description", initialData.description);
       // Format dates for datetime-local input

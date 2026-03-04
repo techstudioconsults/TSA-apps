@@ -10,7 +10,7 @@ import useCohortStore from "@/stores/cohort.store";
 import useCoursesStore from "@/stores/course.store";
 import { Loader } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const validateField = (name: string, value: string) => {
   switch (name) {
@@ -96,8 +96,6 @@ const LeadForm = ({
         .toLowerCase() === slug
     );
   });
-
-  console.log(course);
 
   // Fetch cohorts when course is found
   useEffect(() => {

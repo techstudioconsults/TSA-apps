@@ -10,7 +10,6 @@ export const createSpreadsheetAction = async (
   try {
     await http.post(BASE_URL, data);
   } catch (error) {
-    console.error("Error in createSpreadsheetAction:", error);
     throw error;
   }
 };
@@ -21,7 +20,6 @@ export const getSpreadsheetsAction = async () => {
     const response = await http.get(BASE_URL);
     return response.data?.items || []; // Ensure we extract the correct array
   } catch (error) {
-    console.error("Error in getSpreadsheetsAction:", error);
     throw error;
   }
 };
@@ -37,7 +35,6 @@ export const getTotalSheetAction = async (): Promise<number> => {
 
     return response.data.totalSpreadsheet;
   } catch (error) {
-    console.error("Error in getTotalSheetAction:", error);
     throw error;
   }
 };

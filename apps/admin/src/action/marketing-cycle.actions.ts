@@ -16,7 +16,6 @@ export async function fetchMarketingCycles(
   if (!response.ok) throw new Error("Failed to fetch marketing cycles");
 
   const result = await response.json();
-  console.log("API Response:", result);
 
   // Handle the paginated response structure
   if (result.success && result.data && result.data.items) {

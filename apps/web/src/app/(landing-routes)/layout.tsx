@@ -3,7 +3,7 @@
 import { cn, Navbar } from "@workspace/ui/lib";
 import { ReactNode, useEffect, useMemo } from "react";
 import useCoursesStore from "../../stores/course.store";
-import { fetchAllCourses } from "../../action/courses.action";
+import { fetchAllCourses } from "@/action/courses.action";
 import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
@@ -26,7 +26,7 @@ const CTAs: CTAItem[] = [
 ];
 
 const ExternalLayout = ({ children }: { children: ReactNode }) => {
-  const { allCourses, loading } = useCoursesStore();
+  const { allCourses, loading, error } = useCoursesStore();
   const { scrolled } = useScrolled({ threshold: 10 });
   const pathname = usePathname();
 
@@ -35,11 +35,11 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const featuresList: FeatureItem[] = useMemo(() => {
-    if (loading || allCourses.length === 0) {
+    if (loading || allCourses?.length === 0) {
       return [];
     }
 
-    const backendCourses: FeatureItem[] = allCourses.map((course) => {
+    const backendCourses: FeatureItem[] = allCourses?.map((course) => {
       const courseSlug = course.title
         .toLowerCase()
         .trim()
@@ -53,7 +53,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
       };
     });
 
-    return [...backendCourses];
+    return backendCourses;
   }, [allCourses, loading]);
 
   const isDarkMode = useMemo(

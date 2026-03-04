@@ -21,7 +21,6 @@ const LoginForm: FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<signInFormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -41,30 +40,19 @@ const LoginForm: FC = () => {
         password: data.password,
       });
 
-      if (result.success && result.tokens) {
+      if (result?.tokens && result?.user) {
         tokenManager.setAuth(
-          result.tokens.accessToken,
-          result.tokens.refreshToken,
+          result.tokens.accessToken || result.tokens.access,
+          result.tokens.refreshToken || result.tokens.refresh,
         );
-        reset();
-
-        // Redirect to the original destination or home
         const redirectTo = searchParams.get("redirect") || "/";
         router.push(redirectTo);
-      } else {
-        setFormError(result.error ?? "Invalid email or password");
       }
-    } catch (error: unknown) {
-      let errorMessage = "An unexpected error occurred. Please try again.";
-      if (
-        typeof error === "object" &&
-        error !== null &&
-        "message" in error &&
-        typeof (error as any).message === "string"
-      ) {
-        errorMessage = (error as any).message;
-      }
-      setFormError(errorMessage);
+    } catch (error: any) {
+      setFormError(
+        error.response.data.message ||
+          "Invalid email or password. Please try again.",
+      );
     }
   };
 

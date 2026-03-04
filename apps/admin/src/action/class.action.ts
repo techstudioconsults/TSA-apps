@@ -76,7 +76,6 @@ export const createClassAction = async (
     return responseData.data; // Return the created class
   } catch (error) {
     const apiError = error as APIError;
-    console.error("Error in createClassAction:", apiError);
     throw {
       message: apiError.message || "An unexpected error occurred.",
       details: apiError.details || {},
@@ -108,7 +107,6 @@ export const fetchClassesByCourseIdAction = async (
     return responseData.data?.items;
   } catch (error) {
     const apiError = error as APIError;
-    console.error("Error in fetchClassesByCourseIdAction:", apiError);
     throw {
       message: apiError.message || "An unexpected error occurred.",
     } as APIError;
@@ -133,7 +131,6 @@ export const deleteClassAction = async (
       throw new Error(`Failed to delete course: ${response.statusText}`);
     }
   } catch (error) {
-    console.error("Error in deleteCourseAction:", error);
     throw error;
   }
 };
@@ -171,7 +168,6 @@ export const getSingleClassAction = async (
       fee: singleClass.data.fee,
     };
   } catch (error) {
-    console.error("Error in getSingleClassAction:", error);
     throw error;
   }
 };
@@ -193,7 +189,6 @@ export const updateClassAction = async (
     });
 
     const responseData: APIResponse<ClassData> = await response.json();
-    console.log(responseData);
 
     if (!response.ok) {
       const errorBody = await response.json();
@@ -204,7 +199,6 @@ export const updateClassAction = async (
       };
     }
   } catch (error) {
-    console.error("Error in updateCourseAction:", error);
     throw error;
   }
 };
@@ -224,7 +218,6 @@ export const getTotalCohortsAction = async (token: string): Promise<number> => {
     const data = await response.json();
     return data.data.totalCohorts;
   } catch (error) {
-    console.error("Error in getTotalCohortsAction:", error);
     throw error;
   }
 };

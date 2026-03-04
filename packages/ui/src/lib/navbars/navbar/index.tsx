@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
+'use client';
 
 import {
   Menu as MenuIcon,
@@ -14,8 +14,9 @@ import {
   Cpu,
   Globe2,
   PenTool,
-} from "lucide-react";
-import * as React from "react";
+  BookOpen,
+} from 'lucide-react';
+import * as React from 'react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,72 +25,63 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "../../../components/ui/navigation-menu";
+} from '@workspace/ui/components';
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../../../components/ui/accordion";
-import { CustomButton } from "../../button";
-import { cn } from "../../utils";
-import { Logo } from "../../logo";
-import NavbarDropdown from "../_components/navbar-dropdown";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@workspace/ui/components';
+import { CustomButton } from '../../button';
+import { cn } from '../../utils';
+import { Logo } from '../../logo';
+import NavbarDropdown from '../_components/navbar-dropdown';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const defaultFeatures: FeatureItem[] = [
-  { title: "Dashboard", description: "Overview of your activity", href: "#" },
-  { title: "Analytics", description: "Track your performance", href: "#" },
-  { title: "Settings", description: "Configure your preferences", href: "#" },
-  { title: "Integrations", description: "Connect with other tools", href: "#" },
-  { title: "Storage", description: "Manage your files", href: "#" },
-  { title: "Support", description: "Get help when needed", href: "#" },
+  { title: 'Dashboard', description: 'Overview of your activity', href: '#' },
+  { title: 'Analytics', description: 'Track your performance', href: '#' },
+  { title: 'Settings', description: 'Configure your preferences', href: '#' },
+  { title: 'Integrations', description: 'Connect with other tools', href: '#' },
+  { title: 'Storage', description: 'Manage your files', href: '#' },
+  { title: 'Support', description: 'Get help when needed', href: '#' },
 ];
 
 const defaultDesktopLinks: NavLinkItem[] = [
-  { label: "Products", href: "#" },
-  { label: "Resources", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: 'Products', href: '#' },
+  { label: 'Resources', href: '#' },
+  { label: 'Contact', href: '#' },
 ];
 
 const defaultMobileLinks: NavLinkItem[] = [
-  { label: "Templates", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Pricing", href: "#" },
+  { label: 'Templates', href: '#' },
+  { label: 'Blog', href: '#' },
+  { label: 'Pricing', href: '#' },
 ];
 
 const defaultCTAs: CTAItem[] = [
-  { label: "Sign in", variant: "outline", href: "#" },
-  { label: "Register", variant: "primary", href: "#" },
+  { label: 'Sign in', variant: 'outline', href: '#' },
+  { label: 'Register', variant: 'primary', href: '#' },
 ];
 
 const Navbar = ({
-  brandHref = "https://www.techstudioacademy.com",
-  brandLabel = "",
-  brandLogoSrc = "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png",
-  brandLogoAlt = "Logo",
+  brandHref = 'https://www.techstudioacademy.com',
+  brandLabel = '',
+  brandLogoSrc = 'https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png',
+  brandLogoAlt = 'Logo',
   navLinkClassNames,
   features,
-  featuresLabel = "Courses",
+  featuresLabel = 'Courses',
   desktopLinks,
   mobileLinks,
   ctas,
   isLoading = false,
 
-  menuButtonAriaLabel = "Open menu",
+  menuButtonAriaLabel = 'Open menu',
 
-  className = "",
-  containerClassName = "",
+  className = '',
+  containerClassName = '',
 }: NavbarProps) => {
   const featuresList = Array.isArray(features) ? features : defaultFeatures;
-  const desktopNav = Array.isArray(desktopLinks)
-    ? desktopLinks
-    : defaultDesktopLinks;
-  const mobileNav = Array.isArray(mobileLinks)
-    ? mobileLinks
-    : defaultMobileLinks;
+  const desktopNav = Array.isArray(desktopLinks) ? desktopLinks : defaultDesktopLinks;
+  const mobileNav = Array.isArray(mobileLinks) ? mobileLinks : defaultMobileLinks;
   const actions = Array.isArray(ctas) ? ctas : defaultCTAs;
 
   const showFeatures = featuresList.length > 0;
@@ -111,10 +103,7 @@ const Navbar = ({
   const showFeaturesLabel = true;
 
   const pathname = usePathname();
-  const isLightNavbar = React.useMemo(
-    () => pathname === "/about" || pathname === "/explore",
-    [pathname],
-  );
+  const isLightNavbar = React.useMemo(() => pathname === '/about' || pathname === '/explore', [pathname]);
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const closeTimeout = React.useRef<number | null>(null);
@@ -141,112 +130,96 @@ const Navbar = ({
     if (item.icon) {
       return {
         icon: item.icon,
-        bgClass: "bg-blue-50",
-        iconClass: "text-blue-600",
+        bgClass: 'bg-blue-50',
+        iconClass: 'text-blue-600',
       };
     }
 
     const label = item.title.toLowerCase();
 
-    if (
-      label.includes("frontend") ||
-      label.includes("react") ||
-      label.includes("javascript")
-    ) {
+    if (label.includes('frontend') || label.includes('react') || label.includes('javascript')) {
       return {
         icon: <Code2 className="h-5 w-5" />,
-        bgClass: "bg-sky-50",
-        iconClass: "text-sky-600",
+        bgClass: 'bg-sky-50',
+        iconClass: 'text-sky-600',
       };
     }
 
-    if (
-      label.includes("backend") ||
-      label.includes("node") ||
-      label.includes("api")
-    ) {
+    if (label.includes('backend') || label.includes('node') || label.includes('api')) {
       return {
         icon: <Server className="h-5 w-5" />,
-        bgClass: "bg-indigo-50",
-        iconClass: "text-indigo-600",
+        bgClass: 'bg-indigo-50',
+        iconClass: 'text-indigo-600',
       };
     }
 
-    if (
-      label.includes("design") ||
-      label.includes("ui") ||
-      label.includes("ux")
-    ) {
+    if (label.includes('design') || label.includes('ui') || label.includes('ux')) {
       return {
         icon: <Palette className="h-5 w-5" />,
-        bgClass: "bg-pink-50",
-        iconClass: "text-pink-600",
+        bgClass: 'bg-pink-50',
+        iconClass: 'text-pink-600',
       };
     }
 
-    if (
-      label.includes("data") ||
-      label.includes("analytics") ||
-      label.includes("science")
-    ) {
+    if (label.includes('data') || label.includes('analytics') || label.includes('science')) {
       return {
         icon: <Database className="h-5 w-5" />,
-        bgClass: "bg-emerald-50",
-        iconClass: "text-emerald-600",
+        bgClass: 'bg-emerald-50',
+        iconClass: 'text-emerald-600',
       };
     }
 
-    if (label.includes("product") || label.includes("management")) {
+    if (label.includes('product') || label.includes('management')) {
       return {
         icon: <LineChart className="h-5 w-5" />,
-        bgClass: "bg-amber-50",
-        iconClass: "text-amber-600",
+        bgClass: 'bg-amber-50',
+        iconClass: 'text-amber-600',
       };
     }
 
-    if (label.includes("cyber") || label.includes("security")) {
+    if (label.includes('cyber') || label.includes('security')) {
       return {
         icon: <ShieldCheck className="h-5 w-5" />,
-        bgClass: "bg-red-50",
-        iconClass: "text-red-600",
+        bgClass: 'bg-red-50',
+        iconClass: 'text-red-600',
       };
     }
 
-    if (label.includes("cloud") || label.includes("devops")) {
+    if (label.includes('cloud') || label.includes('devops')) {
       return {
         icon: <Globe2 className="h-5 w-5" />,
-        bgClass: "bg-blue-50",
-        iconClass: "text-blue-600",
+        bgClass: 'bg-blue-50',
+        iconClass: 'text-blue-600',
       };
     }
 
-    if (label.includes("writing") || label.includes("copy")) {
+    if (label.includes('writing') || label.includes('copy')) {
       return {
         icon: <PenTool className="h-5 w-5" />,
-        bgClass: "bg-violet-50",
-        iconClass: "text-violet-600",
+        bgClass: 'bg-violet-50',
+        iconClass: 'text-violet-600',
       };
     }
 
     return {
       icon: <Cpu className="h-5 w-5" />,
-      bgClass: "bg-slate-50",
-      iconClass: "text-slate-600",
+      bgClass: 'bg-slate-50',
+      iconClass: 'text-slate-600',
     };
   };
 
   const truncateMobileDescription = (description?: string, maxLength = 110) => {
     if (!description) return;
     if (description.length <= maxLength) return description;
-    return description.slice(0, maxLength).trimEnd() + "…";
+    return description.slice(0, maxLength).trimEnd() + '…';
   };
 
   return (
     <section
       className={cn(
-        "py-4 fixed w-full !z-[999] top-0 transition-colors duration-300",
-        isLightNavbar ? "bg-white text-black" : "bg-primary text-white",
-        className,
+        'py-4 fixed w-full !z-[999] top-0 transition-colors duration-300',
+        isLightNavbar ? 'bg-white text-black' : 'bg-primary text-white',
+        className
       )}
     >
       <div className={`container px-4 ${containerClassName}`}>
@@ -295,11 +268,7 @@ const Navbar = ({
                   )}
                 </NavigationMenuItem> */}
                 {showFeaturesLabel && (
-                  <NavbarDropdown
-                    label={featuresLabel}
-                    sections={featureSections}
-                    isLoading={isLoading}
-                  />
+                  <NavbarDropdown label={featuresLabel} sections={featureSections} isLoading={isLoading} />
                 )}
 
                 {desktopNav.map((link) => {
@@ -312,8 +281,7 @@ const Navbar = ({
                           navigationMenuTriggerStyle(),
                           `bg-transparent rounded-md hover:bg-transparent focus:bg-transparent transition-all focus:text-mid-danger hover:underline font-semibold`,
                           navLinkClassNames,
-                          isActive &&
-                            "text-mid-danger font-bold transition-all",
+                          isActive && 'text-mid-danger font-bold transition-all'
                         )}
                       >
                         {link.label}
@@ -349,26 +317,11 @@ const Navbar = ({
           )}
 
           <div className="lg:hidden">
-            <CustomButton
-              variant="default"
-              size="icon"
-              ariaLabel={menuButtonAriaLabel}
-              onClick={toggleMobileMenu}
-            >
+            <CustomButton variant="default" size="icon" ariaLabel={menuButtonAriaLabel} onClick={toggleMobileMenu}>
               {mobileMenuOpen ? (
-                <X
-                  className={cn(
-                    "size-6",
-                    isLightNavbar ? "text-black" : "text-white",
-                  )}
-                />
+                <X className={cn('size-6', isLightNavbar ? 'text-black' : 'text-white')} />
               ) : (
-                <MenuIcon
-                  className={cn(
-                    "size-6",
-                    isLightNavbar ? "text-black" : "text-white",
-                  )}
-                />
+                <MenuIcon className={cn('size-6', isLightNavbar ? 'text-black' : 'text-white')} />
               )}
             </CustomButton>
           </div>
@@ -378,11 +331,11 @@ const Navbar = ({
       {/* Mobile Menu Dropdown */}
       <div
         className={cn(
-          "-z-10 translate-y-0 h-0 top-18 opacity-100 shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden",
-          isLightNavbar ? "bg-white text-black" : "bg-primary text-white",
+          '-z-10 translate-y-0 h-0 top-18 opacity-100 shadow-lg ring-1 ring-foreground/5 transition-all duration-500 ease-out origin-top lg:hidden',
+          isLightNavbar ? 'bg-white text-black' : 'bg-primary text-white',
           mobileMenuOpen
-            ? "pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto !p-0"
-            : "pointer-events-none h-0 overflow-hidden",
+            ? 'pointer-events-auto h-[calc(100vh-72px)] overflow-y-auto !p-0'
+            : 'pointer-events-none h-0 overflow-hidden'
         )}
       >
         <div className="px-4 py-6">
@@ -392,63 +345,66 @@ const Navbar = ({
                 <AccordionItem value="features" className="border-none">
                   <AccordionTrigger
                     className={cn(
-                      "text-base hover:no-underline font-bold",
-                      isLightNavbar ? "text-black" : "text-white",
+                      'text-base hover:no-underline font-bold',
+                      isLightNavbar ? 'text-black' : 'text-white'
                     )}
                   >
                     {featuresLabel}
                   </AccordionTrigger>
                   <AccordionContent className="">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {featuresList.map((feature, index) => (
-                        <Link
-                          href={feature.href || "#"}
-                          key={`${feature.title}-${index}`}
-                          className="flex items-start gap-4 rounded-xl border border-transparent bg-background text-left text-foreground/90 transition-colors hover:border-mid-blue/30 hover:bg-mid-blue/5 p-4"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {(() => {
-                            const { icon, bgClass, iconClass } =
-                              getMobileIconConfig(feature);
-                            const truncatedDescription =
-                              truncateMobileDescription(feature.description);
+                    {featuresList.length === 0 ? (
+                      <div className="flex flex-col items-center justify-center py-8 px-4">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-muted mb-3">
+                          <BookOpen className="h-7 w-7 text-muted-foreground" />
+                        </div>
+                        <h3 className="text-base font-semibold text-foreground mb-1">No Courses Available</h3>
+                        <p className="text-xs text-muted-foreground text-center max-w-xs">
+                          We&apos;re currently updating our course catalog. Check back soon!
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {featuresList.map((feature, index) => (
+                          <Link
+                            href={feature.href || '#'}
+                            key={`${feature.title}-${index}`}
+                            className="flex items-start gap-4 rounded-xl border border-transparent bg-background text-left text-foreground/90 transition-colors hover:border-mid-blue/30 hover:bg-mid-blue/5 p-4"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {(() => {
+                              const { icon, bgClass, iconClass } = getMobileIconConfig(feature);
+                              const truncatedDescription = truncateMobileDescription(feature.description);
 
-                            return (
-                              <>
-                                <div
-                                  className={cn(
-                                    "mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
-                                    bgClass,
-                                  )}
-                                >
-                                  <span
+                              return (
+                                <>
+                                  <div
                                     className={cn(
-                                      "inline-flex text-[18px] leading-none",
-                                      iconClass,
+                                      'mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full',
+                                      bgClass
                                     )}
                                   >
-                                    {icon}
-                                  </span>
-                                </div>
-                                <div>
-                                  <p className="text-foreground font-semibold leading-snug mb-1">
-                                    {feature.title}
-                                  </p>
-                                  {truncatedDescription && (
-                                    <p
-                                      className="text-muted-foreground text-sm leading-snug"
-                                      title={feature.description}
-                                    >
-                                      {truncatedDescription}
-                                    </p>
-                                  )}
-                                </div>
-                              </>
-                            );
-                          })()}
-                        </Link>
-                      ))}
-                    </div>
+                                    <span className={cn('inline-flex text-[18px] leading-none', iconClass)}>
+                                      {icon}
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <p className="text-foreground font-semibold leading-snug mb-1">{feature.title}</p>
+                                    {truncatedDescription && (
+                                      <p
+                                        className="text-muted-foreground text-sm leading-snug"
+                                        title={feature.description}
+                                      >
+                                        {truncatedDescription}
+                                      </p>
+                                    )}
+                                  </div>
+                                </>
+                              );
+                            })()}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -463,9 +419,9 @@ const Navbar = ({
                       href={link.href}
                       key={link.label}
                       className={cn(
-                        "hover:underline !font-bold",
-                        isLightNavbar ? "text-black" : "text-white",
-                        isActive && "text-red-500",
+                        'hover:underline !font-bold',
+                        isLightNavbar ? 'text-black' : 'text-white',
+                        isActive && 'text-red-500'
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >

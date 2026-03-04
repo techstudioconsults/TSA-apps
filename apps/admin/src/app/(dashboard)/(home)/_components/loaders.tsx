@@ -1,4 +1,4 @@
-import { Skeleton } from "@workspace/ui/components";
+import { Skeleton } from '@workspace/ui/components';
 
 export const DashboardCardSkeleton = () => {
   return (

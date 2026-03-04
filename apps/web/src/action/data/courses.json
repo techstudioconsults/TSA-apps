@@ -3,7 +3,7 @@
     "fullstack-development": {
       "intro": {
         "title": "Full Stack Web Development",
-        "subTitle": "Let’s help you become a professional Fullstack web developer. You’ll learn all you need to know to become a Fullstack Developer and build interesting portfolios while learning the fundamentals of HTML, CSS, JavaScript, React, Mongo DB, Express and hosting on Vercel."
+        "subTitle": "Become a job-ready Fullstack Web Developer by mastering modern frontend and backend technologies while building real-world applications. Learn to use Generative AI and prompt engineering to write better code, debug faster, and build smarter applications."
       },
       "sectionOne": {
         "cards": [
@@ -18,7 +18,6 @@
           }
         ]
       },
-
       "courseList": [
         {
           "id": 1,
@@ -211,7 +210,6 @@
           }
         ]
       },
-
       "courseList": [
         {
           "id": 1,
@@ -577,13 +575,13 @@
     "product-design-ui-ux": {
       "intro": {
         "title": "User Interface & User Experience design",
-        "subTitle": "Learn to design and deliver digital products that serve clients’ needs and solve users problems. Understand the fundamental techniques and tools of design like problem definition, user research, prototyping, testing and more.",
+        "subTitle": "Learn to design and deliver user-centered digital products that solve real problems. Master core design techniques, from research and prototyping to testing while leveraging Generative AI and prompt engineering to accelerate ideation, create user flows, and streamliproduct-designne your workflow.",
         "img": ""
       },
       "sectionOne": {
         "cards": [
           {
-            "text": "We teach the important skills required to jumpstart your career as a product designer. With 12 straight weeks of training, you learn to think, build and solve complex UI/UX challenges."
+            "text": "We teach the important skills required to jump start your career as a product designer. With 12 straight weeks of training, you learn to think, build and solve complex UI/UX challenges."
           },
           {
             "text": "We move from understanding the core principles of effective design to applying tactics like wireframing, low and high-fidelity prototyping, usability testing and user interface design to build a portfolio of intuitive digital products."
@@ -696,7 +694,7 @@
     "data-analysis-with-machine-learning": {
       "intro": {
         "title": "Data Analysis With Machine Learning",
-        "subTitle": "Get your hands dirty working with Excel and complex data. Dive into the Python programming language, understand data analysis and statistical modeling using Python, after which you move into machine learning and algorithms.",
+        "subTitle": "Develop practical data skills by working with Excel, Python, and real-world datasets. Learn data analysis, statistical modeling, and machine learning while building projects that demonstrate your ability to turn data into meaningful insights. You’ll also leverage Generative AI and prompt engineering to automate data tasks and accelerate analysis.",
         "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif"
       },
       "sectionOne": {
@@ -1008,7 +1006,7 @@
     "cyber-security": {
       "intro": {
         "title": "Introduction to Cyber Security",
-        "subTitle": "The significance of cybersecurity in today's increasingly digital environment cannot be emphasized. This extensive course provides an overview of the basic ideas, approaches, and methods needed to protect networks, information systems, and digital assets.",
+        "subTitle": "Build the skills needed to protect networks, systems, and digital assets in today’s connected world. Learn core cybersecurity principles, threat detection, and defensive strategies while gaining hands-on experience with real-world security practices. You’ll also leverage Generative AI and prompt engineering to analyze threats, interpret security logs, and automate security workflows.",
         "img": "https://techstudio.nyc3.cdn.digitaloceanspaces.com/External-page-assets/GIFS/Network%20Security.gif"
       },
       "sectionOne": {
@@ -1270,6 +1268,179 @@
           "bgColor": "bg-white",
           "img": "/gifs/marketing/Ads.gif",
           "tags": []
+        }
+      ]
+    }
+  },
+  {
+    "product-management": {
+      "intro": {
+        "title": "Introduction to Product Management",
+        "subTitle": "Master the art of building and launching successful products. Learn how to identify market opportunities, define user needs, and craft strategies to deliver exceptional value. Gain hands-on experience with essential tools and techniques like roadmap planning, stakeholder management, agile methodologies, and user-centric development.",
+        "img": ""
+      },
+      "sectionOne": {
+        "cards": [
+          {
+            "text": "We teach the important skills required to jump start your career as a web developer. With 5 straight weeks of web training, you learn to think and build like frontend developers."
+          },
+          {
+            "text": "We believe in learning by doing. That's why our digital marketing course is designed to be highly interactive and hands-on. From day one, you'll be actively engaged in practical exercises, real-world simulations, and collaborative projects that mirror the challenges you'll face in the field."
+          },
+          {
+            "text": "Our curriculum is carefully crafted to align with the latest industry trends, best practices, and emerging technologies in digital marketing. Whether you're interested in SEO, social media marketing, content creation, or email automation, you'll find relevant and up-to-date content that equips you with the skills and knowledge to excel in your career."
+          }
+        ]
+      },
+      "courseList": [
+        {
+          "id": 1,
+          "classname": "A",
+          "caption": "UNIT 1",
+          "title": "Introduction to Product Management",
+          "desc": "Unit 1 provides students with a foundational understanding of product management. It introduces the core principles, methodologies, and responsibilities of a product manager, emphasizing the role of product management in building successful digital products. Students explore the product lifecycle, from ideation to delivery, and the importance of collaboration with cross-functional teams, including engineering, design, and marketing. Through lectures and discussions, they gain insights into the key traits of effective product managers and the strategic thinking required to align product goals with business objectives.",
+          "bgColor": "bg-white",
+          "img": "/gifs/product-management/unit-1.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/google-doc.png",
+              "text": "Google Forms"
+            },
+            {
+              "img": "/gifs/product-management/tags/notion.png",
+              "text": "Google Forms"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "classname": "B",
+          "caption": "UNIT 2",
+          "title": "Market Research and Understanding User Needs",
+          "desc": "Unit 2 equips students with the knowledge and skills to identify market opportunities and understand user needs. Students learn to conduct market research, perform competitive analysis, and define target customer segments. They also explore techniques for creating user personas and journey maps to better understand user behavior and pain points. This unit emphasizes problem definition and value proposition development, ensuring that students can craft solutions that address user needs and deliver meaningful impact.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/product-management/unit-2.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/google-form.png",
+              "text": "Google Forms"
+            },
+            {
+              "img": "/gifs/product-management/tags/ms-excel.png",
+              "text": "Ms Excel"
+            },
+            {
+              "img": "/gifs/product-management/tags/miro.png",
+              "text": "Miro"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "classname": "C",
+          "caption": "UNIT 3",
+          "title": "Strategic Product Planning and Roadmapping",
+          "desc": "Unit 3 focuses on the strategic aspects of product management, with an emphasis on planning and prioritization. Students learn how to develop a product vision, define success metrics, and use prioritization frameworks to evaluate features and initiatives. The unit also covers the creation and maintenance of product roadmaps, helping students understand how to balance user needs, technical constraints, and business goals. By the end of this unit, students can effectively align product strategies with organizational objectives and communicate their vision to stakeholders.",
+          "bgColor": "bg-white",
+          "img": "/gifs/product-management/unit-3.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/jira.png",
+              "text": "Jira"
+            },
+            {
+              "img": "/gifs/product-management/tags/aha.png",
+              "text": "Aha!"
+            },
+            {
+              "img": "/gifs/product-management/tags/trello.png",
+              "text": "Trello"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "classname": "D",
+          "caption": "UNIT 4",
+          "title": "Agile Product Development",
+          "desc": "Unit 4 dives into the Agile development process and the critical role of product managers in driving successful outcomes. Students learn to write user stories with clear acceptance criteria, manage product backlogs, and facilitate sprints. They also explore the nuances of working with cross-functional teams to deliver products iteratively and incrementally. This unit provides hands-on experience in Agile methodologies, ensuring students are equipped to navigate the dynamic environment of product development and deliver impactful solutions.",
+          "bgColor": "bg-primary",
+          "img": "/gifs/product-management/unit-2.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/click-up.png",
+              "text": "Clickup"
+            },
+            {
+              "img": "/gifs/product-management/tags/asana.png",
+              "text": "Asana"
+            },
+            {
+              "img": "/gifs/product-management/tags/jira.png",
+              "text": "jira"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "classname": "E",
+          "caption": "UNIT 5",
+          "title": "Data-Driven Decision Making",
+          "desc": "Unit 5 emphasizes the importance of leveraging data to inform product decisions. Students learn to set measurable objectives, analyze product metrics, and interpret user feedback. The unit covers essential tools and techniques for data analysis, including A/B testing and cohort analysis, enabling students to evaluate product performance and make evidence-based improvements. By mastering these skills, students can confidently track progress, measure success, and iterate on their products to enhance user satisfaction and business outcomes.",
+          "bgColor": "bg-white",
+          "img": "/gifs/product-management/unit-5.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/google-analytics.png",
+              "text": "Google Analytics"
+            },
+            {
+              "img": "/gifs/product-management/tags/tableau.png",
+              "text": "Tableau"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "classname": "F",
+          "caption": "UNIT 6",
+          "title": "Go-to-Market Strategy and Product Launch",
+          "desc": "Unit 6 prepares students for the critical phase of launching a product. It covers the essential components of a go-to-market strategy, including positioning, pricing, and promotional planning. Students learn how to manage product launches, from pre-launch preparation to post-launch evaluation, ensuring seamless execution and alignment with business goals. The unit also emphasizes the importance of gathering user feedback after launch to identify areas for improvement and inform future iterations.",
+          "bgColor": "bg-accent",
+          "img": "/gifs/product-management/unit-6.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/hubspot.png",
+              "text": "Hubspot"
+            },
+            {
+              "img": "/gifs/product-management/tags/google-form.png",
+              "text": "Google Forms"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "classname": "G",
+          "caption": "UNIT 7",
+          "title": "Capstone Project: Building a Successful Product",
+          "desc": "Unit 4 dives into the Agile development process and the critical role of product managers in driving successful outcomes. Students learn to write user stories with clear acceptance criteria, manage product backlogs, and facilitate sprints. They also explore the nuances of working with cross-functional teams to deliver products iteratively and incrementally. This unit provides hands-on experience in Agile methodologies, ensuring students are equipped to navigate the dynamic environment of product development and deliver impactful solutions.",
+          "bgColor": "bg-white",
+          "img": "/gifs/product-management/unit-7.gif",
+          "tags": [
+            {
+              "img": "/gifs/product-management/tags/google-slides.png",
+              "text": "Google Slides"
+            },
+            {
+              "img": "/gifs/product-management/tags/click-up.png",
+              "text": "Clickup"
+            },
+            {
+              "img": "/gifs/product-management/tags/dribbble.png",
+              "text": "Dribbble"
+            }
+          ]
         }
       ]
     }
