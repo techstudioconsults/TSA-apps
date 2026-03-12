@@ -34,15 +34,15 @@ export const SectionOne: React.FC = () => {
                 </p>
                 <h6 className="mt-6 font-semibold">Call or Whatsapp</h6>
                 <p className="mt-2 text-high-grey-II">
-                  <span className="font-semibold">Busola:</span>
-                  <a className="text-dark" href="tel:+2348113800161">
-                    +234 811 380 0161
+                  <span className="font-semibold">Temiloluwa:</span>
+                  <a className="text-dark" href="tel:+2347075869199">
+                    +234 707 586 9199
                   </a>
                 </p>
                 <p className="mt-2 text-high-grey-II">
-                  <span className="font-semibold">Blessing:</span>
-                  <a className="text-dark" href="tel:+2348126051769">
-                    +234 812 605 1769
+                  <span className="font-semibold">Bukola:</span>
+                  <a className="text-dark" href="tel:+2348023679765">
+                    +234 802 367 9765
                   </a>
                 </p>
                 <div className="mt-8 flex items-center justify-center gap-4 lg:justify-normal">
