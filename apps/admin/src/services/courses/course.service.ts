@@ -1,5 +1,5 @@
 import { HttpAdapter } from "@/lib/http/http-adapter";
-import { courseFormData } from "@/schemas";
+import { courseFormData, editCourseFormData } from "@/schemas";
 
 const httpAdapter = new HttpAdapter();
 
@@ -60,7 +60,7 @@ export class CourseService {
     }
   }
 
-  async updateCourse(id: string, payload: courseFormData) {
+  async updateCourse(id: string, payload: editCourseFormData) {
     const headers = {
       "Content-Type": "multipart/form-data",
     };
