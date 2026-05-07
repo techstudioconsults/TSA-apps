@@ -54,7 +54,12 @@ export const CourseFormSchema = z.object({
   curriculum: z.instanceof(File, { message: "Curriculum file is required" }),
 });
 
+export const EditCourseFormSchema = CourseFormSchema.extend({
+  curriculum: z.instanceof(File).optional(),
+});
+
 export type courseFormData = z.infer<typeof CourseFormSchema>;
+export type editCourseFormData = z.infer<typeof EditCourseFormSchema>;
 export type signInFormData = z.infer<typeof signInSchema>;
 export type classFormData = z.infer<typeof classFormSchema>;
 export type classSubmitFormData = z.infer<typeof classSubmitFormSchema>;

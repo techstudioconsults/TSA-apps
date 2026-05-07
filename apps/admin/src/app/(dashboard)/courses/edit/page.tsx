@@ -22,7 +22,7 @@ import {
   useCourseByIdQuery,
   useUpdateCourseMutation,
 } from "@/services/courses/course.queries";
-import { CourseFormSchema, courseFormData } from "@/schemas";
+import { EditCourseFormSchema, editCourseFormData } from "@/schemas";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Icons } from "@workspace/ui/icons";
@@ -35,9 +35,8 @@ export default function EditCoursePage() {
   const { data: courseData, isLoading } = useCourseByIdQuery(courseId);
   const { mutateAsync: updateCourse, isPending } = useUpdateCourseMutation();
 
-  const formMethods = useForm<courseFormData>({
-    // In edit mode, curriculum should be optional
-    resolver: zodResolver(CourseFormSchema.omit({ curriculum: true })),
+  const formMethods = useForm<editCourseFormData>({
+    resolver: zodResolver(EditCourseFormSchema),
     defaultValues: {
       title: "",
       about: "",
@@ -59,7 +58,7 @@ export default function EditCoursePage() {
     });
   }, [courseData, formMethods]);
 
-  const onSubmit = async (data: courseFormData) => {
+  const onSubmit = async (data: editCourseFormData) => {
     const formData = new FormData();
 
     formData.append("title", data.title);
@@ -75,7 +74,7 @@ export default function EditCoursePage() {
     await updateCourse(
       {
         id: courseId,
-        payload: formData as unknown as courseFormData,
+        payload: formData as unknown as editCourseFormData,
       },
       {
         onError: (error: any) => {
