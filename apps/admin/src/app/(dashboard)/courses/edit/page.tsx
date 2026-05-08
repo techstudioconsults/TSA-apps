@@ -26,6 +26,11 @@ import { CourseFormSchema, courseFormData } from "@/schemas";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Icons } from "@workspace/ui/icons";
+import * as z from "zod";
+
+const editCourseFormSchema = CourseFormSchema.extend({
+  curriculum: z.instanceof(File).optional(),
+});
 
 export default function EditCoursePage() {
   const router = useRouter();
@@ -36,8 +41,7 @@ export default function EditCoursePage() {
   const { mutateAsync: updateCourse, isPending } = useUpdateCourseMutation();
 
   const formMethods = useForm<courseFormData>({
-    // In edit mode, curriculum should be optional
-    resolver: zodResolver(CourseFormSchema.omit({ curriculum: true })),
+    resolver: zodResolver(editCourseFormSchema),
     defaultValues: {
       title: "",
       about: "",
