@@ -46,7 +46,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         .replaceAll(/[\s/]+/g, "-");
       return {
         title: course.title,
-        href: course.slug
+        href: course.slug && /online/i.test(course.title)
           ? `/courses/online/${course.slug}`
           : `/courses/${courseSlug}`,
         description: course.about,
@@ -108,7 +108,7 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         // Map backend courses to include href
         const backendCoursesForFooter = allCourses.map((course) => ({
           ...course,
-          href: course.slug
+          href: course.slug && /online/i.test(course.title)
             ? `/courses/online/${course.slug}`
             : `/courses/${course.title
                 .toLowerCase()
