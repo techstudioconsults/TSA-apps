@@ -1,13 +1,14 @@
 "use client";
 
 import { cn, Navbar } from "@workspace/ui/lib";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "@/action/courses.action";
 import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
+import { PromoBanner } from "@/components/banners/promo-banner";
 
 const STATIC_LINK: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
@@ -29,6 +30,28 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
   const { allCourses, loading, error } = useCoursesStore();
   const { scrolled } = useScrolled({ threshold: 10 });
   const pathname = usePathname();
+
+  // 8-year anniversary announcement bar (see promo-banner.tsx for the offer copy).
+  const [showPromo, setShowPromo] = useState(true);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("tsa_anniv_promo_dismissed") === "1") {
+        setShowPromo(false);
+      }
+    } catch {
+      // sessionStorage unavailable (e.g. privacy mode) — keep the banner visible.
+    }
+  }, []);
+
+  const dismissPromo = useCallback(() => {
+    setShowPromo(false);
+    try {
+      sessionStorage.setItem("tsa_anniv_promo_dismissed", "1");
+    } catch {
+      // Ignore write failures — banner simply reappears next session.
+    }
+  }, []);
 
   useEffect(() => {
     fetchAllCourses();
@@ -85,10 +108,11 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <main>
+      {showPromo ? <PromoBanner onDismiss={dismissPromo} /> : null}
       <Navbar
         ctas={CTAs}
         navLinkClassNames={linkClassName}
-        className={cn(bgScrollColor)}
+        className={cn(bgScrollColor, showPromo && "top-[44px] lg:top-[48px]")}
         brandLogoSrc={logoPath}
         features={featuresList}
         featuresLabel="Courses"
