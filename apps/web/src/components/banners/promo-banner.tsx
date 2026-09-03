@@ -17,7 +17,7 @@ export const PROMO = {
   message: "Celebrating our 8-year anniversary —",
   highlight: "₦100,000 off all courses",
   ctaLabel: "View courses",
-  ctaHref: "/courses",
+  ctaHref: "/explore",
 } as const;
 
 export const PROMO_BANNER_HEIGHT = "h-[44px] lg:h-[48px]";
