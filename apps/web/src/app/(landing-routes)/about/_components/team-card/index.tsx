@@ -13,14 +13,14 @@ export const TeamCard: FC<TeamProperties> = ({
 }) => {
   return (
     <section className="mx-auto w-[100%] rounded-[12px] bg-background p-3 lg:w-[384px]">
-      <div className="relative min-h-[387px] w-[100%] rounded-[12px] bg-low-grey-II">
+      <div className="relative aspect-[4/5] w-[100%] rounded-[12px] bg-low-grey-II">
         <BlurImage
           priority
           width={500}
           height={387}
           src={image || `/images/default-avatar.png`}
           alt={name}
-          className="min-h-[387px] rounded-[12px] object-cover"
+          className="h-full w-full rounded-[12px] object-cover"
         />
         <CustomButton
           href={linkedIn}
