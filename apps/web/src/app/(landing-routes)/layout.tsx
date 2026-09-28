@@ -1,13 +1,17 @@
 "use client";
 
 import { cn, Navbar } from "@workspace/ui/lib";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import useCoursesStore from "../../stores/course.store";
 import { fetchAllCourses } from "@/action/courses.action";
 import { usePathname } from "next/navigation";
 import { TsaFooter } from "../views/footer";
 import { useScrolled } from "@workspace/ui/hooks";
 import { EmailForm } from "./(home)/_components/email-form/email-form";
+import { IndependenceBanner } from "@/components/banners/independence-banner";
+import { useIndependenceActive } from "@/lib/campaigns/use-independence";
+
+const INDEPENDENCE_DISMISS_KEY = "tsa_independence_promo_dismissed";
 
 const STATIC_LINK: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
@@ -30,6 +34,30 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
   const { scrolled } = useScrolled({ threshold: 10 });
   const pathname = usePathname();
 
+  // Independence Month (1–30 Oct 2026): the green theme is on and the
+  // Independence bar shows on every page. See lib/campaigns.
+  const independenceActive = useIndependenceActive();
+  const [showIndependence, setShowIndependence] = useState(true);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(INDEPENDENCE_DISMISS_KEY) === "1") {
+        setShowIndependence(false);
+      }
+    } catch {
+      // sessionStorage unavailable — keep the bar visible.
+    }
+  }, []);
+
+  const dismissIndependence = useCallback(() => {
+    setShowIndependence(false);
+    try {
+      sessionStorage.setItem(INDEPENDENCE_DISMISS_KEY, "1");
+    } catch {
+      // Ignore write failures — bar simply reappears next session.
+    }
+  }, []);
+
   useEffect(() => {
     fetchAllCourses();
   }, []);
@@ -46,9 +74,10 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         .replaceAll(/[\s/]+/g, "-");
       return {
         title: course.title,
-        href: course.slug && /online/i.test(course.title)
-          ? `/courses/online/${course.slug}`
-          : `/courses/${courseSlug}`,
+        href:
+          course.slug && /online/i.test(course.title)
+            ? `/courses/online/${course.slug}`
+            : `/courses/${courseSlug}`,
         description: course.about,
       };
     });
@@ -64,13 +93,16 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
     [pathname],
   );
 
-  const logoPath = useMemo(
-    () =>
-      isDarkMode
-        ? "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png"
-        : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png",
-    [isDarkMode],
-  );
+  const logoPath = useMemo(() => {
+    if (independenceActive) {
+      return isDarkMode
+        ? "/campaigns/independence/brand/tsa-logo-dark-text.png"
+        : "/campaigns/independence/brand/tsa-logo-white-text.png";
+    }
+    return isDarkMode
+      ? "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470858/techstudio/tsa-repo/ppsabeafcy5wtzv9ia77.png"
+      : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png";
+  }, [isDarkMode, independenceActive]);
 
   const linkClassName = cn(`hover:!text-red-500`);
 
@@ -85,10 +117,15 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <main>
+      {showIndependence ? (
+        <IndependenceBanner onDismiss={dismissIndependence} />
+      ) : null}
       <Navbar
         ctas={CTAs}
         navLinkClassNames={linkClassName}
-        className={bgScrollColor}
+        // `campaign-offset` pushes the navbar below the Independence bar only
+        // while the campaign is on (CSS-driven, so no jump before hydration).
+        className={cn(bgScrollColor, showIndependence && "campaign-offset")}
         brandLogoSrc={logoPath}
         features={featuresList}
         featuresLabel="Courses"
@@ -108,12 +145,13 @@ const ExternalLayout = ({ children }: { children: ReactNode }) => {
         // Map backend courses to include href
         const backendCoursesForFooter = allCourses.map((course) => ({
           ...course,
-          href: course.slug && /online/i.test(course.title)
-            ? `/courses/online/${course.slug}`
-            : `/courses/${course.title
-                .toLowerCase()
-                .trim()
-                .replaceAll(/[\s/]+/g, "-")}`,
+          href:
+            course.slug && /online/i.test(course.title)
+              ? `/courses/online/${course.slug}`
+              : `/courses/${course.title
+                  .toLowerCase()
+                  .trim()
+                  .replaceAll(/[\s/]+/g, "-")}`,
         }));
         const combinedFooterCourses = [
           // ...onlineCoursesForFooter,

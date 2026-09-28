@@ -17,7 +17,7 @@ export const WhyStruggleSection: FC<WhyStruggleSectionProps> = ({
         <div className="text-center">
           <div className="flex items-center justify-center gap-5 md:gap-10 lg:gap-32 mb-11">
             <Image alt="icon" width={59} height={99} src={"/icons/Left.svg"} />
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-[#1F2666]">
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-tsa-ink">
               Why Most People Struggle to Learn Coding Alone
             </h2>
             <Image

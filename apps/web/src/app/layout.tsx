@@ -6,8 +6,11 @@ import { WhatsAppIcon } from "@/components/miscellaneous/whatsapp";
 import { SourceTracker } from "@/lib/utils/source-tracker";
 import { cn } from "@workspace/ui/lib";
 import { LenisProvider } from "@/components/miscellaneous/lenis-provider";
+import { INDEPENDENCE_BOOT_SCRIPT } from "@/lib/campaigns/independence";
+import { IndependenceThemeSync } from "@/lib/campaigns/theme-sync";
 
 import "@workspace/ui/globals.css";
+import "@/styles/campaigns.css";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -29,8 +32,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Independence Month theme switch — runs before paint (1–30 Oct 2026). */}
+        <script
+          dangerouslySetInnerHTML={{ __html: INDEPENDENCE_BOOT_SCRIPT }}
+        />
+      </head>
       <body className={cn(openSans.className)}>
+        <IndependenceThemeSync />
         <LenisProvider>
           <Toaster />
           <WhatsAppIcon />

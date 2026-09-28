@@ -42,7 +42,7 @@ export const WhyLearnUIUXSection: FC<WhyLearnUIUXSectionProps> = ({
       <Wrapper className="max-w-7xl">
         <div className="flex flex-col lg:flex-row items-center gap-10">
           <div className="text-white w-full lg:w-[46%] text-center lg:text-left">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-6">
               {course.whyChoose.title}
             </h2>
             <div className="space-y-6 mb-11">
@@ -57,7 +57,7 @@ export const WhyLearnUIUXSection: FC<WhyLearnUIUXSectionProps> = ({
             </div>
             {/* Quote Box */}
             <div className="bg-[#FBF5F5] rounded-lg p-6">
-              <p className="text-lg font-bold mb-2 text-[#1F2666]">
+              <p className="text-lg font-bold mb-2 text-tsa-ink">
                 "Design is not just what it looks like and feels like. Design is
                 how it works."
               </p>

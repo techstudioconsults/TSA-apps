@@ -58,11 +58,11 @@ export const GuidedPathSection: FC<GuidedPathSectionProps> = ({
   return (
     <section className="py-16 lg:py-24 bg-gray-50">
       <Wrapper className="max-w-6xl">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-8 text-center max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-8 text-center max-w-4xl mx-auto">
           {title}
         </h2>
         <div className="flex flex-col lg:flex-row gap-12 items-center justify-between ">
-          <div className=" rounded-2xl p-1  flex items-center justify-center w-full lg:w-[55%] bg-[#EDF5FF]">
+          <div className=" rounded-2xl p-1  flex items-center justify-center w-full lg:w-[55%] bg-tsa-tint">
             <Image
               width={300}
               height={300}
@@ -77,7 +77,7 @@ export const GuidedPathSection: FC<GuidedPathSectionProps> = ({
                 key={index}
                 className="flex items-start gap-4 border p-2.5 rounded-lg"
               >
-                <div className="mt-1 p-3 bg-[#E8F1FF] rounded-[17.38px]">
+                <div className="mt-1 p-3 bg-tsa-tint-2 rounded-[17.38px]">
                   {getIcon(feature.icon)}
                 </div>
                 <div className="">

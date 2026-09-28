@@ -30,7 +30,7 @@ export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
         className="relative lg:min-h-[737px] pt-32 md:pt-40 w-full py-[100px] bg-cover bg-center text-white overflow-hidden"
         style={{
           backgroundImage: `url(${course.hero.backgroundImage})`,
-          backgroundColor: "#162143",
+          backgroundColor: "var(--tsa-overlay)",
         }}
       >
         <div className="absolute inset-0 z-0 bg-black/40" />
@@ -68,7 +68,7 @@ export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
                   href={whatsappLink}
                   variant="primary"
                   size="lg"
-                  className="w-full md:w-auto bg-[#DCE9FA] text-[#0266F4] hover:bg-white px-8 md:px-10 py-3 rounded font-bold backdrop-blur-sm"
+                  className="w-full md:w-auto bg-tsa-tint-5 text-tsa-bright hover:bg-white px-8 md:px-10 py-3 rounded font-bold backdrop-blur-sm"
                 >
                   Ask a Question
                 </CustomButton>
@@ -80,7 +80,7 @@ export const OnlineCourseHero: FC<OnlineCourseHeroProps> = ({ course }) => {
                 width={500}
                 height={500}
                 alt={course.hero.title}
-                className="w-full border-4 border-[#5F76E6] rounded-[27px] object-cover"
+                className="w-full border-4 border-tsa-periwinkle rounded-[27px] object-cover"
               />
             </div>
           </section>

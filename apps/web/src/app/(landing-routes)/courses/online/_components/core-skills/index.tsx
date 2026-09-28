@@ -13,10 +13,10 @@ export const CoreSkillsSection: FC<CoreSkillsSectionProps> = ({ course }) => {
   if (!course.coreSkills) return null;
 
   return (
-    <section className="py-8 lg:py-12 bg-[#EDF5FF]">
+    <section className="py-8 lg:py-12 bg-tsa-tint">
       <Wrapper className="max-w-6xl">
         <div className="text-center mb-12 ">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-4 max-w-lg mx-auto">
             {course.coreSkills.title}
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl text-[#595959] max-w-3xl mx-auto">
