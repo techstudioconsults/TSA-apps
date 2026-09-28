@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useIndependenceActive } from "@/lib/campaigns/use-independence";
 
 export const TsaFooter: FC<TsaFooterProperties> = ({
   className,
@@ -13,6 +14,7 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
   subscribeComponent,
   ...rest
 }) => {
+  const independenceActive = useIndependenceActive();
   return (
     <div
       className={cn(
@@ -26,7 +28,9 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
           <div className="flex flex-col items-center xl:w-1/3 xl:items-start">
             <Logo
               logo={
-                "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png"
+                independenceActive
+                  ? "/campaigns/independence/brand/tsa-logo-white-text.png"
+                  : "https://res.cloudinary.com/kingsleysolomon/image/upload/f_auto,q_auto/v1760470861/techstudio/tsa-repo/rcgdvnlkc2tnwkxtxbgh.png"
               }
             />
             <ul className="mt-5 flex flex-col gap-1 text-sm">

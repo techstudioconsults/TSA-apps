@@ -17,7 +17,7 @@ export const CTASection: FC<CTASectionProps> = ({ course }) => {
     <>
       <section className="py-5 lg:py-10 bg-white text-white relative overflow-hidden">
         <Wrapper
-          className={`max-w-[330px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl relative z-10 rounded-[25px] bg-[#1F2666] py-14 bg-cover`}
+          className={`max-w-[330px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl relative z-10 rounded-[25px] bg-tsa-ink py-14 bg-cover`}
           style={{ backgroundImage: `url(${course.cta.bg})` }}
         >
           <div className={`text-center `}>
@@ -31,7 +31,7 @@ export const CTASection: FC<CTASectionProps> = ({ course }) => {
               onClick={() => setIsModalOpen(true)}
               variant="primary"
               size="xl"
-              className="bg-[#0266F4] hover:bg-blue-700 text-white px-20 py-5 text-base  rounded font-bold"
+              className="bg-tsa-bright hover:bg-blue-700 text-white px-20 py-5 text-base  rounded font-bold"
             >
               {course.cta.buttonText}
             </CustomButton>

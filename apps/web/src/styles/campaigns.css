@@ -1,0 +1,72 @@
+/*
+ * Nigeria @ 66 — Independence Month theme (1–30 October 2026).
+ *
+ * <html data-campaign="independence"> is set before first paint by the boot
+ * script in app/layout.tsx (dates live in src/lib/campaigns/independence.ts).
+ * Every TSA brand blue maps to Nigerian green (#008751) here; gold, red and
+ * greys are untouched. Unlayered on purpose so it beats the base tokens.
+ */
+
+html[data-campaign="independence"],
+html[data-campaign="independence"] .dark {
+  /* Navy "High Blue" → deep green */
+  --primary: oklch(0.24 0.06 158);
+  /* TSA blue scale → green scale */
+  --high-blue: oklch(0.36 0.085 157);
+  --mid-blue: oklch(0.549 0.131 157); /* #008751 — Nigerian flag green */
+  --low-blue: oklch(0.955 0.035 158);
+  --accent: oklch(0.955 0.035 158);
+
+  /* Page-specific blues (online course pages, course hero) */
+  --tsa-ink: oklch(0.3 0.075 158);
+  --tsa-bright: oklch(0.549 0.131 157);
+  --tsa-bright-alt: oklch(0.549 0.131 157);
+  --tsa-bright-soft: oklch(0.62 0.15 156);
+  --tsa-overlay: oklch(0.21 0.05 160);
+  --tsa-periwinkle: oklch(0.66 0.14 160);
+  --tsa-deep: oklch(0.27 0.065 158);
+  --tsa-tint: oklch(0.97 0.02 158);
+  --tsa-tint-2: oklch(0.96 0.026 158);
+  --tsa-tint-3: oklch(0.953 0.03 158);
+  --tsa-tint-4: oklch(0.945 0.032 158);
+  --tsa-tint-5: oklch(0.935 0.035 158);
+
+  /* Tailwind blue / sky / indigo utilities used around the site → green */
+  --color-blue-50: oklch(97.9% 0.021 166.113);
+  --color-blue-100: oklch(95% 0.052 163.051);
+  --color-blue-200: oklch(90.5% 0.093 164.15);
+  --color-blue-300: oklch(84.5% 0.143 164.978);
+  --color-blue-400: oklch(76.5% 0.177 163.223);
+  --color-blue-500: oklch(69.6% 0.17 162.48);
+  --color-blue-600: oklch(0.549 0.131 157);
+  --color-blue-700: oklch(50.8% 0.118 165.612);
+  --color-blue-800: oklch(43.2% 0.095 166.913);
+  --color-blue-900: oklch(37.8% 0.077 168.94);
+  --color-blue-950: oklch(26.2% 0.051 172.552);
+  --color-sky-50: oklch(97.9% 0.021 166.113);
+  --color-sky-600: oklch(0.549 0.131 157);
+  --color-indigo-50: oklch(97.9% 0.021 166.113);
+  --color-indigo-600: oklch(0.549 0.131 157);
+}
+
+html[data-campaign="independence"] .dark {
+  --primary: oklch(0.36 0.085 157);
+}
+
+/* Show/hide helpers for campaign-only UI (no flash: driven by the attribute) */
+html:not([data-campaign="independence"]) .campaign-only {
+  display: none !important;
+}
+html[data-campaign="independence"] .campaign-hide {
+  display: none !important;
+}
+
+/* Push fixed elements (the navbar) below the 44/48px Independence bar */
+html[data-campaign="independence"] .campaign-offset {
+  top: 44px;
+}
+@media (min-width: 1024px) {
+  html[data-campaign="independence"] .campaign-offset {
+    top: 48px;
+  }
+}

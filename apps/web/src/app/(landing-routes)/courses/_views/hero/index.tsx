@@ -12,7 +12,7 @@ interface CourseHeroProperty {
 export const Hero: FC<CourseHeroProperty> = ({ intro, slug }) => {
   return (
     <header
-      className="min-h-[737px] pt-32 w-full bg-[#162143DE] bg-[url('/images/guy-on-laptop.png')]  py-[100px] bg-cover
+      className="min-h-[737px] pt-32 w-full bg-tsa-overlay/87 bg-[url('/images/guy-on-laptop.png')]  py-[100px] bg-cover
       bg-center text-white"
     >
       <Wrapper>
@@ -41,7 +41,7 @@ export const Hero: FC<CourseHeroProperty> = ({ intro, slug }) => {
             <LeadForm
               slug={slug}
               className="before:absolute before:left-[66px] before:top-[-60px] before:z-[-1] before:hidden before:h-[387px]
-               before:w-[467px] before:rounded-[15px] before:bg-[#072C5B] before:content-empty before:lg:block"
+               before:w-[467px] before:rounded-[15px] before:bg-tsa-deep before:content-empty before:lg:block"
             />
           </div>
         </section>

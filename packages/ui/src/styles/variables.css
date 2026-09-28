@@ -34,6 +34,22 @@
   --mid-blue: oklch(0.56 0.17 254);
   --low-blue: oklch(0.95 0.03 250);
 
+  /* Page-specific blues (online course pages, course hero). Same values the
+     pages used as hard-coded hex; tokenised so seasonal themes can recolour
+     them (see apps/web/src/styles/campaigns.css). */
+  --tsa-ink: #1f2666;
+  --tsa-bright: #0266f4;
+  --tsa-bright-alt: #0071f2;
+  --tsa-bright-soft: #407bff;
+  --tsa-overlay: #162143;
+  --tsa-periwinkle: #5f76e6;
+  --tsa-deep: #072c5b;
+  --tsa-tint: #edf5ff;
+  --tsa-tint-2: #e8f1ff;
+  --tsa-tint-3: #e2f0ff;
+  --tsa-tint-4: #e0ecff;
+  --tsa-tint-5: #dce9fa;
+
   /* TSA Danger Scale */
   --high-danger: oklch(0.39 0.15 27);
   --mid-danger: oklch(0.55 0.22 27);
@@ -250,6 +266,20 @@
   --color-high-blue: var(--high-blue);
   --color-mid-blue: var(--mid-blue);
   --color-low-blue: var(--low-blue);
+
+  /* Page-specific blues (text-tsa-ink, bg-tsa-bright, …) */
+  --color-tsa-ink: var(--tsa-ink);
+  --color-tsa-bright: var(--tsa-bright);
+  --color-tsa-bright-alt: var(--tsa-bright-alt);
+  --color-tsa-bright-soft: var(--tsa-bright-soft);
+  --color-tsa-overlay: var(--tsa-overlay);
+  --color-tsa-periwinkle: var(--tsa-periwinkle);
+  --color-tsa-deep: var(--tsa-deep);
+  --color-tsa-tint: var(--tsa-tint);
+  --color-tsa-tint-2: var(--tsa-tint-2);
+  --color-tsa-tint-3: var(--tsa-tint-3);
+  --color-tsa-tint-4: var(--tsa-tint-4);
+  --color-tsa-tint-5: var(--tsa-tint-5);
 
   /* Secondary (Yellow/Warning) */
   --color-secondary: var(--secondary);
