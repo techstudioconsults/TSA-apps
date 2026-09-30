@@ -54,10 +54,10 @@ export const IndependenceBanner = ({
           </span>
           <span className="truncate font-semibold text-secondary">
             <span className="sm:hidden">
-              {INDEPENDENCE_OFFER.discountShort} off all courses
+              Up to {INDEPENDENCE_OFFER.discountShort} off
             </span>
             <span className="hidden sm:inline">
-              {INDEPENDENCE_OFFER.discount} off all courses
+              up to {INDEPENDENCE_OFFER.discount} off all courses
             </span>
           </span>
         </p>
