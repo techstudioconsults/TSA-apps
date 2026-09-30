@@ -4,16 +4,41 @@ import { Wrapper } from "@workspace/ui/lib";
 import { INDEPENDENCE_OFFER } from "@/lib/campaigns/independence";
 import { OfferStatus } from "./_views/offer-status";
 
-const { discount, years, datesLabel, deadlineLabel } = INDEPENDENCE_OFFER;
+const {
+  discount,
+  years,
+  datesLabel,
+  deadlineLabel,
+  thresholdLabel,
+  highBonus,
+  lowBonus,
+} = INDEPENDENCE_OFFER;
 
 export const metadata: Metadata = {
-  title: `Independence Day Offer — ${discount} off all courses | Techstudio Academy`,
-  description: `Nigeria @ ${years}: register for any Tech Studio Academy course between ${datesLabel} and get ${discount} off your course fee.`,
+  title: `Independence Day Offer — up to ${discount} off all courses | Techstudio Academy`,
+  description: `Nigeria @ ${years}: register for any Tech Studio Academy course between ${datesLabel} and get up to ${discount} off your tuition. Terms apply.`,
   openGraph: {
-    title: `Nigeria @ ${years} — ${discount} off all Tech Studio Academy courses`,
-    description: `Celebrate Independence with ${discount} off any course. Register by ${deadlineLabel}.`,
+    title: `Nigeria @ ${years} — up to ${discount} off all Tech Studio Academy courses`,
+    description: `Celebrate Independence with up to ${discount} off any course. Register by ${deadlineLabel}. Terms apply.`,
   },
 };
+
+const TIERS = [
+  { tuition: `${thresholdLabel} and above`, bonus: highBonus },
+  { tuition: `below ${thresholdLabel}`, bonus: lowBonus },
+];
+
+const TERMS = [
+  `The Independence Month offer is open to registrations made between 1 October 2026 and ${deadlineLabel}, 11:59 pm (Lagos time).`,
+  `The bonus is up to ${discount}. Classes with tuition of ${thresholdLabel} and above get a ${highBonus} bonus; classes with tuition below ${thresholdLabel} get a ${lowBonus} bonus.`,
+  "The bonus is based on the tuition of the specific class you register for — the course and its format (weekday, weekend or online) — as listed by Tech Studio Academy at the time you register.",
+  "The bonus is deducted from your tuition. It cannot be exchanged for cash, refunded or transferred to another person.",
+  "One bonus per student, per course registration.",
+  "The bonus cannot be combined with any other discount, scholarship or promotion unless Tech Studio Academy confirms otherwise in writing.",
+  "The offer applies to new registrations only. Students who registered or paid before 1 October 2026 are not eligible.",
+  "Instalment payment is still available. The bonus is applied to your total tuition, and our admissions team will confirm your final fee and payment plan with you.",
+  "Tech Studio Academy may amend or withdraw this offer at any time. Tech Studio Academy's decision on eligibility is final.",
+];
 
 const primaryCta =
   "inline-flex h-12 items-center justify-center rounded-[5px] bg-mid-blue px-7 font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
@@ -35,7 +60,7 @@ const FlagStripe = ({ className = "" }: { className?: string }) => (
 const STEPS = [
   {
     title: "Choose your course",
-    body: "Pick the programme that fits where you want your career to go. The discount applies to every course.",
+    body: "Pick the programme and class format that fit where you want your career to go. Every course qualifies.",
     link: { label: "Explore courses", href: "/explore" },
   },
   {
@@ -44,13 +69,16 @@ const STEPS = [
     link: { label: "Register now", href: "/register" },
   },
   {
-    title: `Get ${discount} off`,
-    body: `${discount} comes off your course fee. Our admissions team will confirm your final fee and payment options with you.`,
+    title: `Get up to ${discount} off`,
+    body: `${highBonus} off classes with tuition of ${thresholdLabel} and above, ${lowBonus} off classes below that. Our admissions team will confirm your final fee and payment options with you.`,
   },
 ];
 
 const DETAILS = [
-  { label: "Discount", value: `${discount} off your course fee` },
+  {
+    label: "Bonus",
+    value: `${highBonus} off (tuition ${thresholdLabel} and above) · ${lowBonus} off (tuition below ${thresholdLabel})`,
+  },
   { label: "Courses", value: "All Tech Studio Academy courses" },
   { label: "Offer window", value: datesLabel },
   { label: "Deadline", value: `${deadlineLabel}, 11:59 pm (Lagos time)` },
@@ -62,8 +90,12 @@ const DETAILS = [
 
 const FAQS = [
   {
-    q: "Which courses does the discount apply to?",
-    a: `All of them. Whichever Tech Studio Academy course you choose, ${discount} comes off the fee.`,
+    q: "Which courses does the bonus apply to?",
+    a: "All of them. Every Tech Studio Academy course qualifies, in every format (weekday, weekend and online).",
+  },
+  {
+    q: "How much will I get off?",
+    a: `It depends on the tuition of the class you choose. If it is ${thresholdLabel} or more, you get ${highBonus} off. If it is below ${thresholdLabel}, you get ${lowBonus} off. Because tuition differs by format, the same course can fall in different tiers — e.g. a weekday class and an online class of the same course.`,
   },
   {
     q: "When does the offer end?",
@@ -93,13 +125,20 @@ const IndependencePage = () => {
             <h1 className="mt-4 text-[34px] font-bold leading-tight text-white lg:text-[52px]">
               {years} years of independence.
               <br />
-              <span className="text-secondary">{discount} off</span> your tech
-              career.
+              <span className="text-secondary">Up to {discount} off</span> your
+              tech career.
             </h1>
             <p className="mt-6 max-w-[680px] text-base text-white/85 lg:text-lg">
               To celebrate Nigeria&apos;s {years}th Independence Day, Tech
-              Studio Academy is taking {discount} off every course. Register
-              between {datesLabel} to claim it.
+              Studio Academy is giving up to {discount} off every course.
+              Register between {datesLabel} to claim it.{" "}
+              <a
+                href="#terms"
+                className="whitespace-nowrap text-white underline underline-offset-2"
+              >
+                Terms apply
+              </a>
+              .
             </p>
             <OfferStatus className="mt-8" />
             <div className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
@@ -122,8 +161,24 @@ const IndependencePage = () => {
               How to claim it
             </p>
             <h2 className="mt-3 text-[28px] font-bold text-primary lg:text-[36px]">
-              Three steps to {discount} off
+              Three steps to your Independence bonus
             </h2>
+          </div>
+          {/* How much you get */}
+          <div className="mx-auto mt-10 grid max-w-[680px] gap-4 sm:grid-cols-2">
+            {TIERS.map((tier) => (
+              <div
+                key={tier.tuition}
+                className="rounded-xl border border-mid-blue/30 bg-white p-6 text-center"
+              >
+                <p className="text-sm text-mid-grey-III">
+                  Class tuition {tier.tuition}
+                </p>
+                <p className="mt-2 text-[32px] font-bold leading-none text-mid-blue">
+                  {tier.bonus} off
+                </p>
+              </div>
+            ))}
           </div>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {STEPS.map((step, index) => (
@@ -173,8 +228,8 @@ const IndependencePage = () => {
               </p>
               <p className="mt-4 leading-relaxed text-mid-grey-III">
                 This October, we&apos;re marking {years} years of independence
-                by putting {discount} back in your pocket when you start your
-                journey with us.
+                by putting up to {discount} back in your pocket when you start
+                your journey with us.
               </p>
             </div>
             <dl className="overflow-hidden rounded-xl border border-border bg-white">
@@ -232,13 +287,34 @@ const IndependencePage = () => {
         </Wrapper>
       </section>
 
+      {/* Terms & Conditions */}
+      <section
+        id="terms"
+        className="scroll-mt-[120px] border-t border-border bg-white py-[64px] lg:py-[88px]"
+      >
+        <Wrapper className="!mt-0">
+          <div className="mx-auto max-w-[780px]">
+            <h2 className="text-[24px] font-bold text-primary lg:text-[30px]">
+              Terms &amp; Conditions
+            </h2>
+            <ol className="mt-6 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-mid-grey-III marker:font-semibold marker:text-primary">
+              {TERMS.map((term) => (
+                <li key={term} className="pl-1">
+                  {term}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Wrapper>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-primary py-[64px] text-white lg:py-[88px]">
         <Wrapper className="!mt-0">
           <div className="mx-auto flex max-w-[720px] flex-col items-center text-center">
             <FlagStripe />
             <h2 className="mt-6 text-[28px] font-bold text-white lg:text-[36px]">
-              Start your course with {discount} off
+              Start your course with up to {discount} off
             </h2>
             <p className="mt-4 text-white/80">
               The offer closes on {deadlineLabel}. Register now and our

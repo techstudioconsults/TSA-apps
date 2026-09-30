@@ -19,10 +19,20 @@ export const INDEPENDENCE_START = "2026-10-01T00:00:00+01:00";
 /** Closes at the end of 30 October 2026 (00:00 WAT, 31 October). */
 export const INDEPENDENCE_END = "2026-10-31T00:00:00+01:00";
 
+/**
+ * Two-tier bonus, based on the tuition of the class (course + format:
+ * weekday / weekend / online) the student registers for:
+ *   tuition ₦400,000 and above → ₦66,000 off
+ *   tuition below ₦400,000     → ₦33,000 off
+ */
 export const INDEPENDENCE_OFFER = {
   years: 66,
+  /** The maximum bonus — always say "up to" when quoting it alone. */
   discount: "₦66,000",
   discountShort: "₦66k",
+  thresholdLabel: "₦400,000",
+  highBonus: "₦66,000",
+  lowBonus: "₦33,000",
   datesLabel: "1–30 October 2026",
   deadlineLabel: "30 October 2026",
   pagePath: "/independence",

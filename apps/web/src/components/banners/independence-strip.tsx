@@ -8,13 +8,13 @@ import { INDEPENDENCE_OFFER } from "@/lib/campaigns/independence";
 export const IndependenceStrip = () => (
   <div className="campaign-only w-full max-w-[560px] rounded-lg border border-mid-blue/25 bg-low-blue px-4 py-3 text-sm text-primary">
     <span className="font-semibold">Nigeria @ {INDEPENDENCE_OFFER.years}:</span>{" "}
-    {INDEPENDENCE_OFFER.discount} off every course when you register by{" "}
+    up to {INDEPENDENCE_OFFER.discount} off your course when you register by{" "}
     {INDEPENDENCE_OFFER.deadlineLabel}.{" "}
     <Link
-      href={INDEPENDENCE_OFFER.pagePath}
+      href={`${INDEPENDENCE_OFFER.pagePath}#terms`}
       className="font-semibold text-mid-blue underline underline-offset-2"
     >
-      Offer details
+      Terms apply
     </Link>
   </div>
 );
