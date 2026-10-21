@@ -110,7 +110,15 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
         <section className="flex flex-col items-center justify-between gap-5 pt-4 xl:flex-row">
           <p>&copy; {new Date().getFullYear()} TechStudio Academy</p>
           <ul className="flex items-center gap-[33px]">
-            <p className="font-light">Terms and Policy</p>
+            <li className="flex items-center gap-2 font-light">
+              <Link className="hover:text-mid-danger" href="/terms">
+                Terms
+              </Link>
+              <span aria-hidden>&amp;</span>
+              <Link className="hover:text-mid-danger" href="/privacy-policy">
+                Privacy Policy
+              </Link>
+            </li>
             <li>
               <a
                 target="_blank"
