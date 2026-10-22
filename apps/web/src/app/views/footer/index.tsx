@@ -99,7 +99,7 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
           </div>
           <div className="flex flex-col items-center xl:w-1/3 xl:items-start">
             <div className="w-full flex flex-col items-center xl:items-start">
-              <h5 className="pb-2.5 text-base text-white">
+              <h5 className="pb-4 text-base text-white">
                 Subscribe to our newsletter
               </h5>
               {subscribeComponent}
