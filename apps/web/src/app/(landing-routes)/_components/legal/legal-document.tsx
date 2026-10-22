@@ -1,5 +1,5 @@
 import { Wrapper } from "@workspace/ui/lib";
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import type { LegalSection } from "./types";
 
 interface LegalDocumentProps {
@@ -30,6 +30,35 @@ export const LegalDocument: FC<LegalDocumentProps> = ({ sections }) => {
                   <ul key={i} className="list-disc space-y-2 pl-6">
                     {block.items.map((item) => (
                       <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                );
+              }
+              if (block.type === "contact") {
+                return (
+                  <ul key={i} className="list-disc space-y-2 pl-6">
+                    {block.rows.map((row) => (
+                      <li key={row.label} className="break-words">
+                        {row.label}:{" "}
+                        {row.links.map((link, linkIndex) => (
+                          <Fragment key={link.text}>
+                            {linkIndex > 0 && " / "}
+                            {link.href ? (
+                              <a
+                                href={link.href}
+                                className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
+                                {...(link.href.startsWith("http")
+                                  ? { target: "_blank", rel: "noreferrer" }
+                                  : {})}
+                              >
+                                {link.text}
+                              </a>
+                            ) : (
+                              link.text
+                            )}
+                          </Fragment>
+                        ))}
+                      </li>
                     ))}
                   </ul>
                 );

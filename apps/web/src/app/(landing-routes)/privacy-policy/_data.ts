@@ -1,5 +1,5 @@
-import { LEGAL_CONTACT } from "../_components/legal/contact";
-import { h, LegalSection, p, ul } from "../_components/legal/types";
+import { contactRows } from "../_components/legal/contact";
+import { contact, h, LegalSection, p, ul } from "../_components/legal/types";
 
 export const PRIVACY_LAST_UPDATED = "10/20/2026";
 
@@ -348,11 +348,11 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
         "If you have questions about this Privacy Policy, wish to exercise an applicable privacy right, or have a concern about how your personal information is being processed, please contact us.",
       ),
       p("Tech Studio Consults"),
-      ul(
-        `Email: ${LEGAL_CONTACT.email}`,
-        `Telephone: ${LEGAL_CONTACT.phones.join(" / ")}`,
-        `Website: ${LEGAL_CONTACT.website}`,
-        `Address: ${LEGAL_CONTACT.address}`,
+      contact(
+        contactRows.email(),
+        contactRows.phone("Telephone"),
+        contactRows.website(),
+        contactRows.address(),
       ),
       p(
         "By using our website or voluntarily providing personal information to Tech Studio Consults, you acknowledge that you have read and understood this Privacy Policy.",
