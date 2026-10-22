@@ -354,7 +354,9 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
         `Website: ${LEGAL_CONTACT.website}`,
         `Address: ${LEGAL_CONTACT.address}`,
       ),
-      // TODO: the pasted policy was cut off after "you acknowledge that" — add the rest.
+      p(
+        "By using our website or voluntarily providing personal information to Tech Studio Consults, you acknowledge that you have read and understood this Privacy Policy.",
+      ),
     ],
   },
 ];
