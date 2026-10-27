@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IndependenceStrip } from "@/components/banners/independence-strip";
 
 export default function AuthLayout({
   children,
@@ -13,14 +12,7 @@ export default function AuthLayout({
       {/* Logo and Image Section */}
       <section className="relative h-[15rem] xl:h-screen">
         <Link className="absolute left-4 top-4 hover:animate-pulse" href={`/`}>
-          <Image
-            width={48}
-            height={48}
-            src={"/icons/logo.png"}
-            alt="logo"
-            // Served as-is so the Independence Month green logo swap applies.
-            unoptimized
-          />
+          <Image width={48} height={48} src={"/icons/logo.png"} alt="logo" />
         </Link>
         <Image
           width={742}
@@ -33,8 +25,7 @@ export default function AuthLayout({
       </section>
 
       {/* Content Section */}
-      <section className="flex flex-col items-center justify-center gap-4 p-4 overflow-y-auto xl:max-h-screen">
-        <IndependenceStrip />
+      <section className="flex items-center justify-center p-4 overflow-y-auto xl:max-h-screen">
         {children}
       </section>
 
