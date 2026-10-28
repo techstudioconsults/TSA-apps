@@ -35,8 +35,8 @@
   --low-blue: oklch(0.95 0.03 250);
 
   /* Page-specific blues (online course pages, course hero). Same values the
-     pages used as hard-coded hex; tokenised so seasonal themes can recolour
-     them (see apps/web/src/styles/campaigns.css). */
+     pages used as hard-coded hex; tokenised so a seasonal theme can recolour
+     them by overriding these variables. */
   --tsa-ink: #1f2666;
   --tsa-bright: #0266f4;
   --tsa-bright-alt: #0071f2;
