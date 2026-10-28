@@ -1,5 +1,5 @@
-import { LEGAL_CONTACT } from "../_components/legal/contact";
-import { LegalSection, p, ul } from "../_components/legal/types";
+import { contactRows } from "../_components/legal/contact";
+import { contact, LegalSection, p, ul } from "../_components/legal/types";
 
 export const TERMS_LAST_UPDATED = "10/20/2026";
 
@@ -273,11 +273,11 @@ export const TERMS_SECTIONS: LegalSection[] = [
         "If you have questions, concerns, or requests regarding these Terms of Service, please contact Tech Studio Consults through the contact information provided on our website.",
       ),
       p("Tech Studio Consults"),
-      ul(
-        `Website: ${LEGAL_CONTACT.website}`,
-        `Email: ${LEGAL_CONTACT.email}`,
-        `Phone: ${LEGAL_CONTACT.phones.join(" / ")}`,
-        `Address: ${LEGAL_CONTACT.address}`,
+      contact(
+        contactRows.website(),
+        contactRows.email(),
+        contactRows.phone(),
+        contactRows.address(),
       ),
     ],
   },

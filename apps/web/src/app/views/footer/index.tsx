@@ -95,7 +95,7 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
           </div>
           <div className="flex flex-col items-center xl:w-1/3 xl:items-start">
             <div className="w-full flex flex-col items-center xl:items-start">
-              <h5 className="pb-2.5 text-base text-white">
+              <h5 className="pb-4 text-base text-white">
                 Subscribe to our newsletter
               </h5>
               {subscribeComponent}
@@ -105,8 +105,8 @@ export const TsaFooter: FC<TsaFooterProperties> = ({
         <SelectSeparator className="mb-[30px] mt-[32px]" />
         <section className="flex flex-col items-center justify-between gap-5 pt-4 xl:flex-row">
           <p>&copy; {new Date().getFullYear()} TechStudio Academy</p>
-          <ul className="flex items-center gap-[33px]">
-            <li className="flex items-center gap-2 font-light">
+          <ul className="flex flex-wrap items-center justify-center gap-x-[33px] gap-y-4">
+            <li className="flex w-full items-center justify-center gap-2 whitespace-nowrap font-light xl:w-auto">
               <Link className="hover:text-mid-danger" href="/terms">
                 Terms
               </Link>
