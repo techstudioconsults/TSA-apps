@@ -6,6 +6,7 @@ import { WhatsAppIcon } from "@/components/miscellaneous/whatsapp";
 import { SourceTracker } from "@/lib/utils/source-tracker";
 import { cn } from "@workspace/ui/lib";
 import { LenisProvider } from "@/components/miscellaneous/lenis-provider";
+import { GoogleAnalytics } from "@/components/miscellaneous/google-analytics";
 
 import "@workspace/ui/globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
           </Suspense>
           {children}
         </LenisProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );
