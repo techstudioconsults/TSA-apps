@@ -6,6 +6,7 @@ import {
   submitLeadForm,
 } from "@/action/lead-form.action";
 import { LeadFormData } from "@/schemas/lead-form";
+import { queuePendingLead } from "@/lib/utils/meta-lead";
 import useCohortStore from "@/stores/cohort.store";
 import useCoursesStore from "@/stores/course.store";
 import { Loader } from "lucide-react";
@@ -192,6 +193,8 @@ const LeadForm = ({
       const cycleIdToUse =
         marketingCycleId || "2bef4d8c-39da-4da0-a1e1-7f840ea32daf";
       const result = await submitLeadForm(formData, cycleIdToUse);
+      // Count a Meta Lead only when the API actually accepted the lead.
+      if ("success" in result) queuePendingLead(slug);
       const successMessage =
         result.success || "Registration successful. We'll contact you shortly.";
 
