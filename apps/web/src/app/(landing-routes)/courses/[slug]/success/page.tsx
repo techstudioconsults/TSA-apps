@@ -1,6 +1,6 @@
 import { CustomButton, Wrapper } from "@workspace/ui/lib";
 import Image from "next/image";
-import Script from "next/script";
+import { LeadEvent } from "./lead-event";
 
 export default async function RegistrationSuccessPage(
   props: any,
@@ -14,30 +14,8 @@ export default async function RegistrationSuccessPage(
 
   return (
     <main className="relative z-[1] bg-background py-16">
-      {/* Facebook Pixel: Lead event on success page */}
-      <Script id="fb-pixel" strategy="afterInteractive">
-        {`
-          !function(f,b,e,v,n,t,s)
-         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '1171106073347114');
-          fbq('track', 'Lead');
-        `}
-      </Script>
-      <noscript>
-        <Image
-          alt={`facebook-img`}
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          src="https://www.facebook.com/tr?id=1171106073347114&ev=Lead&noscript=1"
-        />
-      </noscript>
+      {/* Meta Pixel: one Lead per real form submit. The base pixel loads site-wide in app/layout.tsx. */}
+      <LeadEvent />
       <Wrapper className="flex min-h-[60vh] flex-col items-center justify-center text-center">
         {/* <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-50"> */}
         <Image
