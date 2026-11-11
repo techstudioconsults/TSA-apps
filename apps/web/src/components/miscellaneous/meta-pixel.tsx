@@ -17,6 +17,8 @@ import { useEffect, useRef } from "react";
  *   Lead per real form submit (see lib/utils/meta-lead.ts), and the
  *   "Syllabi download" custom conversion matches that page's URL, so a
  *   PageView there would be counted as an extra download.
+ * - fbq.disablePushState stops the pixel's own history-change PageView, which
+ *   would double count route changes and fire on the success page.
  * - Production only, never on Vercel previews (same rule as GoogleAnalytics).
  */
 export const META_PIXEL_ID = "1171106073347114";
@@ -50,6 +52,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+fbq.disablePushState = true;
 fbq('init', '${META_PIXEL_ID}');
 if (!/\\/success\\/?$/.test(window.location.pathname)) fbq('track', 'PageView');`}
     </Script>
