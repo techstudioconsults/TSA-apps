@@ -7,6 +7,7 @@ import { SourceTracker } from "@/lib/utils/source-tracker";
 import { cn } from "@workspace/ui/lib";
 import { LenisProvider } from "@/components/miscellaneous/lenis-provider";
 import { GoogleAnalytics } from "@/components/miscellaneous/google-analytics";
+import { MetaPixel } from "@/components/miscellaneous/meta-pixel";
 
 import "@workspace/ui/globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           {children}
         </LenisProvider>
         <GoogleAnalytics />
+        <MetaPixel />
       </body>
     </html>
   );
