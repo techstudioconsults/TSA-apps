@@ -3,7 +3,7 @@ import type { LegalContactRow } from "./types";
 /** Mirrors the details on the /contact page. */
 const CONTACT = {
   email: "info@techstudioacademy.com",
-  phones: ["+234 805 6713 508", "+234 802 3679 765"],
+  phones: ["+234 805 6713 508"],
   website: "www.techstudioacademy.com",
   address: "1 Ogunlesi Street, Off Awoyokun, Onipanu, Lagos, Nigeria.",
 } as const;

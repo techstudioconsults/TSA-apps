@@ -16,8 +16,8 @@ export const OnlineTestimonial = () => {
   }, []);
 
   const whatsappLink = isIOS
-    ? "https://api.whatsapp.com/send/?phone=2348113800161&text=Hello!%20TechStudio%20Academy,%20I%E2%80%99ll%20like%20to%20make%20an%20enquiry"
-    : "https://api.whatsapp.com/send/?phone=2348113800161&text=Hello!%20TechStudio%20Academy,%20I%E2%80%99ll%20like%20to%20make%20an%20enquiry";
+    ? "https://api.whatsapp.com/send/?phone=2348056713508&text=Hello!%20TechStudio%20Academy,%20I%E2%80%99ll%20like%20to%20make%20an%20enquiry"
+    : "https://api.whatsapp.com/send/?phone=2348056713508&text=Hello!%20TechStudio%20Academy,%20I%E2%80%99ll%20like%20to%20make%20an%20enquiry";
 
   return (
     <section className="min-h-[508px] bg-accent py-[50px]">
