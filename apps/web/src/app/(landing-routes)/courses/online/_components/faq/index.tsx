@@ -20,7 +20,7 @@ export const FAQSection: FC<FAQSectionProps> = ({ course }) => {
     <section className="">
       <Wrapper className="">
         <div className="text-center">
-          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
@@ -47,7 +47,7 @@ export const FAQSection: FC<FAQSectionProps> = ({ course }) => {
             ))}
           </Accordion>
         </div>
-        <p className="text-center text-[#1F2666] text-sm md:text-xl lg:text-2xl">
+        <p className="text-center text-tsa-ink text-sm md:text-xl lg:text-2xl">
           Still have questions?{" "}
           <Link
             href="/contact"

@@ -29,7 +29,7 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
     <section className="py-5 lg:py-10">
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-xl mx-auto">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4 max-w-xl mx-auto">
             Trusted by Over 3,000 Graduates Worldwide
           </h2>
           <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-5xl mx-auto">
@@ -67,7 +67,7 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
                   )}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#162143]">
+                  <p className="font-semibold text-tsa-overlay">
                     {testimonial.name}
                   </p>
                   <p className="text-sm text-gray-600">{testimonial.role}</p>

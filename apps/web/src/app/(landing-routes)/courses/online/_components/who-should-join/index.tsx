@@ -18,7 +18,7 @@ export const WhoShouldJoinSection: FC<WhoShouldJoinSectionProps> = ({
     <section className={`py-5 lg:py-10 bg-white`}>
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4">
             {course.whoShouldJoin.title}
           </h2>
           <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-2xl mx-auto">
@@ -31,7 +31,7 @@ export const WhoShouldJoinSection: FC<WhoShouldJoinSectionProps> = ({
               key={index}
               className="flex flex-col items-center gap-4 p-6 bg-white text-center rounded-lg border border-[#D8D8D857] "
             >
-              <div className="bg-[#E2F0FF] rounded p-2">
+              <div className="bg-tsa-tint-3 rounded p-2">
                 <Image
                   src={audience.icon}
                   alt={audience.title}

@@ -15,12 +15,12 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
   // const isCybersecurity = course.slug === "cybersecurity";
 
   return (
-    <section className={`bg-[#EDF5FF] py-5 lg:py-10 `}>
+    <section className={`bg-tsa-tint py-5 lg:py-10 `}>
       <Wrapper className="max-w-7xl">
         {/* {isUIUX || isCybersecurity ? (
           <div className="flex flex-col lg:flex-row gap-10">
           <div className="w-full lg:w-[37%]">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-6 text-center lg:text-left">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-6 text-center lg:text-left">
               {course.outcomes.title}
             </h2>
             {course.outcomes.description && (
@@ -35,7 +35,7 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
               {course.outcomes.items.map((item, index) => (
                 <div key={index} className="flex items-start gap-3  bg-white rounded-lg py-3 px-2.5">
                   <svg
-                    className="w-6 h-6 text-[#407BFF] flex-shrink-0 mt-1 bg-[#EDF6FF] rounded-full"
+                    className="w-6 h-6 text-tsa-bright-soft flex-shrink-0 mt-1 bg-tsa-tint rounded-full"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -55,7 +55,7 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
         ) : isDataAnalytics ? ( */}
         <div className="">
           <div className="text-center mb-12">
-            <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4 max-w-lg mx-auto">
+            <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4 max-w-lg mx-auto">
               {course.outcomes.title}
             </h2>
             <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-xl mx-auto">
@@ -118,7 +118,7 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
         {/* ) : (
           <div className="flex flex-col">
             <div className="text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-4">
                 {course.outcomes.title}
               </h2>
               {course.outcomes.description && (
@@ -132,7 +132,7 @@ export const OutcomesSection: FC<OutcomesSectionProps> = ({ course }) => {
               {course.outcomes.items.map((item, index) => (
                 <div key={index} className="flex  items-start gap-3 border p-2.5 rounded-lg">
                   <svg
-                    className="w-8 h-8 text-[#0266F4] mt-1 flex-shrink-0 bg-[#E8F1FF] rounded-md"
+                    className="w-8 h-8 text-tsa-bright mt-1 flex-shrink-0 bg-tsa-tint-2 rounded-md"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

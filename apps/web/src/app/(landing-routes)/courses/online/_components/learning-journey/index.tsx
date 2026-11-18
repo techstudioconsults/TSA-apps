@@ -15,7 +15,7 @@ export const LearningJourneySection: FC<LearningJourneySectionProps> = ({
     <section className="pt-5 lg:pt-10 bg-white">
       <Wrapper className="max-w-7xl ">
         <div className="text-center mb-16">
-          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4">
             {course.learningJourney.title}
           </h2>
           <p className="text-base md:text-lg text-[#595959] max-w-3xl mx-auto">
@@ -38,7 +38,7 @@ export const LearningJourneySection: FC<LearningJourneySectionProps> = ({
                 >
                   {/* Timeline dot */}
                   <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 top-6 w-6 h-6 items-center justify-center z-10">
-                    <div className="w-4 h-4 bg-[#0071F2] rounded-full"></div>
+                    <div className="w-4 h-4 bg-tsa-bright-alt rounded-full"></div>
                   </div>
 
                   {/* Content card */}
@@ -50,7 +50,7 @@ export const LearningJourneySection: FC<LearningJourneySectionProps> = ({
                     }`}
                   >
                     <div className="mb-4">
-                      <span className="inline-block text-[#0266F4] font-bold text-sm mb-2">
+                      <span className="inline-block text-tsa-bright font-bold text-sm mb-2">
                         UNIT {unit.unitNumber}
                       </span>
                       <h3 className="text-lg md:text-xl font-bold text-black mt-1">

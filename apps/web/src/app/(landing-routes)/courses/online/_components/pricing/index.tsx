@@ -21,7 +21,7 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
   //       <section className="py-16 lg:py-24 bg-white">
   //       <Wrapper className="max-w-6xl">
   //         <div className="text-center mb-12">
-  //           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2666] mb-4">
+  //           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-tsa-ink mb-4">
   //             Become a Full-Stack Developer Without Breaking the Bank
   //           </h2>
   //           <p className="text-lg md:text-xl lg:text-2xl text-[#595959] max-w-3xl mx-auto">
@@ -47,8 +47,8 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
   //           </div>
   //           </div>
 
-  //           <div className=" rounded-lg p-6  relative border border-[#1F2666] bg-[url('/images/pricebg.png')] ">
-  //             <span className="absolute -top-3 left-1/3 transform -translate-x-1/2 bg-[#E0ECFF] text-[#0266F4] border border-[#0266F4] px-4 py-1 rounded-full text-sm font-semibold">
+  //           <div className=" rounded-lg p-6  relative border border-tsa-ink bg-[url('/images/pricebg.png')] ">
+  //             <span className="absolute -top-3 left-1/3 transform -translate-x-1/2 bg-tsa-tint-4 text-tsa-bright border border-tsa-bright px-4 py-1 rounded-full text-sm font-semibold">
   //               Best Value
   //             </span>
   //             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 mt-4 text-white">Tech Studio Academy</h3>
@@ -78,7 +78,7 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
   //               onClick={() => setIsModalOpen(true)}
   //               variant="primary"
   //               size="xl"
-  //               className="bg-[#0266F4] text-white px-6 py-5 rounded font-bold w-full"
+  //               className="bg-tsa-bright text-white px-6 py-5 rounded font-bold w-full"
   //             >
   //               {course.pricing.buttonText}
   //             </CustomButton>
@@ -101,14 +101,14 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
       <section className="py-5 lg:py-10 bg-white">
         <Wrapper className="max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
+            <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4">
               Program Investment
             </h2>
             <p className="text-base md:text-lg leading-[25px] text-[#595959] max-w-3xl mx-auto">
               One-time payment for complete access to everything you need.
             </p>
           </div>
-          <div className="rounded-lg px-5 md:px-10 pt-5 md:pt-10 pb-10 md:pb-14  relative border border-[#1F2666] max-w-xl mx-auto  bg-[url('/images/pricebg.png')] bg-cover bg-center">
+          <div className="rounded-lg px-5 md:px-10 pt-5 md:pt-10 pb-10 md:pb-14  relative border border-tsa-ink max-w-xl mx-auto  bg-[url('/images/pricebg.png')] bg-cover bg-center">
             <div className="mb-8">
               <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 text-white">
                 {course.pricing.title}
@@ -143,7 +143,7 @@ export const PricingSection: FC<PricingSectionProps> = ({ course }) => {
                 onClick={() => setIsModalOpen(true)}
                 variant="primary"
                 size="lg"
-                className="bg-[#0266F4] text-white  px-6 py-5 rounded font-bold w-full"
+                className="bg-tsa-bright text-white  px-6 py-5 rounded font-bold w-full"
               >
                 {course.pricing.buttonText}
               </CustomButton>

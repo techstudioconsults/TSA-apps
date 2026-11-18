@@ -23,10 +23,10 @@ export const SectionThree = () => {
             linkedIn=""
           />
           <TeamCard
-            image="/team/tosin.png"
-            name="Tosin Sanya"
+            image="/team/adeleye-stephen.jpeg"
+            name="Adeleye Stephen"
             role="Head of Admin"
-            linkedIn="https://www.linkedin.com/in/oluwatosin-sanya-acipm-52a039a0"
+            linkedIn="http://linkedin.com/in/stephen-adeleye-36148a3b1"
           />
           <TeamCard
             image="/team/eggyy.png"
@@ -35,16 +35,16 @@ export const SectionThree = () => {
             linkedIn="https://www.linkedin.com/in/eguono-imonieroh-87a919158"
           />
           <TeamCard
-            image="/team/kemi-o.png"
-            name="Oluwakemi Catherine"
+            image="/team/janet-adeyemi.jpeg"
+            name="Adeyemi Janet"
             role="Sales & Marketing"
-            linkedIn="https://ng.linkedin.com/in/oladapo-oluwakemi-catherine-35743837a"
+            linkedIn="https://www.linkedin.com/in/adeyemi-janet-a46167282"
           />
           <TeamCard
-            image="/team/temi-i.png"
-            name="Temiloluwa Ige"
+            image="/team/gbemisola-akinleye.jpeg"
+            name="Gbemisola Akinleye"
             role="Sales & Marketing"
-            linkedIn="https://www.linkedin.com/in/temiloluwaige"
+            linkedIn="https://www.linkedin.com/in/gbemisola-akinleye-a47a57244"
           />
         </section>
       </Wrapper>

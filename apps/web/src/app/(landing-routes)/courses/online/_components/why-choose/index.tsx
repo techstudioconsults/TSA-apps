@@ -20,10 +20,10 @@ export const WhyChooseSection: FC<WhyChooseSectionProps> = ({ course }) => {
   // const gridCols = isDataAnalytics ? "lg:grid-cols-4" : "lg:grid-cols-3";
 
   return (
-    <section className={`py-6 lg:py-9 bg-[#EDF5FF]`}>
+    <section className={`py-6 lg:py-9 bg-tsa-tint`}>
       <Wrapper className="max-w-7xl">
         <div className="text-center mb-12 max-w-3xl mx-auto">
-          <h2 className="text-[24px] lg:text-[36px] font-bold text-[#1F2666] mb-4">
+          <h2 className="text-[24px] lg:text-[36px] font-bold text-tsa-ink mb-4">
             {title}
           </h2>
 
