@@ -40,7 +40,7 @@ export const SectionOne: React.FC = () => {
                   </a>
                 </p>
                 <p className="mt-2 text-high-grey-II">
-                  <span className="font-semibold">Bukola:</span>
+                  <span className="font-semibold">Gbemisola:</span>
                   <a className="text-dark" href="tel:+2348056713508">
                     +234 805 671 3508
                   </a>
