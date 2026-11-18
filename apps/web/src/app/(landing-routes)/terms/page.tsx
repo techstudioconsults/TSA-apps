@@ -4,7 +4,7 @@ import { LegalHero } from "../_components/legal/legal-hero";
 import { TERMS_LAST_UPDATED, TERMS_SECTIONS } from "./_data";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Techstudio Academy",
+  title: "Terms of Service",
   description:
     "The terms that govern your access to and use of the Tech Studio Consults website, services and content.",
 };

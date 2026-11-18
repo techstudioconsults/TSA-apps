@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 // import { WeekdayCountdownBanner } from "../_components/countdown-timer";
@@ -9,6 +10,20 @@ import { SectionOne } from "../_views/section-one";
 import { SectionThree } from "../_views/section-three";
 import { SectionTwo } from "../_views/section-two";
 import { getCourseData } from "@/action/courses.action";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const course = await getCourseData(slug);
+    return { title: course.intro.title };
+  } catch {
+    return {};
+  }
+}
 
 const Courses = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;

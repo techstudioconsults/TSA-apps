@@ -14,7 +14,10 @@ import "@workspace/ui/globals.css";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Techstudio Academy",
+  title: {
+    default: "Techstudio Academy",
+    template: "%s | Techstudio Academy",
+  },
   description: "TSA",
   icons: {
     icon: [

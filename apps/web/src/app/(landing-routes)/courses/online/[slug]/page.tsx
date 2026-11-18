@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getOnlineCourseBySlug } from "../data/online-courses.data";
 import { OnlineCourseHero } from "../_components/hero";
@@ -17,6 +18,14 @@ import { CTASection } from "../_components/cta";
 
 interface OnlineCoursePageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: OnlineCoursePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const course = getOnlineCourseBySlug(slug);
+  return course ? { title: `${course.title} Online Course` } : {};
 }
 
 const OnlineCoursePage = async ({ params }: OnlineCoursePageProps) => {

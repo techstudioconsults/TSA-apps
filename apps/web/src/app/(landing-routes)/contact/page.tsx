@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 // import Link from 'next/link';
 
 import { Hero } from "./_views/hero";
 import { GoogleMap } from "./_components/map/google-map";
 import { SectionOne } from "./_views/section-one";
+
+export const metadata: Metadata = { title: "Contact Us" };
 
 const location = {
   address: "1, Ogunlesi Street, Awoyokun Bus Stop, Onipanu Lagos",

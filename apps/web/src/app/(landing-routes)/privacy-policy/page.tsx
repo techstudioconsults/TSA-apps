@@ -4,7 +4,7 @@ import { LegalHero } from "../_components/legal/legal-hero";
 import { PRIVACY_LAST_UPDATED, PRIVACY_SECTIONS } from "./_data";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Techstudio Academy",
+  title: "Privacy Policy",
   description:
     "How Tech Studio Consults collects, uses, stores, discloses and protects your personal information.",
 };

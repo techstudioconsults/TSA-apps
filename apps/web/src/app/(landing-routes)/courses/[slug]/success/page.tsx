@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import { CustomButton, Wrapper } from "@workspace/ui/lib";
 import Image from "next/image";
 import { LeadEvent } from "./lead-event";
+
+export const metadata: Metadata = { title: "Registration Successful" };
 
 export default async function RegistrationSuccessPage(
   props: any,
