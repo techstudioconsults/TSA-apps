@@ -1,0 +1,54 @@
+@import "@workspace/ui/globals.css";
+
+@source "../**/*.{ts,tsx}";
+
+/* TSA Brand tokens (TSA Brand design system), used by the learning site */
+@theme {
+  --color-ink: #0b1b33;
+  --color-ink-muted: #4a5872;
+  --color-navy: #0b1b33;
+  --color-navy-raised: #13284a;
+  --color-navy-line: #2a4370;
+  --color-on-navy-muted: #a9b6cc;
+  --color-surface-sunken: #f4f6fa;
+  --color-line: #d5dce6;
+  --color-line-soft: #eef1f6;
+  --color-line-strong: #7a879e;
+  --color-action: #0e62cc;
+  --color-action-hover: #0a4ea6;
+  --color-action-soft: #e8f1fe;
+  --color-action-on-navy: #5aa2ff;
+  --color-brand-blue: #1478f0;
+  --color-ok: #1e7b4f;
+  --color-ok-soft: #e6f4ec;
+  --color-caution: #8a5300;
+  --color-caution-soft: #fdf3e1;
+  --color-bad: #b3121f;
+  --color-bad-soft: #fcebec;
+  --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-surface-sunken);
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+/* The shared base styles paint every heading in the dark foreground colour,
+   which hides headings on navy panels. Here headings take their parent's colour. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: inherit;
+  }
+}

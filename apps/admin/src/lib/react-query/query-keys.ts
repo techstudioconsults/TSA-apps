@@ -48,5 +48,18 @@ export const queryKeys = {
       [...queryKeys.marketingCycles.details(), id] as const,
   },
 
+  learning: {
+    all: ["learning"] as const,
+    summary: () => ["learning", "summary"] as const,
+    curriculum: (courseId: string) =>
+      ["learning", "curriculum", courseId] as const,
+    lecture: (id: string) => ["learning", "lecture", id] as const,
+    enrolments: (courseId: string, page: number) =>
+      ["learning", "enrolments", courseId, page] as const,
+    courseOptions: () => ["learning", "course-options"] as const,
+    cohortOptions: (courseId: string) =>
+      ["learning", "cohort-options", courseId] as const,
+  },
+
   // Add other domains as needed
 };

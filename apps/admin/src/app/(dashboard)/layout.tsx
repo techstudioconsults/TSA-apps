@@ -10,6 +10,7 @@ import { SidebarInset, SidebarProvider } from "@workspace/ui/components";
 import { Icons } from "@workspace/ui/icons";
 import { AppSidebar, Logo, Wrapper } from "@workspace/ui/lib";
 import { cn } from "@workspace/ui/lib/utils";
+import { GraduationCap, PlaySquare } from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -23,6 +24,11 @@ export default function DashboardLayout({
     }
   }, [router]);
   const { data: currentUser, isLoading } = useCurrentUser();
+  // Learning pages only for roles the API allows (a 403 logs people out)
+  const role = currentUser?.data?.role;
+  const canManageEnrolments =
+    role === "SUPER ADMIN" || role === "ADMINISTRATION";
+  const canManageContent = canManageEnrolments || role === "TUTOR";
   return (
     <SidebarProvider>
       <AppSidebar
@@ -34,6 +40,12 @@ export default function DashboardLayout({
           { name: "Classes", url: "/classes", icon: Icons.users },
           { name: "Sheets", url: "/sheets", icon: Icons.sheet },
           { name: "Market Cycle", url: "/market-cycle", icon: Icons.megaphone },
+          ...(canManageContent
+            ? [{ name: "Course content", url: "/learning", icon: PlaySquare }]
+            : []),
+          ...(canManageEnrolments
+            ? [{ name: "Enrolments", url: "/enrolments", icon: GraduationCap }]
+            : []),
         ]}
         teams={[
           {

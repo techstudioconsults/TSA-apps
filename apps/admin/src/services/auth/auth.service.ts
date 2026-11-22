@@ -38,6 +38,37 @@ export class AuthService {
       return response.data;
     }
   }
+
+  // Password reset (public endpoints) -------------------------------------
+  async forgotPassword(email: string) {
+    const response = await httpAdapter.post<ApiResponse<{ message: string }>>(
+      "/auth/forgot-password",
+      {
+        email: email.trim(),
+      },
+    );
+    return response?.data.data;
+  }
+
+  async verifyResetLink(token: string) {
+    const response = await httpAdapter.post<
+      ApiResponse<{
+        valid: true;
+        purpose: "reset" | "invite";
+        email: string;
+        firstName: string;
+      }>
+    >("/auth/reset-password/verify", { token });
+    return response?.data.data;
+  }
+
+  async resetPassword(token: string, password: string) {
+    const response = await httpAdapter.post<ApiResponse<{ reset: true }>>(
+      "/auth/reset-password",
+      { token, password },
+    );
+    return response?.data.data;
+  }
 }
 
 export const authService = new AuthService();

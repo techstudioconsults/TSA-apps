@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -40,17 +41,25 @@ const LoginForm: FC = () => {
         password: data.password,
       });
 
+      if (result?.user?.role === "STUDENT") {
+        setFormError(
+          "This dashboard is for staff. Students log in at learning.techstudioacademy.com.",
+        );
+        return;
+      }
       if (result?.tokens && result?.user) {
         tokenManager.setAuth(
           result.tokens.accessToken || result.tokens.access,
           result.tokens.refreshToken || result.tokens.refresh,
         );
-        const redirectTo = searchParams.get("redirect") || "/";
+        // Tutors only have access to course content; the home page is admin data
+        const fallback = result.user.role === "TUTOR" ? "/learning" : "/";
+        const redirectTo = searchParams.get("redirect") || fallback;
         router.push(redirectTo);
       }
     } catch (error: any) {
       setFormError(
-        error.response.data.message ||
+        error?.response?.data?.message ||
           "Invalid email or password. Please try again.",
       );
     }
@@ -67,6 +76,15 @@ const LoginForm: FC = () => {
             Please sign in to your account
           </p>
         </div>
+
+        {searchParams.get("reset") === "1" && !formError && (
+          <div
+            role="status"
+            className="mb-4 rounded border border-emerald-200 bg-emerald-50 px-4 py-2 text-center text-emerald-800"
+          >
+            Your password is saved. Sign in with it now.
+          </div>
+        )}
 
         {formError && (
           <div className="mb-4 rounded border border-red-200 bg-red-50 px-4 py-2 text-center text-red-700">
@@ -148,9 +166,12 @@ const LoginForm: FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
-              <span className="cursor-not-allowed font-medium text-blue-600 opacity-70 hover:underline">
+              <Link
+                href="/forgot-password"
+                className="font-medium text-blue-600 hover:underline"
+              >
                 Forgot your password?
-              </span>
+              </Link>
             </div>
           </div>
 

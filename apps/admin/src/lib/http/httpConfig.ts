@@ -47,8 +47,11 @@ http.interceptors.response.use(
         "",
     ).toLowerCase();
 
-    // Handle 401 or 403 - unauthorized/forbidden
-    if (status === 401 || status === 403) {
+    // 403 means "signed in, but this role can't do that" (the API answers 401
+    // for missing, expired or revoked sessions). Logging out on 403 used to sign
+    // tutors out right after login, because the home page asks for admin-only
+    // totals. Let the request fail and the page show its own error instead.
+    if (status === 401) {
       // Check if backend explicitly says JWT expired
       if (
         responseMessage.includes("jwt expired") ||
