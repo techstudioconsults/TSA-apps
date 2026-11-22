@@ -43,6 +43,16 @@ export default defineWorkspace([
     test: {
       globals: true,
       environment: "node",
+      name: "learn",
+      root: "./apps/learn",
+      include: ["**/*.test.{ts,tsx}"],
+      exclude: ["**/node_modules/**", "**/.next/**"],
+    },
+  },
+  {
+    test: {
+      globals: true,
+      environment: "node",
       name: "ui",
       root: "./packages/ui",
       include: ["**/*.test.{ts,tsx}"],
